@@ -32,6 +32,8 @@ ENV_DIR="${RUN_DIR}/env"
 
 mkdir -p "$RUN_DIR" "$LOG_DIR" "$ENV_DIR"
 
+ENCODER_ONLY_LAUNCH_CMD="${ENCODER_ONLY_LAUNCH_CMD:-bash scripts/launch_encoder_partial_perlmutter.sh}"
+
 cleanup() {
   set +e
   if [[ -n "${LAUNCHER_PID:-}" ]]; then

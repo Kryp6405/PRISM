@@ -17,6 +17,9 @@ ENV_DIR="${RUN_DIR}/env"
 
 mkdir -p "$RUN_DIR" "$LOG_DIR" "$ENV_DIR"
 
+# Launch command is now embedded by default
+FULL_DISAGG_LAUNCH_CMD="${FULL_DISAGG_LAUNCH_CMD:-bash scripts/launch_full_disagg_perlmutter.sh}"
+
 cleanup() {
   set +e
   if [[ -n "${LAUNCHER_PID:-}" ]]; then

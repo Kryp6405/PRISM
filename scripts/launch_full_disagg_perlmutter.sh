@@ -1,20 +1,33 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-: "${LOG_DIR:?LOG_DIR must be set}"
-: "${MODEL:=Qwen/Qwen2-VL-2B-Instruct}"
-: "${VLLM_ROOT:?Set VLLM_ROOT, e.g. $SCRATCH/PRISM_env/vllm}"
-: "${VENV_ACTIVATE:?Set VENV_ACTIVATE, e.g. $SCRATCH/PRISM_env/venvs/vllm-env/bin/activate}"
-: "${EC_SHARED_STORAGE_PATH:?Set EC_SHARED_STORAGE_PATH}"
-: "${PORT:=8000}"
+###############################################################################
+# Perlmutter defaults — edit these once if your paths differ
+###############################################################################
+MODEL="${MODEL:-Qwen/Qwen2-VL-2B-Instruct}"
+PORT="${PORT:-8000}"
+
+VLLM_ROOT="${VLLM_ROOT:-$SCRATCH/PRISM_env/vllm}"
+VENV_ACTIVATE="${VENV_ACTIVATE:-$SCRATCH/PRISM_env/venvs/vllm-env/bin/activate}"
+EC_SHARED_STORAGE_PATH="${EC_SHARED_STORAGE_PATH:-$PSCRATCH/prism_ec_cache}"
 
 ENCODE_PORT="${ENCODE_PORT:-19534}"
 PREFILL_PORT="${PREFILL_PORT:-19535}"
 DECODE_PORT="${DECODE_PORT:-19536}"
 
+GPU_E="${GPU_E:-0}"
+GPU_P="${GPU_P:-1}"
+GPU_D="${GPU_D:-2}"
+
+LOG_DIR="${LOG_DIR:-./artifacts/e_p_d_logs}"
+
+###############################################################################
 mkdir -p "$LOG_DIR"
 rm -rf "$EC_SHARED_STORAGE_PATH"
 mkdir -p "$EC_SHARED_STORAGE_PATH"
+
+: "${VLLM_ROOT:?VLLM_ROOT is empty}"
+: "${VENV_ACTIVATE:?VENV_ACTIVATE is empty}"
 
 (
   source "$VENV_ACTIVATE"

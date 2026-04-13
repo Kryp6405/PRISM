@@ -13,6 +13,40 @@ PD_PORT="${PD_PORT:-19535}"
 
 mkdir -p "$LOG_DIR" "$EC_SHARED_STORAGE_PATH"
 
+###############################################################################
+# Perlmutter defaults — edit these once if your paths differ
+###############################################################################
+MODEL="${MODEL:-Qwen/Qwen2-VL-2B-Instruct}"
+PORT="${PORT:-8000}"
+
+# Your built vLLM checkout from setup_prism_stack.sh
+VLLM_ROOT="${VLLM_ROOT:-$SCRATCH/PRISM_env/vllm}"
+
+# Your venv from setup_prism_stack.sh
+VENV_ACTIVATE="${VENV_ACTIVATE:-$SCRATCH/PRISM_env/venvs/vllm-env/bin/activate}"
+
+# Shared EC cache path
+EC_SHARED_STORAGE_PATH="${EC_SHARED_STORAGE_PATH:-$PSCRATCH/prism_ec_cache}"
+
+# Ports
+ENCODE_PORT="${ENCODE_PORT:-19534}"
+PD_PORT="${PD_PORT:-19535}"
+
+# GPU placement
+GPU_E="${GPU_E:-0}"
+GPU_PD="${GPU_PD:-1}"
+
+# Logs
+LOG_DIR="${LOG_DIR:-./artifacts/e_pd_logs}"
+
+###############################################################################
+mkdir -p "$LOG_DIR"
+rm -rf "$EC_SHARED_STORAGE_PATH"
+mkdir -p "$EC_SHARED_STORAGE_PATH"
+
+: "${VLLM_ROOT:?VLLM_ROOT is empty}"
+: "${VENV_ACTIVATE:?VENV_ACTIVATE is empty}"
+
 (
   source "$VENV_ACTIVATE"
   cd "$VLLM_ROOT"
