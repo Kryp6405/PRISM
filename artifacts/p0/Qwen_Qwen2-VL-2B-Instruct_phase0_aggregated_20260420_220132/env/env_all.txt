@@ -1,0 +1,496 @@
+ *)
+ *)
+ :;
+ :;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+ "$CONDA_EXE" "$@";
+ "$CONDA_EXE" $_CE_M $_CE_CONDA "$@";
+ activate | deactivate)
+ activate | reactivate | deactivate)
+APP2_STATE=25.09.0
+ ask_conda="$(PS1="${PS1:-}" __conda_exe shell.posix "$@")" || \return;
+ ask_mamba="$(PS1="${PS1:-}" __mamba_exe shell "${@}" --shell bash)" || \return;
+autologout=30
+BASH_ENV=/opt/cray/pe/lmod/lmod/init/bash
+BASH_FUNC___conda_activate%%=() {  if [ -n "${CONDA_PS1_BACKUP:+x}" ]; then
+BASH_FUNC___conda_exe%%=() {  ( if [ -n "${_CE_M:+x}" ] && [ -n "${_CE_CONDA:+x}" ]; then
+BASH_FUNC___conda_hashr%%=() {  if [ -n "${ZSH_VERSION:+x}" ]; then
+BASH_FUNC_conda%%=() {  \local cmd="${1-__missing__}";
+BASH_FUNC___conda_reactivate%%=() {  echo "'__conda_reactivate' is deprecated and will be removed in 25.9. Use '__conda_activate reactivate' instead." 1>&2;
+BASH_FUNC___mamba_exe%%=() {  ( "/global/common/software/nersc/pe/conda/26.1.0/Miniforge3-25.11.0-1/bin/mamba" "${@}" )
+BASH_FUNC___mamba_hashr%%=() {  if [ -n "${ZSH_VERSION:+x}" ]; then
+BASH_FUNC_mamba%%=() {  __mamba_wrap "$@"
+BASH_FUNC___mamba_wrap%%=() {  \local cmd="${1-__missing__}";
+BASH_FUNC___mamba_xctivate%%=() {  \local ask_mamba;
+BASH_FUNC_ml%%=() {  eval "$($LMOD_DIR/ml_cmd "$@")"
+BASH_FUNC_module%%=() {  if [ -z "${LMOD_SH_DBG_ON+x}" ]; then
+ case "${cmd}" in 
+ case "$cmd" in 
+ case "$-" in 
+_CE_CONDA=
+_CE_M=
+CFS=/global/cfs/cdirs
+COLORTERM=1
+ __conda_activate "$@"
+ __conda_activate reactivate
+ __conda_activate reactivate
+CONDA_DEFAULT_ENV=/global/common/software/nersc/pe/conda-envs/26.1.0/python-3.12/nersc-python
+CONDA_ENVS_DIRS=/global/common/software/nersc/pe/conda-envs/26.1.0/python-3.12
+ __conda_exe "$@"
+ __conda_exe "$@" || \return;
+_CONDA_EXE=/global/common/software/nersc/pe/conda/26.1.0/Miniforge3-25.11.0-1/bin/conda
+CONDA_EXE=/global/common/software/nersc/pe/conda/26.1.0/Miniforge3-25.11.0-1/bin/conda
+ __conda_hashr
+CONDA_PREFIX=/global/common/software/nersc/pe/conda-envs/26.1.0/python-3.12/nersc-python
+CONDA_PROMPT_MODIFIER=(nersc-python) 
+CONDA_PYTHON_EXE=/global/common/software/nersc/pe/conda/26.1.0/Miniforge3-25.11.0-1/bin/python
+_CONDA_ROOT=/global/common/software/nersc/pe/conda/26.1.0/Miniforge3-25.11.0-1
+CONDA_SHLVL=1
+CPATH=/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/math_libs/12.9/include:/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/include
+CPU=x86_64
+CRAY_ACCEL_TARGET=nvidia80
+CRAY_ACCEL_VENDOR=nvidia
+CRAY_CPU_TARGET=x86-milan
+CRAY_CUDATOOLKIT_DIR=/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9
+CRAY_CUDATOOLKIT_INCLUDE_OPTS=-I/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/include -I/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/nvvm/include -I/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/extras/Debugger/include -I/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/extras/CUPTI/include -I/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/math_libs/12.9/include
+CRAY_CUDATOOLKIT_POST_LINK_OPTS=-L/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/lib64 -L/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/nvvm/lib64 -L/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/extras/Debugger/lib64 -L/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/extras/CUPTI/lib64 -L/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/math_libs/12.9/lib64 -Wl,--as-needed,-lcupti,-lcudart,--no-as-needed -lcuda
+CRAY_CUDATOOLKIT_PREFIX=/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9
+CRAY_CUDATOOLKIT_VERSION=25.5_12.9
+CRAY_DSMML_BASEDIR=/opt/cray/pe/dsmml/0.3.1
+CRAY_DSMML_DIR=/opt/cray/pe/dsmml/0.3.1/dsmml
+CRAY_DSMML_PREFIX=/opt/cray/pe/dsmml/0.3.1/dsmml
+CRAY_DSMML_ROOTDIR=/opt/cray/pe/dsmml/0.3.1
+CRAY_DSMML_VER=0.3.1
+CRAY_DSMML_VERSION=0.3.1
+CRAY_LD_LIBRARY_PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/math_libs/12.9/lib64:/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/lib64:/opt/cray/pe/libsci/25.09.0/GNU/12.3/x86_64/lib:/opt/cray/pe/mpich/9.0.1/ofi/gnu/12.3/lib:/opt/cray/pe/mpich/9.0.1/gtl/lib:/opt/cray/pe/dsmml/0.3.1/dsmml/lib:/opt/cray/pe/lib64:/opt/cray/lib64:/opt/cray/pe/perftools/25.09.0/lib64
+CRAY_LIBSCI_BASE_DIR=/opt/cray/pe/libsci/25.09.0
+CRAY_LIBSCI_PREFIX_DIR=/opt/cray/pe/libsci/25.09.0/GNU/12.3/x86_64
+CRAY_LIBSCI_PREFIX=/opt/cray/pe/libsci/25.09.0/GNU/12.3/x86_64
+CRAY_LIBSCI_VERSION=25.09.0
+CRAY_LMOD_COMPILER=gnu/12.0
+CRAY_LMOD_CPU=x86-milan/1.0
+CRAY_LMOD_MPI=cray-mpich/8.0
+CRAY_LMOD_NET=ofi/1.0
+CRAY_MPICH_BASEDIR=/opt/cray/pe/mpich/9.0.1/ofi
+CRAY_MPICH_DIR=/opt/cray/pe/mpich/9.0.1/ofi/gnu/12.3
+CRAY_MPICH_PREFIX=/opt/cray/pe/mpich/9.0.1/ofi/gnu/12.3
+CRAY_MPICH_ROOTDIR=/opt/cray/pe/mpich/9.0.1
+CRAY_MPICH_VER=9.0.1
+CRAY_MPICH_VERSION=9.0.1
+CRAYPAT_LD_LIBRARY_PATH=/opt/cray/pe/perftools/25.09.0/lib64
+CRAYPAT_OPTS_EXECUTABLE=libexec64/opts
+CRAYPAT_ROOT=/opt/cray/pe/perftools/25.09.0
+CRAYPE_DIR=/opt/cray/pe/craype/2.7.35
+CRAYPE_LINK_TYPE=dynamic
+CRAYPE_NETWORK_TARGET=ofi
+CRAY_PERFTOOLS_PREFIX=/opt/cray/pe/perftools/25.09.0
+CRAY_PERFTOOLS_VERSION=25.09.0
+CRAYPE_VERSION=2.7.35
+CRAY_TCMALLOC_MEMFS_FORCE=1
+CRAY_XPMEM_INCLUDE_OPTS=-I/usr/include
+CRAY_XPMEM_POST_LINK_OPTS=-L/usr/lib64
+CSHEDIT=emacs
+CSHRCREAD=true
+CUDA_HOME=/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9
+CUDATOOLKIT_HOME=/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9
+CUDA_VISIBLE_DEVICES=0,1,2,3
+DARSHAN_BASE_DIR=/global/common/software/nersc9/darshan/default
+DARSHAN_CONFIG_PATH=/global/common/software/nersc9/darshan/default/config/perlmutter.darshan
+DARSHAN_LOGPATH=/pscratch/darshanlogs
+DARSHAN_LOGS=/pscratch/darshanlogs
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/113420/bus
+ echo "Shell debugging restarted" 1>&2;
+ echo "Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output" 1>&2;
+ else
+ else
+ else
+ else
+ else
+ esac
+ esac
+ esac;
+ eval "$($LMOD_CMD shell "$@")" && eval "$(${LMOD_SETTARG_CMD:-:} -s sh)";
+ \eval "$ask_conda";
+ \eval "${ask_mamba}";
+ fi
+ fi
+ fi
+ fi )
+ fi;
+ fi;
+ fi;
+ fi;
+ fi;
+ fi;
+FI_CXI_RX_MATCH_MODE=hybrid
+FI_MR_CACHE_MONITOR=userfaultfd
+FPATH=/opt/cray/pe/lmod/lmod/init/ksh_funcs
+FROM_HEADER=
+G_BROKEN_FILENAMES=1
+GCC_PATH=/opt/cray/pe/gcc-native/14/bin
+GCC_PREFIX=/usr/lib64/gcc/x86_64-suse-linux/14
+GCC_VERSION=14
+G_FILENAME_ENCODING=@locale,UTF-8,ISO-8859-15,CP1252
+GNU_VERSION=14.3.0
+GPG_TTY=/dev/pts/0
+GSETTINGS_SCHEMA_DIR_CONDA_BACKUP=
+GSETTINGS_SCHEMA_DIR=/global/common/software/nersc/pe/conda-envs/26.1.0/python-3.12/nersc-python/share/glib-2.0/schemas
+ \hash -r;
+ \hash -r;
+HDF5_USE_FILE_LOCKING=FALSE
+HF_DATASETS_CACHE=/pscratch/sd/k/krajeshk/PRISM_env/.cache/hf_datasets
+HF_HOME=/pscratch/sd/k/krajeshk/PRISM_env/.cache/hf_home
+HISTSIZE=1000
+HOME=/global/homes/k/krajeshk
+HOST=login16
+HOSTNAME=nid001168
+HOSTTYPE=x86_64
+HUGETLB_VERBOSE=0
+HYDRA_BOOTSTRAP=slurm
+HYDRA_LAUNCHER_EXTRA_ARGS=--external-launcher
+ if [ -f "/global/common/software/nersc/pe/conda/26.1.0/Miniforge3-25.11.0-1/bin/mamba.bkup" ]; then
+ if [ -n "${__lmod_sh_dbg:-}" ]; then
+ if [ -n "${__lmod_sh_dbg:-}" ]; then
+ if [ -n "${POSH_VERSION:+x}" ]; then
+ if [ -n "${POSH_VERSION:+x}" ]; then
+I_MPI_HYDRA_BOOTSTRAP_EXEC_EXTRA_ARGS=--external-launcher
+I_MPI_HYDRA_BOOTSTRAP=slurm
+ install | update | upgrade | remove | uninstall)
+ install | update | upgrade | remove | uninstall)
+JAVA_BINDIR=/usr/lib64/jvm/java-11-openjdk-11/bin
+JAVA_HOME=/usr/lib64/jvm/java-11-openjdk-11
+JDK_HOME=/usr/lib64/jvm/java-11-openjdk-11
+JRE_HOME=/usr/lib64/jvm/java-11-openjdk-11
+LANG=en_US.UTF-8
+LDAPTLS_REQCERT=never
+LD_LIBRARY_PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/math_libs/12.9/lib64:/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/extras/CUPTI/lib64:/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/extras/Debugger/lib64:/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/nvvm/lib64:/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/lib64:/global/common/software/nersc9/darshan/default/lib:/opt/cray/pe/papi/7.2.0.2/lib64:/opt/cray/libfabric/1.22.0/lib64:/opt/cray/libfabric/default/lib64
+LESS_ADVANCED_PREPROCESSOR=no
+LESSCLOSE=lessclose.sh %s %s
+LESSKEY=/etc/lesskey.bin
+LESS=-M -I -R
+LESSOPEN=lessopen.sh %s
+LIBGL_ALWAYS_INDIRECT=1
+LIBGL_DEBUG=quiet
+_LMFILES_=/opt/cray/pe/lmod/modulefiles/craype-targets/default/craype-x86-milan.lua:/opt/cray/modulefiles/libfabric/1.22.0:/opt/cray/pe/lmod/modulefiles/craype-targets/default/craype-network-ofi.lua:/opt/cray/modulefiles/xpmem/2.11.5-1.3_g73ade43320bc:/opt/cray/pe/lmod/modulefiles/core/gcc-native/14.lua:/opt/cray/pe/lmod/modulefiles/core/perftools-base/25.09.0.lua:/opt/cray/pe/lmod/modulefiles/core/cpe/25.09.lua:/opt/cray/pe/lmod/modulefiles/craype-targets/default/craype-accel-nvidia80.lua:/opt/nersc/pe/modulefiles/gpu/1.0.lua:/opt/nersc/pe/modulefiles/sqs/2.0.lua:/opt/nersc/pe/modulefiles/darshan/default.lua:/opt/cray/pe/lmod/modulefiles/core/craype/2.7.35.lua:/opt/cray/pe/lmod/modulefiles/core/cray-dsmml/0.3.1.lua:/opt/cray/pe/lmod/modulefiles/comnet/gnu/12.0/ofi/1.0/cray-mpich/9.0.1.lua:/opt/cray/pe/lmod/modulefiles/compiler/gnu/12.0/cray-libsci/25.09.0.lua:/opt/cray/pe/lmod/modulefiles/core/PrgEnv-gnu/8.6.0.lua:/opt/cray/pe/lmod/modulefiles/core/cudatoolkit/12.9.lua:/opt/nersc/pe/modulefiles/conda/Miniforge3-25.11.0-1.lua:/opt/nersc/pe/modulefiles/python/3.12-26.1.0.lua
+LMOD_ADMIN_FILE=/opt/nersc/pe/etc/lmod/admin.list
+LMOD_AVAIL_STYLE=grouped:system
+LMOD_CACHED_LOADS=no
+LMOD_CASE_INDEPENDENT_SORTING=yes
+LMOD_CMD=/opt/cray/pe/lmod/lmod/libexec/lmod
+LMOD_DIR=/opt/cray/pe/lmod/lmod/libexec
+LMOD_FAMILY_COMPILER=gcc-native
+LMOD_FAMILY_COMPILER_VERSION=14
+LMOD_FAMILY_CONDA=conda
+LMOD_FAMILY_CONDA_ENV=python
+LMOD_FAMILY_CONDA_ENV_VERSION=3.12-26.1.0
+LMOD_FAMILY_CONDA_VERSION=Miniforge3-25.11.0-1
+LMOD_FAMILY_CRAYPE_ACCEL=craype-accel-nvidia80
+LMOD_FAMILY_CRAYPE_ACCEL_VERSION=false
+LMOD_FAMILY_CRAYPE_CPU=craype-x86-milan
+LMOD_FAMILY_CRAYPE_CPU_VERSION=false
+LMOD_FAMILY_CRAYPE=craype
+LMOD_FAMILY_CRAYPE_NETWORK=craype-network-ofi
+LMOD_FAMILY_CRAYPE_NETWORK_VERSION=false
+LMOD_FAMILY_CRAYPE_VERSION=2.7.35
+LMOD_FAMILY_CUDATOOLKIT=cudatoolkit
+LMOD_FAMILY_CUDATOOLKIT_VERSION=12.9
+LMOD_FAMILY_GCC_COMPILER=gcc-native
+LMOD_FAMILY_GCC_COMPILER_VERSION=14
+LMOD_FAMILY_HARDWARE=gpu
+LMOD_FAMILY_HARDWARE_VERSION=1.0
+LMOD_FAMILY_LIBSCI=cray-libsci
+LMOD_FAMILY_LIBSCI_VERSION=25.09.0
+LMOD_FAMILY_MPI=cray-mpich
+LMOD_FAMILY_MPI_VERSION=9.0.1
+LMOD_FAMILY_PRGENV=PrgEnv-gnu
+LMOD_FAMILY_PRGENV_VERSION=8.6.0
+LMOD_IGNORE_CACHE=1
+LMOD_MODULERCFILE=/opt/nersc/pe/etc/lmod/modulerc.lua
+ __lmod_my_status=$?;
+LMOD_PACKAGE_PATH=/opt/nersc/pe/etc/lmod/sitepackages
+LMOD_PKG=/opt/cray/pe/lmod/lmod
+LMOD_RC=/opt/nersc/pe/etc/lmod/lmodrc.lua
+__LMOD_REF_COUNT_CONDA_ENVS_DIRS=/global/common/software/nersc/pe/conda-envs/26.1.0/python-3.12:1
+__LMOD_REF_COUNT_CPATH=/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/math_libs/12.9/include:1;/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/include:1
+__LMOD_REF_COUNT_CRAY_LD_LIBRARY_PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/math_libs/12.9/lib64:1;/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/lib64:1;/opt/cray/pe/libsci/25.09.0/GNU/12.3/x86_64/lib:1;/opt/cray/pe/mpich/9.0.1/ofi/gnu/12.3/lib:1;/opt/cray/pe/mpich/9.0.1/gtl/lib:1;/opt/cray/pe/dsmml/0.3.1/dsmml/lib:1;/opt/cray/pe/lib64:1;/opt/cray/lib64:1;/opt/cray/pe/perftools/25.09.0/lib64:1
+__LMOD_REF_COUNT_LD_LIBRARY_PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/math_libs/12.9/lib64:1;/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/extras/CUPTI/lib64:1;/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/extras/Debugger/lib64:1;/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/nvvm/lib64:1;/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/lib64:1;/global/common/software/nersc9/darshan/default/lib:1;/opt/cray/pe/papi/7.2.0.2/lib64:1;/opt/cray/libfabric/1.22.0/lib64:1;/opt/cray/libfabric/default/lib64:1
+__LMOD_REF_COUNT_LMOD_MODULERCFILE=/opt/cray/pe/cpe/25.09/modulerc.lua:1
+__LMOD_REF_COUNT_MANPATH=/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/doc/man:1;/opt/cray/pe/libsci/25.09.0/share/man:1;/opt/cray/pe/mpich/9.0.1/ofi/man:1;/opt/cray/pe/mpich/9.0.1/man/mpich:1;/opt/cray/pe/dsmml/0.3.1/dsmml/man:1;/opt/cray/pe/craype/2.7.35/man:1;/opt/cray/pe/perftools/25.09.0/man:1;/opt/cray/pe/papi/7.2.0.2/share/pdoc/man:1;/opt/cray/libfabric/1.22.0/share/man:1;/opt/cray/pe/lmod/lmod/share/man:1;/usr/local/man:1;/usr/share/man:1
+__LMOD_REF_COUNT_MODULEPATH=/opt/cray/pe/lmod/modulefiles/mpi/gnu/12.0/ofi/1.0/cray-mpich/8.0:1;/opt/cray/pe/lmod/modulefiles/perftools/25.09.0:1;/opt/cray/pe/lmod/modulefiles/comnet/gnu/12.0/ofi/1.0:1;/opt/cray/pe/lmod/modulefiles/mix_compilers:1;/opt/cray/pe/lmod/modulefiles/compiler/gnu/12.0:1;/opt/cray/pe/lmod/modulefiles/net/ofi/1.0:1;/opt/cray/pe/lmod/modulefiles/cpu/x86-milan/1.0:1;/opt/cray/pe/modulefiles/Linux:1;/opt/cray/pe/modulefiles/Core:1;/opt/cray/pe/lmod/lmod/modulefiles/Core:1;/opt/cray/pe/lmod/modulefiles/core:1;/opt/cray/pe/lmod/modulefiles/craype-targets/default:1;/global/common/software/nersc/pe/modulefiles_hotfixes:1;/opt/nersc/pe/modulefiles:1;/usr/share/lmod/lmod/modulefiles/Core:1;/opt/cray/modulefiles:1
+__LMOD_REF_COUNT_PATH=/global/homes/k/krajeshk/.local/perlmutter/python-3.12/26.1.0/bin:1;/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/compute-sanitizer:1;/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/bin:1;/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/libnvvp:1;/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/profilers/Nsight_Compute:1;/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/profilers/Nsight_Systems/bin:1;/opt/cray/pe/mpich/9.0.1/ofi/gnu/12.3/bin:1;/opt/cray/pe/mpich/9.0.1/bin:1;/opt/cray/pe/craype/2.7.35/bin:1;/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin:1;/global/common/software/nersc/pe/conda-envs/26.1.0/python-3.12/nersc-python/bin:1;/opt/nersc/pe/bin:1;/global/common/software/nersc/bin:1;/global/common/software/nersc9/darshan/default/bin:1;/global/common/software/nersc9/sqs/2.0/bin:1;/opt/cray/pe/perftools/25.09.0/bin:1;/opt/cray/pe/papi/7.2.0.2/bin:1;/opt/cray/pe/gcc-native/14/bin:1;/opt/cray/libfabric/1.22.0/bin:1;/usr/local/bin:1;/usr/bin:1;/bin:1;/usr/lib/mit/bin:1;/usr/lib/mit/sbin:1;/opt/cray/pe/bin:1
+__LMOD_REF_COUNT_PE_DSMML_PKGCONFIG_LIBS=dsmml:1
+__LMOD_REF_COUNT_PE_FORTRAN_PKGCONFIG_LIBS=mpichf90:1
+__LMOD_REF_COUNT_PE_GNU_FIXED_PKGCONFIG_PATH=/opt/cray/pe/mpich/9.0.1/ofi/gnu/12.3/lib/pkgconfig:1
+__LMOD_REF_COUNT_PE_LIBSCI_REQUIRED_PRODUCTS=PE_MPICH:1
+__LMOD_REF_COUNT_PE_MPICH_FIXED_PRGENV=GNU:1
+__LMOD_REF_COUNT_PE_MPICH_FORTRAN_PKGCONFIG_LIBS=mpichf90:1
+__LMOD_REF_COUNT_PE_MPICH_GENCOMPILERS_GNU=12.3:1
+__LMOD_REF_COUNT_PE_MPICH_PKGCONFIG_LIBS=mpich:1
+__LMOD_REF_COUNT_PE_PKGCONFIG_LIBS=cudatoolkit_12.9:1;libsci_mpi:1;libsci:1;mpich:1;dsmml:1;darshan-runtime:1
+__LMOD_REF_COUNT_PE_PKGCONFIG_PRODUCTS=PE_LIBSCI:1;PE_MPICH:1;PE_DSMML:1;PE_XPMEM:1
+__LMOD_REF_COUNT_PE_PRODUCT_LIST=CRAYPE:1;CRAYPE_X86_MILAN:1;PERFTOOLS:1;CRAYPAT:1;CRAY_ACCEL:1;CRAY_HPC_SDK:1
+__LMOD_REF_COUNT_PKG_CONFIG_PATH=/opt/cray/pe/modulefiles/cudatoolkit:1;/opt/cray/pe/dsmml/0.3.1/dsmml/lib/pkgconfig:1;/opt/cray/pe/craype/2.7.35/pkg-config:1;/global/common/software/nersc9/darshan/default/lib/pkgconfig:1;/opt/cray/libfabric/1.22.0/lib64/pkgconfig:1
+LMOD_ROOT=/opt/cray/pe/lmod
+LMOD_SETTARG_FULL_SUPPORT=no
+ __lmod_sh_dbg='v'
+ __lmod_sh_dbg='vx'
+ __lmod_sh_dbg='x'
+LMOD_SITE_NAME=NERSC
+LMOD_SYSHOST=perlmutter
+LMOD_sys=Linux
+LMOD_SYSTEM_DEFAULT_MODULES=craype-x86-milan:craype-network-ofi:perftools-base:xpmem:PrgEnv-gnu:cpe:gpu:sqs:darshan
+LMOD_SYSTEM_NAME=perlmutter
+LMOD_VERSION=8.7.60
+LOADEDMODULES=craype-x86-milan:libfabric/1.22.0:craype-network-ofi:xpmem/2.11.5-1.3_g73ade43320bc:gcc-native/14:perftools-base/25.09.0:cpe/25.09:craype-accel-nvidia80:gpu/1.0:sqs/2.0:darshan/default:craype/2.7.35:cray-dsmml/0.3.1:cray-mpich/9.0.1:cray-libsci/25.09.0:PrgEnv-gnu/8.6.0:cudatoolkit/12.9:conda/Miniforge3-25.11.0-1:python/3.12-26.1.0
+ \local ask_conda;
+LOGNAME=krajeshk
+MACHTYPE=x86_64-suse-linux
+MAIL=/var/spool/mail/krajeshk
+ __mamba_exe "${@}"
+ __mamba_exe "${@}" || \return;
+ __mamba_exe "${@}" || \return;
+ __mamba_hashr
+MAMBA_ROOT_PREFIX=/global/common/software/nersc/pe/conda/26.1.0/Miniforge3-25.11.0-1
+ __mamba_xctivate "${@}"
+ __mamba_xctivate reactivate
+MANPATH=/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/doc/man:/opt/cray/pe/libsci/25.09.0/share/man:/opt/cray/pe/mpich/9.0.1/ofi/man:/opt/cray/pe/mpich/9.0.1/man/mpich:/opt/cray/pe/dsmml/0.3.1/dsmml/man:/opt/cray/pe/craype/2.7.35/man:/opt/cray/pe/perftools/25.09.0/man:/opt/cray/pe/papi/7.2.0.2/share/pdoc/man:/opt/cray/libfabric/1.22.0/share/man:/opt/cray/pe/lmod/lmod/share/man:/usr/local/man:/usr/share/man
+MAN_POSIXLY_CORRECT=1
+MINICOM=-c on
+MODULEPATH=/opt/cray/pe/lmod/modulefiles/mpi/gnu/12.0/ofi/1.0/cray-mpich/8.0:/opt/cray/pe/lmod/modulefiles/perftools/25.09.0:/opt/cray/pe/lmod/modulefiles/comnet/gnu/12.0/ofi/1.0:/opt/cray/pe/lmod/modulefiles/mix_compilers:/opt/cray/pe/lmod/modulefiles/compiler/gnu/12.0:/opt/cray/pe/lmod/modulefiles/net/ofi/1.0:/opt/cray/pe/lmod/modulefiles/cpu/x86-milan/1.0:/opt/cray/pe/modulefiles/Linux:/opt/cray/pe/modulefiles/Core:/opt/cray/pe/lmod/lmod/modulefiles/Core:/opt/cray/pe/lmod/modulefiles/core:/opt/cray/pe/lmod/modulefiles/craype-targets/default:/global/common/software/nersc/pe/modulefiles_hotfixes:/opt/nersc/pe/modulefiles:/usr/share/lmod/lmod/modulefiles/Core:/opt/cray/modulefiles
+MODULEPATH_ROOT=/opt/cray/pe/modulefiles
+MODULESHOME=/opt/cray/pe/lmod/lmod
+_ModuleTable001_=X01vZHVsZVRhYmxlXyA9IHsKTVR2ZXJzaW9uID0gMywKY19yZWJ1aWxkVGltZSA9IGZhbHNlLApjX3Nob3J0VGltZSA9IGZhbHNlLApkZXB0aFQgPSB7fSwKZmFtaWx5ID0gewpQcmdFbnYgPSAiUHJnRW52LWdudSIsCmNvbXBpbGVyID0gImdjYy1uYXRpdmUiLApjb25kYSA9ICJjb25kYSIsCmNvbmRhX2VudiA9ICJweXRob24iLApjcmF5cGUgPSAiY3JheXBlIiwKY3JheXBlX2FjY2VsID0gImNyYXlwZS1hY2NlbC1udmlkaWE4MCIsCmNyYXlwZV9jcHUgPSAiY3JheXBlLXg4Ni1taWxhbiIsCmNyYXlwZV9uZXR3b3JrID0gImNyYXlwZS1uZXR3b3JrLW9maSIsCmN1ZGF0b29sa2l0ID0gImN1ZGF0b29sa2l0IiwKZ2NjX2NvbXBpbGVyID0gImdjYy1uYXRpdmUiLApoYXJkd2Fy
+_ModuleTable002_=ZSA9ICJncHUiLApsaWJzY2kgPSAiY3JheS1saWJzY2kiLAptcGkgPSAiY3JheS1tcGljaCIsCn0sCm1UID0gewpbIlByZ0Vudi1nbnUiXSA9IHsKZm4gPSAiL29wdC9jcmF5L3BlL2xtb2QvbW9kdWxlZmlsZXMvY29yZS9QcmdFbnYtZ251LzguNi4wLmx1YSIsCmZ1bGxOYW1lID0gIlByZ0Vudi1nbnUvOC42LjAiLApsb2FkT3JkZXIgPSAxNiwKcHJvcFQgPSB7CnR5cGVfID0gewpwcmdlbnYgPSAxLAp9LAp9LApzdGFja0RlcHRoID0gMCwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1lID0gIlByZ0Vudi1nbnUiLAp3ViA9ICJeMDAwMDAwMDguMDAwMDAwMDA2Lip6ZmluYWwiLAp9LApjb25kYSA9IHsKZm4gPSAiL29wdC9uZXJzYy9wZS9tb2R1bGVmaWxlcy9jb25kYS9NaW5p
+_ModuleTable003_=Zm9yZ2UzLTI1LjExLjAtMS5sdWEiLApmdWxsTmFtZSA9ICJjb25kYS9NaW5pZm9yZ2UzLTI1LjExLjAtMSIsCmxvYWRPcmRlciA9IDE4LApwcm9wVCA9IHt9LApyZWZfY291bnQgPSAxLApzdGFja0RlcHRoID0gMSwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1lID0gImNvbmRhIiwKd1YgPSAiKm1pbmlmb3JnZS4wMDAwMDAwMDMuKnpmaW5hbC0uMDAwMDAwMDI1LjAwMDAwMDAxMS4qemZpbmFsLS4wMDAwMDAwMDEuKnpmaW5hbCIsCn0sCmNwZSA9IHsKZm4gPSAiL29wdC9jcmF5L3BlL2xtb2QvbW9kdWxlZmlsZXMvY29yZS9jcGUvMjUuMDkubHVhIiwKZnVsbE5hbWUgPSAiY3BlLzI1LjA5IiwKbG9hZE9yZGVyID0gNywKcHJvcFQgPSB7fSwKc3RhY2tEZXB0aCA9IDAsCnN0
+_ModuleTable004_=YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJjcGUiLAp3ViA9ICJeMDAwMDAwMjUuMDAwMDAwMDA5Lip6ZmluYWwiLAp9LApbImNyYXktZHNtbWwiXSA9IHsKZm4gPSAiL29wdC9jcmF5L3BlL2xtb2QvbW9kdWxlZmlsZXMvY29yZS9jcmF5LWRzbW1sLzAuMy4xLmx1YSIsCmZ1bGxOYW1lID0gImNyYXktZHNtbWwvMC4zLjEiLApsb2FkT3JkZXIgPSAxMywKcHJvcFQgPSB7fSwKc3RhY2tEZXB0aCA9IDEsCnN0YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJjcmF5LWRzbW1sIiwKd1YgPSAiXjAwMDAwMDAwLjAwMDAwMDAwMy4wMDAwMDAwMDEuKnpmaW5hbCIsCn0sClsiY3JheS1saWJzY2kiXSA9IHsKZm4gPSAiL29wdC9jcmF5L3BlL2xtb2QvbW9kdWxlZmlsZXMvY29t
+_ModuleTable005_=cGlsZXIvZ251LzEyLjAvY3JheS1saWJzY2kvMjUuMDkuMC5sdWEiLApmdWxsTmFtZSA9ICJjcmF5LWxpYnNjaS8yNS4wOS4wIiwKbG9hZE9yZGVyID0gMTUsCnByb3BUID0ge30sCnN0YWNrRGVwdGggPSAxLApzdGF0dXMgPSAiYWN0aXZlIiwKdXNlck5hbWUgPSAiY3JheS1saWJzY2kiLAp3ViA9ICJeMDAwMDAwMjUuMDAwMDAwMDA5Lip6ZmluYWwiLAp9LApbImNyYXktbXBpY2giXSA9IHsKYWN0aW9uQSA9IHsKInByZXBlbmRfcGF0aChcIk1PRFVMRVBBVEhcIixcIi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL21waS9nbnUvMTIuMC9vZmkvMS4wL2NyYXktbXBpY2gvOC4wXCIpIiwKfSwKZm4gPSAiL29wdC9jcmF5L3BlL2xtb2QvbW9kdWxlZmlsZXMvY29tbmV0L2du
+_ModuleTable006_=dS8xMi4wL29maS8xLjAvY3JheS1tcGljaC85LjAuMS5sdWEiLApmdWxsTmFtZSA9ICJjcmF5LW1waWNoLzkuMC4xIiwKbG9hZE9yZGVyID0gMTQsCnByb3BUID0gewp0eXBlXyA9IHsKbXBpID0gMSwKfSwKfSwKc3RhY2tEZXB0aCA9IDEsCnN0YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJjcmF5LW1waWNoIiwKd1YgPSAiXjAwMDAwMDA5LjAwMDAwMDAwMC4wMDAwMDAwMDEuKnpmaW5hbCIsCn0sCmNyYXlwZSA9IHsKZm4gPSAiL29wdC9jcmF5L3BlL2xtb2QvbW9kdWxlZmlsZXMvY29yZS9jcmF5cGUvMi43LjM1Lmx1YSIsCmZ1bGxOYW1lID0gImNyYXlwZS8yLjcuMzUiLApsb2FkT3JkZXIgPSAxMiwKcHJvcFQgPSB7CnR5cGVfID0gewpjb21waWxlciA9IDEsCn0sCn0s
+_ModuleTable007_=CnN0YWNrRGVwdGggPSAxLApzdGF0dXMgPSAiYWN0aXZlIiwKdXNlck5hbWUgPSAiY3JheXBlIiwKd1YgPSAiXjAwMDAwMDAyLjAwMDAwMDAwNy4wMDAwMDAwMzUuKnpmaW5hbCIsCn0sClsiY3JheXBlLWFjY2VsLW52aWRpYTgwIl0gPSB7CmZuID0gIi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2NyYXlwZS10YXJnZXRzL2RlZmF1bHQvY3JheXBlLWFjY2VsLW52aWRpYTgwLmx1YSIsCmZ1bGxOYW1lID0gImNyYXlwZS1hY2NlbC1udmlkaWE4MCIsCmxvYWRPcmRlciA9IDgsCnByb3BUID0ge30sCnN0YWNrRGVwdGggPSAxLApzdGF0dXMgPSAiYWN0aXZlIiwKdXNlck5hbWUgPSAiY3JheXBlLWFjY2VsLW52aWRpYTgwIiwKd1YgPSAiTS4qemZpbmFsIiwKfSwKWyJjcmF5
+_ModuleTable008_=cGUtbmV0d29yay1vZmkiXSA9IHsKYWN0aW9uQSA9IHsKInByZXBlbmRfcGF0aChcIk1PRFVMRVBBVEhcIixcIi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL25ldC9vZmkvMS4wXCIpIiwKfSwKZm4gPSAiL29wdC9jcmF5L3BlL2xtb2QvbW9kdWxlZmlsZXMvY3JheXBlLXRhcmdldHMvZGVmYXVsdC9jcmF5cGUtbmV0d29yay1vZmkubHVhIiwKZnVsbE5hbWUgPSAiY3JheXBlLW5ldHdvcmstb2ZpIiwKbG9hZE9yZGVyID0gMywKcHJvcFQgPSB7fSwKc3RhY2tEZXB0aCA9IDAsCnN0YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJjcmF5cGUtbmV0d29yay1vZmkiLAp3ViA9ICJNLip6ZmluYWwiLAp9LApbImNyYXlwZS14ODYtbWlsYW4iXSA9IHsKYWN0aW9uQSA9IHsK
+_ModuleTable009_=InByZXBlbmRfcGF0aChcIk1PRFVMRVBBVEhcIixcIi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2NwdS94ODYtbWlsYW4vMS4wXCIpIiwKfSwKZm4gPSAiL29wdC9jcmF5L3BlL2xtb2QvbW9kdWxlZmlsZXMvY3JheXBlLXRhcmdldHMvZGVmYXVsdC9jcmF5cGUteDg2LW1pbGFuLmx1YSIsCmZ1bGxOYW1lID0gImNyYXlwZS14ODYtbWlsYW4iLApsb2FkT3JkZXIgPSAxLApwcm9wVCA9IHt9LApzdGFja0RlcHRoID0gMCwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1lID0gImNyYXlwZS14ODYtbWlsYW4iLAp3ViA9ICJNLip6ZmluYWwiLAp9LApjdWRhdG9vbGtpdCA9IHsKZm4gPSAiL29wdC9jcmF5L3BlL2xtb2QvbW9kdWxlZmlsZXMvY29yZS9jdWRhdG9vbGtpdC8x
+_ModuleTable010_=Mi45Lmx1YSIsCmZ1bGxOYW1lID0gImN1ZGF0b29sa2l0LzEyLjkiLApsb2FkT3JkZXIgPSAxNywKcHJvcFQgPSB7CmFyY2ggPSB7CmdwdSA9IDEsCn0sCn0sCnN0YWNrRGVwdGggPSAwLApzdGF0dXMgPSAiYWN0aXZlIiwKdXNlck5hbWUgPSAiY3VkYXRvb2xraXQvMTIuOSIsCndWID0gIl4wMDAwMDAxMi4wMDAwMDAwMDkuKnpmaW5hbCIsCn0sCmRhcnNoYW4gPSB7CmZuID0gIi9vcHQvbmVyc2MvcGUvbW9kdWxlZmlsZXMvZGFyc2hhbi9kZWZhdWx0Lmx1YSIsCmZ1bGxOYW1lID0gImRhcnNoYW4vZGVmYXVsdCIsCmxvYWRPcmRlciA9IDExLApwcm9wVCA9IHt9LApzdGFja0RlcHRoID0gMCwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1lID0gImRhcnNoYW4iLAp3ViA9ICJe
+_ModuleTable011_=ZGVmYXVsdC4qemZpbmFsIiwKfSwKWyJnY2MtbmF0aXZlIl0gPSB7CmFjdGlvbkEgPSB7CiJwcmVwZW5kX3BhdGgoXCJNT0RVTEVQQVRIXCIsXCIvb3B0L2NyYXkvcGUvbG1vZC9tb2R1bGVmaWxlcy9jb21waWxlci9nbnUvMTIuMFwiKSIsICJwcmVwZW5kX3BhdGgoXCJNT0RVTEVQQVRIXCIsXCIvb3B0L2NyYXkvcGUvbG1vZC9tb2R1bGVmaWxlcy9taXhfY29tcGlsZXJzXCIpIiwgInByZXBlbmRfcGF0aChcIk1PRFVMRVBBVEhcIixcIi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2NvbW5ldC9nbnUvMTIuMC9vZmkvMS4wXCIpIiwKfSwKZm4gPSAiL29wdC9jcmF5L3BlL2xtb2QvbW9kdWxlZmlsZXMvY29yZS9nY2MtbmF0aXZlLzE0Lmx1YSIsCmZ1bGxOYW1lID0gImdj
+_ModuleTable012_=Yy1uYXRpdmUvMTQiLApsb2FkT3JkZXIgPSA1LApwcm9wVCA9IHt9LApzdGFja0RlcHRoID0gMSwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1lID0gImdjYy1uYXRpdmUiLAp3ViA9ICJeMDAwMDAwMTQuKnpmaW5hbCIsCn0sCmdwdSA9IHsKZm4gPSAiL29wdC9uZXJzYy9wZS9tb2R1bGVmaWxlcy9ncHUvMS4wLmx1YSIsCmZ1bGxOYW1lID0gImdwdS8xLjAiLApsb2FkT3JkZXIgPSA5LApwcm9wVCA9IHt9LApzdGFja0RlcHRoID0gMCwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1lID0gImdwdSIsCndWID0gIjAwMDAwMDAwMS4qemZpbmFsIiwKfSwKbGliZmFicmljID0gewpmbiA9ICIvb3B0L2NyYXkvbW9kdWxlZmlsZXMvbGliZmFicmljLzEuMjIuMCIsCmZ1bGxOYW1l
+_ModuleTable013_=ID0gImxpYmZhYnJpYy8xLjIyLjAiLApsb2FkT3JkZXIgPSAyLApwcm9wVCA9IHt9LApzdGFja0RlcHRoID0gMSwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1lID0gImxpYmZhYnJpYyIsCndWID0gIl4wMDAwMDAwMS4wMDAwMDAwMjIuKnpmaW5hbCIsCn0sClsicGVyZnRvb2xzLWJhc2UiXSA9IHsKYWN0aW9uQSA9IHsKInByZXBlbmRfcGF0aChcIk1PRFVMRVBBVEhcIixcIi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL3BlcmZ0b29scy8yNS4wOS4wXCIpIiwKfSwKZm4gPSAiL29wdC9jcmF5L3BlL2xtb2QvbW9kdWxlZmlsZXMvY29yZS9wZXJmdG9vbHMtYmFzZS8yNS4wOS4wLmx1YSIsCmZ1bGxOYW1lID0gInBlcmZ0b29scy1iYXNlLzI1LjA5LjAiLApsb2FkT3Jk
+_ModuleTable014_=ZXIgPSA2LApwcm9wVCA9IHt9LApzdGFja0RlcHRoID0gMSwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1lID0gInBlcmZ0b29scy1iYXNlLzI1LjA5LjAiLAp3ViA9ICJzMDAwMDAwMjUuMDAwMDAwMDA5Lip6ZmluYWwiLAp9LApweXRob24gPSB7CmZuID0gIi9vcHQvbmVyc2MvcGUvbW9kdWxlZmlsZXMvcHl0aG9uLzMuMTItMjYuMS4wLmx1YSIsCmZ1bGxOYW1lID0gInB5dGhvbi8zLjEyLTI2LjEuMCIsCmxvYWRPcmRlciA9IDE5LApwcm9wVCA9IHt9LApzdGFja0RlcHRoID0gMCwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1lID0gInB5dGhvbi8zLjEyLTI2LjEuMCIsCndWID0gIjAwMDAwMDAwMy4wMDAwMDAwMTIuKnpmaW5hbC0uMDAwMDAwMDI2LjAwMDAwMDAwMS4q
+_ModuleTable015_=emZpbmFsIiwKfSwKc3FzID0gewpmbiA9ICIvb3B0L25lcnNjL3BlL21vZHVsZWZpbGVzL3Nxcy8yLjAubHVhIiwKZnVsbE5hbWUgPSAic3FzLzIuMCIsCmxvYWRPcmRlciA9IDEwLApwcm9wVCA9IHt9LApzdGFja0RlcHRoID0gMCwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1lID0gInNxcyIsCndWID0gIjAwMDAwMDAwMi4qemZpbmFsIiwKfSwKeHBtZW0gPSB7CmZuID0gIi9vcHQvY3JheS9tb2R1bGVmaWxlcy94cG1lbS8yLjExLjUtMS4zX2c3M2FkZTQzMzIwYmMiLApmdWxsTmFtZSA9ICJ4cG1lbS8yLjExLjUtMS4zX2c3M2FkZTQzMzIwYmMiLApsb2FkT3JkZXIgPSA0LApwcm9wVCA9IHt9LApzdGFja0RlcHRoID0gMCwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1l
+_ModuleTable016_=ID0gInhwbWVtIiwKd1YgPSAiMDAwMDAwMDAyLjAwMDAwMDAxMS4wMDAwMDAwMDUuKnpmaW5hbC0uMDAwMDAwMDAxLjAwMDAwMDAwMy4qXy4qZy4wMDAwMDAwNzMuKmFkZS4wMDAwNDMzMjAuKmJjLip6ZmluYWwiLAp9LAp9LAptcGF0aEEgPSB7CiIvb3B0L2NyYXkvcGUvbG1vZC9tb2R1bGVmaWxlcy9tcGkvZ251LzEyLjAvb2ZpLzEuMC9jcmF5LW1waWNoLzguMCIsICIvb3B0L2NyYXkvcGUvbG1vZC9tb2R1bGVmaWxlcy9wZXJmdG9vbHMvMjUuMDkuMCIsICIvb3B0L2NyYXkvcGUvbG1vZC9tb2R1bGVmaWxlcy9jb21uZXQvZ251LzEyLjAvb2ZpLzEuMCIsICIvb3B0L2NyYXkvcGUvbG1vZC9tb2R1bGVmaWxlcy9taXhfY29tcGlsZXJzIgosICIvb3B0L2NyYXkvcGUvbG1vZC9t
+_ModuleTable017_=b2R1bGVmaWxlcy9jb21waWxlci9nbnUvMTIuMCIsICIvb3B0L2NyYXkvcGUvbG1vZC9tb2R1bGVmaWxlcy9uZXQvb2ZpLzEuMCIsICIvb3B0L2NyYXkvcGUvbG1vZC9tb2R1bGVmaWxlcy9jcHUveDg2LW1pbGFuLzEuMCIsICIvb3B0L2NyYXkvcGUvbW9kdWxlZmlsZXMvTGludXgiLCAiL29wdC9jcmF5L3BlL21vZHVsZWZpbGVzL0NvcmUiCiwgIi9vcHQvY3JheS9wZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsICIvb3B0L2NyYXkvcGUvbG1vZC9tb2R1bGVmaWxlcy9jb3JlIiwgIi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2NyYXlwZS10YXJnZXRzL2RlZmF1bHQiLCAiL2dsb2JhbC9jb21tb24vc29mdHdhcmUvbmVyc2MvcGUvbW9kdWxlZmlsZXNfaG90Zml4
+_ModuleTable018_=ZXMiLCAiL29wdC9uZXJzYy9wZS9tb2R1bGVmaWxlcyIKLCAiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsICIvb3B0L2NyYXkvbW9kdWxlZmlsZXMiLAp9LApzeXN0ZW1CYXNlTVBBVEggPSAiL29wdC9jcmF5L3BlL21vZHVsZWZpbGVzL0xpbnV4Oi9vcHQvY3JheS9wZS9tb2R1bGVmaWxlcy9Db3JlOi9vcHQvY3JheS9wZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZTovb3B0L2NyYXkvcGUvbG1vZC9tb2R1bGVmaWxlcy9jb3JlOi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2NyYXlwZS10YXJnZXRzL2RlZmF1bHQ6L2dsb2JhbC9jb21tb24vc29mdHdhcmUvbmVyc2MvcGUvbW9kdWxlZmlsZXNfaG90Zml4ZXM6L29wdC9uZXJzYy9wZS9tb2R1
+_ModuleTable019_=bGVmaWxlczovdXNyL3NoYXJlL2xtb2QvbG1vZC9tb2R1bGVmaWxlcy9Db3JlOi9vcHQvY3JheS9tb2R1bGVmaWxlcyIsCn0K
+_ModuleTable_Sz_=19
+MORE=-sl
+MOTD_SHOWN=pam
+MPICH_DIR=/opt/cray/pe/mpich/9.0.1/ofi/gnu/12.3
+MPICH_GPU_SUPPORT_ENABLED=1
+MPICH_MPIIO_DVS_MAXNODES=48
+MPICH_OFI_CXI_COUNTER_REPORT=0
+MPICH_SMP_SINGLE_COPY_MODE=CMA
+NCCL_NET_GDR_LEVEL=PHB
+NCCL_SOCKET_IFNAME=hsn
+NERSC_FAMILY_CONDA=conda
+NERSC_FAMILY_CONDA_ENV=python
+NERSC_FAMILY_CONDA_ENV_VERSION=3.12-26.1.0
+NERSC_FAMILY_CONDA_VERSION=Miniforge3-25.11.0-1
+NERSC_FAMILY_CRAYPE=craype
+NERSC_FAMILY_CRAYPE_VERSION=2.7.35
+NERSC_FAMILY_CUDATOOLKIT=cudatoolkit
+NERSC_FAMILY_CUDATOOLKIT_VERSION=12.9
+NERSC_FAMILY_LIBSCI=cray-libsci
+NERSC_FAMILY_LIBSCI_VERSION=25.09.0
+NERSC_FAMILY_MPI=cray-mpich
+NERSC_FAMILY_MPI_VERSION=9.0.1
+NERSC_FAMILY_PRGENV=PrgEnv-gnu
+NERSC_FAMILY_PRGENV_VERSION=8.6.0
+NERSC_HOST=perlmutter
+NERSC_LMOD_CONFIGDIR=/opt/nersc/pe/etc/lmod
+NVHPC_CUDA_HOME=/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9
+OFFLOAD_INIT=on_start
+OLDPWD=/global/homes/k/krajeshk/PRISM/scripts
+OMPI_MCA_plm_slurm_args=--external-launcher
+OSTYPE=linux
+PAGER=less
+PATH=/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin:/global/common/software/nersc/pe/conda-envs/26.1.0/python-3.12/nersc-python/bin:/global/common/software/nersc/pe/conda/26.1.0/Miniforge3-25.11.0-1/condabin:/global/homes/k/krajeshk/.local/perlmutter/python-3.12/26.1.0/bin:/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/compute-sanitizer:/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/bin:/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/libnvvp:/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/profilers/Nsight_Compute:/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/profilers/Nsight_Systems/bin:/opt/cray/pe/mpich/9.0.1/ofi/gnu/12.3/bin:/opt/cray/pe/mpich/9.0.1/bin:/opt/cray/pe/craype/2.7.35/bin:/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin:/opt/nersc/pe/bin:/global/common/software/nersc/bin:/global/common/software/nersc9/darshan/default/bin:/global/common/software/nersc9/sqs/2.0/bin:/opt/cray/pe/perftools/25.09.0/bin:/opt/cray/pe/papi/7.2.0.2/bin:/opt/cray/pe/gcc-native/14/bin:/opt/cray/libfabric/1.22.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/opt/cray/pe/bin
+PAT_RT_PERFCTR_DISABLE_COMPONENTS=nvml,rocm,rocm_smi,rocp_sdk
+PE_DSMML_MODULE_NAME=cray-dsmml
+PE_DSMML_PKGCONFIG_LIBS=dsmml
+PE_ENV=GNU
+PE_FORTRAN_PKGCONFIG_LIBS=mpichf90
+PE_GCC_EXTERNAL=native
+PE_GCC_LEVEL=14
+PE_GNU_FIXED_PKGCONFIG_PATH=/opt/cray/pe/mpich/9.0.1/ofi/gnu/12.3/lib/pkgconfig
+PE_LIBSCI_GENCOMPILERS_GNU_x86_64=12.3
+PE_LIBSCI_GENCOMPS_GNU_x86_64=123
+PE_LIBSCI_MODULE_NAME=cray-libsci/25.09.0
+PE_LIBSCI_OMP_REQUIRES= 
+PE_LIBSCI_OMP_REQUIRES_openmp=_mp
+PE_LIBSCI_PKGCONFIG_LIBS=libsci_mpi:libsci
+PE_LIBSCI_PKGCONFIG_VARIABLES=PE_LIBSCI_OMP_REQUIRES_@openmp@:PE_SCI_EXT_LIBPATH:PE_SCI_EXT_LIBNAME
+PE_LIBSCI_REQUIRED_PRODUCTS=PE_MPICH
+PE_LIBSCI_VOLATILE_PKGCONFIG_PATH=/opt/cray/pe/libsci/25.09.0/@PRGENV@/@PE_LIBSCI_GENCOMPS@/@PE_LIBSCI_TARGET@/lib/pkgconfig
+PE_LIBSCI_VOLATILE_PRGENV=GNU
+PELOCAL_PRGENV=true
+PE_MPICH_FIXED_PRGENV=GNU
+PE_MPICH_FORTRAN_PKGCONFIG_LIBS=mpichf90
+PE_MPICH_GENCOMPILERS_GNU=12.3
+PE_MPICH_GTL_DIR_amd_gfx906=-L/opt/cray/pe/mpich/9.0.1/gtl/lib
+PE_MPICH_GTL_DIR_amd_gfx908=-L/opt/cray/pe/mpich/9.0.1/gtl/lib
+PE_MPICH_GTL_DIR_amd_gfx90a=-L/opt/cray/pe/mpich/9.0.1/gtl/lib
+PE_MPICH_GTL_DIR_amd_gfx940=-L/opt/cray/pe/mpich/9.0.1/gtl/lib
+PE_MPICH_GTL_DIR_amd_gfx942=-L/opt/cray/pe/mpich/9.0.1/gtl/lib
+PE_MPICH_GTL_DIR_nvidia70=-L/opt/cray/pe/mpich/9.0.1/gtl/lib
+PE_MPICH_GTL_DIR_nvidia80=-L/opt/cray/pe/mpich/9.0.1/gtl/lib
+PE_MPICH_GTL_DIR_nvidia90=-L/opt/cray/pe/mpich/9.0.1/gtl/lib
+PE_MPICH_GTL_DIR_ponteVecchio=-L/opt/cray/pe/mpich/9.0.1/gtl/lib
+PE_MPICH_GTL_LIBS_amd_gfx906=-lmpi_gtl_hsa
+PE_MPICH_GTL_LIBS_amd_gfx908=-lmpi_gtl_hsa
+PE_MPICH_GTL_LIBS_amd_gfx90a=-lmpi_gtl_hsa
+PE_MPICH_GTL_LIBS_amd_gfx940=-lmpi_gtl_hsa
+PE_MPICH_GTL_LIBS_amd_gfx942=-lmpi_gtl_hsa
+PE_MPICH_GTL_LIBS_nvidia70=-lmpi_gtl_cuda
+PE_MPICH_GTL_LIBS_nvidia80=-lmpi_gtl_cuda
+PE_MPICH_GTL_LIBS_nvidia90=-lmpi_gtl_cuda
+PE_MPICH_GTL_LIBS_ponteVecchio=-lmpi_gtl_ze
+PE_MPICH_MODULE_NAME=cray-mpich
+PE_MPICH_PKGCONFIG_LIBS=mpich
+PE_MPICH_PKGCONFIG_VARIABLES=PE_MPICH_GTL_DIR_@accelerator@:PE_MPICH_GTL_LIBS_@accelerator@
+PE_PERFTOOLS_MPICH_LIBDIR=/opt/cray/pe/mpich/9.0.1/ofi/gnu/12.3/lib
+PE_PKGCONFIG_LIBS=cudatoolkit_12.9:libsci_mpi:libsci:mpich:dsmml:darshan-runtime
+PE_PKGCONFIG_PRODUCTS=PE_LIBSCI:PE_MPICH:PE_DSMML:PE_XPMEM
+PE_PRODUCT_LIST=CRAYPE:CRAYPE_X86_MILAN:PERFTOOLS:CRAYPAT:CRAY_ACCEL:CRAY_HPC_SDK
+PERFTOOLS_VERSION=25.09.0
+PE_XPMEM_PKGCONFIG_LIBS=cray-xpmem
+PKGCONFIG_ENABLED=1
+PKG_CONFIG_PATH=/opt/cray/pe/modulefiles/cudatoolkit:/opt/cray/pe/dsmml/0.3.1/dsmml/lib/pkgconfig:/opt/cray/pe/craype/2.7.35/pkg-config:/global/common/software/nersc9/darshan/default/lib/pkgconfig:/opt/cray/libfabric/1.22.0/lib64/pkgconfig
+PMI_SHARED_SECRET=16168213361272170186
+PROFILEREAD=true
+PROJ_DATA=/global/common/software/nersc/pe/conda-envs/26.1.0/python-3.12/nersc-python/share/proj
+PROJ_NETWORK=ON
+PRTE_MCA_plm_slurm_args=--external-launcher
+ PS1="$CONDA_PS1_BACKUP";
+PSCRATCH=/pscratch/sd/k/krajeshk
+PWD=/global/homes/k/krajeshk/PRISM
+PYTHONPATH=/opt/nersc/pymon
+PYTHONUSERBASE=/global/homes/k/krajeshk/.local/perlmutter/python-3.12/26.1.0
+ \rehash;
+ \rehash;
+ return $__lmod_my_status
+ rm -f "/global/common/software/nersc/pe/conda/26.1.0/Miniforge3-25.11.0-1/bin/mamba.bkup";
+SCRATCH=/pscratch/sd/k/krajeshk
+SDK_HOME=/usr/lib64/jvm/java-11-openjdk-11
+ self-update)
+ set +$__lmod_sh_dbg;
+ set -$__lmod_sh_dbg;
+SHELL=/bin/bash
+SHLVL=6
+SLURM_CLUSTER_NAME=perlmutter
+SLURM_CPUS_ON_NODE=128
+SLURMD_DEBUG=2
+SLURMD_NODENAME=nid001168
+SLURM_GPUS=4
+SLURM_GPUS_ON_NODE=4
+SLURM_GTIDS=0
+SLURM_JOB_ACCOUNT=m5083_g
+SLURM_JOB_CPUS_PER_NODE=128
+SLURM_JOB_END_TIME=1776761992
+SLURM_JOB_GID=113420
+SLURM_JOB_GPUS=0,1,2,3
+SLURM_JOB_GROUP=krajeshk
+SLURM_JOB_ID=51830028
+SLURM_JOBID=51830028
+SLURM_JOB_LICENSES=u2:1
+SLURM_JOB_NAME=interactive
+SLURM_JOB_NODELIST=nid001168
+SLURM_JOB_NUM_NODES=1
+SLURM_JOB_PARTITION=urgent_gpu_ss11
+SLURM_JOB_QOS=gpu_interactive
+SLURM_JOB_START_TIME=1776747592
+SLURM_JOB_UID=113420
+SLURM_JOB_USER=krajeshk
+SLURM_LAUNCH_NODE_IPADDR=128.55.64.25
+SLURM_LOCALID=0
+SLURM_MPI_TYPE=cray_shasta
+SLURM_NNODES=1
+SLURM_NODEID=0
+SLURM_NODELIST=nid001168
+SLURM_OOM_KILL_STEP=0
+SLURM_PRIO_PROCESS=0
+SLURM_PROCID=0
+SLURM_PTY_PORT=38119
+SLURM_PTY_WIN_COL=235
+SLURM_PTY_WIN_ROW=67
+SLURM_SCRIPT_CONTEXT=prolog_task
+SLURM_SRUN_COMM_HOST=128.55.64.25
+SLURM_SRUN_COMM_PORT=41549
+SLURM_STEP_ID=4294967290
+SLURM_STEPID=4294967290
+SLURM_STEP_LAUNCHER_PORT=41549
+SLURM_STEPMGR=nid001168
+SLURM_STEP_NODELIST=nid001168
+SLURM_STEP_NUM_NODES=1
+SLURM_STEP_NUM_TASKS=1
+SLURM_STEP_TASKS_PER_NODE=1
+SLURM_SUBMIT_DIR=/global/u2/k/krajeshk/PRISM/scripts
+SLURM_SUBMIT_HOST=login16
+SLURM_TASK_PID=920788
+SLURM_TASKS_PER_NODE=128
+SLURM_TOPOLOGY_ADDR=global.group6.nid001168
+SLURM_TOPOLOGY_ADDR_PATTERN=switch.switch.node
+SRUN_DEBUG=3
+SSH_CLIENT=206.139.64.102 58851 22
+SSH_CONNECTION=206.139.64.102 58851 128.55.126.3 22
+SSH_TTY=/dev/pts/5
+TERM=screen
+TMOUT=1800
+TMPDIR=/tmp
+TMUX_PANE=%0
+TMUX=/run/tmux/113420/warp,157250,0
+TORCH_CUDA_ARCH_LIST=8.0
+TORCHINDUCTOR_CACHE_DIR=/pscratch/sd/k/krajeshk/PRISM_env/.cache/torchinductor
+TRANSFORMERS_HOME=/pscratch/sd/k/krajeshk/PRISM_env/.cache/transformers
+TZ=America/Los_Angeles
+ \unset CONDA_PS1_BACKUP;
+ unset __lmod_sh_dbg;
+USER=krajeshk
+_=/usr/bin/env
+UV_CACHE_DIR=/pscratch/sd/k/krajeshk/PRISM_env/.cache/uv
+UV_PYTHON_INSTALL_DIR=/pscratch/sd/k/krajeshk/PRISM_env/.cache/uv
+ *v*)
+VIRTUAL_ENV_PROMPT=(vllm-env) 
+VIRTUAL_ENV=/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env
+VLLM_CACHE_ROOT=/pscratch/sd/k/krajeshk/PRISM_env/.cache/vllm
+ *v*x*)
+WARP_HONOR_PS1=0
+WINDOWMANAGER=xterm
+ *x*)
+XDG_CONFIG_DIRS=/etc/xdg
+XDG_DATA_DIRS=/usr/share
+XDG_RUNTIME_DIR=/run/user/113420
+XDG_SESSION_CLASS=user
+XDG_SESSION_ID=30225
+XDG_SESSION_TYPE=tty
+XKEYSYMDB=/usr/X11R6/lib/X11/XKeysymDB
+XML_CATALOG_FILES=file:///global/common/software/nersc/pe/conda-envs/26.1.0/python-3.12/nersc-python/etc/xml/catalog file:///etc/xml/catalog file:///global/common/software/nersc/pe/conda-envs/26.1.0/python-3.12/nersc-python/etc/xml/catalog file:///etc/xml/catalog
+XNLSPATH=/usr/X11R6/lib/X11/nls
+XTPE_LINK_TYPE=dynamic

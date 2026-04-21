@@ -1,0 +1,93 @@
+(APIServer pid=1099625) INFO 04-12 22:22:50 [utils.py:302] 
+(APIServer pid=1099625) INFO 04-12 22:22:50 [utils.py:302]        █     █     █▄   ▄█
+(APIServer pid=1099625) INFO 04-12 22:22:50 [utils.py:302]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.17.1.dev0+gb31e9326a.d20260406
+(APIServer pid=1099625) INFO 04-12 22:22:50 [utils.py:302]   █▄█▀ █     █     █     █  model   Qwen/Qwen2-VL-2B-Instruct
+(APIServer pid=1099625) INFO 04-12 22:22:50 [utils.py:302]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=1099625) INFO 04-12 22:22:50 [utils.py:302] 
+(APIServer pid=1099625) INFO 04-12 22:22:50 [utils.py:238] non-default args: {'model_tag': 'Qwen/Qwen2-VL-2B-Instruct', 'port': 19534, 'enable_request_id_headers': True, 'model': 'Qwen/Qwen2-VL-2B-Instruct', 'enforce_eager': True, 'gpu_memory_utilization': 0.01, 'enable_prefix_caching': False, 'max_num_batched_tokens': 114688, 'max_num_seqs': 128, 'ec_transfer_config': ECTransferConfig(ec_connector='ECExampleConnector', engine_id='90fc9e0c-d537-4e0a-8e21-d5b901fd0030', ec_buffer_device='cuda', ec_buffer_size=1000000000.0, ec_role='ec_producer', ec_rank=None, ec_parallel_size=1, ec_ip='127.0.0.1', ec_port=14579, ec_connector_extra_config={'shared_storage_path': '/pscratch/sd/k/krajeshk/prism_ec_cache'}, ec_connector_module_path=None)}
+(APIServer pid=1099625) WARNING 04-12 22:22:50 [envs.py:1710] Unknown vLLM environment variable detected: VLLM_ROOT
+(APIServer pid=1099625) INFO 04-12 22:22:52 [model.py:531] Resolved architecture: Qwen2VLForConditionalGeneration
+(APIServer pid=1099625) INFO 04-12 22:22:52 [model.py:1554] Using max model len 32768
+(APIServer pid=1099625) INFO 04-12 22:22:52 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=114688.
+(APIServer pid=1099625) INFO 04-12 22:22:52 [vllm.py:747] Asynchronous scheduling is enabled.
+(APIServer pid=1099625) WARNING 04-12 22:22:52 [vllm.py:781] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(APIServer pid=1099625) WARNING 04-12 22:22:52 [vllm.py:792] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(APIServer pid=1099625) INFO 04-12 22:22:52 [vllm.py:957] Cudagraph is disabled under eager mode
+(APIServer pid=1099625) The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+(EngineCore_DP0 pid=1100344) INFO 04-12 22:23:09 [core.py:101] Initializing a V1 LLM engine (v0.17.1.dev0+gb31e9326a.d20260406) with config: model='Qwen/Qwen2-VL-2B-Instruct', speculative_config=None, tokenizer='Qwen/Qwen2-VL-2B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=32768, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=Qwen/Qwen2-VL-2B-Instruct, enable_prefix_caching=False, enable_chunked_prefill=True, pooler_config=None, compilation_config={'level': None, 'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['all'], 'splitting_ops': [], 'compile_mm_encoder': False, 'compile_sizes': [], 'compile_ranges_split_points': [114688], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 0, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}
+(EngineCore_DP0 pid=1100344) INFO 04-12 22:23:11 [parallel_state.py:1393] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://128.55.69.5:40005 backend=nccl
+(EngineCore_DP0 pid=1100344) INFO 04-12 22:23:11 [parallel_state.py:1715] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A
+(EngineCore_DP0 pid=1100344) INFO 04-12 22:23:11 [factory.py:45] Creating connector with name: ECExampleConnector and engine_id: 90fc9e0c-d537-4e0a-8e21-d5b901fd0030
+(EngineCore_DP0 pid=1100344) The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+(EngineCore_DP0 pid=1100344) INFO 04-12 22:23:18 [base.py:106] Offloader set to NoopOffloader
+(EngineCore_DP0 pid=1100344) INFO 04-12 22:23:18 [gpu_model_runner.py:4255] Starting to load model Qwen/Qwen2-VL-2B-Instruct...
+(EngineCore_DP0 pid=1100344) INFO 04-12 22:23:18 [cuda.py:453] Using backend AttentionBackendEnum.FLASH_ATTN for vit attention
+(EngineCore_DP0 pid=1100344) INFO 04-12 22:23:18 [mm_encoder_attention.py:215] Using AttentionBackendEnum.FLASH_ATTN for MMEncoderAttention.
+(EngineCore_DP0 pid=1100344) INFO 04-12 22:23:18 [vllm.py:747] Asynchronous scheduling is enabled.
+(EngineCore_DP0 pid=1100344) WARNING 04-12 22:23:18 [vllm.py:781] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(EngineCore_DP0 pid=1100344) WARNING 04-12 22:23:18 [vllm.py:792] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(EngineCore_DP0 pid=1100344) INFO 04-12 22:23:18 [vllm.py:957] Cudagraph is disabled under eager mode
+(EngineCore_DP0 pid=1100344) INFO 04-12 22:23:19 [cuda.py:405] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].
+(EngineCore_DP0 pid=1100344) INFO 04-12 22:23:19 [flash_attn.py:587] Using FlashAttention version 2
+(EngineCore_DP0 pid=1100344) Loading safetensors checkpoint shards:   0% Completed | 0/2 [00:00<?, ?it/s]
+(EngineCore_DP0 pid=1100344) Loading safetensors checkpoint shards:  50% Completed | 1/2 [00:02<00:02,  2.31s/it]
+(EngineCore_DP0 pid=1100344) Loading safetensors checkpoint shards: 100% Completed | 2/2 [00:02<00:00,  1.16s/it]
+(EngineCore_DP0 pid=1100344) Loading safetensors checkpoint shards: 100% Completed | 2/2 [00:02<00:00,  1.33s/it]
+(EngineCore_DP0 pid=1100344) 
+(EngineCore_DP0 pid=1100344) INFO 04-12 22:23:23 [default_loader.py:293] Loading weights took 2.68 seconds
+(EngineCore_DP0 pid=1100344) INFO 04-12 22:23:23 [gpu_model_runner.py:4338] Model loading took 4.15 GiB memory and 4.533714 seconds
+(EngineCore_DP0 pid=1100344) INFO 04-12 22:23:24 [core.py:282] init engine (profile, create kv cache, warmup model) took 0.72 seconds
+(EngineCore_DP0 pid=1100344) WARNING 04-12 22:23:24 [core.py:137] Disabling chunked prefill for model without KVCache
+(EngineCore_DP0 pid=1100344) INFO 04-12 22:23:24 [factory.py:45] Creating connector with name: ECExampleConnector and engine_id: 90fc9e0c-d537-4e0a-8e21-d5b901fd0030
+(EngineCore_DP0 pid=1100344) WARNING 04-12 22:23:24 [vllm.py:781] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(EngineCore_DP0 pid=1100344) WARNING 04-12 22:23:24 [vllm.py:792] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(EngineCore_DP0 pid=1100344) INFO 04-12 22:23:24 [vllm.py:957] Cudagraph is disabled under eager mode
+(APIServer pid=1099625) INFO 04-12 22:23:24 [api_server.py:495] Supported tasks: ['generate']
+(APIServer pid=1099625) WARNING 04-12 22:23:25 [model.py:1355] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.01, 'top_k': 1, 'top_p': 0.001}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`.
+(APIServer pid=1099625) INFO 04-12 22:23:25 [serving.py:185] Warming up chat template processing...
+(APIServer pid=1099625) INFO 04-12 22:23:28 [hf.py:318] Detected the chat template content format to be 'openai'. You can set `--chat-template-content-format` to override this.
+(APIServer pid=1099625) INFO 04-12 22:23:28 [serving.py:210] Chat template warmup completed in 2867.2ms
+(APIServer pid=1099625) INFO 04-12 22:23:28 [api_server.py:500] Starting vLLM API server 0 on http://0.0.0.0:19534
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:38] Available routes are:
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /openapi.json, Methods: GET, HEAD
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /docs, Methods: GET, HEAD
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /docs/oauth2-redirect, Methods: GET, HEAD
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /redoc, Methods: GET, HEAD
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /tokenize, Methods: POST
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /detokenize, Methods: POST
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /load, Methods: GET
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /version, Methods: GET
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /health, Methods: GET
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /metrics, Methods: GET
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /v1/models, Methods: GET
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /ping, Methods: GET
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /ping, Methods: POST
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /invocations, Methods: POST
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /v1/chat/completions, Methods: POST
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /v1/chat/completions/render, Methods: POST
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /v1/responses, Methods: POST
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /v1/responses/{response_id}, Methods: GET
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /v1/responses/{response_id}/cancel, Methods: POST
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /v1/completions, Methods: POST
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /v1/completions/render, Methods: POST
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /v1/messages, Methods: POST
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /v1/messages/count_tokens, Methods: POST
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /inference/v1/generate, Methods: POST
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /scale_elastic_ep, Methods: POST
+(APIServer pid=1099625) INFO 04-12 22:23:28 [launcher.py:47] Route: /is_scaling_elastic_ep, Methods: POST
+(APIServer pid=1099625) INFO:     Started server process [1099625]
+(APIServer pid=1099625) INFO:     Waiting for application startup.
+(APIServer pid=1099625) INFO:     Application startup complete.
+[rank0]:[W412 22:27:58.341537362 ProcessGroupNCCL.cpp:1575] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+(APIServer pid=1099625) WARNING 04-12 22:27:58 [launcher.py:116] port 19534 is used by process psutil.Process(pid=1094219, name='vllm', status='sleeping', started='21:54:05') launched with command:
+(APIServer pid=1099625) WARNING 04-12 22:27:58 [launcher.py:116] /pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin/python3 /pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin/vllm serve Qwen/Qwen2-VL-2B-Instruct --gpu-memory-utilization 0.01 --port 19534 --enforce-eager --enable-request-id-headers --no-enable-prefix-caching --max-num-batched-tokens 114688 --max-num-seqs 128 --ec-transfer-config {
+(APIServer pid=1099625) WARNING 04-12 22:27:58 [launcher.py:116]       "ec_connector":"ECExampleConnector",
+(APIServer pid=1099625) WARNING 04-12 22:27:58 [launcher.py:116]       "ec_role":"ec_producer",
+(APIServer pid=1099625) WARNING 04-12 22:27:58 [launcher.py:116]       "ec_connector_extra_config":{
+(APIServer pid=1099625) WARNING 04-12 22:27:58 [launcher.py:116]         "shared_storage_path":"/pscratch/sd/k/krajeshk/prism_ec_cache"
+(APIServer pid=1099625) WARNING 04-12 22:27:58 [launcher.py:116]       }
+(APIServer pid=1099625) WARNING 04-12 22:27:58 [launcher.py:116]     }
+(APIServer pid=1099625) INFO 04-12 22:27:58 [launcher.py:122] Shutting down FastAPI HTTP server.
+(APIServer pid=1099625) INFO:     Shutting down
+(APIServer pid=1099625) INFO:     Waiting for application shutdown.
+(APIServer pid=1099625) INFO:     Application shutdown complete.

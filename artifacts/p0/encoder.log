@@ -1,0 +1,133 @@
++ source /pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin/activate
+++ deactivate nondestructive
+++ '[' -n '' ']'
+++ '[' -n '' ']'
+++ hash -r
+++ '[' -n '' ']'
+++ unset VIRTUAL_ENV
+++ unset VIRTUAL_ENV_PROMPT
+++ '[' '!' nondestructive = nondestructive ']'
+++ case "$(uname)" in
++++ uname
+++ export VIRTUAL_ENV=/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env
+++ VIRTUAL_ENV=/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env
+++ _OLD_VIRTUAL_PATH=/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin:/global/common/software/nersc/pe/conda-envs/26.1.0/python-3.12/nersc-python/bin:/global/common/software/nersc/pe/conda/26.1.0/Miniforge3-25.11.0-1/condabin:/global/homes/k/krajeshk/.local/perlmutter/python-3.12/26.1.0/bin:/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/compute-sanitizer:/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/bin:/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/libnvvp:/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/profilers/Nsight_Compute:/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/profilers/Nsight_Systems/bin:/opt/cray/pe/mpich/9.0.1/ofi/gnu/12.3/bin:/opt/cray/pe/mpich/9.0.1/bin:/opt/cray/pe/craype/2.7.35/bin:/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin:/opt/nersc/pe/bin:/global/common/software/nersc/bin:/global/common/software/nersc9/darshan/default/bin:/global/common/software/nersc9/sqs/2.0/bin:/opt/cray/pe/perftools/25.09.0/bin:/opt/cray/pe/papi/7.2.0.2/bin:/opt/cray/pe/gcc-native/14/bin:/opt/cray/libfabric/1.22.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/opt/cray/pe/bin
+++ PATH=/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin:/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin:/global/common/software/nersc/pe/conda-envs/26.1.0/python-3.12/nersc-python/bin:/global/common/software/nersc/pe/conda/26.1.0/Miniforge3-25.11.0-1/condabin:/global/homes/k/krajeshk/.local/perlmutter/python-3.12/26.1.0/bin:/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/compute-sanitizer:/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/bin:/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/libnvvp:/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/profilers/Nsight_Compute:/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/profilers/Nsight_Systems/bin:/opt/cray/pe/mpich/9.0.1/ofi/gnu/12.3/bin:/opt/cray/pe/mpich/9.0.1/bin:/opt/cray/pe/craype/2.7.35/bin:/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin:/opt/nersc/pe/bin:/global/common/software/nersc/bin:/global/common/software/nersc9/darshan/default/bin:/global/common/software/nersc9/sqs/2.0/bin:/opt/cray/pe/perftools/25.09.0/bin:/opt/cray/pe/papi/7.2.0.2/bin:/opt/cray/pe/gcc-native/14/bin:/opt/cray/libfabric/1.22.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/opt/cray/pe/bin
+++ export PATH
+++ VIRTUAL_ENV_PROMPT='(vllm-env) '
+++ export VIRTUAL_ENV_PROMPT
+++ '[' -n '' ']'
+++ '[' -z '' ']'
+++ _OLD_VIRTUAL_PS1=
+++ PS1='((vllm-env) ) '
+++ export PS1
+++ hash -r
++ cd /pscratch/sd/k/krajeshk/PRISM_env/vllm
++ export UCX_TLS=all
++ UCX_TLS=all
++ export UCX_NET_DEVICES=all
++ UCX_NET_DEVICES=all
++ CUDA_VISIBLE_DEVICES=0
++ vllm serve Qwen/Qwen2-VL-2B-Instruct --gpu-memory-utilization 0.01 --port 19534 --enforce-eager --enable-request-id-headers --no-enable-prefix-caching --max-num-batched-tokens 114688 --max-num-seqs 128 --ec-transfer-config '{
+      "ec_connector":"ECExampleConnector",
+      "ec_role":"ec_producer",
+      "ec_connector_extra_config":{
+        "shared_storage_path":"/pscratch/sd/k/krajeshk/prism_ec_cache"
+      }
+    }'
+(APIServer pid=941014) INFO 04-20 23:30:59 [utils.py:302] 
+(APIServer pid=941014) INFO 04-20 23:30:59 [utils.py:302]        █     █     █▄   ▄█
+(APIServer pid=941014) INFO 04-20 23:30:59 [utils.py:302]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.17.1.dev0+gb31e9326a.d20260406
+(APIServer pid=941014) INFO 04-20 23:30:59 [utils.py:302]   █▄█▀ █     █     █     █  model   Qwen/Qwen2-VL-2B-Instruct
+(APIServer pid=941014) INFO 04-20 23:30:59 [utils.py:302]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=941014) INFO 04-20 23:30:59 [utils.py:302] 
+(APIServer pid=941014) INFO 04-20 23:30:59 [utils.py:238] non-default args: {'model_tag': 'Qwen/Qwen2-VL-2B-Instruct', 'port': 19534, 'enable_request_id_headers': True, 'model': 'Qwen/Qwen2-VL-2B-Instruct', 'enforce_eager': True, 'gpu_memory_utilization': 0.01, 'enable_prefix_caching': False, 'max_num_batched_tokens': 114688, 'max_num_seqs': 128, 'ec_transfer_config': ECTransferConfig(ec_connector='ECExampleConnector', engine_id='d8687ff7-799b-41aa-b089-3855cc26944b', ec_buffer_device='cuda', ec_buffer_size=1000000000.0, ec_role='ec_producer', ec_rank=None, ec_parallel_size=1, ec_ip='127.0.0.1', ec_port=14579, ec_connector_extra_config={'shared_storage_path': '/pscratch/sd/k/krajeshk/prism_ec_cache'}, ec_connector_module_path=None)}
+(APIServer pid=941014) INFO 04-20 23:31:00 [model.py:531] Resolved architecture: Qwen2VLForConditionalGeneration
+(APIServer pid=941014) INFO 04-20 23:31:00 [model.py:1554] Using max model len 32768
+(APIServer pid=941014) INFO 04-20 23:31:00 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=114688.
+(APIServer pid=941014) INFO 04-20 23:31:00 [vllm.py:747] Asynchronous scheduling is enabled.
+(APIServer pid=941014) WARNING 04-20 23:31:00 [vllm.py:781] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(APIServer pid=941014) WARNING 04-20 23:31:00 [vllm.py:792] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(APIServer pid=941014) INFO 04-20 23:31:00 [vllm.py:957] Cudagraph is disabled under eager mode
+(APIServer pid=941014) The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+(EngineCore_DP0 pid=941634) INFO 04-20 23:31:17 [core.py:101] Initializing a V1 LLM engine (v0.17.1.dev0+gb31e9326a.d20260406) with config: model='Qwen/Qwen2-VL-2B-Instruct', speculative_config=None, tokenizer='Qwen/Qwen2-VL-2B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=32768, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=Qwen/Qwen2-VL-2B-Instruct, enable_prefix_caching=False, enable_chunked_prefill=True, pooler_config=None, compilation_config={'level': None, 'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['all'], 'splitting_ops': [], 'compile_mm_encoder': False, 'compile_sizes': [], 'compile_ranges_split_points': [114688], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 0, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}
+(EngineCore_DP0 pid=941634) INFO 04-20 23:31:19 [parallel_state.py:1393] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://128.55.64.152:44533 backend=nccl
+(EngineCore_DP0 pid=941634) INFO 04-20 23:31:19 [parallel_state.py:1715] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A
+(EngineCore_DP0 pid=941634) INFO 04-20 23:31:19 [factory.py:45] Creating connector with name: ECExampleConnector and engine_id: d8687ff7-799b-41aa-b089-3855cc26944b
+(EngineCore_DP0 pid=941634) The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+(EngineCore_DP0 pid=941634) INFO 04-20 23:31:26 [base.py:106] Offloader set to NoopOffloader
+(EngineCore_DP0 pid=941634) INFO 04-20 23:31:26 [gpu_model_runner.py:4255] Starting to load model Qwen/Qwen2-VL-2B-Instruct...
+(EngineCore_DP0 pid=941634) INFO 04-20 23:31:26 [cuda.py:453] Using backend AttentionBackendEnum.FLASH_ATTN for vit attention
+(EngineCore_DP0 pid=941634) INFO 04-20 23:31:26 [mm_encoder_attention.py:215] Using AttentionBackendEnum.FLASH_ATTN for MMEncoderAttention.
+(EngineCore_DP0 pid=941634) INFO 04-20 23:31:26 [vllm.py:747] Asynchronous scheduling is enabled.
+(EngineCore_DP0 pid=941634) WARNING 04-20 23:31:26 [vllm.py:781] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(EngineCore_DP0 pid=941634) WARNING 04-20 23:31:26 [vllm.py:792] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(EngineCore_DP0 pid=941634) INFO 04-20 23:31:26 [vllm.py:957] Cudagraph is disabled under eager mode
+(EngineCore_DP0 pid=941634) INFO 04-20 23:31:27 [cuda.py:405] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].
+(EngineCore_DP0 pid=941634) INFO 04-20 23:31:27 [flash_attn.py:587] Using FlashAttention version 2
+[rank0]:[W420 23:31:28.413491085 ProcessGroupNCCL.cpp:1575] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+(APIServer pid=941014) Traceback (most recent call last):
+(APIServer pid=941014)   File "/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin/vllm", line 10, in <module>
+(APIServer pid=941014)     sys.exit(main())
+(APIServer pid=941014)              ^^^^^^
+(APIServer pid=941014)   File "/pscratch/sd/k/krajeshk/PRISM_env/vllm/vllm/entrypoints/cli/main.py", line 73, in main
+(APIServer pid=941014)     args.dispatch_function(args)
+(APIServer pid=941014)   File "/pscratch/sd/k/krajeshk/PRISM_env/vllm/vllm/entrypoints/cli/serve.py", line 112, in cmd
+(APIServer pid=941014)     uvloop.run(run_server(args))
+(APIServer pid=941014)   File "/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/uvloop/__init__.py", line 109, in run
+(APIServer pid=941014)     return __asyncio.run(
+(APIServer pid=941014)            ^^^^^^^^^^^^^^
+(APIServer pid=941014)   File "/global/common/software/nersc/pe/conda-envs/26.1.0/python-3.12/nersc-python/lib/python3.12/asyncio/runners.py", line 195, in run
+(APIServer pid=941014)     return runner.run(main)
+(APIServer pid=941014)            ^^^^^^^^^^^^^^^^
+(APIServer pid=941014)   File "/global/common/software/nersc/pe/conda-envs/26.1.0/python-3.12/nersc-python/lib/python3.12/asyncio/runners.py", line 118, in run
+(APIServer pid=941014)     return self._loop.run_until_complete(task)
+(APIServer pid=941014)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=941014)   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+(APIServer pid=941014)   File "/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/uvloop/__init__.py", line 61, in wrapper
+(APIServer pid=941014)     return await main
+(APIServer pid=941014)            ^^^^^^^^^^
+(APIServer pid=941014)   File "/pscratch/sd/k/krajeshk/PRISM_env/vllm/vllm/entrypoints/openai/api_server.py", line 471, in run_server
+(APIServer pid=941014)     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+(APIServer pid=941014)   File "/pscratch/sd/k/krajeshk/PRISM_env/vllm/vllm/entrypoints/openai/api_server.py", line 490, in run_server_worker
+(APIServer pid=941014)     async with build_async_engine_client(
+(APIServer pid=941014)                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=941014)   File "/global/common/software/nersc/pe/conda-envs/26.1.0/python-3.12/nersc-python/lib/python3.12/contextlib.py", line 210, in __aenter__
+(APIServer pid=941014)     return await anext(self.gen)
+(APIServer pid=941014)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=941014)   File "/pscratch/sd/k/krajeshk/PRISM_env/vllm/vllm/entrypoints/openai/api_server.py", line 96, in build_async_engine_client
+(APIServer pid=941014)     async with build_async_engine_client_from_engine_args(
+(APIServer pid=941014)                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=941014)   File "/global/common/software/nersc/pe/conda-envs/26.1.0/python-3.12/nersc-python/lib/python3.12/contextlib.py", line 210, in __aenter__
+(APIServer pid=941014)     return await anext(self.gen)
+(APIServer pid=941014)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=941014)   File "/pscratch/sd/k/krajeshk/PRISM_env/vllm/vllm/entrypoints/openai/api_server.py", line 137, in build_async_engine_client_from_engine_args
+(APIServer pid=941014)     async_llm = AsyncLLM.from_vllm_config(
+(APIServer pid=941014)                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=941014)   File "/pscratch/sd/k/krajeshk/PRISM_env/vllm/vllm/v1/engine/async_llm.py", line 225, in from_vllm_config
+(APIServer pid=941014)     return cls(
+(APIServer pid=941014)            ^^^^
+(APIServer pid=941014)   File "/pscratch/sd/k/krajeshk/PRISM_env/vllm/vllm/v1/engine/async_llm.py", line 154, in __init__
+(APIServer pid=941014)     self.engine_core = EngineCoreClient.make_async_mp_client(
+(APIServer pid=941014)                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=941014)   File "/pscratch/sd/k/krajeshk/PRISM_env/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=941014)     return func(*args, **kwargs)
+(APIServer pid=941014)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=941014)   File "/pscratch/sd/k/krajeshk/PRISM_env/vllm/vllm/v1/engine/core_client.py", line 127, in make_async_mp_client
+(APIServer pid=941014)     return AsyncMPClient(*client_args)
+(APIServer pid=941014)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=941014)   File "/pscratch/sd/k/krajeshk/PRISM_env/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=941014)     return func(*args, **kwargs)
+(APIServer pid=941014)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=941014)   File "/pscratch/sd/k/krajeshk/PRISM_env/vllm/vllm/v1/engine/core_client.py", line 911, in __init__
+(APIServer pid=941014)     super().__init__(
+(APIServer pid=941014)   File "/pscratch/sd/k/krajeshk/PRISM_env/vllm/vllm/v1/engine/core_client.py", line 569, in __init__
+(APIServer pid=941014)     with launch_core_engines(
+(APIServer pid=941014)          ^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=941014)   File "/global/common/software/nersc/pe/conda-envs/26.1.0/python-3.12/nersc-python/lib/python3.12/contextlib.py", line 144, in __exit__
+(APIServer pid=941014)     next(self.gen)
+(APIServer pid=941014)   File "/pscratch/sd/k/krajeshk/PRISM_env/vllm/vllm/v1/engine/utils.py", line 951, in launch_core_engines
+(APIServer pid=941014)     wait_for_engine_startup(
+(APIServer pid=941014)   File "/pscratch/sd/k/krajeshk/PRISM_env/vllm/vllm/v1/engine/utils.py", line 1010, in wait_for_engine_startup
+(APIServer pid=941014)     raise RuntimeError(
+(APIServer pid=941014) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}

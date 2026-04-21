@@ -1,3 +1,4 @@
+
 #!/usr/bin/env bash
 set -euo pipefail
 
@@ -43,7 +44,7 @@ env | sort | grep -E '^(HF_HOME|CUDA|VLLM|DYN|NCCL|SLURM|PATH|PYTHONPATH|CONDA|V
 
 # System info
 uname -a > "$OUT_DIR/uname.txt" 2>/dev/null || true
-lscpu > "$OUT_DIR/lscpu.txt" 2>/dev/null || true
+ßlscpu > "$OUT_DIR/lscpu.txt" 2>/dev/null || true
 free -h > "$OUT_DIR/free.txt" 2>/dev/null || true
 
 echo "Wrote environment snapshot to $OUT_DIR"

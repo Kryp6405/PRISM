@@ -1,0 +1,180 @@
+/pscratch/sd/k/krajeshk/PRISM_env/vllm/examples/online_serving/disaggregated_encoder/disagg_epd_proxy.py:290: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("startup")
+/pscratch/sd/k/krajeshk/PRISM_env/vllm/examples/online_serving/disaggregated_encoder/disagg_epd_proxy.py:302: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("shutdown")
+2026-04-20 22:55:54,730 INFO: Disaggregated prefill phase explicitly disabled by user. Running E + PD...
+2026-04-20 22:55:54,731 INFO: Proxy listening on 0.0.0.0:8000
+2026-04-20 22:55:54,731 INFO: Encode servers: ['http://localhost:19534']
+2026-04-20 22:55:54,731 INFO: Prefill instances []
+2026-04-20 22:55:54,731 INFO: Decode servers: ['http://localhost:19535']
+INFO:     Started server process [931118]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-04-20 22:56:53,138 INFO: >>> [6ef80778-af1a-414f-b61f-082e54dc8cde] HEAD /metrics from 127.0.0.1
+2026-04-20 22:56:53,139 INFO: <<< [6ef80778-af1a-414f-b61f-082e54dc8cde] HEAD /metrics completed with status 404
+INFO:     127.0.0.1:44368 - "HEAD /metrics HTTP/1.1" 404 Not Found
+2026-04-20 22:56:53,140 INFO: >>> [c8c86fde-1c53-4fcd-a020-8993c5a0a54d] GET /metrics from 127.0.0.1
+2026-04-20 22:56:53,140 INFO: <<< [c8c86fde-1c53-4fcd-a020-8993c5a0a54d] GET /metrics completed with status 404
+INFO:     127.0.0.1:44368 - "GET /metrics HTTP/1.1" 404 Not Found
+2026-04-20 22:57:06,904 INFO: >>> [0cf5d6b4-8039-437e-a153-5a0a483762a7] POST /v1/chat/completions from 127.0.0.1
+2026-04-20 22:57:06,907 INFO: [0cf5d6b4-8039-437e-a153-5a0a483762a7] Processing multimodal items...
+2026-04-20 22:57:06,907 INFO: [0cf5d6b4-8039-437e-a153-5a0a483762a7] got 1 multimodal items...
+2026-04-20 22:57:10,460 INFO: [0cf5d6b4-8039-437e-a153-5a0a483762a7] All 1 encoder requests completed successfully
+2026-04-20 22:57:10,461 INFO: [0cf5d6b4-8039-437e-a153-5a0a483762a7] Forwarding to decode: http://localhost:19535
+2026-04-20 22:57:15,594 INFO: <<< [0cf5d6b4-8039-437e-a153-5a0a483762a7] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:44370 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-04-20 22:57:15,600 INFO: >>> [f3a3e9ad-cda2-4c6a-90bb-883740b923f1] POST /v1/chat/completions from 127.0.0.1
+2026-04-20 22:57:15,601 INFO: [f3a3e9ad-cda2-4c6a-90bb-883740b923f1] Processing multimodal items...
+2026-04-20 22:57:15,601 INFO: [f3a3e9ad-cda2-4c6a-90bb-883740b923f1] got 1 multimodal items...
+2026-04-20 22:57:15,656 INFO: [f3a3e9ad-cda2-4c6a-90bb-883740b923f1] All 1 encoder requests completed successfully
+2026-04-20 22:57:15,657 INFO: [f3a3e9ad-cda2-4c6a-90bb-883740b923f1] Forwarding to decode: http://localhost:19535
+2026-04-20 22:57:17,444 INFO: <<< [f3a3e9ad-cda2-4c6a-90bb-883740b923f1] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:44370 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-04-20 22:57:17,447 INFO: >>> [68c4fbfa-9ed4-459c-8301-568e35afef89] POST /v1/chat/completions from 127.0.0.1
+2026-04-20 22:57:17,449 INFO: [68c4fbfa-9ed4-459c-8301-568e35afef89] Processing multimodal items...
+2026-04-20 22:57:17,449 INFO: [68c4fbfa-9ed4-459c-8301-568e35afef89] got 1 multimodal items...
+2026-04-20 22:57:17,500 INFO: [68c4fbfa-9ed4-459c-8301-568e35afef89] All 1 encoder requests completed successfully
+2026-04-20 22:57:17,501 INFO: [68c4fbfa-9ed4-459c-8301-568e35afef89] Forwarding to decode: http://localhost:19535
+2026-04-20 22:57:18,942 INFO: <<< [68c4fbfa-9ed4-459c-8301-568e35afef89] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:44370 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-04-20 22:57:18,945 INFO: >>> [9922ded1-c9a3-4250-b2cb-4c530adfd16b] POST /v1/chat/completions from 127.0.0.1
+2026-04-20 22:57:18,947 INFO: [9922ded1-c9a3-4250-b2cb-4c530adfd16b] Processing multimodal items...
+2026-04-20 22:57:18,947 INFO: [9922ded1-c9a3-4250-b2cb-4c530adfd16b] got 1 multimodal items...
+2026-04-20 22:57:18,965 INFO: [9922ded1-c9a3-4250-b2cb-4c530adfd16b] All 1 encoder requests completed successfully
+2026-04-20 22:57:18,965 INFO: [9922ded1-c9a3-4250-b2cb-4c530adfd16b] Forwarding to decode: http://localhost:19535
+2026-04-20 22:57:20,183 INFO: <<< [9922ded1-c9a3-4250-b2cb-4c530adfd16b] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:44370 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-04-20 22:57:20,186 INFO: >>> [9e2b32cf-31bf-4782-89f2-bfe75a720f07] POST /v1/chat/completions from 127.0.0.1
+2026-04-20 22:57:20,187 INFO: [9e2b32cf-31bf-4782-89f2-bfe75a720f07] Processing multimodal items...
+2026-04-20 22:57:20,188 INFO: [9e2b32cf-31bf-4782-89f2-bfe75a720f07] got 1 multimodal items...
+2026-04-20 22:57:20,242 INFO: [9e2b32cf-31bf-4782-89f2-bfe75a720f07] All 1 encoder requests completed successfully
+2026-04-20 22:57:20,242 INFO: [9e2b32cf-31bf-4782-89f2-bfe75a720f07] Forwarding to decode: http://localhost:19535
+2026-04-20 22:57:21,343 INFO: <<< [9e2b32cf-31bf-4782-89f2-bfe75a720f07] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:44370 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-04-20 22:57:21,347 INFO: >>> [a001a30a-577b-4b6b-8342-a13d7f9910d4] POST /v1/chat/completions from 127.0.0.1
+2026-04-20 22:57:21,348 INFO: [a001a30a-577b-4b6b-8342-a13d7f9910d4] Processing multimodal items...
+2026-04-20 22:57:21,349 INFO: [a001a30a-577b-4b6b-8342-a13d7f9910d4] got 1 multimodal items...
+2026-04-20 22:57:21,371 INFO: [a001a30a-577b-4b6b-8342-a13d7f9910d4] All 1 encoder requests completed successfully
+2026-04-20 22:57:21,371 INFO: [a001a30a-577b-4b6b-8342-a13d7f9910d4] Forwarding to decode: http://localhost:19535
+2026-04-20 22:57:22,739 INFO: <<< [a001a30a-577b-4b6b-8342-a13d7f9910d4] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:44370 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-04-20 22:57:22,741 INFO: >>> [8bb79bff-a654-4550-9d00-d6e72c3f6a30] POST /v1/chat/completions from 127.0.0.1
+2026-04-20 22:57:22,743 INFO: [8bb79bff-a654-4550-9d00-d6e72c3f6a30] Processing multimodal items...
+2026-04-20 22:57:22,743 INFO: [8bb79bff-a654-4550-9d00-d6e72c3f6a30] got 1 multimodal items...
+2026-04-20 22:57:22,765 INFO: [8bb79bff-a654-4550-9d00-d6e72c3f6a30] All 1 encoder requests completed successfully
+2026-04-20 22:57:22,766 INFO: [8bb79bff-a654-4550-9d00-d6e72c3f6a30] Forwarding to decode: http://localhost:19535
+2026-04-20 22:57:24,092 INFO: <<< [8bb79bff-a654-4550-9d00-d6e72c3f6a30] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:44370 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-04-20 22:57:24,095 INFO: >>> [e144f970-7036-41d2-8068-1a8a6b102b7d] POST /v1/chat/completions from 127.0.0.1
+2026-04-20 22:57:24,096 INFO: [e144f970-7036-41d2-8068-1a8a6b102b7d] Processing multimodal items...
+2026-04-20 22:57:24,096 INFO: [e144f970-7036-41d2-8068-1a8a6b102b7d] got 1 multimodal items...
+2026-04-20 22:57:24,114 INFO: [e144f970-7036-41d2-8068-1a8a6b102b7d] All 1 encoder requests completed successfully
+2026-04-20 22:57:24,114 INFO: [e144f970-7036-41d2-8068-1a8a6b102b7d] Forwarding to decode: http://localhost:19535
+2026-04-20 22:57:25,290 INFO: <<< [e144f970-7036-41d2-8068-1a8a6b102b7d] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:44370 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-04-20 22:57:25,293 INFO: >>> [106caddc-b88f-4eae-ab50-f4b7c27bf611] POST /v1/chat/completions from 127.0.0.1
+2026-04-20 22:57:25,294 INFO: [106caddc-b88f-4eae-ab50-f4b7c27bf611] Processing multimodal items...
+2026-04-20 22:57:25,295 INFO: [106caddc-b88f-4eae-ab50-f4b7c27bf611] got 1 multimodal items...
+2026-04-20 22:57:25,312 INFO: [106caddc-b88f-4eae-ab50-f4b7c27bf611] All 1 encoder requests completed successfully
+2026-04-20 22:57:25,312 INFO: [106caddc-b88f-4eae-ab50-f4b7c27bf611] Forwarding to decode: http://localhost:19535
+2026-04-20 22:57:26,572 INFO: <<< [106caddc-b88f-4eae-ab50-f4b7c27bf611] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:44370 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-04-20 22:57:26,575 INFO: >>> [0feec4bd-b671-482b-a64d-afb971582a1c] POST /v1/chat/completions from 127.0.0.1
+2026-04-20 22:57:26,576 INFO: [0feec4bd-b671-482b-a64d-afb971582a1c] Processing multimodal items...
+2026-04-20 22:57:26,576 INFO: [0feec4bd-b671-482b-a64d-afb971582a1c] got 1 multimodal items...
+2026-04-20 22:57:26,593 INFO: [0feec4bd-b671-482b-a64d-afb971582a1c] All 1 encoder requests completed successfully
+2026-04-20 22:57:26,595 INFO: [0feec4bd-b671-482b-a64d-afb971582a1c] Forwarding to decode: http://localhost:19535
+2026-04-20 22:57:27,956 INFO: <<< [0feec4bd-b671-482b-a64d-afb971582a1c] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:44370 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-04-20 22:57:33,525 INFO: >>> [ca6981bb-db97-4af8-8bce-fabd61a72f87] HEAD /metrics from 127.0.0.1
+2026-04-20 22:57:33,526 INFO: <<< [ca6981bb-db97-4af8-8bce-fabd61a72f87] HEAD /metrics completed with status 404
+INFO:     127.0.0.1:58412 - "HEAD /metrics HTTP/1.1" 404 Not Found
+2026-04-20 22:57:33,527 INFO: >>> [34c1d0cb-d204-483f-96b1-43ff63eade77] GET /metrics from 127.0.0.1
+2026-04-20 22:57:33,528 INFO: <<< [34c1d0cb-d204-483f-96b1-43ff63eade77] GET /metrics completed with status 404
+INFO:     127.0.0.1:58412 - "GET /metrics HTTP/1.1" 404 Not Found
+2026-04-20 22:57:47,143 INFO: >>> [6bf1d40b-18a0-452e-87a9-da23212d8d35] POST /v1/chat/completions from 127.0.0.1
+2026-04-20 22:57:47,144 INFO: >>> [fce28203-11ca-4d28-b5a4-d6caa61e5830] POST /v1/chat/completions from 127.0.0.1
+2026-04-20 22:57:47,145 INFO: >>> [a86b9a02-f750-4069-8fb8-06899f1454dc] POST /v1/chat/completions from 127.0.0.1
+2026-04-20 22:57:47,146 INFO: >>> [f81ee4fd-6409-4758-9a1e-fd78b6568e9d] POST /v1/chat/completions from 127.0.0.1
+2026-04-20 22:57:47,149 INFO: [6bf1d40b-18a0-452e-87a9-da23212d8d35] Processing multimodal items...
+2026-04-20 22:57:47,150 INFO: [6bf1d40b-18a0-452e-87a9-da23212d8d35] got 1 multimodal items...
+2026-04-20 22:57:47,153 INFO: [fce28203-11ca-4d28-b5a4-d6caa61e5830] Processing multimodal items...
+2026-04-20 22:57:47,153 INFO: [fce28203-11ca-4d28-b5a4-d6caa61e5830] got 1 multimodal items...
+2026-04-20 22:57:47,155 INFO: [a86b9a02-f750-4069-8fb8-06899f1454dc] Processing multimodal items...
+2026-04-20 22:57:47,155 INFO: [a86b9a02-f750-4069-8fb8-06899f1454dc] got 1 multimodal items...
+2026-04-20 22:57:47,162 INFO: [f81ee4fd-6409-4758-9a1e-fd78b6568e9d] Processing multimodal items...
+2026-04-20 22:57:47,162 INFO: [f81ee4fd-6409-4758-9a1e-fd78b6568e9d] got 1 multimodal items...
+2026-04-20 22:57:47,252 INFO: [a86b9a02-f750-4069-8fb8-06899f1454dc] All 1 encoder requests completed successfully
+2026-04-20 22:57:47,253 INFO: [a86b9a02-f750-4069-8fb8-06899f1454dc] Forwarding to decode: http://localhost:19535
+2026-04-20 22:57:47,254 INFO: [fce28203-11ca-4d28-b5a4-d6caa61e5830] All 1 encoder requests completed successfully
+2026-04-20 22:57:47,255 INFO: [fce28203-11ca-4d28-b5a4-d6caa61e5830] Forwarding to decode: http://localhost:19535
+2026-04-20 22:57:47,257 INFO: [6bf1d40b-18a0-452e-87a9-da23212d8d35] All 1 encoder requests completed successfully
+2026-04-20 22:57:47,257 INFO: [6bf1d40b-18a0-452e-87a9-da23212d8d35] Forwarding to decode: http://localhost:19535
+2026-04-20 22:57:47,259 INFO: [f81ee4fd-6409-4758-9a1e-fd78b6568e9d] All 1 encoder requests completed successfully
+2026-04-20 22:57:47,260 INFO: [f81ee4fd-6409-4758-9a1e-fd78b6568e9d] Forwarding to decode: http://localhost:19535
+2026-04-20 22:57:49,009 INFO: <<< [6bf1d40b-18a0-452e-87a9-da23212d8d35] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:42424 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-04-20 22:57:49,032 INFO: >>> [d652c1ba-fdcf-4806-a438-f6a0adb8b815] POST /v1/chat/completions from 127.0.0.1
+2026-04-20 22:57:49,035 INFO: [d652c1ba-fdcf-4806-a438-f6a0adb8b815] Processing multimodal items...
+2026-04-20 22:57:49,036 INFO: [d652c1ba-fdcf-4806-a438-f6a0adb8b815] got 1 multimodal items...
+2026-04-20 22:57:49,059 INFO: [d652c1ba-fdcf-4806-a438-f6a0adb8b815] All 1 encoder requests completed successfully
+2026-04-20 22:57:49,060 INFO: [d652c1ba-fdcf-4806-a438-f6a0adb8b815] Forwarding to decode: http://localhost:19535
+2026-04-20 22:57:49,070 INFO: <<< [f81ee4fd-6409-4758-9a1e-fd78b6568e9d] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:42440 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-04-20 22:57:49,075 INFO: >>> [873ab4e8-98b2-4d27-a110-43f15d2932b8] POST /v1/chat/completions from 127.0.0.1
+2026-04-20 22:57:49,077 INFO: [873ab4e8-98b2-4d27-a110-43f15d2932b8] Processing multimodal items...
+2026-04-20 22:57:49,078 INFO: [873ab4e8-98b2-4d27-a110-43f15d2932b8] got 1 multimodal items...
+2026-04-20 22:57:49,093 INFO: [873ab4e8-98b2-4d27-a110-43f15d2932b8] All 1 encoder requests completed successfully
+2026-04-20 22:57:49,094 INFO: [873ab4e8-98b2-4d27-a110-43f15d2932b8] Forwarding to decode: http://localhost:19535
+2026-04-20 22:57:49,386 INFO: <<< [fce28203-11ca-4d28-b5a4-d6caa61e5830] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:42432 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-04-20 22:57:49,392 INFO: >>> [e1822fcd-6af6-4dfb-bda3-4f4e8f3d1539] POST /v1/chat/completions from 127.0.0.1
+2026-04-20 22:57:49,393 INFO: [e1822fcd-6af6-4dfb-bda3-4f4e8f3d1539] Processing multimodal items...
+2026-04-20 22:57:49,394 INFO: [e1822fcd-6af6-4dfb-bda3-4f4e8f3d1539] got 1 multimodal items...
+2026-04-20 22:57:49,410 INFO: [e1822fcd-6af6-4dfb-bda3-4f4e8f3d1539] All 1 encoder requests completed successfully
+2026-04-20 22:57:49,410 INFO: [e1822fcd-6af6-4dfb-bda3-4f4e8f3d1539] Forwarding to decode: http://localhost:19535
+2026-04-20 22:57:50,819 INFO: <<< [873ab4e8-98b2-4d27-a110-43f15d2932b8] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:42440 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-04-20 22:57:50,824 INFO: >>> [f2d6e34c-c80c-45df-8f0e-ee8134e802b1] POST /v1/chat/completions from 127.0.0.1
+2026-04-20 22:57:50,826 INFO: [f2d6e34c-c80c-45df-8f0e-ee8134e802b1] Processing multimodal items...
+2026-04-20 22:57:50,827 INFO: [f2d6e34c-c80c-45df-8f0e-ee8134e802b1] got 1 multimodal items...
+2026-04-20 22:57:50,833 INFO: <<< [d652c1ba-fdcf-4806-a438-f6a0adb8b815] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:42424 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-04-20 22:57:50,836 INFO: >>> [2f3e9765-8b03-46ae-aaee-0fd3c29aa075] POST /v1/chat/completions from 127.0.0.1
+2026-04-20 22:57:50,838 INFO: [2f3e9765-8b03-46ae-aaee-0fd3c29aa075] Processing multimodal items...
+2026-04-20 22:57:50,838 INFO: [2f3e9765-8b03-46ae-aaee-0fd3c29aa075] got 1 multimodal items...
+2026-04-20 22:57:50,849 INFO: [f2d6e34c-c80c-45df-8f0e-ee8134e802b1] All 1 encoder requests completed successfully
+2026-04-20 22:57:50,849 INFO: [f2d6e34c-c80c-45df-8f0e-ee8134e802b1] Forwarding to decode: http://localhost:19535
+2026-04-20 22:57:50,860 INFO: [2f3e9765-8b03-46ae-aaee-0fd3c29aa075] All 1 encoder requests completed successfully
+2026-04-20 22:57:50,860 INFO: [2f3e9765-8b03-46ae-aaee-0fd3c29aa075] Forwarding to decode: http://localhost:19535
+2026-04-20 22:57:50,873 INFO: <<< [e1822fcd-6af6-4dfb-bda3-4f4e8f3d1539] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:42432 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-04-20 22:57:50,877 INFO: >>> [ddfe4e53-064e-4b24-bed5-67e6657a8c2c] POST /v1/chat/completions from 127.0.0.1
+2026-04-20 22:57:50,878 INFO: [ddfe4e53-064e-4b24-bed5-67e6657a8c2c] Processing multimodal items...
+2026-04-20 22:57:50,879 INFO: [ddfe4e53-064e-4b24-bed5-67e6657a8c2c] got 1 multimodal items...
+2026-04-20 22:57:50,900 INFO: [ddfe4e53-064e-4b24-bed5-67e6657a8c2c] All 1 encoder requests completed successfully
+2026-04-20 22:57:50,901 INFO: [ddfe4e53-064e-4b24-bed5-67e6657a8c2c] Forwarding to decode: http://localhost:19535
+2026-04-20 22:57:51,177 INFO: <<< [a86b9a02-f750-4069-8fb8-06899f1454dc] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:42434 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-04-20 22:57:52,180 INFO: <<< [f2d6e34c-c80c-45df-8f0e-ee8134e802b1] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:42440 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-04-20 22:57:52,264 INFO: <<< [ddfe4e53-064e-4b24-bed5-67e6657a8c2c] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:42432 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-04-20 22:57:52,659 INFO: <<< [2f3e9765-8b03-46ae-aaee-0fd3c29aa075] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:42424 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [931118]
+scripts/launch_encoder_partial_perlmutter.sh: line 89: 931118 Terminated              python disagg_epd_proxy.py --host 0.0.0.0 --port "$PORT" --encode-servers-urls "http://localhost:$ENCODE_PORT" --prefill-servers-urls "disable" --decode-servers-urls "http://localhost:$PD_PORT"

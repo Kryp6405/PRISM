@@ -1,18 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-: "${LOG_DIR:?LOG_DIR must be set}"
-: "${MODEL:=Qwen/Qwen2-VL-2B-Instruct}"
-: "${VLLM_ROOT:?Set VLLM_ROOT, e.g. $SCRATCH/PRISM_env/vllm}"
-: "${VENV_ACTIVATE:?Set VENV_ACTIVATE, e.g. $SCRATCH/PRISM_env/venvs/vllm-env/bin/activate}"
-: "${EC_SHARED_STORAGE_PATH:?Set EC_SHARED_STORAGE_PATH}"
-: "${PORT:=8000}"
-
-ENCODE_PORT="${ENCODE_PORT:-19534}"
-PD_PORT="${PD_PORT:-19535}"
-
-mkdir -p "$LOG_DIR" "$EC_SHARED_STORAGE_PATH"
-
 ###############################################################################
 # Perlmutter defaults — edit these once if your paths differ
 ###############################################################################
@@ -37,7 +25,7 @@ GPU_E="${GPU_E:-0}"
 GPU_PD="${GPU_PD:-1}"
 
 # Logs
-LOG_DIR="${LOG_DIR:-./artifacts/e_pd_logs}"
+LOG_DIR="${LOG_DIR:-./artifacts/p0}"
 
 ###############################################################################
 mkdir -p "$LOG_DIR"
