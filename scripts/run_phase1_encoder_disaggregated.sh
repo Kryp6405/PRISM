@@ -16,13 +16,13 @@ set -euo pipefail
 #   export ENCODER_ONLY_LAUNCH_CMD='bash scripts/launch_encoder_partial_perlmutter.sh'
 #   bash scripts/run_phase1_encoder_disaggregated.sh
 
-: "${ENCODER_ONLY_LAUNCH_CMD:?Set ENCODER_ONLY_LAUNCH_CMD to the partial-disagg launcher command}"
+ENCODER_ONLY_LAUNCH_CMD="${ENCODER_ONLY_LAUNCH_CMD:-bash scripts/launch_encoder_partial_perlmutter.sh}"
 
 MODEL="${MODEL:-Qwen/Qwen2-VL-2B-Instruct}"
 PORT="${PORT:-8000}"
 IMAGE_WIDTH_MEAN="${IMAGE_WIDTH_MEAN:-512}"
 IMAGE_HEIGHT_MEAN="${IMAGE_HEIGHT_MEAN:-512}"
-REQUEST_COUNT="${REQUEST_COUNT:-10}"
+REQUEST_COUNT="${REQUEST_COUNT:-80}"
 CONCURRENCY_VALUES="${CONCURRENCY_VALUES:-1 4 16}"
 
 ARTIFACT_ROOT="${ARTIFACT_ROOT:-artifacts}"
@@ -49,11 +49,11 @@ cleanup() {
 }
 trap cleanup EXIT
 
-[[ -f src/phase0/run_manifest_template.json ]] && \
-  cp src/phase0/run_manifest_template.json "$RUN_DIR/run_manifest.json"
+[[ -f src/phase1/run_manifest_template.json ]] && \
+  cp src/phase1/run_manifest_template.json "$RUN_DIR/run_manifest.json"
 
-[[ -f src/phase0/workloads/baseline_workload.json ]] && \
-  cp src/phase0/workloads/baseline_workload.json "$RUN_DIR/workload.json"
+[[ -f src/phase1/workloads/baseline_workload.json ]] && \
+  cp src/phase1/workloads/baseline_workload.json "$RUN_DIR/workload.json"
 
 if [[ -x scripts/capture_env.sh ]]; then
   bash scripts/capture_env.sh "$ENV_DIR"
@@ -170,8 +170,8 @@ cat > "$RUN_DIR/run_info.json" <<EOF
 EOF
 
 # Optional summarization
-if [[ -f src/phase0/summarize_run.py ]]; then
-  python3 src/phase0/summarize_run.py \
+if [[ -f src/phase1/summarize_run.py ]]; then
+  python3 src/phase1/summarize_run.py \
     --artifact-root "${ARTIFACT_ROOT}/${PHASE}" \
     --run-prefix "${RUN_PREFIX}" \
     > "$SUMMARY_DIR/summary.json" || true

@@ -1,0 +1,22 @@
+{
+  "phase": "phase1",
+  "study_tier": "perlmutter_primary",
+  "experiment_family": "P1_pipeline_comparison",
+  "mode": "pipeline_specific",
+  "model": "Qwen/Qwen2-VL-2B-Instruct",
+  "engine": "vllm",
+  "orchestrator": "nvidia-dynamo",
+  "cluster": "perlmutter",
+  "node_count": 1,
+  "gpu_count": 4,
+  "gpu_type": "A100",
+  "hardware_layout": "homogeneous",
+  "discovery_backend": "file",
+  "enable_multimodal": true,
+  "limit_mm_per_prompt": { "image": 1 },
+  "kv_cache_events": false,
+  "benchmark_tool": "aiperf",
+  "endpoint_type": "chat",
+  "use_server_token_count": true,
+  "notes": "Phase 1 coarse matrix for homogeneous pipeline comparison on Perlmutter."
+}

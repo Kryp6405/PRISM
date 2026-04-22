@@ -1,0 +1,17 @@
+mode=encoder_only
+phase=p1
+model=Qwen/Qwen2-VL-2B-Instruct
+run_prefix=Qwen_Qwen2-VL-2B-Instruct-encoder-only-openai-chat
+timestamp=20260421_161617
+launcher_pid=1087306
+port=8000
+request_count=80
+concurrency_values=1 4 16
+run_dir=artifacts/p1/Qwen_Qwen2-VL-2B-Instruct-encoder-only-openai-chat_20260421_161617
+log_dir=artifacts/p1/Qwen_Qwen2-VL-2B-Instruct-encoder-only-openai-chat_20260421_161617/logs
+summary_dir=artifacts/p1/Qwen_Qwen2-VL-2B-Instruct-encoder-only-openai-chat_20260421_161617/summary
+
+aiperf_artifact_dirs:
+  - artifacts/p1/Qwen_Qwen2-VL-2B-Instruct-encoder-only-openai-chat_concurrency1_20260421_161617
+  - artifacts/p1/Qwen_Qwen2-VL-2B-Instruct-encoder-only-openai-chat_concurrency4_20260421_161617
+  - artifacts/p1/Qwen_Qwen2-VL-2B-Instruct-encoder-only-openai-chat_concurrency16_20260421_161617
