@@ -1,0 +1,112 @@
+12:42:37.759 INFO     Starting AIPerf System (cli_runner.py:75)
+12:42:38.306 INFO     ✓ Tokenizer Qwen/Qwen2-VL-2B-Instruct detected (tokenizer_display.py:203)
+12:42:38.306 INFO     1 tokenizer validated • 0.5s (tokenizer_display.py:212)
+12:42:38.339 WARNING  Using --osl without ignore_eos or min_tokens in --extra-inputs. Output sequence length cannot be guaranteed unless the server honors these parameters. Consider: --extra-inputs ignore_eos:true (generate until max_tokens) or --extra-inputs min_tokens:<value> (set minimum output length). (cli_utils.py:153)
+12:42:38.505 INFO     Registered Worker Manager (id: 'worker_manager') (system_controller.py:340)
+12:42:38.538 INFO     GPU telemetry export enabled: artifacts/p1/Qwen_Qwen2-VL-2B-Instruct-encoder-only-openai-chat_short_concurrency1_20260422_124137/gpu_telemetry_export.jsonl (jsonl_writer.py:53)
+12:42:38.542 INFO     Record metrics export enabled: artifacts/p1/Qwen_Qwen2-VL-2B-Instruct-encoder-only-openai-chat_short_concurrency1_20260422_124137/profile_export.jsonl (record_export_results_processor.py:53)
+12:42:38.546 INFO     Server Metrics: Discovered 1 endpoints: ['http://localhost:8000/metrics'] (manager.py:70)
+12:42:38.548 INFO     Registered Dataset Manager (id: 'dataset_manager') (system_controller.py:340)
+12:42:38.591 INFO     Registered Gpu Telemetry Manager (id: 'gpu_telemetry_manager') (system_controller.py:340)
+12:42:38.591 INFO     Registered Server Metrics Manager (id: 'server_metrics_manager') (system_controller.py:340)
+12:42:38.592 INFO     Registered Timing Manager (id: 'timing_manager') (system_controller.py:340)
+12:42:38.602 INFO     Registered Record Processor (id: 'record_processor_d45a74b9') (system_controller.py:340)
+12:42:38.640 INFO     Registered Records Manager (id: 'records_manager') (system_controller.py:340)
+12:42:38.661 INFO     Registered Worker (id: 'worker_0b7bb0dd') (system_controller.py:340)
+12:42:38.998 INFO     AIPerf System is CONFIGURING (system_controller.py:228)
+12:42:38.999 INFO     Configuring all services to start profiling (system_controller.py:241)
+12:42:39.001 INFO     Waiting for dataset to be configured before configuring timing (manager.py:96)
+12:42:39.001 INFO     Configuring tokenizer(s) for dataset manager (dataset_manager.py:105)
+12:42:39.001 INFO     Tokenization is disabled for this endpoint, skipping tokenizer configuration (inference_result_parser.py:66)
+12:42:39.004 INFO     GPU telemetry disabled - no DCGM endpoints reachable (system_controller.py:429)
+12:42:39.014 INFO     Server metrics disabled - no Prometheus endpoints reachable (system_controller.py:453)
+12:42:44.395 INFO     Tokenizer(s) configured in 5.39 seconds (dataset_manager.py:109)
+12:42:44.395 INFO     Configuring dataset for dataset_manager (dataset_manager.py:111)
+12:42:44.815 INFO     Using default sampling strategy for synthetic dataset: shuffle (synthetic.py:26)
+12:42:51.810 INFO     Memory-mapped backing store initialized (streaming to /tmp/aiperf_mmap_ebd3fe68-b826-43c1-b28f-39877ecf4803/dataset.dat) (memory_map_utils.py:87)
+12:42:51.874 INFO     Data file finalized: 100 conversations, 35.53 MB (memory_map_utils.py:144)
+12:42:51.876 INFO     Index file created: /tmp/aiperf_mmap_ebd3fe68-b826-43c1-b28f-39877ecf4803/index.dat (memory_map_utils.py:157)
+12:42:51.877 INFO     Backing store finalized: client_type=DatasetClientStoreType.MEMORY_MAP data_file_path=PosixPath('/tmp/aiperf_mmap_ebd3fe68-b826-43c1-b28f-39877ecf4803/dataset.dat') index_file_path=PosixPath('/tmp/aiperf_mmap_ebd3fe68-b826-43c1-b28f-39877ecf4803/index.dat') conversation_count=100 total_size_bytes=37255386 (dataset_manager.py:319)
+12:42:51.878 INFO     sampling strategy: shuffle, unique conversations: 100, unique turn count: 100 (dataset_manager.py:325)
+12:42:51.884 INFO     Generating inputs.json file at /global/u2/k/krajeshk/PRISM/artifacts/p1/Qwen_Qwen2-VL-2B-Instruct-encoder-only-openai-chat_short_concurrency1_20260422_124137/inputs.json (dataset_manager.py:211)
+12:42:51.889 INFO     Initialized 1 phase(s): ['Profiling'] (phase_orchestrator.py:154)
+12:42:52.066 INFO     inputs.json file generated in 0.18 seconds (dataset_manager.py:229)
+12:42:52.333 INFO     Dataset client initialized and freed 100 conversations from memory (dataset_manager.py:139)
+12:42:52.334 INFO     Dataset configured in 7.94 seconds (dataset_manager.py:118)
+12:42:52.335 INFO     All services configured in 13.34 seconds (system_controller.py:253)
+12:42:52.336 INFO     AIPerf System is CONFIGURED (system_controller.py:230)
+12:42:52.338 INFO     All services started profiling successfully (system_controller.py:275)
+12:42:52.338 INFO     AIPerf System is PROFILING (system_controller.py:232)
+12:42:52.339 INFO     Creating interval generator: pattern=concurrency_burst, rate=None, smoothness=None (request_rate.py:111)
+12:42:52.340 NOTICE   Phase profiling started | target: 80 requests (runner.py:236)
+12:42:52.341 INFO     Credit phase start: profiling (records_manager.py:369)
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+12:43:00.137 WARNING  OSL mismatch: got 54 tokens (requested 64, diff -15.6%) (osl_mismatch_metrics.py:190)
+12:43:00.964 WARNING  OSL mismatch: got 45 tokens (requested 64, diff -29.7%) (osl_mismatch_metrics.py:190)
+12:43:20.642 WARNING  OSL mismatch: got 59 tokens (requested 64, diff -7.8%) (osl_mismatch_metrics.py:190)
+12:43:30.094 WARNING  OSL mismatch: got 59 tokens (requested 64, diff -7.8%) (osl_mismatch_metrics.py:190)
+12:44:04.986 WARNING  OSL mismatch: got 52 tokens (requested 64, diff -18.8%) (osl_mismatch_metrics.py:190)
+12:44:05.901 WARNING  OSL mismatch: got 50 tokens (requested 64, diff -21.9%) (osl_mismatch_metrics.py:190)
+12:44:15.981 WARNING  OSL mismatch: got 59 tokens (requested 64, diff -7.8%) (osl_mismatch_metrics.py:190)
+12:44:18.040 WARNING  OSL mismatch: got 59 tokens (requested 64, diff -7.8%) (osl_mismatch_metrics.py:190)
+12:44:21.003 WARNING  OSL mismatch: got 50 tokens (requested 64, diff -21.9%) (osl_mismatch_metrics.py:190)
+12:44:22.023 WARNING  OSL mismatch: got 59 tokens (requested 64, diff -7.8%) (osl_mismatch_metrics.py:190)
+12:44:23.146 NOTICE   Phase profiling sending complete | sent=80, completed=79, in_flight=1 | sessions: sent=80, completed=79 (runner.py:466)
+12:44:23.148 INFO     Sent 80 requests. Waiting for all to complete... (records_manager.py:377)
+12:44:24.274 NOTICE   Phase profiling complete | completed=80, cancelled=0, errors=0 | sessions: completed=80, cancelled=0 | elapsed=91.93s (runner.py:543)
+12:44:24.275 NOTICE   All credits completed (phase_orchestrator.py:169)
+12:44:24.276 INFO     Received CREDIT_PHASE_COMPLETE message, Phase complete: PhaseRecordsStats(phase=CreditPhase.PROFILING, start_ns=1776886972339948948, sent_end_ns=1776887063146542453, requests_end_ns=1776887064274620049, total_expected_requests=80, expected_duration_sec=None, expected_num_sessions=None, expected_grace_period_sec=None, final_requests_sent=None, final_requests_completed=80, final_requests_cancelled=0, final_request_errors=0, final_sent_sessions=None, final_completed_sessions=None, final_cancelled_sessions=None, timeout_triggered=False, grace_period_timeout_triggered=False, was_cancelled=False, records_end_ns=None, success_records=79, error_records=0) (records_manager.py:393)
+12:44:24.276 INFO     Received credits complete from 'timing_manager' (system_controller.py:375)
+12:44:24.277 NOTICE   All requests have completed, please wait for the results to be processed (currently 79 of 80 records processed)... (records_manager.py:396)
+12:44:24.277 INFO     Processed 80 valid requests and 0 errors (80 total). (records_manager.py:244)
+12:44:24.278 INFO     Received all records, processing now... (records_manager.py:248)
+12:44:24.279 INFO     All credits complete, please wait for the results to be processed... (records_manager.py:411)
+12:44:24.279 INFO     Waiting 2.0s for server metrics flush period... (records_manager.py:298)
+12:44:26.277 INFO     Processing records results... (records_manager.py:558)
+12:44:26.282 INFO     _finalize_and_process_results completed (records_manager.py:305)
+12:44:26.283 INFO     All results received, initiating shutdown (system_controller.py:668)
+12:44:26.888 INFO     Exporting all records (exporter_manager.py:60)
+12:44:26.985 INFO     Exporting console data (exporter_manager.py:116)
+
+
+                                           NVIDIA AIPerf | LLM Metrics                                           
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━┓
+┃                               Metric ┃      avg ┃    min ┃      max ┃      p99 ┃      p90 ┃      p50 ┃    std ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━┩
+│                 Request Latency (ms) │ 1,147.65 │ 827.88 │ 7,788.40 │ 2,566.74 │ 1,129.93 │ 1,059.08 │ 749.14 │
+│      Output Sequence Length (tokens) │    62.69 │  45.00 │    64.00 │    64.00 │    64.00 │    64.00 │   3.54 │
+│       Input Sequence Length (tokens) │   895.00 │ 895.00 │   895.00 │   895.00 │   895.00 │   895.00 │   0.00 │
+│ Output Token Throughput (tokens/sec) │    54.55 │    N/A │      N/A │      N/A │      N/A │      N/A │    N/A │
+│        Image Throughput (images/sec) │     0.93 │   0.13 │     1.21 │     1.18 │     0.97 │     0.94 │   0.11 │
+│             Image Latency (ms/image) │ 1,147.65 │ 827.88 │ 7,788.40 │ 2,566.74 │ 1,129.93 │ 1,059.08 │ 749.14 │
+│    Request Throughput (requests/sec) │     0.87 │    N/A │      N/A │      N/A │      N/A │      N/A │    N/A │
+│             Request Count (requests) │    80.00 │    N/A │      N/A │      N/A │      N/A │      N/A │    N/A │
+└──────────────────────────────────────┴──────────┴────────┴──────────┴──────────┴──────────┴──────────┴────────┘
+
+╭────────────────────────────── Output Sequence Length Mismatch Warning ──────────────────────────────╮
+│  10 of 80 requests (12.5%) have output length differing from requested by more than the threshold.  │
+│  Threshold (tokens): min(requested x 5%, 50)                                                        │
+│  Average mismatch: -2.1%                                                                            │
+│                                                                                                     │
+│  Why: Server hit EOS token before reaching requested output length.                                 │
+│                                                                                                     │
+│  Fix Options:                                                                                       │
+│    • --extra-inputs ignore_eos:true — Generate until max_tokens (vLLM, TensorRT-LLM)                │
+│    • --extra-inputs min_tokens:<N> — Set minimum output length (vLLM, TensorRT-LLM, SGLang)         │
+│    • --use-server-token-count — Use server-reported token counts if tokenizer mismatch suspected    │
+│                                                                                                     │
+│  Diagnostics:                                                                                       │
+│    • Review profile_export.jsonl → osl_mismatch_diff_pct for per-request values                     │
+│    • Adjust: AIPERF_METRICS_OSL_MISMATCH_PCT_THRESHOLD=5                                            │
+│    • Adjust: AIPERF_METRICS_OSL_MISMATCH_MAX_TOKEN_THRESHOLD=50                                     │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+CLI Command: aiperf profile --model 'Qwen/Qwen2-VL-2B-Instruct' --url 'http://localhost:8000' --endpoint-type 'chat' --image-width-mean 512 --image-height-mean 512 --concurrency 1 --request-count 80 --use-server-token-count 
+--prompt-output-tokens-mean 64 --prompt-output-tokens-stddev 0 --output-artifact-dir 'artifacts/p1/Qwen_Qwen2-VL-2B-Instruct-encoder-only-openai-chat_short_concurrency1_20260422_124137'
+Benchmark Duration: 91.93 sec
+CSV Export: /global/u2/k/krajeshk/PRISM/artifacts/p1/Qwen_Qwen2-VL-2B-Instruct-encoder-only-openai-chat_short_concurrency1_20260422_124137/profile_export_aiperf.csv
+JSON Export: /global/u2/k/krajeshk/PRISM/artifacts/p1/Qwen_Qwen2-VL-2B-Instruct-encoder-only-openai-chat_short_concurrency1_20260422_124137/profile_export_aiperf.json
+Log File: /global/u2/k/krajeshk/PRISM/artifacts/p1/Qwen_Qwen2-VL-2B-Instruct-encoder-only-openai-chat_short_concurrency1_20260422_124137/logs/aiperf.log
+

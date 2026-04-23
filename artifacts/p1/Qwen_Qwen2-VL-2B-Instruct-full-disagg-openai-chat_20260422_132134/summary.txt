@@ -1,0 +1,25 @@
+mode=full_disagg
+phase=p1
+model=Qwen/Qwen2-VL-2B-Instruct
+run_prefix=Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat
+timestamp=20260422_132134
+launcher_pid=2341837
+port=8000
+request_count=80
+concurrency_values=1 4 16
+generation_lengths=short long
+short_output_tokens_mean=64
+long_output_tokens_mean=256
+output_tokens_stddev=0
+use_legacy_max_tokens=false
+run_dir=artifacts/p1/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_20260422_132134
+log_dir=artifacts/p1/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_20260422_132134/logs
+summary_dir=artifacts/p1/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_20260422_132134/summary
+
+aiperf_artifact_dirs:
+  - artifacts/p1/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_short_concurrency1_20260422_132134
+  - artifacts/p1/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_short_concurrency4_20260422_132134
+  - artifacts/p1/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_short_concurrency16_20260422_132134
+  - artifacts/p1/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_long_concurrency1_20260422_132134
+  - artifacts/p1/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_long_concurrency4_20260422_132134
+  - artifacts/p1/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_long_concurrency16_20260422_132134
