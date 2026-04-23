@@ -1,9 +1,129 @@
-# PRISM Profiling: Multimodal Disaggregation Sandbox
+# PRISM: Profiling Multimodal Disaggregation for VLM Serving
 
 **Project:** Scaling Large Language Model Inference  
 **Maintainers:** Akarsh Srivastava & Krisnajit Rajeshkhanna  
 
-This repository contains the setup and benchmarking scripts for profiling a disaggregated Vision-Language Model (VLM) pipeline on Perlmutter. This specific guide covers the 1-node (4x A100) sandbox validation phase using NVIDIA's `ai-dynamo` orchestrator and the `aiperf` benchmarking client.
+PRISM is a systems project studying **how multimodal inference pipelines behave under different serving architectures**, with a focus on **Vision-Language Models (VLMs)** and **stage disaggregation**.
+
+Our primary goal is to understand:
+
+- when **aggregated serving** is sufficient,
+- when **encoder-only disaggregation** helps,
+- when **full encoder / prefill / decode disaggregation** becomes worthwhile,
+- and how these tradeoffs change with workload shape, concurrency, and hardware constraints.
+
+The current repository serves as a **sandbox and experimental harness** for running and profiling multimodal inference on GPU clusters, starting with a **1-node Perlmutter validation path** and expanding toward more structured experiments.
+
+---
+
+## What PRISM Is About
+
+Large multimodal models do not behave like standard text-only LLMs.
+
+In a Vision-Language Model, a request may involve:
+1. **visual encoding** of one or more images,
+2. **prefill** over the text-and-vision prompt,
+3. **decode** for autoregressive generation.
+
+These stages have different compute and memory characteristics. In some workloads, combining them in one worker is simple and effective. In others, isolating stages may improve throughput, reduce interference, or better utilize available GPU resources.
+
+PRISM studies these tradeoffs in a practical cluster setting.
+
+### Core research question
+
+**Under what workload conditions does multimodal disaggregation improve serving performance over aggregated execution?**
+
+More concretely, we study how pipeline structure affects:
+
+- **Throughput**
+- **Time to First Token (TTFT)**
+- **Time Between Tokens (TBT)**
+- **End-to-end latency**
+- **GPU utilization**
+- **GPU memory usage**
+
+---
+
+## Current Study Scope
+
+The current phase of PRISM is centered on:
+
+- **Model:** `Qwen/Qwen2-VL-2B-Instruct`
+- **Platform:** Perlmutter
+- **Initial goal:** establish reliable multimodal serving and benchmarking flows
+- **Immediate focus:** small-scale validation and reduced benchmark sweeps before deeper experiments
+
+We use `Qwen2-VL-2B-Instruct` because it is:
+- lightweight enough for rapid iteration,
+- natively supported by vLLM,
+- and suitable for multimodal chat-style benchmarking with synthetic image requests.
+
+---
+
+## Experimental Direction
+
+PRISM is designed around three serving modes:
+
+### 1. Aggregated serving
+A single worker handles the full request lifecycle:
+- image encoding
+- prefill
+- decode
+
+This is the simplest deployment model and the baseline for comparison.
+
+### 2. Encoder-only disaggregation
+The vision encoder is isolated from the prefill/decode worker.
+
+This tests whether separating multimodal feature extraction reduces contention and improves performance.
+
+### 3. Full E/P/D disaggregation
+The pipeline is split into:
+- **E**ncoder
+- **P**refill
+- **D**ecode
+
+This is the most fine-grained configuration and is intended to expose the full cost/benefit tradeoff of disaggregation.
+
+---
+
+## What This Repository Contains
+
+This repository contains the scripts and scaffolding for:
+
+- environment setup on Perlmutter
+- building a patched multimodal vLLM stack
+- launching serving configurations
+- running smoke tests and profiling jobs
+- collecting benchmark artifacts and logs
+
+It is not intended to be a polished framework yet. It is primarily a **research harness** for controlled experiments.
+
+---
+
+## Repository Goals by Phase
+
+### Phase 0: Validation / Smoke Testing
+Confirm that each serving mode:
+- launches successfully,
+- serves multimodal requests correctly,
+- works with `aiperf`,
+- and writes logs/artifacts to expected locations.
+
+### Phase 1: Coarse profiling
+Run reduced experiments across:
+- serving mode,
+- concurrency,
+- and generation length
+
+to identify the most promising configurations.
+
+### Phase 2: Focused analysis
+Take the best configurations and study:
+- latency breakdowns,
+- utilization,
+- memory behavior,
+- and workload sensitivity in more detail.
 
 ---
 
