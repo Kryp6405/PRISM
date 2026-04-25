@@ -1,0 +1,1085 @@
+{
+  "schema_version": "1.0",
+  "aiperf_version": "0.6.0.post1",
+  "benchmark_id": "95c9f7b6-f572-4030-bace-4e0ceb1c9c75",
+  "summary": {
+    "endpoints_configured": [
+      "http://localhost:8000/metrics"
+    ],
+    "endpoints_successful": [
+      "http://localhost:8000/metrics"
+    ],
+    "start_time": "2026-04-23T15:35:37.378293",
+    "end_time": "2026-04-23T15:35:48.265909",
+    "endpoint_info": {
+      "http://localhost:8000/metrics": {
+        "total_fetches": 35,
+        "first_fetch_ns": 1776983722348389976,
+        "last_fetch_ns": 1776983748272304556,
+        "avg_fetch_latency_ms": 0.6350415142857142,
+        "unique_updates": 35,
+        "first_update_ns": 1776983722348389976,
+        "last_update_ns": 1776983748272304556,
+        "duration_seconds": 25.92391458,
+        "avg_update_interval_ms": 762.468075882353,
+        "median_update_interval_ms": 333.178862
+      }
+    }
+  },
+  "metrics": {
+    "dynamo_component_router_input_sequence_tokens": {
+      "type": "histogram",
+      "description": "Input sequence length in tokens observed at the router",
+      "unit": "tokens",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "dynamo_component": "backend",
+            "dynamo_namespace": "dynamo",
+            "router_id": "10723956048946219388"
+          },
+          "stats": {
+            "count": 0
+          },
+          "buckets": {
+            "0": 0,
+            "100": 0,
+            "210": 0,
+            "430": 0,
+            "870": 0,
+            "1800": 0,
+            "3600": 0,
+            "7400": 0,
+            "15000": 0,
+            "31000": 0,
+            "63000": 0,
+            "130000": 0,
+            "+Inf": 0
+          }
+        }
+      ]
+    },
+    "dynamo_component_router_inter_token_latency_seconds": {
+      "type": "histogram",
+      "description": "Average inter-token latency observed at the router",
+      "unit": "seconds",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "dynamo_component": "backend",
+            "dynamo_namespace": "dynamo",
+            "router_id": "10723956048946219388"
+          },
+          "stats": {
+            "count": 0
+          },
+          "buckets": {
+            "0": 0,
+            "0.0019": 0,
+            "0.0035": 0,
+            "0.0067": 0,
+            "0.013": 0,
+            "0.024": 0,
+            "0.045": 0,
+            "0.084": 0,
+            "0.16": 0,
+            "0.3": 0,
+            "0.56": 0,
+            "1.1": 0,
+            "2": 0,
+            "+Inf": 0
+          }
+        }
+      ]
+    },
+    "dynamo_component_router_kv_hit_rate": {
+      "type": "histogram",
+      "description": "Predicted KV cache hit rate at routing time (0.0-1.0)",
+      "unit": "ratio",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "dynamo_component": "backend",
+            "dynamo_namespace": "dynamo",
+            "router_id": "10723956048946219388"
+          },
+          "stats": {
+            "count": 0
+          },
+          "buckets": {
+            "0": 0,
+            "0.05": 0,
+            "0.1": 0,
+            "0.15000000000000002": 0,
+            "0.2": 0,
+            "0.25": 0,
+            "0.30000000000000004": 0,
+            "0.35000000000000003": 0,
+            "0.4": 0,
+            "0.45": 0,
+            "0.5": 0,
+            "0.55": 0,
+            "0.6000000000000001": 0,
+            "0.65": 0,
+            "0.7000000000000001": 0,
+            "0.75": 0,
+            "0.8": 0,
+            "0.8500000000000001": 0,
+            "0.9": 0,
+            "0.9500000000000001": 0,
+            "1": 0,
+            "+Inf": 0
+          }
+        }
+      ]
+    },
+    "dynamo_component_router_output_sequence_tokens": {
+      "type": "histogram",
+      "description": "Output sequence length in tokens observed at the router",
+      "unit": "tokens",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "dynamo_component": "backend",
+            "dynamo_namespace": "dynamo",
+            "router_id": "10723956048946219388"
+          },
+          "stats": {
+            "count": 0
+          },
+          "buckets": {
+            "0": 0,
+            "100": 0,
+            "210": 0,
+            "430": 0,
+            "880": 0,
+            "1800": 0,
+            "3700": 0,
+            "7600": 0,
+            "16000": 0,
+            "32000": 0,
+            "+Inf": 0
+          }
+        }
+      ]
+    },
+    "dynamo_component_router_requests": {
+      "type": "counter",
+      "description": "Total number of requests processed by the router",
+      "unit": "requests",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "dynamo_component": "backend",
+            "dynamo_namespace": "dynamo",
+            "router_id": "10723956048946219388"
+          },
+          "stats": {
+            "total": 0.0,
+            "rate": 0.0
+          }
+        }
+      ]
+    },
+    "dynamo_component_router_time_to_first_token_seconds": {
+      "type": "histogram",
+      "description": "Time to first token observed at the router",
+      "unit": "seconds",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "dynamo_component": "backend",
+            "dynamo_namespace": "dynamo",
+            "router_id": "10723956048946219388"
+          },
+          "stats": {
+            "count": 0
+          },
+          "buckets": {
+            "0": 0,
+            "0.0022": 0,
+            "0.0047": 0,
+            "0.01": 0,
+            "0.022": 0,
+            "0.047": 0,
+            "0.1": 0,
+            "0.22": 0,
+            "0.47": 0,
+            "1": 0,
+            "2.2": 0,
+            "4.7": 0,
+            "10": 0,
+            "22": 0,
+            "48": 0,
+            "100": 0,
+            "220": 0,
+            "480": 0,
+            "+Inf": 0
+          }
+        }
+      ]
+    },
+    "dynamo_frontend_cached_tokens": {
+      "type": "histogram",
+      "description": "Number of cached tokens (prefix cache hits) per request",
+      "unit": "tokens",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "model": "qwen/qwen2-vl-2b-instruct"
+          },
+          "stats": {
+            "count": 2,
+            "sum": 32.0,
+            "avg": 16.0,
+            "count_rate": 0.18356468865730555,
+            "sum_rate": 2.9370350185168888,
+            "p1_estimate": 0.365,
+            "p5_estimate": 1.8250000000000002,
+            "p10_estimate": 3.6500000000000004,
+            "p25_estimate": 9.125,
+            "p50_estimate": 18.25,
+            "p75_estimate": 27.375,
+            "p90_estimate": 32.85,
+            "p95_estimate": 34.675,
+            "p99_estimate": 36.135
+          },
+          "buckets": {
+            "0": 0,
+            "100": 2,
+            "210": 2,
+            "430": 2,
+            "870": 2,
+            "1800": 2,
+            "3600": 2,
+            "7400": 2,
+            "15000": 2,
+            "31000": 2,
+            "63000": 2,
+            "130000": 2,
+            "+Inf": 2
+          }
+        }
+      ]
+    },
+    "dynamo_frontend_disconnected_clients": {
+      "type": "gauge",
+      "description": "Number of disconnected clients",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "stats": {
+            "avg": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "std": 0.0,
+            "p1": 0.0,
+            "p5": 0.0,
+            "p10": 0.0,
+            "p25": 0.0,
+            "p50": 0.0,
+            "p75": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0
+          }
+        }
+      ]
+    },
+    "dynamo_frontend_inflight_requests": {
+      "type": "gauge",
+      "description": "Number of inflight requests",
+      "unit": "requests",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "model": "qwen/qwen2-vl-2b-instruct"
+          },
+          "stats": {
+            "avg": 5.484848484848484,
+            "min": 0.0,
+            "max": 8.0,
+            "std": 3.364532026534412,
+            "p1": 0.32,
+            "p5": 1.0,
+            "p10": 1.0,
+            "p25": 1.0,
+            "p50": 8.0,
+            "p75": 8.0,
+            "p90": 8.0,
+            "p95": 8.0,
+            "p99": 8.0
+          }
+        }
+      ]
+    },
+    "dynamo_frontend_input_sequence_tokens": {
+      "type": "histogram",
+      "description": "Input sequence length in tokens",
+      "unit": "tokens",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "model": "qwen/qwen2-vl-2b-instruct"
+          },
+          "stats": {
+            "count": 100,
+            "sum": 57700.0,
+            "avg": 577.0,
+            "count_rate": 9.178234432865278,
+            "sum_rate": 5295.841267763265,
+            "p1_estimate": 430.0,
+            "p5_estimate": 430.0,
+            "p10_estimate": 430.0,
+            "p25_estimate": 462.04800000000006,
+            "p50_estimate": 570.948,
+            "p75_estimate": 679.848,
+            "p90_estimate": 745.188,
+            "p95_estimate": 766.968,
+            "p99_estimate": 784.3919999999999
+          },
+          "buckets": {
+            "0": 0,
+            "100": 0,
+            "210": 0,
+            "430": 0,
+            "870": 100,
+            "1800": 100,
+            "3600": 100,
+            "7400": 100,
+            "15000": 100,
+            "31000": 100,
+            "63000": 100,
+            "130000": 100,
+            "+Inf": 100
+          }
+        }
+      ]
+    },
+    "dynamo_frontend_inter_token_latency_seconds": {
+      "type": "histogram",
+      "description": "Inter-token latency in seconds",
+      "unit": "seconds",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "model": "qwen/qwen2-vl-2b-instruct"
+          },
+          "stats": {
+            "count": 9863,
+            "sum": 55.81311058699998,
+            "avg": 0.00565883712734462,
+            "count_rate": 905.2492621135024,
+            "sum_rate": 5.122658133949208,
+            "p1_estimate": 0.00031334681475616975,
+            "p5_estimate": 0.0017574932502089635,
+            "p10_estimate": 0.004749457345602329,
+            "p25_estimate": 0.004749457345602329,
+            "p50_estimate": 0.004749457345602329,
+            "p75_estimate": 0.004749457345602329,
+            "p90_estimate": 0.008505489499602809,
+            "p95_estimate": 0.014900134280782023,
+            "p99_estimate": 0.021690869805038666
+          },
+          "buckets": {
+            "0": 0,
+            "0.0019": 519,
+            "0.0035": 593,
+            "0.0067": 8686,
+            "0.013": 9203,
+            "0.024": 9842,
+            "0.045": 9863,
+            "0.084": 9863,
+            "0.16": 9863,
+            "0.3": 9863,
+            "0.56": 9863,
+            "1.1": 9863,
+            "2": 9863,
+            "+Inf": 9863
+          }
+        }
+      ]
+    },
+    "dynamo_frontend_model_context_length": {
+      "type": "gauge",
+      "description": "Maximum context length in tokens for a worker serving the model",
+      "unit": "tokens",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "model": "Qwen/Qwen2-VL-2B-Instruct"
+          },
+          "stats": {
+            "avg": 32768.0,
+            "min": 32768.0,
+            "max": 32768.0,
+            "std": 0.0,
+            "p1": 32768.0,
+            "p5": 32768.0,
+            "p10": 32768.0,
+            "p25": 32768.0,
+            "p50": 32768.0,
+            "p75": 32768.0,
+            "p90": 32768.0,
+            "p95": 32768.0,
+            "p99": 32768.0
+          }
+        }
+      ]
+    },
+    "dynamo_frontend_model_kv_cache_block_size": {
+      "type": "gauge",
+      "description": "KV cache block size in tokens for a worker serving the model",
+      "unit": "tokens",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "model": "Qwen/Qwen2-VL-2B-Instruct"
+          },
+          "stats": {
+            "avg": 16.0,
+            "min": 16.0,
+            "max": 16.0,
+            "std": 0.0,
+            "p1": 16.0,
+            "p5": 16.0,
+            "p10": 16.0,
+            "p25": 16.0,
+            "p50": 16.0,
+            "p75": 16.0,
+            "p90": 16.0,
+            "p95": 16.0,
+            "p99": 16.0
+          }
+        }
+      ]
+    },
+    "dynamo_frontend_model_max_num_batched_tokens": {
+      "type": "gauge",
+      "description": "Maximum number of batched tokens for a worker serving the model",
+      "unit": "tokens",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "model": "Qwen/Qwen2-VL-2B-Instruct"
+          },
+          "stats": {
+            "avg": 2048.0,
+            "min": 2048.0,
+            "max": 2048.0,
+            "std": 0.0,
+            "p1": 2048.0,
+            "p5": 2048.0,
+            "p10": 2048.0,
+            "p25": 2048.0,
+            "p50": 2048.0,
+            "p75": 2048.0,
+            "p90": 2048.0,
+            "p95": 2048.0,
+            "p99": 2048.0
+          }
+        }
+      ]
+    },
+    "dynamo_frontend_model_max_num_seqs": {
+      "type": "gauge",
+      "description": "Maximum number of sequences for a worker serving the model",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "model": "Qwen/Qwen2-VL-2B-Instruct"
+          },
+          "stats": {
+            "avg": 256.0,
+            "min": 256.0,
+            "max": 256.0,
+            "std": 0.0,
+            "p1": 256.0,
+            "p5": 256.0,
+            "p10": 256.0,
+            "p25": 256.0,
+            "p50": 256.0,
+            "p75": 256.0,
+            "p90": 256.0,
+            "p95": 256.0,
+            "p99": 256.0
+          }
+        }
+      ]
+    },
+    "dynamo_frontend_model_migration_limit": {
+      "type": "gauge",
+      "description": "Maximum number of request migrations allowed for the model",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "model": "Qwen/Qwen2-VL-2B-Instruct"
+          },
+          "stats": {
+            "avg": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "std": 0.0,
+            "p1": 0.0,
+            "p5": 0.0,
+            "p10": 0.0,
+            "p25": 0.0,
+            "p50": 0.0,
+            "p75": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "p99": 0.0
+          }
+        }
+      ]
+    },
+    "dynamo_frontend_model_total_kv_blocks": {
+      "type": "gauge",
+      "description": "Total KV cache blocks available for a worker serving the model",
+      "unit": "blocks",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "model": "Qwen/Qwen2-VL-2B-Instruct"
+          },
+          "stats": {
+            "avg": 61662.0,
+            "min": 61662.0,
+            "max": 61662.0,
+            "std": 0.0,
+            "p1": 61662.0,
+            "p5": 61662.0,
+            "p10": 61662.0,
+            "p25": 61662.0,
+            "p50": 61662.0,
+            "p75": 61662.0,
+            "p90": 61662.0,
+            "p95": 61662.0,
+            "p99": 61662.0
+          }
+        }
+      ]
+    },
+    "dynamo_frontend_output_sequence_tokens": {
+      "type": "histogram",
+      "description": "Output sequence length in tokens",
+      "unit": "tokens",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "model": "qwen/qwen2-vl-2b-instruct"
+          },
+          "stats": {
+            "count": 100,
+            "sum": 9966.0,
+            "avg": 99.66,
+            "count_rate": 9.178234432865278,
+            "sum_rate": 914.7028435793536,
+            "p1_estimate": 51.8897335169609,
+            "p5_estimate": 54.03511291819579,
+            "p10_estimate": 56.71683716973942,
+            "p25_estimate": 64.76200992437028,
+            "p50_estimate": 78.17063118208839,
+            "p75_estimate": 100.69101991284681,
+            "p90_estimate": 160.20852409583176,
+            "p95_estimate": 180.37519076249836,
+            "p99_estimate": 294.18987919907653
+          },
+          "buckets": {
+            "0": 0,
+            "100": 71,
+            "210": 98,
+            "430": 99,
+            "880": 99,
+            "1800": 100,
+            "3700": 100,
+            "7600": 100,
+            "16000": 100,
+            "32000": 100,
+            "+Inf": 100
+          }
+        }
+      ]
+    },
+    "dynamo_frontend_output_tokens": {
+      "type": "counter",
+      "description": "Total number of output tokens generated (updates in real-time)",
+      "unit": "tokens",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "model": "qwen/qwen2-vl-2b-instruct"
+          },
+          "stats": {
+            "total": 9966.0,
+            "rate": 914.7028435793536
+          }
+        }
+      ]
+    },
+    "dynamo_frontend_queued_requests": {
+      "type": "gauge",
+      "description": "Number of requests in HTTP processing queue",
+      "unit": "requests",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "model": "qwen/qwen2-vl-2b-instruct"
+          },
+          "stats": {
+            "avg": 0.2727272727272727,
+            "min": 0.0,
+            "max": 2.0,
+            "std": 0.5740604972870494,
+            "p1": 0.0,
+            "p5": 0.0,
+            "p10": 0.0,
+            "p25": 0.0,
+            "p50": 0.0,
+            "p75": 0.0,
+            "p90": 1.0,
+            "p95": 1.3999999999999986,
+            "p99": 2.0
+          }
+        }
+      ]
+    },
+    "dynamo_frontend_request_duration_seconds": {
+      "type": "histogram",
+      "description": "Duration of LLM requests",
+      "unit": "seconds",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "model": "qwen/qwen2-vl-2b-instruct"
+          },
+          "stats": {
+            "count": 100,
+            "sum": 61.05525243000022,
+            "avg": 0.6105525243000023,
+            "count_rate": 9.178234432865278,
+            "sum_rate": 5.603794201603095,
+            "p1_estimate": 0.16326919650211372,
+            "p5_estimate": 0.17151044640337684,
+            "p10_estimate": 0.18181200877995574,
+            "p25_estimate": 0.2612705963591885,
+            "p50_estimate": 0.5502784082420829,
+            "p75_estimate": 0.8392862201249773,
+            "p90_estimate": 1.0126909072547141,
+            "p95_estimate": 1.070492469631293,
+            "p99_estimate": 1.1574509389127183
+          },
+          "buckets": {
+            "0": 0,
+            "1.9": 99,
+            "3.4": 99,
+            "6.3": 100,
+            "12": 100,
+            "22": 100,
+            "40": 100,
+            "75": 100,
+            "140": 100,
+            "260": 100,
+            "+Inf": 100
+          }
+        }
+      ]
+    },
+    "dynamo_frontend_requests": {
+      "type": "counter",
+      "description": "Total number of LLM requests processed",
+      "unit": "requests",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "endpoint": "chat_completions",
+            "error_type": "",
+            "model": "qwen/qwen2-vl-2b-instruct",
+            "request_type": "unary",
+            "status": "success"
+          },
+          "stats": {
+            "total": 100.0,
+            "rate": 9.178234432865278
+          }
+        }
+      ]
+    },
+    "dynamo_frontend_time_to_first_token_seconds": {
+      "type": "histogram",
+      "description": "Time to first token in seconds",
+      "unit": "seconds",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "model": "qwen/qwen2-vl-2b-instruct"
+          },
+          "stats": {
+            "count": 100,
+            "sum": 5.212659776999942,
+            "avg": 0.05212659776999942,
+            "count_rate": 9.178234432865278,
+            "sum_rate": 0.4784301345207271,
+            "p1_estimate": 0.03278163982742006,
+            "p5_estimate": 0.03375624537524135,
+            "p10_estimate": 0.03497450231001795,
+            "p25_estimate": 0.0386292731143478,
+            "p50_estimate": 0.04470237267664203,
+            "p75_estimate": 0.04713167575370785,
+            "p90_estimate": 0.07128320732513944,
+            "p95_estimate": 0.11136993047719526,
+            "p99_estimate": 0.1905699304771954
+          },
+          "buckets": {
+            "0": 0,
+            "0.0022": 0,
+            "0.0047": 0,
+            "0.01": 0,
+            "0.022": 0,
+            "0.047": 66,
+            "0.1": 94,
+            "0.22": 100,
+            "0.47": 100,
+            "1": 100,
+            "2.2": 100,
+            "4.7": 100,
+            "10": 100,
+            "22": 100,
+            "48": 100,
+            "100": 100,
+            "220": 100,
+            "480": 100,
+            "+Inf": 100
+          }
+        }
+      ]
+    },
+    "dynamo_frontend_tokenizer_latency_ms": {
+      "type": "histogram",
+      "description": "Tokenizer latency in milliseconds",
+      "unit": "milliseconds",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "operation": "detokenize"
+          },
+          "stats": {
+            "count": 100,
+            "sum": 0.3419868579428824,
+            "avg": 0.0034198685794288243,
+            "count_rate": 9.178234432865278,
+            "sum_rate": 0.0313883555515877,
+            "p1_estimate": 0.003420101239947646,
+            "p5_estimate": 0.0034546477171188343,
+            "p10_estimate": 0.0034546477171188343,
+            "p25_estimate": 0.0034546477171188343,
+            "p50_estimate": 0.0034546477171188343,
+            "p75_estimate": 0.0034546477171188343,
+            "p90_estimate": 0.0034546477171188343,
+            "p95_estimate": 0.0034546477171188343,
+            "p99_estimate": 0.0034546477171188343
+          },
+          "buckets": {
+            "0.5": 100,
+            "1": 100,
+            "2": 100,
+            "4": 100,
+            "8": 100,
+            "16": 100,
+            "32": 100,
+            "64": 100,
+            "128": 100,
+            "256": 100,
+            "512": 100,
+            "+Inf": 100
+          }
+        },
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "operation": "tokenize"
+          },
+          "stats": {
+            "count": 100,
+            "sum": 103.04626199999939,
+            "avg": 1.0304626199999938,
+            "count_rate": 9.178234432865278,
+            "sum_rate": 9.457827500664512,
+            "p1_estimate": 0.6507343181043215,
+            "p5_estimate": 0.676714110924979,
+            "p10_estimate": 0.709188851950801,
+            "p25_estimate": 0.8066130750282666,
+            "p50_estimate": 0.9381766112143145,
+            "p75_estimate": 1.238868171844094,
+            "p90_estimate": 1.548243171844094,
+            "p95_estimate": 1.6513681718440938,
+            "p99_estimate": 1.733868171844094
+          },
+          "buckets": {
+            "0.5": 0,
+            "1": 52,
+            "2": 100,
+            "4": 100,
+            "8": 100,
+            "16": 100,
+            "32": 100,
+            "64": 100,
+            "128": 100,
+            "256": 100,
+            "512": 100,
+            "+Inf": 100
+          }
+        }
+      ]
+    },
+    "dynamo_router_overhead_block_hashing_ms": {
+      "type": "histogram",
+      "description": "Time spent computing block hashes in milliseconds",
+      "unit": "milliseconds",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "router_id": "10723956048946219388"
+          },
+          "stats": {
+            "count": 0
+          },
+          "buckets": {
+            "0.0001": 0,
+            "0.0002": 0,
+            "0.0004": 0,
+            "0.0008": 0,
+            "0.0016": 0,
+            "0.0032": 0,
+            "0.0064": 0,
+            "0.0128": 0,
+            "0.0256": 0,
+            "0.0512": 0,
+            "0.1024": 0,
+            "0.2048": 0,
+            "0.4096": 0,
+            "0.8192": 0,
+            "1.6384": 0,
+            "3.2768": 0,
+            "6.5536": 0,
+            "13.1072": 0,
+            "+Inf": 0
+          }
+        }
+      ]
+    },
+    "dynamo_router_overhead_indexer_find_matches_ms": {
+      "type": "histogram",
+      "description": "Time spent in indexer find_matches in milliseconds",
+      "unit": "milliseconds",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "router_id": "10723956048946219388"
+          },
+          "stats": {
+            "count": 0
+          },
+          "buckets": {
+            "0.0001": 0,
+            "0.0002": 0,
+            "0.0004": 0,
+            "0.0008": 0,
+            "0.0016": 0,
+            "0.0032": 0,
+            "0.0064": 0,
+            "0.0128": 0,
+            "0.0256": 0,
+            "0.0512": 0,
+            "0.1024": 0,
+            "0.2048": 0,
+            "0.4096": 0,
+            "0.8192": 0,
+            "1.6384": 0,
+            "3.2768": 0,
+            "6.5536": 0,
+            "13.1072": 0,
+            "+Inf": 0
+          }
+        }
+      ]
+    },
+    "dynamo_router_overhead_scheduling_ms": {
+      "type": "histogram",
+      "description": "Time spent in scheduler worker selection in milliseconds",
+      "unit": "milliseconds",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "router_id": "10723956048946219388"
+          },
+          "stats": {
+            "count": 0
+          },
+          "buckets": {
+            "0.0001": 0,
+            "0.0002": 0,
+            "0.0004": 0,
+            "0.0008": 0,
+            "0.0016": 0,
+            "0.0032": 0,
+            "0.0064": 0,
+            "0.0128": 0,
+            "0.0256": 0,
+            "0.0512": 0,
+            "0.1024": 0,
+            "0.2048": 0,
+            "0.4096": 0,
+            "0.8192": 0,
+            "1.6384": 0,
+            "3.2768": 0,
+            "6.5536": 0,
+            "13.1072": 0,
+            "+Inf": 0
+          }
+        }
+      ]
+    },
+    "dynamo_router_overhead_seq_hashing_ms": {
+      "type": "histogram",
+      "description": "Time spent computing sequence hashes in milliseconds",
+      "unit": "milliseconds",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "router_id": "10723956048946219388"
+          },
+          "stats": {
+            "count": 0
+          },
+          "buckets": {
+            "0.0001": 0,
+            "0.0002": 0,
+            "0.0004": 0,
+            "0.0008": 0,
+            "0.0016": 0,
+            "0.0032": 0,
+            "0.0064": 0,
+            "0.0128": 0,
+            "0.0256": 0,
+            "0.0512": 0,
+            "0.1024": 0,
+            "0.2048": 0,
+            "0.4096": 0,
+            "0.8192": 0,
+            "1.6384": 0,
+            "3.2768": 0,
+            "6.5536": 0,
+            "13.1072": 0,
+            "+Inf": 0
+          }
+        }
+      ]
+    },
+    "dynamo_router_overhead_total_ms": {
+      "type": "histogram",
+      "description": "Total routing overhead per request in milliseconds",
+      "unit": "milliseconds",
+      "series": [
+        {
+          "endpoint_url": "http://localhost:8000/metrics",
+          "labels": {
+            "router_id": "10723956048946219388"
+          },
+          "stats": {
+            "count": 0
+          },
+          "buckets": {
+            "0.0001": 0,
+            "0.0002": 0,
+            "0.0004": 0,
+            "0.0008": 0,
+            "0.0016": 0,
+            "0.0032": 0,
+            "0.0064": 0,
+            "0.0128": 0,
+            "0.0256": 0,
+            "0.0512": 0,
+            "0.1024": 0,
+            "0.2048": 0,
+            "0.4096": 0,
+            "0.8192": 0,
+            "1.6384": 0,
+            "3.2768": 0,
+            "6.5536": 0,
+            "13.1072": 0,
+            "+Inf": 0
+          }
+        }
+      ]
+    }
+  },
+  "input_config": {
+    "endpoint": {
+      "model_names": [
+        "Qwen/Qwen2-VL-2B-Instruct"
+      ],
+      "type": "chat",
+      "urls": [
+        "http://localhost:8000"
+      ],
+      "use_server_token_count": true
+    },
+    "input": {
+      "image": {
+        "width": {
+          "mean": 512.0
+        },
+        "height": {
+          "mean": 512.0
+        }
+      },
+      "prompt": {
+        "output_tokens": {
+          "mean": 1024,
+          "stddev": 0.0
+        }
+      }
+    },
+    "output": {
+      "artifact_directory": "artifacts/p2/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_long_concurrency8_20260423_152644"
+    },
+    "loadgen": {
+      "concurrency": 8,
+      "arrival_pattern": "concurrency_burst",
+      "request_count": 100
+    },
+    "cli_command": "aiperf profile --model 'Qwen/Qwen2-VL-2B-Instruct' --url 'http://localhost:8000' --endpoint-type 'chat' --image-width-mean 512 --image-height-mean 512 --concurrency 8 --request-count 100 --use-server-token-count --prompt-output-tokens-mean 1024 --prompt-output-tokens-stddev 0 --gpu-telemetry 'pynvml' --output-artifact-dir 'artifacts/p2/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_long_concurrency8_20260423_152644'",
+    "benchmark_id": "95c9f7b6-f572-4030-bace-4e0ceb1c9c75",
+    "gpu_telemetry": [
+      "pynvml"
+    ]
+  }
+}

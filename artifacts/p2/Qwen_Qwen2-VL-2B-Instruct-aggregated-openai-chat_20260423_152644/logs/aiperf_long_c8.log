@@ -1,0 +1,313 @@
+15:35:21.061 INFO     Starting AIPerf System (cli_runner.py:75)
+15:35:21.646 INFO     ✓ Tokenizer Qwen/Qwen2-VL-2B-Instruct detected (tokenizer_display.py:203)
+15:35:21.647 INFO     1 tokenizer validated • 0.6s (tokenizer_display.py:212)
+15:35:21.702 WARNING  Using --osl without ignore_eos or min_tokens in --extra-inputs. Output sequence length cannot be guaranteed unless the server honors these parameters. Consider: --extra-inputs ignore_eos:true (generate until max_tokens) or --extra-inputs min_tokens:<value> (set minimum output length). (cli_utils.py:153)
+15:35:21.846 INFO     Registered Worker Manager (id: 'worker_manager') (system_controller.py:340)
+15:35:21.882 INFO     GPU telemetry export enabled: artifacts/p2/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_long_concurrency8_20260423_152644/gpu_telemetry_export.jsonl (jsonl_writer.py:53)
+15:35:21.885 INFO     Record metrics export enabled: artifacts/p2/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_long_concurrency8_20260423_152644/profile_export.jsonl (record_export_results_processor.py:53)
+15:35:21.887 INFO     Registered Dataset Manager (id: 'dataset_manager') (system_controller.py:340)
+15:35:21.890 INFO     Server Metrics: Discovered 1 endpoints: ['http://localhost:8000/metrics'] (manager.py:70)
+15:35:21.921 INFO     Registered Record Processor (id: 'record_processor_281da086') (system_controller.py:340)
+15:35:21.923 INFO     Registered Gpu Telemetry Manager (id: 'gpu_telemetry_manager') (system_controller.py:340)
+15:35:21.924 INFO     Registered Record Processor (id: 'record_processor_0d53a42c') (system_controller.py:340)
+15:35:21.938 INFO     Registered Timing Manager (id: 'timing_manager') (system_controller.py:340)
+15:35:21.951 INFO     Registered Server Metrics Manager (id: 'server_metrics_manager') (system_controller.py:340)
+15:35:21.972 INFO     Registered Worker (id: 'worker_ea95d13e') (system_controller.py:340)
+15:35:21.976 INFO     Registered Worker (id: 'worker_2dea228b') (system_controller.py:340)
+15:35:21.985 INFO     Registered Worker (id: 'worker_56ffe088') (system_controller.py:340)
+15:35:21.985 INFO     Registered Worker (id: 'worker_1f3daec1') (system_controller.py:340)
+15:35:21.995 INFO     Registered Records Manager (id: 'records_manager') (system_controller.py:340)
+15:35:22.013 INFO     Registered Worker (id: 'worker_c62451cb') (system_controller.py:340)
+15:35:22.018 INFO     Registered Worker (id: 'worker_c6111bae') (system_controller.py:340)
+15:35:22.019 INFO     Registered Worker (id: 'worker_ceb14462') (system_controller.py:340)
+15:35:22.027 INFO     Registered Worker (id: 'worker_49b56cda') (system_controller.py:340)
+15:35:22.339 INFO     AIPerf System is CONFIGURING (system_controller.py:228)
+15:35:22.340 INFO     Configuring all services to start profiling (system_controller.py:241)
+15:35:22.342 INFO     Waiting for dataset to be configured before configuring timing (manager.py:96)
+15:35:22.342 INFO     Tokenization is disabled for this endpoint, skipping tokenizer configuration (inference_result_parser.py:66)
+15:35:22.343 INFO     Tokenization is disabled for this endpoint, skipping tokenizer configuration (inference_result_parser.py:66)
+15:35:22.343 INFO     Configuring tokenizer(s) for dataset manager (dataset_manager.py:105)
+15:35:22.346 INFO     Server Metrics: Capturing baseline metrics... (manager.py:152)
+15:35:22.356 INFO     Server metrics enabled - 1/1 endpoint(s) reachable. (system_controller.py:455)
+15:35:22.385 INFO     GPU telemetry enabled - 1/1 endpoint(s) reachable (system_controller.py:431)
+15:35:27.809 INFO     Tokenizer(s) configured in 5.47 seconds (dataset_manager.py:109)
+15:35:27.813 INFO     Configuring dataset for dataset_manager (dataset_manager.py:111)
+15:35:28.239 INFO     Using default sampling strategy for synthetic dataset: shuffle (synthetic.py:26)
+15:35:34.996 INFO     Memory-mapped backing store initialized (streaming to /tmp/aiperf_mmap_95c9f7b6-f572-4030-bace-4e0ceb1c9c75/dataset.dat) (memory_map_utils.py:87)
+15:35:35.046 INFO     Data file finalized: 100 conversations, 34.41 MB (memory_map_utils.py:144)
+15:35:35.050 INFO     Index file created: /tmp/aiperf_mmap_95c9f7b6-f572-4030-bace-4e0ceb1c9c75/index.dat (memory_map_utils.py:157)
+15:35:35.056 INFO     Backing store finalized: client_type=DatasetClientStoreType.MEMORY_MAP data_file_path=PosixPath('/tmp/aiperf_mmap_95c9f7b6-f572-4030-bace-4e0ceb1c9c75/dataset.dat') index_file_path=PosixPath('/tmp/aiperf_mmap_95c9f7b6-f572-4030-bace-4e0ceb1c9c75/index.dat') conversation_count=100 total_size_bytes=36078952 (dataset_manager.py:319)
+15:35:35.057 INFO     sampling strategy: shuffle, unique conversations: 100, unique turn count: 100 (dataset_manager.py:325)
+15:35:35.064 INFO     Generating inputs.json file at /global/u2/k/krajeshk/PRISM/artifacts/p2/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_long_concurrency8_20260423_152644/inputs.json (dataset_manager.py:211)
+15:35:35.069 INFO     Initialized 1 phase(s): ['Profiling'] (phase_orchestrator.py:154)
+15:35:37.113 INFO     inputs.json file generated in 2.05 seconds (dataset_manager.py:229)
+15:35:37.371 INFO     Dataset client initialized and freed 100 conversations from memory (dataset_manager.py:139)
+15:35:37.372 INFO     Dataset configured in 9.56 seconds (dataset_manager.py:118)
+15:35:37.373 INFO     All services configured in 15.03 seconds (system_controller.py:253)
+15:35:37.374 INFO     AIPerf System is CONFIGURED (system_controller.py:230)
+15:35:37.375 INFO     Server Metrics: Started 1 collector(s) successfully (manager.py:216)
+15:35:37.377 INFO     Creating interval generator: pattern=concurrency_burst, rate=None, smoothness=None (request_rate.py:111)
+15:35:37.378 NOTICE   Phase profiling started | target: 100 requests (runner.py:236)
+15:35:37.379 INFO     Credit phase start: profiling (records_manager.py:369)
+15:35:37.407 INFO     PyNVML initialized with 4 GPU(s) (0 with GPM support) (pynvml_collector.py:188)
+15:35:37.409 INFO     All services started profiling successfully (system_controller.py:275)
+15:35:37.409 INFO     AIPerf System is PROFILING (system_controller.py:232)
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+15:35:37.909 WARNING  OSL mismatch: got 71 tokens (requested 1024, diff -93.1%) (osl_mismatch_metrics.py:190)
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+15:35:37.939 WARNING  OSL mismatch: got 77 tokens (requested 1024, diff -92.5%) (osl_mismatch_metrics.py:190)
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+15:35:37.960 WARNING  OSL mismatch: got 81 tokens (requested 1024, diff -92.1%) (osl_mismatch_metrics.py:190)
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+15:35:38.043 WARNING  OSL mismatch: got 97 tokens (requested 1024, diff -90.5%) (osl_mismatch_metrics.py:190)
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+15:35:38.114 WARNING  OSL mismatch: got 104 tokens (requested 1024, diff -89.8%) (osl_mismatch_metrics.py:190)
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+15:35:38.181 WARNING  OSL mismatch: got 116 tokens (requested 1024, diff -88.7%) (osl_mismatch_metrics.py:190)
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+15:35:38.197 WARNING  OSL mismatch: got 117 tokens (requested 1024, diff -88.6%) (osl_mismatch_metrics.py:190)
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+15:35:38.241 WARNING  OSL mismatch: got 128 tokens (requested 1024, diff -87.5%) (osl_mismatch_metrics.py:190)
+15:35:38.359 WARNING  OSL mismatch: got 60 tokens (requested 1024, diff -94.1%) (osl_mismatch_metrics.py:190)
+15:35:38.459 WARNING  OSL mismatch: got 83 tokens (requested 1024, diff -91.9%) (osl_mismatch_metrics.py:190)
+15:35:38.559 WARNING  OSL mismatch: got 99 tokens (requested 1024, diff -90.3%) (osl_mismatch_metrics.py:190)
+15:35:38.655 WARNING  OSL mismatch: got 76 tokens (requested 1024, diff -92.6%) (osl_mismatch_metrics.py:190)
+15:35:38.764 WARNING  OSL mismatch: got 107 tokens (requested 1024, diff -89.6%) (osl_mismatch_metrics.py:190)
+15:35:38.790 WARNING  OSL mismatch: got 72 tokens (requested 1024, diff -93.0%) (osl_mismatch_metrics.py:190)
+15:35:38.897 WARNING  OSL mismatch: got 117 tokens (requested 1024, diff -88.6%) (osl_mismatch_metrics.py:190)
+15:35:38.964 WARNING  OSL mismatch: got 122 tokens (requested 1024, diff -88.1%) (osl_mismatch_metrics.py:190)
+15:35:38.986 WARNING  OSL mismatch: got 65 tokens (requested 1024, diff -93.7%) (osl_mismatch_metrics.py:190)
+15:35:39.115 WARNING  OSL mismatch: got 108 tokens (requested 1024, diff -89.5%) (osl_mismatch_metrics.py:190)
+15:35:39.263 WARNING  OSL mismatch: got 81 tokens (requested 1024, diff -92.1%) (osl_mismatch_metrics.py:190)
+15:35:39.283 WARNING  OSL mismatch: got 82 tokens (requested 1024, diff -92.0%) (osl_mismatch_metrics.py:190)
+15:35:39.284 WARNING  OSL mismatch: got 62 tokens (requested 1024, diff -93.9%) (osl_mismatch_metrics.py:190)
+15:35:39.318 WARNING  OSL mismatch: got 105 tokens (requested 1024, diff -89.7%) (osl_mismatch_metrics.py:190)
+15:35:39.397 WARNING  OSL mismatch: got 63 tokens (requested 1024, diff -93.8%) (osl_mismatch_metrics.py:190)
+15:35:39.550 WARNING  OSL mismatch: got 67 tokens (requested 1024, diff -93.5%) (osl_mismatch_metrics.py:190)
+15:35:39.575 WARNING  OSL mismatch: got 97 tokens (requested 1024, diff -90.5%) (osl_mismatch_metrics.py:190)
+15:35:39.638 WARNING  OSL mismatch: got 50 tokens (requested 1024, diff -95.1%) (osl_mismatch_metrics.py:190)
+15:35:39.719 WARNING  OSL mismatch: got 65 tokens (requested 1024, diff -93.7%) (osl_mismatch_metrics.py:190)
+15:35:39.761 WARNING  OSL mismatch: got 72 tokens (requested 1024, diff -93.0%) (osl_mismatch_metrics.py:190)
+15:35:39.766 WARNING  OSL mismatch: got 75 tokens (requested 1024, diff -92.7%) (osl_mismatch_metrics.py:190)
+15:35:39.782 WARNING  OSL mismatch: got 59 tokens (requested 1024, diff -94.2%) (osl_mismatch_metrics.py:190)
+15:35:39.851 WARNING  OSL mismatch: got 296 tokens (requested 1024, diff -71.1%) (osl_mismatch_metrics.py:190)
+15:35:40.038 WARNING  OSL mismatch: got 73 tokens (requested 1024, diff -92.9%) (osl_mismatch_metrics.py:190)
+15:35:40.105 WARNING  OSL mismatch: got 58 tokens (requested 1024, diff -94.3%) (osl_mismatch_metrics.py:190)
+15:35:40.167 WARNING  OSL mismatch: got 93 tokens (requested 1024, diff -90.9%) (osl_mismatch_metrics.py:190)
+15:35:40.186 WARNING  OSL mismatch: got 65 tokens (requested 1024, diff -93.7%) (osl_mismatch_metrics.py:190)
+15:35:40.226 WARNING  OSL mismatch: got 89 tokens (requested 1024, diff -91.3%) (osl_mismatch_metrics.py:190)
+15:35:40.245 WARNING  OSL mismatch: got 59 tokens (requested 1024, diff -94.2%) (osl_mismatch_metrics.py:190)
+15:35:40.286 WARNING  OSL mismatch: got 75 tokens (requested 1024, diff -92.7%) (osl_mismatch_metrics.py:190)
+15:35:40.444 WARNING  OSL mismatch: got 105 tokens (requested 1024, diff -89.7%) (osl_mismatch_metrics.py:190)
+15:35:40.554 WARNING  OSL mismatch: got 50 tokens (requested 1024, diff -95.1%) (osl_mismatch_metrics.py:190)
+15:35:40.596 WARNING  OSL mismatch: got 74 tokens (requested 1024, diff -92.8%) (osl_mismatch_metrics.py:190)
+15:35:40.600 WARNING  OSL mismatch: got 64 tokens (requested 1024, diff -93.8%) (osl_mismatch_metrics.py:190)
+15:35:40.689 WARNING  OSL mismatch: got 79 tokens (requested 1024, diff -92.3%) (osl_mismatch_metrics.py:190)
+15:35:40.794 WARNING  OSL mismatch: got 118 tokens (requested 1024, diff -88.5%) (osl_mismatch_metrics.py:190)
+15:35:40.851 WARNING  OSL mismatch: got 100 tokens (requested 1024, diff -90.2%) (osl_mismatch_metrics.py:190)
+15:35:40.876 WARNING  OSL mismatch: got 65 tokens (requested 1024, diff -93.7%) (osl_mismatch_metrics.py:190)
+15:35:40.959 WARNING  OSL mismatch: got 110 tokens (requested 1024, diff -89.3%) (osl_mismatch_metrics.py:190)
+15:35:41.155 WARNING  OSL mismatch: got 97 tokens (requested 1024, diff -90.5%) (osl_mismatch_metrics.py:190)
+15:35:41.160 WARNING  OSL mismatch: got 59 tokens (requested 1024, diff -94.2%) (osl_mismatch_metrics.py:190)
+15:35:41.215 WARNING  OSL mismatch: got 84 tokens (requested 1024, diff -91.8%) (osl_mismatch_metrics.py:190)
+15:35:41.215 WARNING  OSL mismatch: got 98 tokens (requested 1024, diff -90.4%) (osl_mismatch_metrics.py:190)
+15:35:41.332 WARNING  OSL mismatch: got 116 tokens (requested 1024, diff -88.7%) (osl_mismatch_metrics.py:190)
+15:35:41.389 WARNING  OSL mismatch: got 82 tokens (requested 1024, diff -92.0%) (osl_mismatch_metrics.py:190)
+15:35:41.399 WARNING  OSL mismatch: got 85 tokens (requested 1024, diff -91.7%) (osl_mismatch_metrics.py:190)
+15:35:41.679 WARNING  OSL mismatch: got 78 tokens (requested 1024, diff -92.4%) (osl_mismatch_metrics.py:190)
+15:35:41.760 WARNING  OSL mismatch: got 97 tokens (requested 1024, diff -90.5%) (osl_mismatch_metrics.py:190)
+15:35:41.779 WARNING  OSL mismatch: got 138 tokens (requested 1024, diff -86.5%) (osl_mismatch_metrics.py:190)
+15:35:41.803 WARNING  OSL mismatch: got 78 tokens (requested 1024, diff -92.4%) (osl_mismatch_metrics.py:190)
+15:35:41.825 WARNING  OSL mismatch: got 106 tokens (requested 1024, diff -89.6%) (osl_mismatch_metrics.py:190)
+15:35:41.852 WARNING  OSL mismatch: got 72 tokens (requested 1024, diff -93.0%) (osl_mismatch_metrics.py:190)
+15:35:41.892 WARNING  OSL mismatch: got 105 tokens (requested 1024, diff -89.7%) (osl_mismatch_metrics.py:190)
+15:35:41.950 WARNING  OSL mismatch: got 85 tokens (requested 1024, diff -91.7%) (osl_mismatch_metrics.py:190)
+15:35:42.280 WARNING  OSL mismatch: got 84 tokens (requested 1024, diff -91.8%) (osl_mismatch_metrics.py:190)
+15:35:42.299 WARNING  OSL mismatch: got 101 tokens (requested 1024, diff -90.1%) (osl_mismatch_metrics.py:190)
+15:35:42.339 WARNING  OSL mismatch: got 82 tokens (requested 1024, diff -92.0%) (osl_mismatch_metrics.py:190)
+15:35:42.364 WARNING  OSL mismatch: got 90 tokens (requested 1024, diff -91.2%) (osl_mismatch_metrics.py:190)
+15:35:42.409 WARNING  OSL mismatch: got 98 tokens (requested 1024, diff -90.4%) (osl_mismatch_metrics.py:190)
+15:35:42.529 WARNING  OSL mismatch: got 115 tokens (requested 1024, diff -88.8%) (osl_mismatch_metrics.py:190)
+15:35:42.595 WARNING  OSL mismatch: got 109 tokens (requested 1024, diff -89.4%) (osl_mismatch_metrics.py:190)
+15:35:42.834 WARNING  OSL mismatch: got 83 tokens (requested 1024, diff -91.9%) (osl_mismatch_metrics.py:190)
+15:35:42.855 WARNING  OSL mismatch: got 85 tokens (requested 1024, diff -91.7%) (osl_mismatch_metrics.py:190)
+15:35:42.855 WARNING  OSL mismatch: got 169 tokens (requested 1024, diff -83.5%) (osl_mismatch_metrics.py:190)
+15:35:42.894 WARNING  OSL mismatch: got 96 tokens (requested 1024, diff -90.6%) (osl_mismatch_metrics.py:190)
+15:35:42.933 WARNING  OSL mismatch: got 85 tokens (requested 1024, diff -91.7%) (osl_mismatch_metrics.py:190)
+15:35:42.975 WARNING  OSL mismatch: got 107 tokens (requested 1024, diff -89.6%) (osl_mismatch_metrics.py:190)
+15:35:43.100 WARNING  OSL mismatch: got 80 tokens (requested 1024, diff -92.2%) (osl_mismatch_metrics.py:190)
+15:35:43.151 WARNING  OSL mismatch: got 100 tokens (requested 1024, diff -90.2%) (osl_mismatch_metrics.py:190)
+15:35:43.334 WARNING  OSL mismatch: got 74 tokens (requested 1024, diff -92.8%) (osl_mismatch_metrics.py:190)
+15:35:43.338 WARNING  OSL mismatch: got 77 tokens (requested 1024, diff -92.5%) (osl_mismatch_metrics.py:190)
+15:35:43.427 WARNING  OSL mismatch: got 89 tokens (requested 1024, diff -91.3%) (osl_mismatch_metrics.py:190)
+15:35:43.532 WARNING  OSL mismatch: got 94 tokens (requested 1024, diff -90.8%) (osl_mismatch_metrics.py:190)
+15:35:43.557 WARNING  OSL mismatch: got 104 tokens (requested 1024, diff -89.8%) (osl_mismatch_metrics.py:190)
+15:35:43.621 WARNING  OSL mismatch: got 75 tokens (requested 1024, diff -92.7%) (osl_mismatch_metrics.py:190)
+15:35:43.788 WARNING  OSL mismatch: got 71 tokens (requested 1024, diff -93.1%) (osl_mismatch_metrics.py:190)
+15:35:43.855 WARNING  OSL mismatch: got 81 tokens (requested 1024, diff -92.1%) (osl_mismatch_metrics.py:190)
+15:35:43.875 WARNING  OSL mismatch: got 131 tokens (requested 1024, diff -87.2%) (osl_mismatch_metrics.py:190)
+15:35:43.992 WARNING  OSL mismatch: got 92 tokens (requested 1024, diff -91.0%) (osl_mismatch_metrics.py:190)
+15:35:44.116 WARNING  OSL mismatch: got 94 tokens (requested 1024, diff -90.8%) (osl_mismatch_metrics.py:190)
+15:35:44.126 WARNING  OSL mismatch: got 53 tokens (requested 1024, diff -94.8%) (osl_mismatch_metrics.py:190)
+15:35:44.186 WARNING  OSL mismatch: got 104 tokens (requested 1024, diff -89.8%) (osl_mismatch_metrics.py:190)
+15:35:44.276 WARNING  OSL mismatch: got 108 tokens (requested 1024, diff -89.5%) (osl_mismatch_metrics.py:190)
+15:35:44.415 WARNING  OSL mismatch: got 92 tokens (requested 1024, diff -91.0%) (osl_mismatch_metrics.py:190)
+15:35:44.414 NOTICE   Phase profiling sending complete | sent=100, completed=92, in_flight=8 | sessions: sent=100, completed=92 (runner.py:466)
+15:35:44.416 INFO     Sent 100 requests. Waiting for all to complete... (records_manager.py:377)
+15:35:44.435 WARNING  OSL mismatch: got 71 tokens (requested 1024, diff -93.1%) (osl_mismatch_metrics.py:190)
+15:35:44.483 WARNING  OSL mismatch: got 101 tokens (requested 1024, diff -90.1%) (osl_mismatch_metrics.py:190)
+15:35:44.513 WARNING  OSL mismatch: got 62 tokens (requested 1024, diff -93.9%) (osl_mismatch_metrics.py:190)
+15:35:44.674 WARNING  OSL mismatch: got 93 tokens (requested 1024, diff -90.9%) (osl_mismatch_metrics.py:190)
+15:35:44.754 WARNING  OSL mismatch: got 102 tokens (requested 1024, diff -90.0%) (osl_mismatch_metrics.py:190)
+15:35:44.763 WARNING  OSL mismatch: got 87 tokens (requested 1024, diff -91.5%) (osl_mismatch_metrics.py:190)
+15:35:44.819 WARNING  OSL mismatch: got 72 tokens (requested 1024, diff -93.0%) (osl_mismatch_metrics.py:190)
+15:35:48.266 NOTICE   Phase profiling complete | completed=100, cancelled=0, errors=0 | sessions: completed=100, cancelled=0 | elapsed=10.89s (runner.py:543)
+15:35:48.267 NOTICE   All credits completed (phase_orchestrator.py:169)
+15:35:48.268 INFO     Received credits complete from 'timing_manager' (system_controller.py:375)
+15:35:48.268 INFO     Received CREDIT_PHASE_COMPLETE message, Phase complete: PhaseRecordsStats(phase=CreditPhase.PROFILING, start_ns=1776983737378293117, sent_end_ns=1776983744414465099, requests_end_ns=1776983748265908783, total_expected_requests=100, expected_duration_sec=None, expected_num_sessions=None, expected_grace_period_sec=None, final_requests_sent=None, final_requests_completed=100, final_requests_cancelled=0, final_request_errors=0, final_sent_sessions=None, final_completed_sessions=None, final_cancelled_sessions=None, timeout_triggered=False, grace_period_timeout_triggered=False, was_cancelled=False, records_end_ns=None, success_records=99, error_records=0) (records_manager.py:393)
+15:35:48.268 NOTICE   All requests have completed, please wait for the results to be processed (currently 99 of 100 records processed)... (records_manager.py:396)
+15:35:48.269 INFO     Processed 100 valid requests and 0 errors (100 total). (records_manager.py:244)
+15:35:48.270 INFO     Received all records, processing now... (records_manager.py:248)
+15:35:48.270 INFO     All credits complete, please wait for the results to be processed... (records_manager.py:411)
+15:35:48.271 INFO     Server Metrics: Profiling complete, capturing final metrics... (manager.py:246)
+15:35:48.271 INFO     Waiting 2.0s for server metrics flush period... (records_manager.py:298)
+15:35:48.272 INFO     GPU Telemetry: Profiling complete, capturing final metrics... (manager.py:368)
+15:35:48.273 WARNING  GPU Telemetry: Failed to capture final state from pynvml://localhost: 'PyNVMLTelemetryCollector' object has no attribute 'collect_and_process_metrics' (manager.py:375)
+15:35:50.267 INFO     Processing records results... (records_manager.py:558)
+15:35:50.273 INFO     Waiting for telemetry results... (system_controller.py:671)
+15:35:50.274 INFO     Waiting for server metrics results... (system_controller.py:673)
+15:35:50.278 INFO     Waiting for server metrics results... (system_controller.py:673)
+15:35:50.283 INFO     _finalize_and_process_results completed (records_manager.py:305)
+15:35:50.285 INFO     All results received, initiating shutdown (system_controller.py:668)
+15:35:50.889 INFO     Exporting all records (exporter_manager.py:60)
+15:35:51.034 INFO     Exporting console data (exporter_manager.py:116)
+
+
+                                        NVIDIA AIPerf | LLM Metrics                                        
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━┓
+┃                               Metric ┃    avg ┃    min ┃      max ┃      p99 ┃    p90 ┃    p50 ┃    std ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━┩
+│                 Request Latency (ms) │ 614.86 │ 307.76 │ 5,370.44 │ 1,842.73 │ 730.31 │ 551.01 │ 509.02 │
+│      Output Sequence Length (tokens) │  99.66 │  50.00 │ 1,024.00 │   303.28 │ 116.10 │  85.00 │  97.36 │
+│       Input Sequence Length (tokens) │ 895.00 │ 895.00 │   895.00 │   895.00 │ 895.00 │ 895.00 │   0.00 │
+│ Output Token Throughput (tokens/sec) │ 915.69 │    N/A │      N/A │      N/A │    N/A │    N/A │    N/A │
+│        Image Throughput (images/sec) │   1.87 │   0.19 │     3.25 │     3.14 │   2.49 │   1.81 │   0.48 │
+│             Image Latency (ms/image) │ 614.86 │ 307.76 │ 5,370.44 │ 1,842.73 │ 730.31 │ 551.01 │ 509.02 │
+│    Request Throughput (requests/sec) │   9.19 │    N/A │      N/A │      N/A │    N/A │    N/A │    N/A │
+│             Request Count (requests) │ 100.00 │    N/A │      N/A │      N/A │    N/A │    N/A │    N/A │
+└──────────────────────────────────────┴────────┴────────┴──────────┴──────────┴────────┴────────┴────────┘
+
+
+                         NVIDIA AIPerf | GPU Telemetry Summary                          
+                              1/1 DCGM endpoints reachable                              
+                                     • localhost ✔                                      
+                                                                                        
+                       localhost | GPU 0 | NVIDIA A100-SXM4-40GB                        
+┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━┓
+┃                  Metric ┃    avg ┃   min ┃    max ┃    p99 ┃    p90 ┃    p50 ┃   std ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━┩
+│     GPU Power Usage (W) │ 217.22 │ 60.32 │ 352.98 │ 338.67 │ 298.69 │ 200.64 │ 53.51 │
+│ Energy Consumption (MJ) │   0.00 │   N/A │    N/A │    N/A │    N/A │    N/A │   N/A │
+│     GPU Utilization (%) │  95.10 │  0.00 │ 100.00 │ 100.00 │ 100.00 │ 100.00 │ 19.90 │
+│    GPU Memory Used (GB) │  35.31 │ 35.31 │  35.31 │  35.31 │  35.31 │  35.31 │  0.00 │
+│    GPU Temperature (°C) │  39.77 │ 30.00 │  44.00 │  44.00 │  42.10 │  39.50 │  2.53 │
+│  Memory Utilization (%) │  48.93 │  0.00 │  57.00 │  56.42 │  55.00 │  52.00 │ 11.40 │
+│      SM Utilization (%) │  35.87 │  0.00 │  73.00 │  72.13 │  64.30 │  35.50 │ 22.22 │
+│ Decoder Utilization (%) │   0.00 │  0.00 │   0.00 │   0.00 │   0.00 │   0.00 │  0.00 │
+│ Encoder Utilization (%) │   0.00 │  0.00 │   0.00 │   0.00 │   0.00 │   0.00 │  0.00 │
+│    JPEG Utilization (%) │   0.00 │  0.00 │   0.00 │   0.00 │   0.00 │   0.00 │  0.00 │
+│    Power Violation (us) │   0.00 │   N/A │    N/A │    N/A │    N/A │    N/A │   N/A │
+└─────────────────────────┴────────┴───────┴────────┴────────┴────────┴────────┴───────┘
+
+                    localhost | GPU 1 | NVIDIA A100-SXM4-40GB                     
+┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━┓
+┃                  Metric ┃   avg ┃   min ┃   max ┃   p99 ┃   p90 ┃   p50 ┃  std ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━┩
+│     GPU Power Usage (W) │ 52.96 │ 52.74 │ 53.05 │ 53.05 │ 53.05 │ 52.99 │ 0.11 │
+│ Energy Consumption (MJ) │  0.00 │   N/A │   N/A │   N/A │   N/A │   N/A │  N/A │
+│     GPU Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    GPU Memory Used (GB) │  0.55 │  0.55 │  0.55 │  0.55 │  0.55 │  0.55 │ 0.00 │
+│    GPU Temperature (°C) │ 28.00 │ 28.00 │ 28.00 │ 28.00 │ 28.00 │ 28.00 │ 0.00 │
+│  Memory Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│ Decoder Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│ Encoder Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    JPEG Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    Power Violation (us) │  0.00 │   N/A │   N/A │   N/A │   N/A │   N/A │  N/A │
+└─────────────────────────┴───────┴───────┴───────┴───────┴───────┴───────┴──────┘
+
+                    localhost | GPU 2 | NVIDIA A100-SXM4-40GB                     
+┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━┓
+┃                  Metric ┃   avg ┃   min ┃   max ┃   p99 ┃   p90 ┃   p50 ┃  std ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━┩
+│     GPU Power Usage (W) │ 50.23 │ 50.17 │ 50.29 │ 50.27 │ 50.23 │ 50.23 │ 0.02 │
+│ Energy Consumption (MJ) │  0.00 │   N/A │   N/A │   N/A │   N/A │   N/A │  N/A │
+│     GPU Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    GPU Memory Used (GB) │  0.55 │  0.55 │  0.55 │  0.55 │  0.55 │  0.55 │ 0.00 │
+│    GPU Temperature (°C) │ 29.00 │ 29.00 │ 29.00 │ 29.00 │ 29.00 │ 29.00 │ 0.00 │
+│  Memory Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│ Decoder Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│ Encoder Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    JPEG Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    Power Violation (us) │  0.00 │   N/A │   N/A │   N/A │   N/A │   N/A │  N/A │
+└─────────────────────────┴───────┴───────┴───────┴───────┴───────┴───────┴──────┘
+
+                    localhost | GPU 3 | NVIDIA A100-SXM4-40GB                     
+┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━┓
+┃                  Metric ┃   avg ┃   min ┃   max ┃   p99 ┃   p90 ┃   p50 ┃  std ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━┩
+│     GPU Power Usage (W) │ 54.98 │ 54.92 │ 55.05 │ 55.03 │ 54.99 │ 54.99 │ 0.02 │
+│ Energy Consumption (MJ) │  0.00 │   N/A │   N/A │   N/A │   N/A │   N/A │  N/A │
+│     GPU Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    GPU Memory Used (GB) │  0.55 │  0.55 │  0.55 │  0.55 │  0.55 │  0.55 │ 0.00 │
+│    GPU Temperature (°C) │ 29.00 │ 29.00 │ 29.00 │ 29.00 │ 29.00 │ 29.00 │ 0.00 │
+│  Memory Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│ Decoder Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│ Encoder Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    JPEG Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    Power Violation (us) │  0.00 │   N/A │   N/A │   N/A │   N/A │   N/A │  N/A │
+└─────────────────────────┴───────┴───────┴───────┴───────┴───────┴───────┴──────┘
+
+╭────────────────────────────── Output Sequence Length Mismatch Warning ───────────────────────────────╮
+│  99 of 100 requests (99.0%) have output length differing from requested by more than the threshold.  │
+│  Threshold (tokens): min(requested x 5%, 50)                                                         │
+│  Average mismatch: -90.3%                                                                            │
+│                                                                                                      │
+│  Why: Server hit EOS token before reaching requested output length.                                  │
+│                                                                                                      │
+│  Fix Options:                                                                                        │
+│    • --extra-inputs ignore_eos:true — Generate until max_tokens (vLLM, TensorRT-LLM)                 │
+│    • --extra-inputs min_tokens:<N> — Set minimum output length (vLLM, TensorRT-LLM, SGLang)          │
+│    • --use-server-token-count — Use server-reported token counts if tokenizer mismatch suspected     │
+│                                                                                                      │
+│  Diagnostics:                                                                                        │
+│    • Review profile_export.jsonl → osl_mismatch_diff_pct for per-request values                      │
+│    • Adjust: AIPERF_METRICS_OSL_MISMATCH_PCT_THRESHOLD=5                                             │
+│    • Adjust: AIPERF_METRICS_OSL_MISMATCH_MAX_TOKEN_THRESHOLD=50                                      │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+CLI Command: aiperf profile --model 'Qwen/Qwen2-VL-2B-Instruct' --url 'http://localhost:8000' --endpoint-type 'chat' --image-width-mean 512 --image-height-mean 512 --concurrency 8 
+--request-count 100 --use-server-token-count --prompt-output-tokens-mean 1024 --prompt-output-tokens-stddev 0 --gpu-telemetry 'pynvml' --output-artifact-dir 
+'artifacts/p2/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_long_concurrency8_20260423_152644'
+Benchmark Duration: 10.88 sec
+CSV Export: /global/u2/k/krajeshk/PRISM/artifacts/p2/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_long_concurrency8_20260423_152644/profile_export_aiperf.csv
+JSON Export: /global/u2/k/krajeshk/PRISM/artifacts/p2/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_long_concurrency8_20260423_152644/profile_export_aiperf.json
+Server Metrics CSV Export: /global/u2/k/krajeshk/PRISM/artifacts/p2/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_long_concurrency8_20260423_152644/server_metrics_export.csv
+Server Metrics JSON Export: /global/u2/k/krajeshk/PRISM/artifacts/p2/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_long_concurrency8_20260423_152644/server_metrics_export.json
+Log File: /global/u2/k/krajeshk/PRISM/artifacts/p2/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_long_concurrency8_20260423_152644/logs/aiperf.log
+
