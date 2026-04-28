@@ -1,39 +1,50 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Phase 2 runner for encoder-only / partially disaggregated setup.
-# Expects a launcher command that starts:
-#   1) encoder worker
-#   2) combined prefill+decode worker
-#   3) proxy/frontend on PORT
+# Phase 2 runner for configured encoder-only / E/PD scale-out setup.
+# Naming remains phase2/p2, but this script explicitly runs:
+#   GPU0: Encoder
+#   GPU1: Prefill + Decode
 #
-# Recommended logs written by launcher:
-#   logs/encoder.log
-#   logs/decode.log
-#   logs/proxy.log
+# Assumes repo root as working directory.
 
 ENCODER_ONLY_LAUNCH_CMD="${ENCODER_ONLY_LAUNCH_CMD:-bash scripts/launch_encoder_partial_perlmutter.sh}"
 
 MODEL="${MODEL:-Qwen/Qwen2-VL-2B-Instruct}"
 PORT="${PORT:-8000}"
+
+# Workload image settings
 IMAGE_WIDTH_MEAN="${IMAGE_WIDTH_MEAN:-512}"
 IMAGE_HEIGHT_MEAN="${IMAGE_HEIGHT_MEAN:-512}"
 
+# Benchmark settings
 REQUEST_COUNT="${REQUEST_COUNT:-100}"
 CONCURRENCY_VALUES="${CONCURRENCY_VALUES:-1 4 8 16 32}"
 
+# Generation-length sweep
 GENERATION_CLASSES="${GENERATION_CLASSES:-short medium long}"
 SHORT_OUTPUT_TOKENS_MEAN="${SHORT_OUTPUT_TOKENS_MEAN:-64}"
 MEDIUM_OUTPUT_TOKENS_MEAN="${MEDIUM_OUTPUT_TOKENS_MEAN:-256}"
 LONG_OUTPUT_TOKENS_MEAN="${LONG_OUTPUT_TOKENS_MEAN:-1024}"
-
 OUTPUT_TOKENS_STDDEV="${OUTPUT_TOKENS_STDDEV:-0}"
+
+# AIPerf options
 USE_LEGACY_MAX_TOKENS="${USE_LEGACY_MAX_TOKENS:-false}"
 GPU_TELEMETRY_MODE="${GPU_TELEMETRY_MODE:-pynvml}"
 ENABLE_STREAMING="${ENABLE_STREAMING:-false}"
 
+# Experiment framing
 ARTIFACT_ROOT="${ARTIFACT_ROOT:-artifacts}"
 PHASE="${PHASE:-p2}"
+COMPARISON_FRAMING="${COMPARISON_FRAMING:-stage_disaggregated_scaleout}"
+GPU_BUDGET="${GPU_BUDGET:-2}"
+
+# E/PD GPU placement.
+# Your launcher should map these as:
+#   GPU_E  -> encoder worker
+#   GPU_PD -> combined prefill/decode worker
+GPU_E="${GPU_E:-0}"
+GPU_PD="${GPU_PD:-1}"
 
 # Keep RUN_PREFIX stable and human-readable. Do not include timestamp here.
 RUN_PREFIX="${RUN_PREFIX:-${MODEL//\//_}-encoder-only-openai-chat}"
@@ -48,14 +59,18 @@ mkdir -p "$RUN_DIR" "$LOG_DIR" "$ENV_DIR" "$SUMMARY_DIR"
 
 cleanup() {
   set +e
+
   if [[ -n "${LAUNCHER_PID:-}" ]]; then
     kill "$LAUNCHER_PID" 2>/dev/null || true
     wait "$LAUNCHER_PID" 2>/dev/null || true
   fi
+
   pkill -P $$ python 2>/dev/null || true
+  pkill -P $$ python3 2>/dev/null || true
 }
 trap cleanup EXIT
 
+# Copy phase2 templates if they exist in repo
 [[ -f src/phase2/run_manifest_template.json ]] && \
   cp src/phase2/run_manifest_template.json "$RUN_DIR/run_manifest.json"
 
@@ -63,11 +78,31 @@ trap cleanup EXIT
   cp src/phase2/workloads/focused_workload.json "$RUN_DIR/workload.json"
 
 if [[ -x scripts/capture_env.sh ]]; then
-  bash scripts/capture_env.sh "$ENV_DIR"
+  bash scripts/capture_env.sh "$ENV_DIR" > "$LOG_DIR/capture_env.log" 2>&1 || true
 else
   echo "scripts/capture_env.sh not found or not executable; skipping env capture" \
     > "$LOG_DIR/capture_env.log"
 fi
+
+cat > "$RUN_DIR/launch_config.json" <<EOF
+{
+  "mode": "encoder_only",
+  "phase": "${PHASE}",
+  "comparison_framing": "${COMPARISON_FRAMING}",
+  "gpu_budget": ${GPU_BUDGET},
+  "gpu_mapping": {
+    "gpu${GPU_E}": "encoder",
+    "gpu${GPU_PD}": "prefill_decode"
+  },
+  "model": "${MODEL}",
+  "port": ${PORT},
+  "launcher": "${ENCODER_ONLY_LAUNCH_CMD}",
+  "enable_multimodal": true,
+  "limit_mm_per_prompt": {
+    "image": 1
+  }
+}
+EOF
 
 echo "Launching encoder-disaggregated E/PD stack"
 echo "RUN_DIR=$RUN_DIR"
@@ -76,15 +111,33 @@ echo "MODEL=$MODEL"
 echo "PORT=$PORT"
 echo "CONCURRENCY_VALUES=$CONCURRENCY_VALUES"
 echo "GENERATION_CLASSES=$GENERATION_CLASSES"
+echo "GPU_E=$GPU_E"
+echo "GPU_PD=$GPU_PD"
+echo "GPU_BUDGET=$GPU_BUDGET"
 
-# Launch stack
-LOG_DIR="$LOG_DIR" PORT="$PORT" bash -lc "$ENCODER_ONLY_LAUNCH_CMD" \
+# Launch stack.
+# The launcher should start:
+#   encoder worker on GPU_E
+#   combined P/D worker on GPU_PD
+#   proxy on PORT
+LOG_DIR="$LOG_DIR" \
+PORT="$PORT" \
+MODEL="$MODEL" \
+GPU_E="$GPU_E" \
+GPU_PD="$GPU_PD" \
+bash -lc "$ENCODER_ONLY_LAUNCH_CMD" \
   > "$LOG_DIR/launcher.log" 2>&1 &
 LAUNCHER_PID=$!
 
-echo "Waiting for readiness..."
+echo "Launcher PID: $LAUNCHER_PID"
+echo "Waiting for encoder/decode/proxy readiness..."
+
 READY=0
-for _ in $(seq 1 180); do
+for _ in $(seq 1 240); do
+  if (( _ % 10 == 0 )); then
+    echo "still waiting... $(date)"
+  fi
+
   if ! kill -0 "$LAUNCHER_PID" 2>/dev/null; then
     echo "Launcher exited early; inspect $LOG_DIR/launcher.log" | tee "$RUN_DIR/summary.txt"
     exit 1
@@ -113,10 +166,12 @@ for _ in $(seq 1 180); do
     proxy_ready=1
   fi
 
-  # Allow encoder+decode to be sufficient if proxy.log is not created
-  if [[ "$encoder_ready" -eq 1 && "$decode_ready" -eq 1 ]]; then
-    READY=1
-    break
+  # Strong readiness check: AIPerf hits the proxy endpoint, so verify it.
+  if [[ "$encoder_ready" -eq 1 && "$decode_ready" -eq 1 && "$proxy_ready" -eq 1 ]]; then
+    if curl -s "http://localhost:${PORT}/v1/models" >/dev/null 2>&1; then
+      READY=1
+      break
+    fi
   fi
 
   sleep 2
@@ -124,7 +179,7 @@ done
 
 if [[ "$READY" -ne 1 ]]; then
   cat > "$RUN_DIR/summary.txt" <<EOF
-Encoder-only workers failed to become ready.
+Encoder-only E/PD stack failed to become ready.
 
 Inspect:
   $LOG_DIR/launcher.log
@@ -134,6 +189,8 @@ Inspect:
 EOF
   exit 1
 fi
+
+echo "Encoder-only E/PD stack is ready. Starting AIPerf sweep..."
 
 AIPERF_OUT_DIRS=()
 
@@ -157,11 +214,13 @@ for GEN_CLASS in $GENERATION_CLASSES; do
   for CONCURRENCY in $CONCURRENCY_VALUES; do
     OUT_DIR="${ARTIFACT_ROOT}/${PHASE}/${RUN_PREFIX}_${GEN_CLASS}_concurrency${CONCURRENCY}_${TIMESTAMP}"
     AIPERF_OUT_DIRS+=("$OUT_DIR")
-
     mkdir -p "$OUT_DIR"
 
-    echo "Running aiperf with generation=$GEN_CLASS output_tokens_mean=$OUTPUT_TOKENS_MEAN concurrency=$CONCURRENCY"
-    echo "OUT_DIR=$OUT_DIR"
+    echo "Running AIPerf:"
+    echo "  generation=$GEN_CLASS"
+    echo "  output_tokens_mean=$OUTPUT_TOKENS_MEAN"
+    echo "  concurrency=$CONCURRENCY"
+    echo "  out_dir=$OUT_DIR"
 
     AIPERF_CMD=(
       aiperf profile
@@ -195,6 +254,12 @@ cat > "$RUN_DIR/run_info.json" <<EOF
 {
   "mode": "encoder_only",
   "phase": "${PHASE}",
+  "comparison_framing": "${COMPARISON_FRAMING}",
+  "gpu_budget": ${GPU_BUDGET},
+  "gpu_mapping": {
+    "gpu${GPU_E}": "encoder",
+    "gpu${GPU_PD}": "prefill_decode"
+  },
   "model": "${MODEL}",
   "run_prefix": "${RUN_PREFIX}",
   "timestamp": "${TIMESTAMP}",
@@ -212,7 +277,10 @@ cat > "$RUN_DIR/run_info.json" <<EOF
   "output_tokens_stddev": ${OUTPUT_TOKENS_STDDEV},
   "gpu_telemetry_mode": "${GPU_TELEMETRY_MODE}",
   "enable_streaming": ${ENABLE_STREAMING},
-  "endpoint_type": "chat"
+  "endpoint_type": "chat",
+  "launcher": "${ENCODER_ONLY_LAUNCH_CMD}",
+  "encoder_gpu": "${GPU_E}",
+  "pd_gpu": "${GPU_PD}"
 }
 EOF
 
@@ -232,6 +300,9 @@ fi
 {
   echo "mode=encoder_only"
   echo "phase=$PHASE"
+  echo "comparison_framing=$COMPARISON_FRAMING"
+  echo "gpu_budget=$GPU_BUDGET"
+  echo "gpu_mapping=gpu${GPU_E}:encoder,gpu${GPU_PD}:prefill_decode"
   echo "model=$MODEL"
   echo "run_prefix=$RUN_PREFIX"
   echo "timestamp=$TIMESTAMP"
@@ -256,5 +327,5 @@ fi
   done
 } > "$RUN_DIR/summary.txt"
 
-echo "Phase 2 encoder-only run complete."
+echo "Phase 2 encoder-only E/PD run complete."
 echo "RUN_DIR=$RUN_DIR"
