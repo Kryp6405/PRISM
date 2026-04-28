@@ -188,6 +188,33 @@ EOF
   exit 1
 fi
 
+echo "Capturing aggregated GPU process mapping after readiness..."
+{
+  echo "=== GPU audit: after_ready ==="
+  echo "timestamp=$(date)"
+  echo "hostname=$(hostname)"
+  echo "OUTER_CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-unset}"
+  echo "AGG_GPU=${AGG_GPU:-0}"
+  echo
+
+  echo "=== nvidia-smi full table ==="
+  nvidia-smi || true
+  echo
+
+  echo "=== GPU index / UUID map ==="
+  nvidia-smi --query-gpu=index,uuid,name,bus_id,memory.used,power.draw,utilization.gpu \
+    --format=csv || true
+  echo
+
+  echo "=== Compute apps by GPU UUID/PID ==="
+  nvidia-smi --query-compute-apps=gpu_uuid,pid,process_name,used_gpu_memory \
+    --format=csv || true
+  echo
+
+  echo "=== User vLLM/Dynamo/disagg processes ==="
+  ps -u "$USER" -f | grep -E "vllm|dynamo|disagg|EngineCore" | grep -v grep || true
+} > "$RUN_DIR/gpu_process_mapping_after_ready.txt" 2>&1 || true
+
 echo "Aggregated service is ready. Starting AIPerf sweep..."
 
 AIPERF_OUT_DIRS=()
@@ -279,6 +306,33 @@ cat > "$RUN_DIR/run_info.json" <<EOF
   "aggregated_gpu": "${AGG_GPU}"
 }
 EOF
+
+echo "Capturing aggregated GPU process mapping after benchmark..."
+{
+  echo "=== GPU audit: after_benchmark ==="
+  echo "timestamp=$(date)"
+  echo "hostname=$(hostname)"
+  echo "OUTER_CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-unset}"
+  echo "AGG_GPU=${AGG_GPU:-0}"
+  echo
+
+  echo "=== nvidia-smi full table ==="
+  nvidia-smi || true
+  echo
+
+  echo "=== GPU index / UUID map ==="
+  nvidia-smi --query-gpu=index,uuid,name,bus_id,memory.used,power.draw,utilization.gpu \
+    --format=csv || true
+  echo
+
+  echo "=== Compute apps by GPU UUID/PID ==="
+  nvidia-smi --query-compute-apps=gpu_uuid,pid,process_name,used_gpu_memory \
+    --format=csv || true
+  echo
+
+  echo "=== User vLLM/Dynamo/disagg processes ==="
+  ps -u "$USER" -f | grep -E "vllm|dynamo|disagg|EngineCore" | grep -v grep || true
+} > "$RUN_DIR/gpu_process_mapping_after_benchmark.txt" 2>&1 || true
 
 if [[ -f src/phase2/summarize_run.py ]]; then
   if python3 src/phase2/summarize_run.py \

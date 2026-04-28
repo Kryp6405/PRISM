@@ -107,7 +107,7 @@ def gpu_role_map_for_mode(mode: str | None) -> dict[int, str]:
     if mode == "encoder_only":
         return {0: "encoder", 1: "pd"}
     if mode == "full_disagg":
-        return {1: "encoder", 2: "prefill", 3: "decode"}
+        return {0: "encoder", 1: "prefill", 2: "decode"}
     return {}
 
 

@@ -1,0 +1,77 @@
+2026-04-27 20:15:30.528 - aiperf.cli_runner - INFO - Starting AIPerf System
+2026-04-27 20:15:31.148 - aiperf.cli_runner - INFO - ✓ Tokenizer Qwen/Qwen2-VL-2B-Instruct detected
+2026-04-27 20:15:31.149 - aiperf.cli_runner - INFO - 1 tokenizer validated • 0.6s
+2026-04-27 20:15:31.235 - aiperf - WARNING - Using --osl without ignore_eos or min_tokens in --extra-inputs. Output sequence length cannot be guaranteed unless the server honors these parameters. Consider: --extra-inputs ignore_eos:true (generate until max_tokens) or --extra-inputs min_tokens:<value> (set minimum output length).
+2026-04-27 20:15:31.385 - system_controller - INFO - Registered Worker Manager (id: 'worker_manager')
+2026-04-27 20:15:31.437 - server_metrics_manager - INFO - Server Metrics: Discovered 1 endpoints: ['http://localhost:8000/metrics']
+2026-04-27 20:15:31.474 - GPUTelemetryJSONLWriter_69dd7a64 - INFO - GPU telemetry export enabled: artifacts/p2/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_short_concurrency1_20260427_201351/gpu_telemetry_export.jsonl
+2026-04-27 20:15:31.477 - system_controller - INFO - Registered Dataset Manager (id: 'dataset_manager')
+2026-04-27 20:15:31.479 - RecordExportResultsProcessor_6b0d6201 - INFO - Record metrics export enabled: artifacts/p2/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_short_concurrency1_20260427_201351/profile_export.jsonl
+2026-04-27 20:15:31.480 - system_controller - INFO - Registered Gpu Telemetry Manager (id: 'gpu_telemetry_manager')
+2026-04-27 20:15:31.492 - system_controller - INFO - Registered Server Metrics Manager (id: 'server_metrics_manager')
+2026-04-27 20:15:31.503 - system_controller - INFO - Registered Timing Manager (id: 'timing_manager')
+2026-04-27 20:15:31.550 - system_controller - INFO - Registered Record Processor (id: 'record_processor_5ba92388')
+2026-04-27 20:15:31.553 - system_controller - INFO - Registered Worker (id: 'worker_94298a54')
+2026-04-27 20:15:31.628 - system_controller - INFO - Registered Records Manager (id: 'records_manager')
+2026-04-27 20:15:31.875 - system_controller - INFO - AIPerf System is CONFIGURING
+2026-04-27 20:15:31.876 - system_controller - INFO - Configuring all services to start profiling
+2026-04-27 20:15:31.879 - dataset_manager - INFO - Configuring tokenizer(s) for dataset manager
+2026-04-27 20:15:31.880 - timing_manager - INFO - Waiting for dataset to be configured before configuring timing
+2026-04-27 20:15:31.880 - InferenceResultParser_537fe894 - INFO - Tokenization is disabled for this endpoint, skipping tokenizer configuration
+2026-04-27 20:15:31.885 - server_metrics_manager - INFO - Server Metrics: Capturing baseline metrics...
+2026-04-27 20:15:31.893 - system_controller - INFO - Server metrics enabled - 1/1 endpoint(s) reachable.
+2026-04-27 20:15:31.935 - system_controller - INFO - GPU telemetry enabled - 1/1 endpoint(s) reachable
+2026-04-27 20:15:37.984 - dataset_manager - INFO - Tokenizer(s) configured in 6.10 seconds
+2026-04-27 20:15:37.985 - dataset_manager - INFO - Configuring dataset for dataset_manager
+2026-04-27 20:15:38.535 - SyntheticDatasetComposer - INFO - Using default sampling strategy for synthetic dataset: shuffle
+2026-04-27 20:15:45.414 - MemoryMapDatasetBackingStore_3e097322 - INFO - Memory-mapped backing store initialized (streaming to /tmp/aiperf_mmap_56e55483-f678-4975-8456-61e8d1318a1a/dataset.dat)
+2026-04-27 20:15:45.467 - MemoryMapDatasetBackingStore_3e097322 - INFO - Data file finalized: 100 conversations, 35.02 MB
+2026-04-27 20:15:45.468 - MemoryMapDatasetBackingStore_3e097322 - INFO - Index file created: /tmp/aiperf_mmap_56e55483-f678-4975-8456-61e8d1318a1a/index.dat
+2026-04-27 20:15:45.469 - dataset_manager - INFO - Backing store finalized: client_type=DatasetClientStoreType.MEMORY_MAP data_file_path=PosixPath('/tmp/aiperf_mmap_56e55483-f678-4975-8456-61e8d1318a1a/dataset.dat') index_file_path=PosixPath('/tmp/aiperf_mmap_56e55483-f678-4975-8456-61e8d1318a1a/index.dat') conversation_count=100 total_size_bytes=36724365
+2026-04-27 20:15:45.470 - dataset_manager - INFO - sampling strategy: shuffle, unique conversations: 100, unique turn count: 100
+2026-04-27 20:15:45.482 - dataset_manager - INFO - Generating inputs.json file at /global/u2/k/krajeshk/PRISM/artifacts/p2/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_short_concurrency1_20260427_201351/inputs.json
+2026-04-27 20:15:45.490 - PhaseOrchestrator_87d47780 - INFO - Initialized 1 phase(s): ['Profiling']
+2026-04-27 20:15:45.613 - dataset_manager - INFO - inputs.json file generated in 0.13 seconds
+2026-04-27 20:15:45.876 - dataset_manager - INFO - Dataset client initialized and freed 100 conversations from memory
+2026-04-27 20:15:45.877 - dataset_manager - INFO - Dataset configured in 7.89 seconds
+2026-04-27 20:15:45.878 - system_controller - INFO - All services configured in 14.00 seconds
+2026-04-27 20:15:45.879 - system_controller - INFO - AIPerf System is CONFIGURED
+2026-04-27 20:15:45.881 - server_metrics_manager - INFO - Server Metrics: Started 1 collector(s) successfully
+2026-04-27 20:15:45.885 - RateTiming - INFO - Creating interval generator: pattern=concurrency_burst, rate=None, smoothness=None
+2026-04-27 20:15:45.886 - PhaseRunner - NOTICE - Phase profiling started | target: 100 requests
+2026-04-27 20:15:45.887 - records_manager - INFO - Credit phase start: profiling
+2026-04-27 20:15:45.912 - pynvml_collector - INFO - PyNVML initialized with 4 GPU(s) (0 with GPM support)
+2026-04-27 20:15:45.913 - system_controller - INFO - All services started profiling successfully
+2026-04-27 20:15:45.913 - system_controller - INFO - AIPerf System is PROFILING
+2026-04-27 20:15:51.165 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 60 tokens (requested 64, diff -6.2%)
+2026-04-27 20:15:52.242 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 60 tokens (requested 64, diff -6.2%)
+2026-04-27 20:15:56.816 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 58 tokens (requested 64, diff -9.4%)
+2026-04-27 20:15:59.224 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 50 tokens (requested 64, diff -21.9%)
+2026-04-27 20:15:59.507 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 50 tokens (requested 64, diff -21.9%)
+2026-04-27 20:16:01.900 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 50 tokens (requested 64, diff -21.9%)
+2026-04-27 20:16:02.575 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 58 tokens (requested 64, diff -9.4%)
+2026-04-27 20:16:08.533 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 58 tokens (requested 64, diff -9.4%)
+2026-04-27 20:16:09.520 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 52 tokens (requested 64, diff -18.8%)
+2026-04-27 20:16:10.541 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 54 tokens (requested 64, diff -15.6%)
+2026-04-27 20:16:23.947 - PhaseRunner - NOTICE - Phase profiling sending complete | sent=100, completed=99, in_flight=1 | sessions: sent=100, completed=99
+2026-04-27 20:16:23.949 - records_manager - INFO - Sent 100 requests. Waiting for all to complete...
+2026-04-27 20:16:24.305 - PhaseRunner - NOTICE - Phase profiling complete | completed=100, cancelled=0, errors=0 | sessions: completed=100, cancelled=0 | elapsed=38.42s
+2026-04-27 20:16:24.306 - PhaseOrchestrator_87d47780 - NOTICE - All credits completed
+2026-04-27 20:16:24.307 - records_manager - INFO - Received CREDIT_PHASE_COMPLETE message, Phase complete: PhaseRecordsStats(phase=CreditPhase.PROFILING, start_ns=1777346145886294262, sent_end_ns=1777346183947365810, requests_end_ns=1777346184305664314, total_expected_requests=100, expected_duration_sec=None, expected_num_sessions=None, expected_grace_period_sec=None, final_requests_sent=None, final_requests_completed=100, final_requests_cancelled=0, final_request_errors=0, final_sent_sessions=None, final_completed_sessions=None, final_cancelled_sessions=None, timeout_triggered=False, grace_period_timeout_triggered=False, was_cancelled=False, records_end_ns=None, success_records=99, error_records=0)
+2026-04-27 20:16:24.307 - system_controller - INFO - Received credits complete from 'timing_manager'
+2026-04-27 20:16:24.307 - records_manager - NOTICE - All requests have completed, please wait for the results to be processed (currently 99 of 100 records processed)...
+2026-04-27 20:16:24.309 - records_manager - INFO - All credits complete, please wait for the results to be processed...
+2026-04-27 20:16:24.311 - records_manager - INFO - Processed 100 valid requests and 0 errors (100 total).
+2026-04-27 20:16:24.311 - records_manager - INFO - Received all records, processing now...
+2026-04-27 20:16:24.313 - server_metrics_manager - INFO - Server Metrics: Profiling complete, capturing final metrics...
+2026-04-27 20:16:24.313 - records_manager - INFO - Waiting 2.0s for server metrics flush period...
+2026-04-27 20:16:24.314 - gpu_telemetry_manager - INFO - GPU Telemetry: Profiling complete, capturing final metrics...
+2026-04-27 20:16:24.315 - gpu_telemetry_manager - WARNING - GPU Telemetry: Failed to capture final state from pynvml://localhost: 'PyNVMLTelemetryCollector' object has no attribute 'collect_and_process_metrics'
+2026-04-27 20:16:26.306 - records_manager - INFO - Processing records results...
+2026-04-27 20:16:26.320 - system_controller - INFO - Waiting for telemetry results...
+2026-04-27 20:16:26.320 - system_controller - INFO - Waiting for server metrics results...
+2026-04-27 20:16:26.325 - system_controller - INFO - Waiting for server metrics results...
+2026-04-27 20:16:26.334 - records_manager - INFO - _finalize_and_process_results completed
+2026-04-27 20:16:26.335 - system_controller - INFO - All results received, initiating shutdown
+2026-04-27 20:16:26.939 - ExporterManager - INFO - Exporting all records
+2026-04-27 20:16:27.049 - ExporterManager - INFO - Exporting console data

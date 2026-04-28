@@ -38,6 +38,44 @@ mkdir -p "$EC_SHARED_STORAGE_PATH"
 : "${VLLM_ROOT:?VLLM_ROOT is empty}"
 : "${VENV_ACTIVATE:?VENV_ACTIVATE is empty}"
 
+capture_gpu_audit() {
+  local tag="$1"
+  local out_file="$LOG_DIR/gpu_audit_${tag}.txt"
+
+  {
+    echo "=== GPU audit: $tag ==="
+    echo "timestamp=$(date)"
+    echo "hostname=$(hostname)"
+    echo "USER=${USER:-unknown}"
+    echo "OUTER_CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-unset}"
+    echo
+
+    echo "=== Intended script GPU mapping ==="
+    echo "GPU_E=${GPU_E:-unset}"
+    echo "GPU_PD=${GPU_PD:-unset}"
+    echo "GPU_P=${GPU_P:-unset}"
+    echo "GPU_D=${GPU_D:-unset}"
+    echo
+
+    echo "=== nvidia-smi full table ==="
+    nvidia-smi || true
+    echo
+
+    echo "=== GPU index / UUID map ==="
+    nvidia-smi --query-gpu=index,uuid,name,bus_id,memory.used,power.draw,utilization.gpu \
+      --format=csv || true
+    echo
+
+    echo "=== Compute apps by GPU UUID/PID ==="
+    nvidia-smi --query-compute-apps=gpu_uuid,pid,process_name,used_gpu_memory \
+      --format=csv || true
+    echo
+
+    echo "=== User vLLM/Dynamo/disagg processes ==="
+    ps -u "$USER" -f | grep -E "vllm|dynamo|disagg|EngineCore" | grep -v grep || true
+  } > "$out_file" 2>&1
+}
+
 echo "Launching E/PD with:"
 echo "  MODEL=$MODEL"
 echo "  PORT=$PORT"
@@ -47,6 +85,9 @@ echo "  GPU_E=$GPU_E"
 echo "  GPU_PD=$GPU_PD"
 echo "  LOG_DIR=$LOG_DIR"
 echo "  EC_SHARED_STORAGE_PATH=$EC_SHARED_STORAGE_PATH"
+echo "  OUTER_CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-unset}"
+
+capture_gpu_audit "before_launch"
 
 (
   source "$VENV_ACTIVATE"
@@ -108,6 +149,21 @@ PD_PID=$!
 ) > "$LOG_DIR/proxy.log" 2>&1 &
 
 PROXY_PID=$!
+
+{
+  echo "ENCODER_SHELL_PID=$ENCODER_PID"
+  echo "PD_SHELL_PID=$PD_PID"
+  echo "PROXY_SHELL_PID=$PROXY_PID"
+  echo "GPU_E=$GPU_E"
+  echo "GPU_PD=$GPU_PD"
+  echo "OUTER_CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-unset}"
+  echo "ENCODE_PORT=$ENCODE_PORT"
+  echo "PD_PORT=$PD_PORT"
+  echo "PORT=$PORT"
+} > "$LOG_DIR/launcher_pids.txt"
+
+sleep 10
+capture_gpu_audit "after_launch"
 
 cleanup() {
   set +e

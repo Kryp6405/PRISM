@@ -1,0 +1,79 @@
+2026-04-27 20:55:58.289 - aiperf.cli_runner - INFO - Starting AIPerf System
+2026-04-27 20:55:59.780 - aiperf.cli_runner - INFO - ✓ Tokenizer Qwen/Qwen2-VL-2B-Instruct detected
+2026-04-27 20:55:59.783 - aiperf.cli_runner - INFO - 1 tokenizer validated • 1.5s
+2026-04-27 20:55:59.841 - aiperf - WARNING - Using --osl without ignore_eos or min_tokens in --extra-inputs. Output sequence length cannot be guaranteed unless the server honors these parameters. Consider: --extra-inputs ignore_eos:true (generate until max_tokens) or --extra-inputs min_tokens:<value> (set minimum output length).
+2026-04-27 20:56:00.003 - system_controller - INFO - Registered Worker Manager (id: 'worker_manager')
+2026-04-27 20:56:00.050 - GPUTelemetryJSONLWriter_68e9fd22 - INFO - GPU telemetry export enabled: artifacts/p2/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_short_concurrency8_20260427_205143/gpu_telemetry_export.jsonl
+2026-04-27 20:56:00.052 - system_controller - INFO - Registered Dataset Manager (id: 'dataset_manager')
+2026-04-27 20:56:00.055 - RecordExportResultsProcessor_d563070d - INFO - Record metrics export enabled: artifacts/p2/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_short_concurrency8_20260427_205143/profile_export.jsonl
+2026-04-27 20:56:00.086 - system_controller - INFO - Registered Record Processor (id: 'record_processor_45dd8311')
+2026-04-27 20:56:00.088 - system_controller - INFO - Registered Record Processor (id: 'record_processor_88cdc234')
+2026-04-27 20:56:00.096 - system_controller - INFO - Registered Timing Manager (id: 'timing_manager')
+2026-04-27 20:56:00.117 - server_metrics_manager - INFO - Server Metrics: Discovered 1 endpoints: ['http://localhost:8000/metrics']
+2026-04-27 20:56:00.120 - system_controller - INFO - Registered Worker (id: 'worker_ae1608e7')
+2026-04-27 20:56:00.126 - system_controller - INFO - Registered Worker (id: 'worker_5a237e07')
+2026-04-27 20:56:00.134 - system_controller - INFO - Registered Worker (id: 'worker_b9a2fa25')
+2026-04-27 20:56:00.139 - system_controller - INFO - Registered Worker (id: 'worker_d393e2ad')
+2026-04-27 20:56:00.154 - system_controller - INFO - Registered Worker (id: 'worker_8519f65c')
+2026-04-27 20:56:00.160 - system_controller - INFO - Registered Server Metrics Manager (id: 'server_metrics_manager')
+2026-04-27 20:56:00.160 - system_controller - INFO - Registered Gpu Telemetry Manager (id: 'gpu_telemetry_manager')
+2026-04-27 20:56:00.168 - system_controller - INFO - Registered Worker (id: 'worker_a29e302c')
+2026-04-27 20:56:00.170 - system_controller - INFO - Registered Records Manager (id: 'records_manager')
+2026-04-27 20:56:00.172 - system_controller - INFO - Registered Worker (id: 'worker_f1c5befe')
+2026-04-27 20:56:00.181 - system_controller - INFO - Registered Worker (id: 'worker_eed90422')
+2026-04-27 20:56:00.495 - system_controller - INFO - AIPerf System is CONFIGURING
+2026-04-27 20:56:00.496 - system_controller - INFO - Configuring all services to start profiling
+2026-04-27 20:56:00.498 - timing_manager - INFO - Waiting for dataset to be configured before configuring timing
+2026-04-27 20:56:00.498 - InferenceResultParser_f37d6e9f - INFO - Tokenization is disabled for this endpoint, skipping tokenizer configuration
+2026-04-27 20:56:00.498 - InferenceResultParser_6d68257b - INFO - Tokenization is disabled for this endpoint, skipping tokenizer configuration
+2026-04-27 20:56:00.498 - dataset_manager - INFO - Configuring tokenizer(s) for dataset manager
+2026-04-27 20:56:00.505 - system_controller - INFO - Server metrics disabled - no Prometheus endpoints reachable
+2026-04-27 20:56:00.538 - system_controller - INFO - GPU telemetry enabled - 1/1 endpoint(s) reachable
+2026-04-27 20:56:06.254 - dataset_manager - INFO - Tokenizer(s) configured in 5.75 seconds
+2026-04-27 20:56:06.257 - dataset_manager - INFO - Configuring dataset for dataset_manager
+2026-04-27 20:56:06.688 - SyntheticDatasetComposer - INFO - Using default sampling strategy for synthetic dataset: shuffle
+2026-04-27 20:56:13.545 - MemoryMapDatasetBackingStore_60cfba0c - INFO - Memory-mapped backing store initialized (streaming to /tmp/aiperf_mmap_c3484e3a-d5bd-4969-886e-a9e60da9738e/dataset.dat)
+2026-04-27 20:56:13.597 - MemoryMapDatasetBackingStore_60cfba0c - INFO - Data file finalized: 100 conversations, 34.74 MB
+2026-04-27 20:56:13.599 - MemoryMapDatasetBackingStore_60cfba0c - INFO - Index file created: /tmp/aiperf_mmap_c3484e3a-d5bd-4969-886e-a9e60da9738e/index.dat
+2026-04-27 20:56:13.599 - dataset_manager - INFO - Backing store finalized: client_type=DatasetClientStoreType.MEMORY_MAP data_file_path=PosixPath('/tmp/aiperf_mmap_c3484e3a-d5bd-4969-886e-a9e60da9738e/dataset.dat') index_file_path=PosixPath('/tmp/aiperf_mmap_c3484e3a-d5bd-4969-886e-a9e60da9738e/index.dat') conversation_count=100 total_size_bytes=36425652
+2026-04-27 20:56:13.600 - dataset_manager - INFO - sampling strategy: shuffle, unique conversations: 100, unique turn count: 100
+2026-04-27 20:56:13.622 - PhaseOrchestrator_36948d9e - INFO - Initialized 1 phase(s): ['Profiling']
+2026-04-27 20:56:13.622 - dataset_manager - INFO - Generating inputs.json file at /global/u2/k/krajeshk/PRISM/artifacts/p2/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_short_concurrency8_20260427_205143/inputs.json
+2026-04-27 20:56:13.753 - dataset_manager - INFO - inputs.json file generated in 0.13 seconds
+2026-04-27 20:56:13.981 - dataset_manager - INFO - Dataset client initialized and freed 100 conversations from memory
+2026-04-27 20:56:13.982 - dataset_manager - INFO - Dataset configured in 7.72 seconds
+2026-04-27 20:56:13.983 - system_controller - INFO - All services configured in 13.49 seconds
+2026-04-27 20:56:13.984 - system_controller - INFO - AIPerf System is CONFIGURED
+2026-04-27 20:56:13.987 - RateTiming - INFO - Creating interval generator: pattern=concurrency_burst, rate=None, smoothness=None
+2026-04-27 20:56:13.988 - PhaseRunner - NOTICE - Phase profiling started | target: 100 requests
+2026-04-27 20:56:13.989 - records_manager - INFO - Credit phase start: profiling
+2026-04-27 20:56:14.050 - pynvml_collector - INFO - PyNVML initialized with 4 GPU(s) (0 with GPM support)
+2026-04-27 20:56:14.054 - system_controller - INFO - All services started profiling successfully
+2026-04-27 20:56:14.056 - system_controller - INFO - AIPerf System is PROFILING
+2026-04-27 20:56:15.283 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 44 tokens (requested 64, diff -31.2%)
+2026-04-27 20:56:16.013 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 35 tokens (requested 64, diff -45.3%)
+2026-04-27 20:56:19.324 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 60 tokens (requested 64, diff -6.2%)
+2026-04-27 20:56:21.539 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 45 tokens (requested 64, diff -29.7%)
+2026-04-27 20:56:22.869 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 52 tokens (requested 64, diff -18.8%)
+2026-04-27 20:56:27.828 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 52 tokens (requested 64, diff -18.8%)
+2026-04-27 20:56:29.048 - PhaseRunner - NOTICE - Phase profiling sending complete | sent=100, completed=92, in_flight=8 | sessions: sent=100, completed=92
+2026-04-27 20:56:29.049 - records_manager - INFO - Sent 100 requests. Waiting for all to complete...
+2026-04-27 20:56:29.340 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 59 tokens (requested 64, diff -7.8%)
+2026-04-27 20:56:30.103 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 59 tokens (requested 64, diff -7.8%)
+2026-04-27 20:56:30.225 - PhaseRunner - NOTICE - Phase profiling complete | completed=100, cancelled=0, errors=0 | sessions: completed=100, cancelled=0 | elapsed=16.24s
+2026-04-27 20:56:30.226 - PhaseOrchestrator_36948d9e - NOTICE - All credits completed
+2026-04-27 20:56:30.226 - records_manager - INFO - Received CREDIT_PHASE_COMPLETE message, Phase complete: PhaseRecordsStats(phase=CreditPhase.PROFILING, start_ns=1777348573988058734, sent_end_ns=1777348589048157587, requests_end_ns=1777348590225142324, total_expected_requests=100, expected_duration_sec=None, expected_num_sessions=None, expected_grace_period_sec=None, final_requests_sent=None, final_requests_completed=100, final_requests_cancelled=0, final_request_errors=0, final_sent_sessions=None, final_completed_sessions=None, final_cancelled_sessions=None, timeout_triggered=False, grace_period_timeout_triggered=False, was_cancelled=False, records_end_ns=None, success_records=99, error_records=0)
+2026-04-27 20:56:30.227 - system_controller - INFO - Received credits complete from 'timing_manager'
+2026-04-27 20:56:30.227 - records_manager - NOTICE - All requests have completed, please wait for the results to be processed (currently 99 of 100 records processed)...
+2026-04-27 20:56:30.228 - records_manager - INFO - All credits complete, please wait for the results to be processed...
+2026-04-27 20:56:30.229 - records_manager - INFO - Processed 100 valid requests and 0 errors (100 total).
+2026-04-27 20:56:30.230 - records_manager - INFO - Received all records, processing now...
+2026-04-27 20:56:30.231 - records_manager - INFO - Waiting 2.0s for server metrics flush period...
+2026-04-27 20:56:30.232 - gpu_telemetry_manager - INFO - GPU Telemetry: Profiling complete, capturing final metrics...
+2026-04-27 20:56:30.232 - gpu_telemetry_manager - WARNING - GPU Telemetry: Failed to capture final state from pynvml://localhost: 'PyNVMLTelemetryCollector' object has no attribute 'collect_and_process_metrics'
+2026-04-27 20:56:32.225 - records_manager - INFO - Processing records results...
+2026-04-27 20:56:32.232 - system_controller - INFO - Waiting for telemetry results...
+2026-04-27 20:56:32.237 - records_manager - INFO - _finalize_and_process_results completed
+2026-04-27 20:56:32.238 - system_controller - INFO - All results received, initiating shutdown
+2026-04-27 20:56:32.843 - ExporterManager - INFO - Exporting all records
+2026-04-27 20:56:32.948 - ExporterManager - INFO - Exporting console data
