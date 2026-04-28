@@ -1,0 +1,291 @@
+ ;;
+ ;;
+ ;;
+}
+}
+}
+}
+ARCHIVE=/home/10698/akarshsri
+ARCHIVER=ranch.tacc.utexas.edu
+BASH_ENV=/etc/tacc/tacc_functions
+BASH_FUNC_ml%%=() {  eval "$($LMOD_DIR/ml_cmd "$@")"
+BASH_FUNC_module%%=() {  if [ -z "${LMOD_SH_DBG_ON+x}" ]; then
+BASH_FUNC_sbatch%%=() {  echo -e "\nNOTIFICATION: sbatch not available on compute nodes. Use a login node.\n"
+BASH_FUNC_which%%=() {  ( alias;
+__BASHRC_SOURCED__=1
+ case "$-" in 
+CCL_CONFIGURATION=cpu_gpu_dpcpp
+CCL_ROOT=/scratch/projects/compilers/intel24.1/oneapi/ccl/2021.12
+CC=/scratch/tacc/apps/gcc/13.2.0/bin/gcc
+_CE_CONDA=
+_CE_M=
+CLASSPATH=/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/share/java/mpi.jar
+CMAKE_PREFIX_PATH=/scratch/projects/compilers/intel24.1/oneapi/ccl/2021.12:/scratch/tacc/apps/cmake/4.1.1
+COBBLER_SERVER=129.114.40.1
+COMPILER_PATH=/opt/apps/xalt/xalt/bin
+CONDA_EXE=/scratch/10698/akarshsri/miniconda3/bin/conda
+CONDA_PYTHON_EXE=/scratch/10698/akarshsri/miniconda3/bin/python
+CONDA_SHLVL=0
+CPATH=/scratch/projects/compilers/intel24.1/oneapi/ccl/2021.12/include:/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/include
+CUDA_VISIBLE_DEVICES=0
+CXX=/scratch/tacc/apps/gcc/13.2.0/bin/g++
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/901268/bus
+DEBUGINFOD_URLS=https://debuginfod.centos.org/ 
+ echo "Shell debugging restarted" 1>&2;
+ echo "Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output" 1>&2;
+ENVIRONMENT=BATCH
+ esac;
+ eval "$($LMOD_CMD shell "$@")" && eval "$(${LMOD_SETTARG_CMD:-:} -s sh)";
+ eval ${which_declare} ) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot $@
+ fi;
+ fi;
+ fi;
+FI_PROVIDER=mlx
+FI_PROVIDER_PATH=/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/libfabric/lib/prov
+FPATH=/opt/apps/lmod/lmod/init/ksh_funcs
+GCC_LIB=/scratch/tacc/apps/gcc/13.2.0/lib64
+HF_DATASETS_CACHE=/scratch/10698/akarshsri/PRISM_env/.cache/hf_datasets
+HF_HOME=/scratch/10698/akarshsri/PRISM_env/.cache/hf_home
+HISTSIZE=1000
+HOME=/home1/10698/akarshsri
+HOME_S2=/home1_S2/10698/akarshsri
+HOSTNAME=c301-004
+HYDRA_BOOTSTRAP=slurm
+HYDRA_LAUNCHER_EXTRA_ARGS=--external-launcher
+idev_has_user_PERL5LIB=no
+idev_ip=c301-004
+IDEV_PWD=/scratch/10698/akarshsri/PRISM
+IDEV_SETUP_BYPASS=1.0
+ if [ -n "${__lmod_sh_dbg:-}" ]; then
+ if [ -n "${__lmod_sh_dbg:-}" ]; then
+I_MPI_CC=gcc
+I_MPI_CXX=g++
+I_MPI_EXTRA_FILESYSTEM=enable
+I_MPI_F77=gfortran
+I_MPI_F90=gfortran
+I_MPI_FCFLAGS=-I/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/include/mpi/gfortran/11.1.0
+I_MPI_FC=gfortran
+I_MPI_HYDRA_BOOTSTRAP_EXEC_EXTRA_ARGS=--external-launcher
+I_MPI_HYDRA_BOOTSTRAP=slurm
+I_MPI_OFI_LIBRARY=/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/opt/mpi/libfabric/lib/libfabric.so
+I_MPI_ROOT=/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12
+I_MPI_STARTUP_MODE=pmi_shm_netmod
+INCLUDE=/opt/apps/cuda/12.8/include:/scratch/tacc/apps/gcc/13.2.0/include
+__Init_Default_Modules=1
+INPUTRC=/etc/inputrc
+LANG=en_US.UTF-8
+LD_LIBRARY_PATH=/opt/apps/cuda/12.8/nsight-systems-2024.6.2/host-linux-x64:/scratch/10698/akarshsri/PRISM_env/venvs/prism-env/lib/python3.12/site-packages/torch/lib:/scratch/10698/akarshsri/PRISM_env/venvs/prism-env/lib/python3.12/site-packages/torch/lib:/scratch/projects/compilers/intel24.1/oneapi/ccl/2021.12/lib:/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/opt/mpi/libfabric/lib:/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/lib:/opt/apps/python/3.12.11/lib:/opt/apps/cuda/12.8/lib64:/scratch/tacc/apps/gcc/13.2.0/lib64:/scratch/tacc/apps/gcc/13.2.0/lib:/opt/apps/pmix/3.2.3/lib:/usr/lib64
+LD_PRELOAD=/opt/apps/xalt/xalt/lib64/libxalt_init.so
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+LIBRARY_PATH=/scratch/projects/compilers/intel24.1/oneapi/ccl/2021.12/lib:/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/opt/mpi/libfabric/lib:/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/lib
+_LMFILES_=/opt/apps/modulefiles/autotools/1.4.lua:/opt/apps/modulefiles/cmake/4.1.1.lua:/opt/apps/modulefiles/pmix/3.2.3.lua:/opt/apps/modulefiles/xalt/3.1.lua:/opt/apps/modulefiles/TACC.lua:/opt/apps/modulefiles/gcc/13.2.0.lua:/opt/apps/modulefiles/cuda/12.8.lua:/opt/apps/modulefiles/python/3.12.11.lua:/opt/apps/gcc13_2/modulefiles/impi/21.12.lua
+LMOD_CMAKE_BIN=/scratch/tacc/apps/cmake/4.1.1/bin
+LMOD_CMAKE_DIR=/scratch/tacc/apps/cmake/4.1.1
+LMOD_CMD=/opt/apps/lmod/lmod/libexec/lmod
+LMOD_DIR=/opt/apps/lmod/lmod/libexec
+LMOD_FAMILY_COMPILER=gcc
+LMOD_FAMILY_COMPILER_VERSION=13.2.0
+LMOD_FAMILY_LIBFABRIC=impi
+LMOD_FAMILY_LIBFABRIC_VERSION=21.12
+LMOD_FAMILY_MPI=impi
+LMOD_FAMILY_MPI_VERSION=21.12
+LMOD_FAMILY_PYTHON=python
+LMOD_FAMILY_PYTHON_VERSION=3.12.11
+ __lmod_my_status=$?;
+LMOD_PKG=/opt/apps/lmod/lmod
+__LMOD_Priority_PATH=/opt/apps/xalt/xalt/bin:-100
+__LMOD_REF_COUNT_CLASSPATH=/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/share/java/mpi.jar:1
+__LMOD_REF_COUNT_CMAKE_PREFIX_PATH=/scratch/projects/compilers/intel24.1/oneapi/ccl/2021.12:1;/scratch/tacc/apps/cmake/4.1.1:1
+__LMOD_REF_COUNT_COMPILER_PATH=/opt/apps/xalt/xalt/bin:1
+__LMOD_REF_COUNT_CPATH=/scratch/projects/compilers/intel24.1/oneapi/ccl/2021.12/include:1;/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/include:1
+__LMOD_REF_COUNT_I_MPI_ROOT=/opt/intel/compilers_and_libraries_2020.4.304/linux/mpi:1
+__LMOD_REF_COUNT_INCLUDE=/opt/apps/cuda/12.8/include:1;/scratch/tacc/apps/gcc/13.2.0/include:1
+__LMOD_REF_COUNT_LD_LIBRARY_PATH=/scratch/projects/compilers/intel24.1/oneapi/ccl/2021.12/lib:1;/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/opt/mpi/libfabric/lib:1;/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/lib:1;/opt/apps/python/3.12.11/lib:1;/opt/apps/cuda/12.8/lib64:1;/scratch/tacc/apps/gcc/13.2.0/lib64:1;/scratch/tacc/apps/gcc/13.2.0/lib:1;/opt/apps/pmix/3.2.3/lib:1;/usr/lib64:1
+__LMOD_REF_COUNT_LD_PRELOAD=/opt/apps/xalt/xalt/lib64/libxalt_init.so:1
+__LMOD_REF_COUNT_LIBRARY_PATH=/scratch/projects/compilers/intel24.1/oneapi/ccl/2021.12/lib:1;/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/opt/mpi/libfabric/lib:1;/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/lib:1
+__LMOD_REF_COUNT_MANPATH=/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/share/man:1;/opt/apps/python/3.12.11/share/man:1;/opt/apps/python/3.12.11/man:1;/opt/apps/cuda/12.8/doc/man:1;/scratch/tacc/apps/gcc/13.2.0/share/man:1;/usr/local/man:1;/usr/share/man:1;/usr/X11R6/man:1;/usr/kerberos/man:1;/usr/man:1;/opt/apps/pmix/3.2.3/share/man:1;:1
+__LMOD_REF_COUNT_MODULEPATH=/opt/apps/gcc13_2/impi21/modulefiles:1;/opt/apps/python3_12/modulefiles:1;/opt/apps/cuda12_8/modulefiles:1;/opt/apps/gcc13_2/modulefiles:1;/opt/apps/modulefiles:1
+__LMOD_REF_COUNT_PATH=/opt/apps/xalt/xalt/bin:1;/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/opt/mpi/libfabric/bin:1;/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/libfabric/bin:1;/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/bin:1;/opt/apps/python/3.12.11/bin:2;/opt/apps/cuda/12.8/bin:1;/scratch/tacc/apps/gcc/13.2.0/bin:1;/opt/apps/pmix/3.2.3/bin:1;/scratch/tacc/apps/cmake/4.1.1/bin:1;/opt/apps/autotools/1.4/bin:1;/scratch/10698/akarshsri/miniconda3/condabin:1;/usr/local/bin:1;/usr/bin:1;/usr/local/sbin:1;/usr/sbin:1;.:1
+__LMOD_REF_COUNT_PKG_CONFIG_PATH=/scratch/projects/compilers/intel24.1/oneapi/ccl/2021.12/lib/pkgconfig:1;/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/lib/pkgconfig:1;/opt/apps/cuda/12.8/pkgconfig:1
+__LMOD_REF_COUNT_PYTHONPATH=/opt/apps/python/3.12.11:1
+LMOD_ROOT=/opt/apps/lmod
+LMOD_SETTARG_FULL_SUPPORT=yes
+LMOD_SETTARG_TITLE_BAR=yes
+ __lmod_sh_dbg='v'
+ __lmod_sh_dbg='vx'
+ __lmod_sh_dbg='x'
+LMOD_SYSTEM_DEFAULT_MODULES=TACC
+LMOD_VERSION=9.1.2
+LOADEDMODULES=autotools/1.4:cmake/4.1.1:pmix/3.2.3:xalt/3.1:TACC:gcc/13.2.0:cuda/12.8:python/3.12.11:impi/21.12
+LOGNAME=akarshsri
+LS_COLORS=rs=0:di=38;5;33:ln=38;5;51:mh=00:pi=40;38;5;11:so=38;5;13:do=38;5;5:bd=48;5;232;38;5;11:cd=48;5;232;38;5;3:or=48;5;232;38;5;9:mi=01;05;37;41:su=48;5;196;38;5;15:sg=48;5;11;38;5;16:ca=48;5;196;38;5;226:tw=48;5;10;38;5;16:ow=48;5;10;38;5;21:st=48;5;21;38;5;15:ex=38;5;40:*.tar=38;5;9:*.tgz=38;5;9:*.arc=38;5;9:*.arj=38;5;9:*.taz=38;5;9:*.lha=38;5;9:*.lz4=38;5;9:*.lzh=38;5;9:*.lzma=38;5;9:*.tlz=38;5;9:*.txz=38;5;9:*.tzo=38;5;9:*.t7z=38;5;9:*.zip=38;5;9:*.z=38;5;9:*.dz=38;5;9:*.gz=38;5;9:*.lrz=38;5;9:*.lz=38;5;9:*.lzo=38;5;9:*.xz=38;5;9:*.zst=38;5;9:*.tzst=38;5;9:*.bz2=38;5;9:*.bz=38;5;9:*.tbz=38;5;9:*.tbz2=38;5;9:*.tz=38;5;9:*.deb=38;5;9:*.rpm=38;5;9:*.jar=38;5;9:*.war=38;5;9:*.ear=38;5;9:*.sar=38;5;9:*.rar=38;5;9:*.alz=38;5;9:*.ace=38;5;9:*.zoo=38;5;9:*.cpio=38;5;9:*.7z=38;5;9:*.rz=38;5;9:*.cab=38;5;9:*.wim=38;5;9:*.swm=38;5;9:*.dwm=38;5;9:*.esd=38;5;9:*.jpg=38;5;13:*.jpeg=38;5;13:*.mjpg=38;5;13:*.mjpeg=38;5;13:*.gif=38;5;13:*.bmp=38;5;13:*.pbm=38;5;13:*.pgm=38;5;13:*.ppm=38;5;13:*.tga=38;5;13:*.xbm=38;5;13:*.xpm=38;5;13:*.tif=38;5;13:*.tiff=38;5;13:*.png=38;5;13:*.svg=38;5;13:*.svgz=38;5;13:*.mng=38;5;13:*.pcx=38;5;13:*.mov=38;5;13:*.mpg=38;5;13:*.mpeg=38;5;13:*.m2v=38;5;13:*.mkv=38;5;13:*.webm=38;5;13:*.ogm=38;5;13:*.mp4=38;5;13:*.m4v=38;5;13:*.mp4v=38;5;13:*.vob=38;5;13:*.qt=38;5;13:*.nuv=38;5;13:*.wmv=38;5;13:*.asf=38;5;13:*.rm=38;5;13:*.rmvb=38;5;13:*.flc=38;5;13:*.avi=38;5;13:*.fli=38;5;13:*.flv=38;5;13:*.gl=38;5;13:*.dl=38;5;13:*.xcf=38;5;13:*.xwd=38;5;13:*.yuv=38;5;13:*.cgm=38;5;13:*.emf=38;5;13:*.ogv=38;5;13:*.ogx=38;5;13:*.aac=38;5;45:*.au=38;5;45:*.flac=38;5;45:*.m4a=38;5;45:*.mid=38;5;45:*.midi=38;5;45:*.mka=38;5;45:*.mp3=38;5;45:*.mpc=38;5;45:*.ogg=38;5;45:*.ra=38;5;45:*.wav=38;5;45:*.oga=38;5;45:*.opus=38;5;45:*.spx=38;5;45:*.xspf=38;5;45:
+MAIL=/var/spool/mail/akarshsri
+MANPATH=/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/share/man:/opt/apps/python/3.12.11/share/man:/opt/apps/python/3.12.11/man:/opt/apps/cuda/12.8/doc/man:/scratch/tacc/apps/gcc/13.2.0/share/man:/usr/local/man:/usr/share/man:/usr/X11R6/man:/usr/kerberos/man:/usr/man:/opt/apps/pmix/3.2.3/share/man::
+MAX_JOBS=16
+MODULEPATH=/opt/apps/gcc13_2/impi21/modulefiles:/opt/apps/python3_12/modulefiles:/opt/apps/cuda12_8/modulefiles:/opt/apps/gcc13_2/modulefiles:/opt/apps/modulefiles
+MODULESHOME=/opt/apps/lmod/lmod
+_ModuleTable001_=X01vZHVsZVRhYmxlXyA9IHsKTVR2ZXJzaW9uID0gMywKY19yZWJ1aWxkVGltZSA9IGZhbHNlLApjX3Nob3J0VGltZSA9IGZhbHNlLApkZXB0aFQgPSB7fSwKZmFtaWx5ID0gewpNUEkgPSAiaW1waSIsCmNvbXBpbGVyID0gImdjYyIsCmxpYmZhYnJpYyA9ICJpbXBpIiwKcHl0aG9uID0gInB5dGhvbiIsCn0sCm1UID0gewpUQUNDID0gewpmbiA9ICIvb3B0L2FwcHMvbW9kdWxlZmlsZXMvVEFDQy5sdWEiLApmdWxsTmFtZSA9ICJUQUNDIiwKbG9hZE9yZGVyID0gNSwKcHJvcFQgPSB7fSwKc3RhY2tEZXB0aCA9IDAsCnN0YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJUQUNDIiwKd1YgPSAiTS4qemZpbmFsIiwKfSwKYXV0b3Rvb2xzID0gewpmbiA9ICIvb3B0L2FwcHMvbW9k
+_ModuleTable002_=dWxlZmlsZXMvYXV0b3Rvb2xzLzEuNC5sdWEiLApmdWxsTmFtZSA9ICJhdXRvdG9vbHMvMS40IiwKbG9hZE9yZGVyID0gMSwKcHJvcFQgPSB7fSwKc3RhY2tEZXB0aCA9IDEsCnN0YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJhdXRvdG9vbHMiLAp3ViA9ICIwMDAwMDAwMDEuMDAwMDAwMDA0Lip6ZmluYWwiLAp9LApjbWFrZSA9IHsKZm4gPSAiL29wdC9hcHBzL21vZHVsZWZpbGVzL2NtYWtlLzQuMS4xLmx1YSIsCmZ1bGxOYW1lID0gImNtYWtlLzQuMS4xIiwKbG9hZE9yZGVyID0gMiwKcHJvcFQgPSB7fSwKc3RhY2tEZXB0aCA9IDEsCnN0YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJjbWFrZSIsCndWID0gIjAwMDAwMDAwNC4wMDAwMDAwMDEuMDAwMDAwMDAxLip6
+_ModuleTable003_=ZmluYWwiLAp9LApjdWRhID0gewphY3Rpb25BID0gewpbW3ByZXBlbmRfcGF0aCgiTU9EVUxFUEFUSCIsIi9vcHQvYXBwcy9jdWRhMTJfOC9tb2R1bGVmaWxlcyIpXV0sCn0sCmZuID0gIi9vcHQvYXBwcy9tb2R1bGVmaWxlcy9jdWRhLzEyLjgubHVhIiwKZnVsbE5hbWUgPSAiY3VkYS8xMi44IiwKbG9hZE9yZGVyID0gNywKcHJvcFQgPSB7CmFyY2ggPSB7CmdwdSA9IDEsCn0sCn0sCnN0YWNrRGVwdGggPSAwLApzdGF0dXMgPSAiYWN0aXZlIiwKdXNlck5hbWUgPSAiY3VkYS8xMi44IiwKd1YgPSAiMDAwMDAwMDEyLjAwMDAwMDAwOC4qemZpbmFsIiwKfSwKZ2NjID0gewphY3Rpb25BID0gewpbW3ByZXBlbmRfcGF0aCgiTU9EVUxFUEFUSCIsIi9vcHQvYXBwcy9nY2MxM18yL21v
+_ModuleTable004_=ZHVsZWZpbGVzIildXSwKfSwKZm4gPSAiL29wdC9hcHBzL21vZHVsZWZpbGVzL2djYy8xMy4yLjAubHVhIiwKZnVsbE5hbWUgPSAiZ2NjLzEzLjIuMCIsCmxvYWRPcmRlciA9IDYsCnByb3BUID0ge30sCnN0YWNrRGVwdGggPSAwLApzdGF0dXMgPSAiYWN0aXZlIiwKdXNlck5hbWUgPSAiZ2NjLzEzLjIuMCIsCndWID0gIjAwMDAwMDAxMy4wMDAwMDAwMDIuKnpmaW5hbCIsCn0sCmltcGkgPSB7CmFjdGlvbkEgPSB7CltbcHJlcGVuZF9wYXRoKCJNT0RVTEVQQVRIIiwiL29wdC9hcHBzL2djYzEzXzIvaW1waTIxL21vZHVsZWZpbGVzIildXSwKfSwKZm4gPSAiL29wdC9hcHBzL2djYzEzXzIvbW9kdWxlZmlsZXMvaW1waS8yMS4xMi5sdWEiLApmdWxsTmFtZSA9ICJpbXBpLzIxLjEy
+_ModuleTable005_=IiwKbG9hZE9yZGVyID0gOSwKcHJvcFQgPSB7fSwKc3RhY2tEZXB0aCA9IDAsCnN0YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJpbXBpIiwKd1YgPSAiMDAwMDAwMDIxLjAwMDAwMDAxMi4qemZpbmFsIiwKfSwKcG1peCA9IHsKZm4gPSAiL29wdC9hcHBzL21vZHVsZWZpbGVzL3BtaXgvMy4yLjMubHVhIiwKZnVsbE5hbWUgPSAicG1peC8zLjIuMyIsCmxvYWRPcmRlciA9IDMsCnByb3BUID0ge30sCnN0YWNrRGVwdGggPSAxLApzdGF0dXMgPSAiYWN0aXZlIiwKdXNlck5hbWUgPSAicG1peCIsCndWID0gIjAwMDAwMDAwMy4wMDAwMDAwMDIuMDAwMDAwMDAzLip6ZmluYWwiLAp9LApweXRob24gPSB7CmFjdGlvbkEgPSB7CltbcHJlcGVuZF9wYXRoKCJNT0RVTEVQQVRIIiwi
+_ModuleTable006_=L29wdC9hcHBzL3B5dGhvbjNfMTIvbW9kdWxlZmlsZXMiKV1dLAp9LApmbiA9ICIvb3B0L2FwcHMvbW9kdWxlZmlsZXMvcHl0aG9uLzMuMTIuMTEubHVhIiwKZnVsbE5hbWUgPSAicHl0aG9uLzMuMTIuMTEiLApsb2FkT3JkZXIgPSA4LApwcm9wVCA9IHt9LApzdGFja0RlcHRoID0gMCwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1lID0gInB5dGhvbi8zLjEyLjExIiwKd1YgPSAiMDAwMDAwMDAzLjAwMDAwMDAxMi4wMDAwMDAwMTEuKnpmaW5hbCIsCn0sCnhhbHQgPSB7CmZuID0gIi9vcHQvYXBwcy9tb2R1bGVmaWxlcy94YWx0LzMuMS5sdWEiLApmdWxsTmFtZSA9ICJ4YWx0LzMuMSIsCmxvYWRPcmRlciA9IDQsCnByb3BUID0ge30sCnN0YWNrRGVwdGggPSAxLApzdGF0dXMg
+_ModuleTable007_=PSAiYWN0aXZlIiwKdXNlck5hbWUgPSAieGFsdCIsCndWID0gIjAwMDAwMDAwMy4wMDAwMDAwMDEuKnpmaW5hbCIsCn0sCn0sCm1wYXRoQSA9IHsKIi9vcHQvYXBwcy9nY2MxM18yL2ltcGkyMS9tb2R1bGVmaWxlcyIsICIvb3B0L2FwcHMvcHl0aG9uM18xMi9tb2R1bGVmaWxlcyIsICIvb3B0L2FwcHMvY3VkYTEyXzgvbW9kdWxlZmlsZXMiCiwgIi9vcHQvYXBwcy9nY2MxM18yL21vZHVsZWZpbGVzIiwgIi9vcHQvYXBwcy9tb2R1bGVmaWxlcyIsCn0sCnN5c3RlbUJhc2VNUEFUSCA9ICIvb3B0L2FwcHMvbW9kdWxlZmlsZXMiLAp9Cg==
+_ModuleTable_Sz_=7
+MPI_ROOT=/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12
+MPLBACKEND=agg
+MY_SSH_ARGS=-A
+NO_HOSTSORT=1
+OLDPWD=/scratch/10698/akarshsri/PRISM
+OMPI_MCA_plm_slurm_args=--external-launcher
+OMP_NUM_THREADS=1
+PATH=/scratch/10698/akarshsri/PRISM_env/venvs/prism-env/bin:/opt/apps/xalt/xalt/bin:/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/opt/mpi/libfabric/bin:/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/libfabric/bin:/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/bin:/opt/apps/python/3.12.11/bin:/opt/apps/cuda/12.8/bin:/scratch/tacc/apps/gcc/13.2.0/bin:/opt/apps/pmix/3.2.3/bin:/scratch/tacc/apps/cmake/4.1.1/bin:/opt/apps/autotools/1.4/bin:/scratch/10698/akarshsri/miniconda3/condabin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:.
+__PERSONAL_PATH__=1
+PIP_CACHE_DIR=/scratch/10698/akarshsri/PRISM_env/.cache/pip
+PKG_CONFIG_PATH=/scratch/projects/compilers/intel24.1/oneapi/ccl/2021.12/lib/pkgconfig:/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/lib/pkgconfig:/opt/apps/cuda/12.8/pkgconfig
+PRISM_ROOT=/scratch/10698/akarshsri/PRISM_env
+PROMPT_COMMAND=${X_SET_TITLE_BAR:-:} "$USER@${SHOST}:${PWD/#$HOME/~}"
+PRTE_MCA_plm_slurm_args=--external-launcher
+PS1=((prism-env) ) c301-004.ls6(\!)\$ 
+PWD=/scratch/10698/akarshsri/PRISM_env/src/vllm
+PYTHONNOUSERSITE=1
+PYTHONPATH=/opt/apps/python/3.12.11
+PYTHONPYCACHEPREFIX=/scratch/10698/akarshsri/PRISM_env/.cache/pycache
+ return $__lmod_my_status
+RUNNING_IDEV=1
+S_COLORS=auto
+SCRATCH_S2=/scratch_S2/10698/akarshsri
+SCRATCH=/scratch/10698/akarshsri
+ set +$__lmod_sh_dbg;
+ set -$__lmod_sh_dbg;
+SHELL=/usr/bin/bash
+SHLVL=3
+SLURM_CLUSTER_NAME=lonestar6
+SLURM_COMMAND=sbatch
+SLURM_CONF=/etc/slurm/slurm.conf
+SLURM_CPUS_ON_NODE=128
+SLURMD_NODENAME=c301-004
+SLURM_GTIDS=0
+SLURM_JOB_ACCOUNT=TG-NAIRR240489
+SLURM_JOB_CPUS_PER_NODE=128
+SLURM_JOB_END_TIME=1777337715
+SLURM_JOB_GID=827797
+SLURM_JOB_ID=3130230
+SLURM_JOBID=3130230
+SLURM_JOB_NAME=idv45263
+SLURM_JOB_NODELIST=c301-004
+SLURM_JOB_NUM_NODES=1
+SLURM_JOB_PARTITION=gpu-a100-dev
+SLURM_JOB_QOS=qdefault
+SLURM_JOB_START_TIME=1777334115
+SLURM_JOB_UID=901268
+SLURM_JOB_USER=akarshsri
+SLURM_LOCALID=0
+SLURM_NNODES=1
+SLURM_NODEID=0
+SLURM_NODELIST=c301-004
+SLURM_NPROCS=1
+SLURM_NTASKS=1
+SLURM_PRIO_PROCESS=0
+SLURM_PROCID=0
+SLURM_QUEUE=gpu-a100-dev
+SLURM_SUBMIT_DIR=/scratch/10698/akarshsri/PRISM
+SLURM_SUBMIT_HOST=login2.ls6.tacc.utexas.edu
+SLURM_TACC_ACCOUNT=TG-NAIRR240489
+SLURM_TACC_CORES=1
+SLURM_TACC_JOBNAME=idv45263
+SLURM_TACC_NCORES_SET=1
+SLURM_TACC_NNODES_SET=1
+SLURM_TACC_NODES=1
+SLURM_TACC_RUNLIMIT_MINS=60
+SLURM_TASK_PID=2805967
+SLURM_TASKS_PER_NODE=1
+SLURM_TOPOLOGY_ADDR=c301-004
+SLURM_TOPOLOGY_ADDR_PATTERN=node
+SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+SSH_CLIENT=129.114.40.82 46160 22
+SSH_CONNECTION=129.114.40.82 46160 129.114.41.4 22
+SSH_TTY=/dev/pts/0
+STOCKYARD2=/work/10698/akarshsri
+STOCKYARD=/work/10698/akarshsri
+TACC_AUTOTOOLS_BIN=/opt/apps/autotools/1.4/bin
+TACC_AUTOTOOLS_DIR=/opt/apps/autotools/1.4
+TACC_CCL_INC=/scratch/projects/compilers/intel24.1/oneapi/ccl/2021.12/include
+TACC_CCL_LIB=/scratch/projects/compilers/intel24.1/oneapi/ccl/2021.12/lib
+TACC_CMAKE_BIN=/scratch/tacc/apps/cmake/4.1.1/bin
+TACC_CMAKE_DIR=/scratch/tacc/apps/cmake/4.1.1
+TACC_CMAKE_VERSION=4.1.1
+TACC_CUDA_BIN=/opt/apps/cuda/12.8/bin
+TACC_CUDA_DIR=/opt/apps/cuda/12.8
+TACC_CUDA_DOC=/opt/apps/cuda/12.8/doc
+TACC_CUDA_INC=/opt/apps/cuda/12.8/include
+TACC_CUDA_LIB=/opt/apps/cuda/12.8/lib64
+TACC_DOMAIN=ls6
+TACC_FAMILY_COMPILER=gcc
+TACC_FAMILY_COMPILER_VERSION=13.2.0
+TACC_FAMILY_LIBFABRIC=impi
+TACC_FAMILY_LIBFABRIC_VERSION=21.12
+TACC_FAMILY_MPI=impi
+TACC_FAMILY_MPI_VERSION=21.12
+TACC_FAMILY_PYTHON=python
+TACC_FAMILY_PYTHON_VERSION=3.12.11
+TACC_GCC_BIN=/scratch/tacc/apps/gcc/13.2.0/bin
+TACC_GCC_DIR=/scratch/tacc/apps/gcc/13.2.0
+TACC_GCC_INC=/scratch/tacc/apps/gcc/13.2.0/include
+TACC_GCC_LIB64=/scratch/tacc/apps/gcc/13.2.0/lib64
+TACC_GCC_LIB=/scratch/tacc/apps/gcc/13.2.0/lib
+TACC_IMPI_BIN=/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/bin
+TACC_IMPI_DIR=/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12
+TACC_IMPI_INC=/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/include
+TACC_IMPI_LIB=/scratch/projects/compilers/intel24.1/oneapi/mpi/2021.12/lib
+TACC_MPI_GETMODE=impi_hydra
+TACC_PMIX_BIN=/opt/apps/pmix/3.2.3/bin
+TACC_PMIX_DIR=/opt/apps/pmix/3.2.3
+TACC_PMIX_INC=/opt/apps/pmix/3.2.3/include
+TACC_PMIX_LIB=/opt/apps/pmix/3.2.3/lib
+TACC_PYTHON_BIN=/opt/apps/python/3.12.11/bin
+TACC_PYTHON_DIR=/opt/apps/python/3.12.11
+TACC_PYTHON_INC=/opt/apps/python/3.12.11/include
+TACC_PYTHON_LIB=/opt/apps/python/3.12.11/lib
+TACC_PYTHON_MAN=/opt/apps/python/3.12.11/share/man:/opt/apps/python/3.12.11/man
+TACC_PYTHON_VER=3.12
+TACC_SYSTEM=ls6
+TACC_VEC_FLAGS=-march=haswell -mtune=haswell
+TACC_XALT_BIN=/opt/apps/xalt/xalt/bin
+TACC_XALT_DIR=/opt/apps/xalt/xalt/
+TERM=xterm-256color
+TMPDIR=/scratch/10698/akarshsri/PRISM_env/.cache/tmp
+TOKIO_WORKER_THREADS=4
+TORCH_CUDA_ARCH_LIST=8.0
+TORCHINDUCTOR_CACHE_DIR=/scratch/10698/akarshsri/PRISM_env/.cache/torchinductor
+TORCH_LIB=/scratch/10698/akarshsri/PRISM_env/venvs/prism-env/lib/python3.12/site-packages/torch/lib
+TRANSFORMERS_HOME=/scratch/10698/akarshsri/PRISM_env/.cache/transformers
+TRITON_CACHE_DIR=/scratch/10698/akarshsri/PRISM_env/.cache/triton
+UCX_DC_MLX5_RETRY_COUNT=40
+UCX_DC_MLX5_TIMEOUT=1200000.00us
+UCX_RC_MLX5_RETRY_COUNT=40
+UCX_RC_MLX5_TIMEOUT=1200000.00us
+UCX_TLS=knem,dc_x,rc
+UCX_UD_MLX5_TIMEOUT=600000000.00us
+ unset __lmod_sh_dbg;
+USER=akarshsri
+_=/usr/bin/env
+ *v*)
+VIRTUAL_ENV_PROMPT=(prism-env) 
+VIRTUAL_ENV=/scratch/10698/akarshsri/PRISM_env/venvs/prism-env
+VLLM_CACHE_ROOT=/scratch/10698/akarshsri/PRISM_env/.cache/vllm
+ *v*x*)
+which_declare=declare -f
+WORK2=/work/10698/akarshsri/ls6
+WORK=/work/10698/akarshsri/ls6
+ *x*)
+XALT_DATE_TIME=2026_04_27_18_55_16_7843
+XALT_DIR=/opt/apps/xalt/xalt
+XALT_EXECUTABLE_TRACKING=yes
+__XALT_INITIAL_STATE__=LD_PRELOAD
+XALT_SAMPLING=yes
+__XALT_STATE_PID__=2805971:c301-004.ls6.tacc.utexas.edu
+XDG_CACHE_HOME=/scratch/10698/akarshsri/PRISM_env/.cache
+XDG_DATA_DIRS=/home1/10698/akarshsri/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+XDG_RUNTIME_DIR=/run/user/901268
+XDG_SESSION_ID=69103

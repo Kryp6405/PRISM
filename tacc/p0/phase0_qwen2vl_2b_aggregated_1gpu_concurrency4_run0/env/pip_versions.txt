@@ -1,0 +1,55 @@
+Name: torch
+Version: 2.11.0+cu128
+Summary: Tensors and Dynamic neural networks in Python with strong GPU acceleration
+Home-page: https://pytorch.org
+Author: 
+Author-email: PyTorch Team <packages@pytorch.org>
+License: BSD-3-Clause
+Location: /scratch/10698/akarshsri/PRISM_env/venvs/prism-env/lib/python3.12/site-packages
+Requires: cuda-bindings, cuda-toolkit, filelock, fsspec, jinja2, networkx, nvidia-cudnn-cu12, nvidia-cusparselt-cu12, nvidia-nccl-cu12, nvidia-nvshmem-cu12, setuptools, sympy, triton, typing-extensions
+Required-by: compressed-tensors, flash_attn, nixl-cu12, quack-kernels, torch_c_dlpack_ext, torchvision, xgrammar
+---
+Name: torchvision
+Version: 0.26.0+cu128
+Summary: image and video datasets and models for torch deep learning
+Home-page: https://github.com/pytorch/vision
+Author: PyTorch Core Team
+Author-email: soumith@pytorch.org
+License: BSD
+Location: /scratch/10698/akarshsri/PRISM_env/venvs/prism-env/lib/python3.12/site-packages
+Requires: numpy, pillow, torch
+Required-by: 
+---
+Name: vllm
+Version: 0.17.1.dev0+gb31e9326a.d20260427.cu128
+Summary: A high-throughput and memory-efficient inference and serving engine for LLMs
+Home-page: https://github.com/vllm-project/vllm
+Author: vLLM Team
+Author-email: 
+License-Expression: Apache-2.0
+Location: /scratch/10698/akarshsri/PRISM_env/venvs/prism-env/lib/python3.12/site-packages
+Editable project location: /scratch/10698/akarshsri/PRISM_env/src/vllm
+Requires: aiohttp, anthropic, blake3, cachetools, cbor2, cloudpickle, compressed-tensors, depyf, diskcache, einops, fastapi, filelock, flashinfer-python, gguf, grpcio, grpcio-reflection, ijson, kaldi-native-fbank, lark, llguidance, lm-format-enforcer, mcp, mistral_common, model-hosting-container-standards, msgspec, ninja, numba, numpy, nvidia-cutlass-dsl, openai, openai-harmony, opencv-python-headless, opentelemetry-api, opentelemetry-exporter-otlp, opentelemetry-sdk, opentelemetry-semantic-conventions-ai, outlines_core, partial-json-parser, pillow, prometheus-fastapi-instrumentator, prometheus_client, protobuf, psutil, py-cpuinfo, pybase64, pydantic, python-json-logger, pyyaml, pyzmq, quack-kernels, ray, regex, requests, sentencepiece, setproctitle, setuptools, six, tiktoken, tokenizers, tqdm, transformers, typing_extensions, watchfiles, xgrammar
+Required-by: 
+---
+Name: ai-dynamo
+Version: 1.0.2
+Summary: Distributed Inference Framework
+Home-page: 
+Author: 
+Author-email: "NVIDIA Inc." <sw-dl-dynamo@nvidia.com>
+License: Apache-2.0
+Location: /scratch/10698/akarshsri/PRISM_env/venvs/prism-env/lib/python3.12/site-packages
+Requires: ai-dynamo-runtime, click, distro, fastapi, filelock, kubernetes, prometheus-client, pytest, setuptools, transformers, typer, types-psutil
+Required-by: 
+---
+Name: aiperf
+Version: 0.7.0
+Summary: AIPerf is a package for performance testing of AI models
+Home-page: 
+Author: 
+Author-email: "NVIDIA Inc." <sw-dl-dynamo@nvidia.com>
+License: Apache-2.0
+Location: /scratch/10698/akarshsri/PRISM_env/venvs/prism-env/lib/python3.12/site-packages
+Requires: aiofiles, aiohttp, cyclopts, dash, dash-bootstrap-components, datasets, fastapi, ffmpeg-python, huggingface-hub, jinja2, jmespath, kaleido, matplotlib, msgspec, numpy, nvidia-ml-py, orjson, pandas, pillow, plotly, prometheus-client, psutil, pyarrow, pydantic, pydantic-settings, pyzmq, rich, ruamel-yaml, scipy, seaborn, setproctitle, soundfile, starlette-compress, textual, tqdm, transformers, uvicorn, uvloop, zstandard
+Required-by: 

@@ -1,0 +1,19 @@
+[2m2026-04-28T00:16:29.351055Z[0m [32m INFO[0m [2mmain.async_main[0m[2m:[0m Request migration disabled (limit: 0)
+[2m2026-04-28T00:16:29.361763Z[0m [32m INFO[0m [2mdynamo_runtime::distributed[0m[2m:[0m Initializing KV store discovery backend: File(/scratch/10698/akarshsri/PRISM_env/.cache/tmp/dynamo_store_kv)
+[2m2026-04-28T00:16:29.363594Z[0m [32m INFO[0m [2mdynamo_runtime::pipeline::network::manager[0m[2m:[0m Initializing NetworkManager with TCP request plane [3mmode[0m[2m=[0mtcp [3mhost[0m[2m=[0m129.114.41.4 [3mport[0m[2m=[0mOS-assigned
+[2m2026-04-28T00:16:29.387328Z[0m [32m INFO[0m [2mdynamo_llm::http::service::service_v2[0m[2m:[0m Starting HTTP(S) service [3mprotocol[0m[2m=[0m"HTTP" [3maddress[0m[2m=[0m"0.0.0.0:8000"
+[2m2026-04-28T00:17:38.529649Z[0m [33m WARN[0m [2mdynamo_llm::hub[0m[2m:[0m Cannot connect to ModelExpress server: Transport error: transport error. Using direct download.
+[2m2026-04-28T00:17:38.529728Z[0m [32m INFO[0m [2mmodelexpress_common::download[0m[2m:[0m Downloading model 'Qwen/Qwen2-VL-2B-Instruct' using provider: Hugging Face
+[2m2026-04-28T00:17:38.529739Z[0m [33m WARN[0m [2mmodelexpress_common::download[0m[2m:[0m `ignore_weights` is set to true. All the model weight files will be ignored!
+[2m2026-04-28T00:17:38.529770Z[0m [32m INFO[0m [2mmodelexpress_common::providers::huggingface[0m[2m:[0m Using cache directory: "/scratch/10698/akarshsri/PRISM_env/.cache/hf_home/hub"
+[2m2026-04-28T00:17:38.618638Z[0m [32m INFO[0m [2mmodelexpress_common::providers::huggingface[0m[2m:[0m Downloaded model files for Qwen/Qwen2-VL-2B-Instruct
+[2m2026-04-28T00:17:38.618678Z[0m [32m INFO[0m [2mdynamo_llm::hub[0m[2m:[0m ModelExpress download completed successfully for model: Qwen/Qwen2-VL-2B-Instruct
+[2m2026-04-28T00:17:38.786506Z[0m [32m INFO[0m [2mdynamo_llm::http::service::service_v2[0m[2m:[0m chat endpoints enabled
+[2m2026-04-28T00:17:38.786555Z[0m [32m INFO[0m [2mdynamo_llm::http::service::service_v2[0m[2m:[0m responses endpoints enabled
+[2m2026-04-28T00:17:38.786560Z[0m [32m INFO[0m [2mdynamo_llm::http::service::service_v2[0m[2m:[0m completion endpoints enabled
+[2m2026-04-28T00:17:38.793230Z[0m [33m WARN[0m [2mdynamo_llm::discovery::worker_monitor[0m[2m:[0m KvWorkerMonitor: KV metrics subscriber not available (KV router's EventSubscriber requires NATS), skipping load metrics.
+[2m2026-04-28T00:17:38.793763Z[0m [32m INFO[0m [2mdynamo_llm::discovery::watcher[0m[2m:[0m Chat completions is ready
+[2m2026-04-28T00:17:38.795077Z[0m [32m INFO[0m [2mdynamo_llm::discovery::watcher[0m[2m:[0m Completions is ready
+[2m2026-04-28T00:17:38.795107Z[0m [32m INFO[0m [2mdynamo_llm::discovery::model[0m[2m:[0m Adding worker set to model [3mmodel[0m[2m=[0mQwen/Qwen2-VL-2B-Instruct [3mnamespace[0m[2m=[0mdynamo
+[2m2026-04-28T00:17:38.795134Z[0m [32m INFO[0m [2mdynamo_llm::discovery::watcher[0m[2m:[0m added model [3mmodel_name[0m[2m=[0m"Qwen/Qwen2-VL-2B-Instruct" [3mnamespace[0m[2m=[0m"dynamo"
+[2m2026-04-28T00:17:49.388914Z[0m [32m INFO[0m [2mdynamo_runtime::storage::kv::file[0m[2m:[0m Expired [3mpath[0m[2m=[0m"/scratch/10698/akarshsri/PRISM_env/.cache/tmp/dynamo_store_kv/v1/instances/dynamo%2Fbackend%2Fclear%5Fkv%5Fblocks%2F9588d6a493bf5443" [3mlast_modified[0m[2m=[0mSystemTime { tv_sec: 1777335458, tv_nsec: 0 }
