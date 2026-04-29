@@ -1,10 +1,13 @@
 {
-  "name": "phase2_qwen2vl_2b_focused_analysis",
+  "name": "phase2_qwen2vl_2b_simple_baseline",
   "model": "Qwen/Qwen2-VL-2B-Instruct",
+  "workload_type": "simple_baseline",
+  "image_source": "synthetic",
+  "image_path": "",
   "image_width_mean": 512,
   "image_height_mean": 512,
-  "concurrency_values": [1, 4, 8, 16],
-  "request_count": 80,
+  "concurrency_values": [1, 4, 8, 16, 32],
+  "request_count": 100,
   "generation_classes": {
     "short": 64,
     "medium": 256,
@@ -13,5 +16,5 @@
   "endpoint_type": "chat",
   "use_server_token_count": true,
   "num_images": 1,
-  "prompt": "Describe the main objects and activity in this image."
+  "prompt": "Describe what you see in this image."
 }
