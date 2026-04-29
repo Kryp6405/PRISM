@@ -65,13 +65,13 @@ capture_gpu_audit "before_launch"
   cd "$VLLM_ROOT"
 
   CUDA_VISIBLE_DEVICES="$GPU_E" vllm serve "$MODEL" \
-    --gpu-memory-utilization 0.01 \
+    --gpu-memory-utilization 0.25 \
     --port "$ENCODE_PORT" \
-    --enforce-eager \
     --enable-request-id-headers \
     --no-enable-prefix-caching \
-    --max-num-batched-tokens 114688 \
-    --max-num-seqs 128 \
+    --max-num-batched-tokens 8192 \
+    --max-num-seqs 16 \
+    --limit-mm-per-prompt '{"image":1}' \
     --ec-transfer-config "{
       \"ec_connector\":\"ECExampleConnector\",
       \"ec_role\":\"ec_producer\",
@@ -89,9 +89,9 @@ ENCODER_PID=$!
   CUDA_VISIBLE_DEVICES="$GPU_PD" vllm serve "$MODEL" \
     --gpu-memory-utilization 0.7 \
     --port "$PD_PORT" \
-    --enforce-eager \
     --enable-request-id-headers \
-    --max-num-seqs 128 \
+    --max-num-seqs 16 \
+    --limit-mm-per-prompt '{"image":1}' \
     --ec-transfer-config "{
       \"ec_connector\":\"ECExampleConnector\",
       \"ec_role\":\"ec_consumer\",
