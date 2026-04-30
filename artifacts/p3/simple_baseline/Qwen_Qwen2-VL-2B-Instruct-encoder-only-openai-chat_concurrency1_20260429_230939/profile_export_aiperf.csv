@@ -1,0 +1,87 @@
+Metric,avg,min,max,p1,p5,p10,p25,p50,p75,p90,p95,p99,std
+HTTP Blocked (ms),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+HTTP Chunks Received,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,0.00
+HTTP Chunks Sent,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,0.00
+HTTP Connecting (ms),0.01,0.00,1.11,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.01,0.11
+HTTP Connection Overhead (ms),0.02,0.00,1.61,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.02,0.16
+HTTP Connection Reused (ratio),0.99,0.00,1.00,0.99,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,0.10
+HTTP Data Received (KB),1.02,0.82,1.86,0.84,0.87,0.88,0.93,0.99,1.07,1.13,1.19,1.73,0.15
+HTTP Data Sent (KB),359.78,283.00,502.51,283.00,283.06,283.14,318.31,318.50,374.77,502.30,502.35,502.37,84.00
+HTTP DNS Lookup (ms),0.00,0.00,0.50,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.05
+HTTP Duration (excl. conn) (ms),605.54,334.36,8487.92,358.89,376.07,389.09,436.57,512.37,587.02,640.26,693.51,1433.90,805.59
+HTTP Receiving (ms),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+HTTP Sending (ms),0.13,0.09,1.96,0.09,0.10,0.10,0.10,0.10,0.11,0.12,0.12,0.20,0.18
+HTTP Total Time (ms),605.55,334.35,8489.49,358.87,376.06,389.08,436.56,512.36,587.01,640.26,693.50,1433.90,805.75
+HTTP Waiting (TTFB) (ms),605.41,334.24,8485.92,358.77,375.96,388.97,436.45,512.22,586.92,640.15,693.40,1433.76,805.41
+Image Latency (ms/image),605.58,334.40,8488.10,358.93,376.11,389.13,436.60,512.41,587.07,640.30,693.55,1433.94,805.60
+Image Throughput (images/sec),1.99,0.12,2.99,0.73,1.44,1.56,1.70,1.95,2.29,2.57,2.66,2.79,0.45
+Input Sequence Length (tokens),895.01,895.00,896.00,895.00,895.00,895.00,895.00,895.00,895.00,895.00,895.00,895.01,0.10
+Number of Images (images),1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,0.00
+OSL Mismatch Diff % (%),-64.52,-79.69,0.00,-79.69,-76.95,-75.78,-70.90,-65.82,-59.38,-55.47,-51.89,-7.35,11.55
+Output Sequence Length (tokens),90.84,52.00,256.00,52.00,59.00,62.00,74.50,87.50,104.00,114.00,123.15,237.19,29.57
+Output Token Count (tokens),90.84,52.00,256.00,52.00,59.00,62.00,74.50,87.50,104.00,114.00,123.15,237.19,29.57
+Request Latency (ms),605.58,334.40,8488.10,358.93,376.11,389.13,436.60,512.41,587.07,640.30,693.55,1433.94,805.60
+Usage Completion Tokens (tokens),90.84,52.00,256.00,52.00,59.00,62.00,74.50,87.50,104.00,114.00,123.15,237.19,29.57
+Usage Prompt Tokens (tokens),895.01,895.00,896.00,895.00,895.00,895.00,895.00,895.00,895.00,895.00,895.00,895.01,0.10
+Usage Total Tokens (tokens),985.85,947.00,1151.00,947.00,954.00,957.00,969.50,982.50,999.00,1009.00,1018.15,1132.19,29.56
+
+Metric,Value
+Benchmark Duration (sec),60.71
+Maximum Response Timestamp (ns),1777529564517354240.00
+Minimum Request Timestamp (ns),1777529503810547968.00
+OSL Mismatch Count,99.00
+Output Token Throughput (tokens/sec),149.64
+Request Count,100.00
+Request Throughput (requests/sec),1.65
+Total Input Sequence Length (tokens),89501.00
+Total Output Sequence Length (tokens),9084.00
+Total Output Tokens (tokens),9084.00
+Total Token Throughput (tokens/sec),1623.95
+Total Usage Completion Tokens (tokens),9084.00
+Total Usage Prompt Tokens (tokens),89501.00
+Total Usage Total Tokens (tokens),98585.00
+
+
+Endpoint,GPU_Index,GPU_Name,GPU_UUID,Metric,avg,min,max,p1,p5,p10,p25,p50,p75,p90,p95,p99,std,Hostname
+localhost,0,NVIDIA A100-SXM4-40GB,GPU-f899abd0-c0a7-3781-f559-d9f53d5efa25,GPU Power Usage (W),62.64,61.87,82.42,61.87,61.94,61.94,62.15,62.39,62.39,62.56,62.63,78.68,2.48,localhost
+localhost,0,NVIDIA A100-SXM4-40GB,GPU-f899abd0-c0a7-3781-f559-d9f53d5efa25,Energy Consumption (MJ),0.00,,,,,,,,,,,,,localhost
+localhost,0,NVIDIA A100-SXM4-40GB,GPU-f899abd0-c0a7-3781-f559-d9f53d5efa25,GPU Utilization (%),0.26,0.00,11.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,11.00,1.66,localhost
+localhost,0,NVIDIA A100-SXM4-40GB,GPU-f899abd0-c0a7-3781-f559-d9f53d5efa25,GPU Memory Used (GB),6.56,6.56,6.56,6.56,6.56,6.56,6.56,6.56,6.56,6.56,6.56,6.56,0.00,localhost
+localhost,0,NVIDIA A100-SXM4-40GB,GPU-f899abd0-c0a7-3781-f559-d9f53d5efa25,GPU Temperature (°C),32.91,32.00,34.00,32.00,32.00,32.00,33.00,33.00,33.00,34.00,34.00,34.00,0.61,localhost
+localhost,0,NVIDIA A100-SXM4-40GB,GPU-f899abd0-c0a7-3781-f559-d9f53d5efa25,Memory Utilization (%),0.05,0.00,2.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,2.00,0.31,localhost
+localhost,0,NVIDIA A100-SXM4-40GB,GPU-f899abd0-c0a7-3781-f559-d9f53d5efa25,SM Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,0,NVIDIA A100-SXM4-40GB,GPU-f899abd0-c0a7-3781-f559-d9f53d5efa25,Decoder Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,0,NVIDIA A100-SXM4-40GB,GPU-f899abd0-c0a7-3781-f559-d9f53d5efa25,Encoder Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,0,NVIDIA A100-SXM4-40GB,GPU-f899abd0-c0a7-3781-f559-d9f53d5efa25,JPEG Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,0,NVIDIA A100-SXM4-40GB,GPU-f899abd0-c0a7-3781-f559-d9f53d5efa25,Power Violation (us),0.00,,,,,,,,,,,,,localhost
+localhost,1,NVIDIA A100-SXM4-40GB,GPU-b5215da8-34ab-0f95-447d-76a136ae0bfc,GPU Power Usage (W),165.68,59.13,267.65,59.13,59.20,59.42,187.51,189.04,191.31,193.81,205.78,244.53,52.31,localhost
+localhost,1,NVIDIA A100-SXM4-40GB,GPU-b5215da8-34ab-0f95-447d-76a136ae0bfc,Energy Consumption (MJ),0.01,,,,,,,,,,,,,localhost
+localhost,1,NVIDIA A100-SXM4-40GB,GPU-b5215da8-34ab-0f95-447d-76a136ae0bfc,GPU Utilization (%),76.89,0.00,100.00,0.00,0.00,0.00,71.00,93.50,100.00,100.00,100.00,100.00,33.12,localhost
+localhost,1,NVIDIA A100-SXM4-40GB,GPU-b5215da8-34ab-0f95-447d-76a136ae0bfc,GPU Memory Used (GB),34.89,34.88,34.89,34.88,34.88,34.88,34.89,34.89,34.89,34.89,34.89,34.89,0.00,localhost
+localhost,1,NVIDIA A100-SXM4-40GB,GPU-b5215da8-34ab-0f95-447d-76a136ae0bfc,GPU Temperature (°C),35.62,29.00,38.00,29.00,29.00,29.00,36.00,37.00,37.00,37.00,37.00,38.00,2.74,localhost
+localhost,1,NVIDIA A100-SXM4-40GB,GPU-b5215da8-34ab-0f95-447d-76a136ae0bfc,Memory Utilization (%),39.12,0.00,51.00,0.00,0.00,0.00,36.00,47.50,51.00,51.00,51.00,51.00,16.94,localhost
+localhost,1,NVIDIA A100-SXM4-40GB,GPU-b5215da8-34ab-0f95-447d-76a136ae0bfc,SM Utilization (%),65.16,0.00,89.00,0.00,0.00,0.00,42.50,87.00,87.00,88.00,88.00,89.00,34.05,localhost
+localhost,1,NVIDIA A100-SXM4-40GB,GPU-b5215da8-34ab-0f95-447d-76a136ae0bfc,Decoder Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,1,NVIDIA A100-SXM4-40GB,GPU-b5215da8-34ab-0f95-447d-76a136ae0bfc,Encoder Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,1,NVIDIA A100-SXM4-40GB,GPU-b5215da8-34ab-0f95-447d-76a136ae0bfc,JPEG Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,1,NVIDIA A100-SXM4-40GB,GPU-b5215da8-34ab-0f95-447d-76a136ae0bfc,Power Violation (us),0.00,,,,,,,,,,,,,localhost
+localhost,2,NVIDIA A100-SXM4-40GB,GPU-3af82491-9347-0b40-3288-2aa5f486ef2f,GPU Power Usage (W),58.15,56.32,108.46,56.32,56.38,56.38,56.56,56.63,56.63,56.63,56.69,108.36,8.92,localhost
+localhost,2,NVIDIA A100-SXM4-40GB,GPU-3af82491-9347-0b40-3288-2aa5f486ef2f,Energy Consumption (MJ),0.00,,,,,,,,,,,,,localhost
+localhost,2,NVIDIA A100-SXM4-40GB,GPU-3af82491-9347-0b40-3288-2aa5f486ef2f,GPU Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,2,NVIDIA A100-SXM4-40GB,GPU-3af82491-9347-0b40-3288-2aa5f486ef2f,GPU Memory Used (GB),0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.00,localhost
+localhost,2,NVIDIA A100-SXM4-40GB,GPU-3af82491-9347-0b40-3288-2aa5f486ef2f,GPU Temperature (°C),30.13,30.00,33.00,30.00,30.00,30.00,30.00,30.00,30.00,30.00,31.00,33.00,0.55,localhost
+localhost,2,NVIDIA A100-SXM4-40GB,GPU-3af82491-9347-0b40-3288-2aa5f486ef2f,Memory Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,2,NVIDIA A100-SXM4-40GB,GPU-3af82491-9347-0b40-3288-2aa5f486ef2f,Decoder Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,2,NVIDIA A100-SXM4-40GB,GPU-3af82491-9347-0b40-3288-2aa5f486ef2f,Encoder Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,2,NVIDIA A100-SXM4-40GB,GPU-3af82491-9347-0b40-3288-2aa5f486ef2f,JPEG Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,2,NVIDIA A100-SXM4-40GB,GPU-3af82491-9347-0b40-3288-2aa5f486ef2f,Power Violation (us),0.00,,,,,,,,,,,,,localhost
+localhost,3,NVIDIA A100-SXM4-40GB,GPU-423c4bf0-e55a-339b-4a41-06c35b77e475,GPU Power Usage (W),58.54,56.88,105.75,56.88,56.88,56.88,56.95,56.95,56.95,57.01,57.23,105.68,8.47,localhost
+localhost,3,NVIDIA A100-SXM4-40GB,GPU-423c4bf0-e55a-339b-4a41-06c35b77e475,Energy Consumption (MJ),0.00,,,,,,,,,,,,,localhost
+localhost,3,NVIDIA A100-SXM4-40GB,GPU-423c4bf0-e55a-339b-4a41-06c35b77e475,GPU Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,3,NVIDIA A100-SXM4-40GB,GPU-423c4bf0-e55a-339b-4a41-06c35b77e475,GPU Memory Used (GB),0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.00,localhost
+localhost,3,NVIDIA A100-SXM4-40GB,GPU-423c4bf0-e55a-339b-4a41-06c35b77e475,GPU Temperature (°C),30.08,30.00,33.00,30.00,30.00,30.00,30.00,30.00,30.00,30.00,30.00,32.37,0.43,localhost
+localhost,3,NVIDIA A100-SXM4-40GB,GPU-423c4bf0-e55a-339b-4a41-06c35b77e475,Memory Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,3,NVIDIA A100-SXM4-40GB,GPU-423c4bf0-e55a-339b-4a41-06c35b77e475,Decoder Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,3,NVIDIA A100-SXM4-40GB,GPU-423c4bf0-e55a-339b-4a41-06c35b77e475,Encoder Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,3,NVIDIA A100-SXM4-40GB,GPU-423c4bf0-e55a-339b-4a41-06c35b77e475,JPEG Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,3,NVIDIA A100-SXM4-40GB,GPU-423c4bf0-e55a-339b-4a41-06c35b77e475,Power Violation (us),0.00,,,,,,,,,,,,,localhost

@@ -1,0 +1,22 @@
+{
+  "phase": "phase3",
+  "study_tier": "perlmutter_primary",
+  "experiment_family": "P3_workload_analysis",
+  "mode": "pipeline_specific",
+  "model": "Qwen/Qwen2-VL-2B-Instruct",
+  "engine": "vllm",
+  "orchestrator": "nvidia-dynamo",
+  "cluster": "perlmutter",
+  "node_count": 1,
+  "gpu_count": 4,
+  "gpu_type": "A100",
+  "hardware_layout": "homogeneous",
+  "discovery_backend": "file",
+  "enable_multimodal": true,
+  "limit_mm_per_prompt": { "image": 1 },
+  "kv_cache_events": false,
+  "benchmark_tool": "aiperf",
+  "endpoint_type": "chat",
+  "use_server_token_count": true,
+  "notes": "Phase 3 workload analysis for homogeneous A100 Perlmutter study."
+}

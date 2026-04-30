@@ -1,0 +1,56 @@
+=== GPU audit: before_launch ===
+timestamp=Wed Apr 29 10:21:23 PM PDT 2026
+hostname=nid001100
+USER=krajeshk
+OUTER_CUDA_VISIBLE_DEVICES=0,1,2,3
+
+=== Intended script GPU mapping ===
+GPU_E=0
+GPU_PD=1
+GPU_P=unset
+GPU_D=unset
+
+=== nvidia-smi full table ===
+Wed Apr 29 22:21:23 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:03:00.0 Off |                    0 |
+| N/A   32C    P0             72W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA A100-SXM4-40GB          On  |   00000000:41:00.0 Off |                    0 |
+| N/A   31C    P0             89W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   2  NVIDIA A100-SXM4-40GB          On  |   00000000:82:00.0 Off |                    0 |
+| N/A   33C    P0            108W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   3  NVIDIA A100-SXM4-40GB          On  |   00000000:C1:00.0 Off |                    0 |
+| N/A   32C    P0             97W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
+=== GPU index / UUID map ===
+Field "bus_id" is not a valid field to query.
+
+
+=== Compute apps by GPU UUID/PID ===
+gpu_uuid, pid, process_name, used_gpu_memory [MiB]
+
+=== User vLLM/Dynamo/disagg processes ===
+krajeshk 2206384       1  0 22:02 pts/0    00:00:09 python3 disagg_epd_proxy.py --host 0.0.0.0 --port 8000 --encode-servers-urls http://localhost:19534 --prefill-servers-urls disable --decode-servers-urls http://localhost:19535
+krajeshk 2213730 2202996  0 22:21 pts/0    00:00:00 bash scripts/phase3/run_phase3_encoder_disaggregated.sh

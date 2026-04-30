@@ -1,0 +1,26 @@
+Starting E/P/D proxy on port 8000
+/pscratch/sd/k/krajeshk/PRISM_env/vllm/examples/online_serving/disaggregated_encoder/disagg_epd_proxy.py:290: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("startup")
+/pscratch/sd/k/krajeshk/PRISM_env/vllm/examples/online_serving/disaggregated_encoder/disagg_epd_proxy.py:302: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("shutdown")
+2026-04-30 10:22:12,583 INFO: Disaggregated prefill phase is enabled. Running E + P + D...
+2026-04-30 10:22:12,583 INFO: Proxy listening on 0.0.0.0:8000
+2026-04-30 10:22:12,583 INFO: Encode servers: ['http://localhost:19534']
+2026-04-30 10:22:12,583 INFO: Prefill instances ['http://localhost:19535']
+2026-04-30 10:22:12,584 INFO: Decode servers: ['http://localhost:19536']
+INFO:     Started server process [2255006]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 98] error while attempting to bind on address ('0.0.0.0', 8000): address already in use
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.

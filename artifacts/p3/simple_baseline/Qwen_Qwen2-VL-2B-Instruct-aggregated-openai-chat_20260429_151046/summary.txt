@@ -1,0 +1,37 @@
+mode=aggregated
+phase=p3
+comparison_framing=stage_disaggregated_scaleout
+gpu_budget=1
+gpu_mapping=gpu0:aggregated_e_p_d
+model=Qwen/Qwen2-VL-2B-Instruct
+workload_config=src/phase3/workloads/simple_baseline.json
+workload_name=phase3_qwen2vl_2b_simple_baseline
+workload_type=simple_baseline
+image_source=synthetic
+image_path=
+image_width_mean=512
+image_height_mean=512
+prompt=Describe what you see in this image.
+num_images=1
+run_prefix=Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat
+timestamp=20260429_151046
+frontend_pid=2234735
+worker_pid=2234736
+port=8000
+request_count=100
+concurrency_values=1 4 16 32
+output_tokens_mean=256
+output_tokens_stddev=0
+gpu_telemetry_mode=pynvml
+enable_streaming=false
+endpoint_type=chat
+use_server_token_count=true
+run_dir=artifacts/p3/simple_baseline/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_20260429_151046
+log_dir=artifacts/p3/simple_baseline/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_20260429_151046/logs
+summary_dir=artifacts/p3/simple_baseline/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_20260429_151046/summary
+
+aiperf_artifact_dirs:
+  - artifacts/p3/simple_baseline/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_concurrency1_20260429_151046
+  - artifacts/p3/simple_baseline/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_concurrency4_20260429_151046
+  - artifacts/p3/simple_baseline/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_concurrency16_20260429_151046
+  - artifacts/p3/simple_baseline/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_concurrency32_20260429_151046

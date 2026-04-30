@@ -1,0 +1,26 @@
+{
+  "mode": "full_disagg",
+  "phase": "p3",
+  "comparison_framing": "stage_disaggregated_scaleout",
+  "gpu_budget": 3,
+  "gpu_mapping": {
+    "gpu0": "encoder",
+    "gpu1": "prefill",
+    "gpu2": "decode"
+  },
+  "model": "Qwen/Qwen2-VL-2B-Instruct",
+  "port": 8000,
+  "launcher": "bash scripts/launch_full_disagg_perlmutter.sh",
+  "workload_config": "src/phase3/workloads/decode_heavy.json",
+  "workload_name": "phase3_qwen2vl_2b_decode_heavy_city_analysis",
+  "workload_type": "decode_heavy",
+  "image_source": "custom",
+  "image_path": "src/phase3/workloads/images/high_res_2048.png",
+  "image_width_mean": 1024,
+  "image_height_mean": 1024,
+  "prompt": "Provide a detailed analysis of this image. First summarize the overall scene, then describe the major regions of the image from foreground to background, identify notable structures and spatial relationships, and conclude with a thorough interpretation of the visible environment. Finally, list possible location(s) around the world this image reprsents with evidence driven reasoning. Be detailed and comprehensive.",
+  "enable_multimodal": true,
+  "limit_mm_per_prompt": {
+    "image": 1
+  }
+}

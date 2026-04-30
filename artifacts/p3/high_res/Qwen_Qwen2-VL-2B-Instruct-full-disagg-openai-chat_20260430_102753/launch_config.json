@@ -1,0 +1,26 @@
+{
+  "mode": "full_disagg",
+  "phase": "p3",
+  "comparison_framing": "stage_disaggregated_scaleout",
+  "gpu_budget": 3,
+  "gpu_mapping": {
+    "gpu0": "encoder",
+    "gpu1": "prefill",
+    "gpu2": "decode"
+  },
+  "model": "Qwen/Qwen2-VL-2B-Instruct",
+  "port": 8000,
+  "launcher": "bash scripts/launch_full_disagg_perlmutter.sh",
+  "workload_config": "src/phase3/workloads/high_res.json",
+  "workload_name": "phase3_qwen2vl_2b_high_res_aerial_city",
+  "workload_type": "high_res",
+  "image_source": "custom",
+  "image_path": "src/phase3/workloads/images/high_res_2048.png",
+  "image_width_mean": 2048,
+  "image_height_mean": 2048,
+  "prompt": "Describe what you see in this image. Focus on the main scene, visible objects, spatial layout, and important visual details. Give a clear visual description without making assumptions beyond what is visible.",
+  "enable_multimodal": true,
+  "limit_mm_per_prompt": {
+    "image": 1
+  }
+}

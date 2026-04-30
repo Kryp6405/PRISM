@@ -1,0 +1,17 @@
+{
+  "name": "phase3_qwen2vl_2b_ocr_figure_understanding",
+  "model": "Qwen/Qwen2-VL-2B-Instruct",
+  "workload_type": "ocr",
+  "image_source": "custom",
+  "image_path": "src/phase3/workloads/images/ocr_1528.png",
+  "image_width_mean": 2048,
+  "image_height_mean": 2048,
+  "concurrency_values": [1, 4, 16, 32],
+  "request_count": 100,
+  "output_tokens_mean": 512,
+  "output_tokens_stddev": 0,
+  "endpoint_type": "chat",
+  "use_server_token_count": true,
+  "num_images": 1,
+  "prompt": "Analyze this figure carefully. Identify the main panels, their titles, the axes or row and column labels, and the overall patterns shown in the heatmaps. Extract any clearly readable values or labels, but do not invent values that are too small or unclear. Summarize the main visual takeaway from the figure."
+}

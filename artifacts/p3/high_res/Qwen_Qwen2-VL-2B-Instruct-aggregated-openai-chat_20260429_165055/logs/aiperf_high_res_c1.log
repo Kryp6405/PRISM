@@ -1,0 +1,163 @@
+16:52:16.592 INFO     Starting AIPerf System (cli_runner.py:75)
+16:52:16.788 INFO     Registered Worker Manager (id: 'worker_manager') (system_controller.py:340)
+16:52:16.822 INFO     GPU telemetry export enabled: artifacts/p3/high_res/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_concurrency1_20260429_165055/gpu_telemetry_export.jsonl (jsonl_writer.py:53)
+16:52:16.826 INFO     Record metrics export enabled: artifacts/p3/high_res/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_concurrency1_20260429_165055/profile_export.jsonl (record_export_results_processor.py:53)
+16:52:16.830 INFO     Server Metrics: Discovered 1 endpoints: ['http://localhost:8000/metrics'] (manager.py:70)
+16:52:16.851 INFO     Registered Dataset Manager (id: 'dataset_manager') (system_controller.py:340)
+16:52:16.869 INFO     Registered Timing Manager (id: 'timing_manager') (system_controller.py:340)
+16:52:16.873 INFO     Registered Gpu Telemetry Manager (id: 'gpu_telemetry_manager') (system_controller.py:340)
+16:52:16.874 INFO     Registered Server Metrics Manager (id: 'server_metrics_manager') (system_controller.py:340)
+16:52:16.887 INFO     Registered Record Processor (id: 'record_processor_06df3e55') (system_controller.py:340)
+16:52:16.917 INFO     Registered Records Manager (id: 'records_manager') (system_controller.py:340)
+16:52:16.922 INFO     Registered Worker (id: 'worker_156eb543') (system_controller.py:340)
+16:52:17.278 INFO     AIPerf System is CONFIGURING (system_controller.py:228)
+16:52:17.279 INFO     Configuring all services to start profiling (system_controller.py:241)
+16:52:17.282 INFO     Waiting for dataset to be configured before configuring timing (manager.py:96)
+16:52:17.282 INFO     Tokenization is disabled for this endpoint, skipping tokenizer configuration (inference_result_parser.py:66)
+16:52:17.282 INFO     Configuring tokenizer(s) for dataset manager (dataset_manager.py:105)
+16:52:17.288 INFO     Server Metrics: Capturing baseline metrics... (manager.py:152)
+16:52:17.295 INFO     Server metrics enabled - 1/1 endpoint(s) reachable. (system_controller.py:455)
+16:52:17.326 INFO     GPU telemetry enabled - 1/1 endpoint(s) reachable (system_controller.py:431)
+16:52:23.973 INFO     Tokenizer(s) configured in 6.69 seconds (dataset_manager.py:109)
+16:52:23.973 INFO     Configuring dataset for dataset_manager (dataset_manager.py:111)
+16:52:24.390 INFO     Using preferred sampling strategy for single_turn: sequential (custom.py:165)
+16:55:38.724 INFO     Memory-mapped backing store initialized (streaming to /tmp/aiperf_mmap_7b1c700e-ff38-45d4-92dc-f2e8cd262483/dataset.dat) (memory_map_utils.py:87)
+16:55:40.091 INFO     Data file finalized: 100 conversations, 971.60 MB (memory_map_utils.py:144)
+16:55:40.094 INFO     Index file created: /tmp/aiperf_mmap_7b1c700e-ff38-45d4-92dc-f2e8cd262483/index.dat (memory_map_utils.py:157)
+16:55:40.096 INFO     Backing store finalized: client_type=DatasetClientStoreType.MEMORY_MAP data_file_path=PosixPath('/tmp/aiperf_mmap_7b1c700e-ff38-45d4-92dc-f2e8cd262483/dataset.dat') index_file_path=PosixPath('/tmp/aiperf_mmap_7b1c700e-ff38-45d4-92dc-f2e8cd262483/index.dat') conversation_count=100 total_size_bytes=1018795890 (dataset_manager.py:319)
+16:55:40.098 INFO     sampling strategy: sequential, unique conversations: 100, unique turn count: 100 (dataset_manager.py:325)
+16:55:40.107 INFO     Generating inputs.json file at /global/u2/k/krajeshk/PRISM/artifacts/p3/high_res/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_concurrency1_20260429_165055/inputs.json (dataset_manager.py:211)
+16:55:40.188 INFO     Initialized 1 phase(s): ['Profiling'] (phase_orchestrator.py:154)
+16:55:42.950 INFO     inputs.json file generated in 2.84 seconds (dataset_manager.py:229)
+16:55:43.304 INFO     Dataset client initialized and freed 100 conversations from memory (dataset_manager.py:139)
+16:55:43.305 INFO     Dataset configured in 199.33 seconds (dataset_manager.py:118)
+16:55:43.306 INFO     All services configured in 206.03 seconds (system_controller.py:253)
+16:55:43.307 INFO     AIPerf System is CONFIGURED (system_controller.py:230)
+16:55:43.308 INFO     Server Metrics: Started 1 collector(s) successfully (manager.py:216)
+16:55:43.311 INFO     Creating interval generator: pattern=concurrency_burst, rate=None, smoothness=None (request_rate.py:111)
+16:55:43.312 NOTICE   Phase profiling started | target: 100 requests (runner.py:236)
+16:55:43.313 INFO     Credit phase start: profiling (records_manager.py:369)
+16:55:43.339 INFO     PyNVML initialized with 4 GPU(s) (0 with GPM support) (pynvml_collector.py:188)
+16:55:43.340 INFO     All services started profiling successfully (system_controller.py:275)
+16:55:43.347 INFO     AIPerf System is PROFILING (system_controller.py:232)
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+16:58:45.711 NOTICE   Phase profiling sending complete | sent=100, completed=99, in_flight=1 | sessions: sent=100, completed=99 (runner.py:466)
+16:58:45.713 INFO     Sent 100 requests. Waiting for all to complete... (records_manager.py:377)
+16:58:47.693 NOTICE   Phase profiling complete | completed=100, cancelled=0, errors=0 | sessions: completed=100, cancelled=0 | elapsed=184.38s (runner.py:543)
+16:58:47.694 NOTICE   All credits completed (phase_orchestrator.py:169)
+16:58:47.695 INFO     Received CREDIT_PHASE_COMPLETE message, Phase complete: PhaseRecordsStats(phase=CreditPhase.PROFILING, start_ns=1777506943312123852, sent_end_ns=1777507125711396960, requests_end_ns=1777507127693541273, total_expected_requests=100, expected_duration_sec=None, expected_num_sessions=None, expected_grace_period_sec=None, final_requests_sent=None, final_requests_completed=100, final_requests_cancelled=0, final_request_errors=0, final_sent_sessions=None, final_completed_sessions=None, final_cancelled_sessions=None, timeout_triggered=False, grace_period_timeout_triggered=False, was_cancelled=False, records_end_ns=None, success_records=99, error_records=0) (records_manager.py:393)
+16:58:47.695 INFO     Received credits complete from 'timing_manager' (system_controller.py:375)
+16:58:47.695 NOTICE   All requests have completed, please wait for the results to be processed (currently 99 of 100 records processed)... (records_manager.py:396)
+16:58:47.696 INFO     All credits complete, please wait for the results to be processed... (records_manager.py:411)
+16:58:47.708 INFO     Processed 100 valid requests and 0 errors (100 total). (records_manager.py:244)
+16:58:47.708 INFO     Received all records, processing now... (records_manager.py:248)
+16:58:47.709 INFO     Waiting 2.0s for server metrics flush period... (records_manager.py:298)
+16:58:47.710 INFO     GPU Telemetry: Profiling complete, capturing final metrics... (manager.py:368)
+16:58:47.710 WARNING  GPU Telemetry: Failed to capture final state from pynvml://localhost: 'PyNVMLTelemetryCollector' object has no attribute 'collect_and_process_metrics' (manager.py:375)
+16:58:47.714 INFO     Server Metrics: Profiling complete, capturing final metrics... (manager.py:246)
+16:58:49.695 INFO     Processing records results... (records_manager.py:558)
+16:58:49.701 INFO     Waiting for telemetry results... (system_controller.py:671)
+16:58:49.701 INFO     Waiting for server metrics results... (system_controller.py:673)
+16:58:49.706 INFO     Waiting for server metrics results... (system_controller.py:673)
+16:58:49.716 INFO     _finalize_and_process_results completed (records_manager.py:305)
+16:58:49.717 INFO     All results received, initiating shutdown (system_controller.py:668)
+16:58:50.322 INFO     Exporting all records (exporter_manager.py:60)
+16:58:50.442 INFO     Exporting console data (exporter_manager.py:116)
+
+
+                                            NVIDIA AIPerf | LLM Metrics                                            
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━┓
+┃                               Metric ┃      avg ┃      min ┃      max ┃      p99 ┃      p90 ┃      p50 ┃    std ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━┩
+│                 Request Latency (ms) │ 1,826.91 │ 1,137.54 │ 6,278.63 │ 2,315.64 │ 2,193.99 │ 1,936.09 │ 582.98 │
+│      Output Sequence Length (tokens) │   269.41 │   143.00 │   366.00 │   365.01 │   344.30 │   299.00 │  72.93 │
+│       Input Sequence Length (tokens) │ 5,393.90 │ 5,393.00 │ 5,394.00 │ 5,394.00 │ 5,394.00 │ 5,394.00 │   0.30 │
+│ Output Token Throughput (tokens/sec) │   146.13 │      N/A │      N/A │      N/A │      N/A │      N/A │    N/A │
+│        Image Throughput (images/sec) │     0.59 │     0.16 │     0.88 │     0.88 │     0.87 │     0.52 │   0.16 │
+│             Image Latency (ms/image) │ 1,826.91 │ 1,137.54 │ 6,278.63 │ 2,315.64 │ 2,193.99 │ 1,936.09 │ 582.98 │
+│    Request Throughput (requests/sec) │     0.54 │      N/A │      N/A │      N/A │      N/A │      N/A │    N/A │
+│             Request Count (requests) │   100.00 │      N/A │      N/A │      N/A │      N/A │      N/A │    N/A │
+└──────────────────────────────────────┴──────────┴──────────┴──────────┴──────────┴──────────┴──────────┴────────┘
+
+
+                         NVIDIA AIPerf | GPU Telemetry Summary                          
+                              1/1 DCGM endpoints reachable                              
+                                     • localhost ✔                                      
+                                                                                        
+                       localhost | GPU 0 | NVIDIA A100-SXM4-40GB                        
+┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━┓
+┃                  Metric ┃    avg ┃   min ┃    max ┃    p99 ┃    p90 ┃    p50 ┃   std ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━┩
+│     GPU Power Usage (W) │ 190.69 │ 68.29 │ 398.67 │ 385.35 │ 207.95 │ 205.40 │ 58.24 │
+│ Energy Consumption (MJ) │   0.04 │   N/A │    N/A │    N/A │    N/A │    N/A │   N/A │
+│     GPU Utilization (%) │  80.20 │  0.00 │ 100.00 │ 100.00 │ 100.00 │ 100.00 │ 34.65 │
+│    GPU Memory Used (GB) │  35.96 │ 35.31 │  35.97 │  35.97 │  35.97 │  35.97 │  0.10 │
+│    GPU Temperature (°C) │  38.08 │ 30.00 │  44.00 │  43.00 │  39.00 │  38.00 │  1.81 │
+│  Memory Utilization (%) │  40.48 │  0.00 │  52.00 │  52.00 │  52.00 │  52.00 │ 18.70 │
+│      SM Utilization (%) │  75.57 │  0.00 │  84.00 │  83.00 │  82.00 │  80.00 │ 16.77 │
+│ Decoder Utilization (%) │   0.00 │  0.00 │   0.00 │   0.00 │   0.00 │   0.00 │  0.00 │
+│ Encoder Utilization (%) │   0.00 │  0.00 │   0.00 │   0.00 │   0.00 │   0.00 │  0.00 │
+│    JPEG Utilization (%) │   0.00 │  0.00 │   0.00 │   0.00 │   0.00 │   0.00 │  0.00 │
+│    Power Violation (us) │   0.00 │   N/A │    N/A │    N/A │    N/A │    N/A │   N/A │
+└─────────────────────────┴────────┴───────┴────────┴────────┴────────┴────────┴───────┘
+
+                    localhost | GPU 1 | NVIDIA A100-SXM4-40GB                     
+┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━┓
+┃                  Metric ┃   avg ┃   min ┃   max ┃   p99 ┃   p90 ┃   p50 ┃  std ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━┩
+│     GPU Power Usage (W) │ 50.77 │ 50.52 │ 68.37 │ 50.76 │ 50.70 │ 50.64 │ 1.37 │
+│ Energy Consumption (MJ) │  0.01 │   N/A │   N/A │   N/A │   N/A │   N/A │  N/A │
+│     GPU Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    GPU Memory Used (GB) │  0.54 │  0.54 │  0.54 │  0.54 │  0.54 │  0.54 │ 0.00 │
+│    GPU Temperature (°C) │ 28.02 │ 28.00 │ 29.00 │ 29.00 │ 28.00 │ 28.00 │ 0.13 │
+│  Memory Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│ Decoder Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│ Encoder Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    JPEG Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    Power Violation (us) │  0.00 │   N/A │   N/A │   N/A │   N/A │   N/A │  N/A │
+└─────────────────────────┴───────┴───────┴───────┴───────┴───────┴───────┴──────┘
+
+                     localhost | GPU 2 | NVIDIA A100-SXM4-40GB                     
+┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━┓
+┃                  Metric ┃   avg ┃   min ┃    max ┃   p99 ┃   p90 ┃   p50 ┃  std ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━┩
+│     GPU Power Usage (W) │ 53.39 │ 52.74 │ 105.28 │ 55.60 │ 52.92 │ 52.86 │ 5.22 │
+│ Energy Consumption (MJ) │  0.01 │   N/A │    N/A │   N/A │   N/A │   N/A │  N/A │
+│     GPU Utilization (%) │  0.00 │  0.00 │   0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    GPU Memory Used (GB) │  0.54 │  0.54 │   0.54 │  0.54 │  0.54 │  0.54 │ 0.00 │
+│    GPU Temperature (°C) │ 29.03 │ 29.00 │  32.00 │ 30.03 │ 29.00 │ 29.00 │ 0.27 │
+│  Memory Utilization (%) │  0.00 │  0.00 │   0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│ Decoder Utilization (%) │  0.00 │  0.00 │   0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│ Encoder Utilization (%) │  0.00 │  0.00 │   0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    JPEG Utilization (%) │  0.00 │  0.00 │   0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    Power Violation (us) │  0.00 │   N/A │    N/A │   N/A │   N/A │   N/A │  N/A │
+└─────────────────────────┴───────┴───────┴────────┴───────┴───────┴───────┴──────┘
+
+                    localhost | GPU 3 | NVIDIA A100-SXM4-40GB                     
+┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━┓
+┃                  Metric ┃   avg ┃   min ┃   max ┃   p99 ┃   p90 ┃   p50 ┃  std ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━┩
+│     GPU Power Usage (W) │ 53.41 │ 52.92 │ 74.14 │ 58.39 │ 53.27 │ 53.21 │ 2.04 │
+│ Energy Consumption (MJ) │  0.01 │   N/A │   N/A │   N/A │   N/A │   N/A │  N/A │
+│     GPU Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    GPU Memory Used (GB) │  0.54 │  0.54 │  0.54 │  0.54 │  0.54 │  0.54 │ 0.00 │
+│    GPU Temperature (°C) │ 28.01 │ 28.00 │ 29.00 │ 29.00 │ 28.00 │ 28.00 │ 0.11 │
+│  Memory Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│ Decoder Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│ Encoder Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    JPEG Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    Power Violation (us) │  0.00 │   N/A │   N/A │   N/A │   N/A │   N/A │  N/A │
+└─────────────────────────┴───────┴───────┴───────┴───────┴───────┴───────┴──────┘
+
+CLI Command: aiperf profile --model 'Qwen/Qwen2-VL-2B-Instruct' --url 'http://localhost:8000' --endpoint-type 'chat' --input-file 
+'artifacts/p3/high_res/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_concurrency1_20260429_165055/inputs.jsonl' --custom-dataset-type 'single_turn' --concurrency 1 --request-count 100 
+--use-server-token-count --gpu-telemetry 'pynvml' --output-artifact-dir 'artifacts/p3/high_res/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_concurrency1_20260429_165055'
+Benchmark Duration: 184.36 sec
+CSV Export: /global/u2/k/krajeshk/PRISM/artifacts/p3/high_res/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_concurrency1_20260429_165055/profile_export_aiperf.csv
+JSON Export: /global/u2/k/krajeshk/PRISM/artifacts/p3/high_res/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_concurrency1_20260429_165055/profile_export_aiperf.json
+Server Metrics CSV Export: /global/u2/k/krajeshk/PRISM/artifacts/p3/high_res/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_concurrency1_20260429_165055/server_metrics_export.csv
+Server Metrics JSON Export: /global/u2/k/krajeshk/PRISM/artifacts/p3/high_res/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_concurrency1_20260429_165055/server_metrics_export.json
+Log File: /global/u2/k/krajeshk/PRISM/artifacts/p3/high_res/Qwen_Qwen2-VL-2B-Instruct-aggregated-openai-chat_concurrency1_20260429_165055/logs/aiperf.log
+

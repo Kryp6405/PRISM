@@ -1,0 +1,25 @@
+{
+  "mode": "encoder_only",
+  "phase": "p3",
+  "comparison_framing": "stage_disaggregated_scaleout",
+  "gpu_budget": 2,
+  "gpu_mapping": {
+    "gpu0": "encoder",
+    "gpu1": "prefill_decode"
+  },
+  "model": "Qwen/Qwen2-VL-2B-Instruct",
+  "port": 8000,
+  "launcher": "bash scripts/launch_encoder_partial_perlmutter.sh",
+  "workload_config": "src/phase3/workloads/simple_baseline.json",
+  "workload_name": "phase3_qwen2vl_2b_simple_baseline",
+  "workload_type": "simple_baseline",
+  "image_source": "synthetic",
+  "image_path": "",
+  "image_width_mean": 512,
+  "image_height_mean": 512,
+  "prompt": "Describe what you see in this image.",
+  "enable_multimodal": true,
+  "limit_mm_per_prompt": {
+    "image": 1
+  }
+}

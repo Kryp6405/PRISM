@@ -1,0 +1,71 @@
+=== GPU audit: after_ready ===
+timestamp=Thu Apr 30 10:23:30 AM PDT 2026
+hostname=nid001165
+USER=krajeshk
+OUTER_CUDA_VISIBLE_DEVICES=0,1,2,3
+GPU_E=0
+GPU_P=1
+GPU_D=2
+
+=== nvidia-smi full table ===
+Thu Apr 30 10:23:30 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:03:00.0 Off |                    0 |
+| N/A   34C    P0             71W /  400W |    5737MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA A100-SXM4-40GB          On  |   00000000:41:00.0 Off |                    0 |
+| N/A   31C    P0             71W /  400W |   32749MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   2  NVIDIA A100-SXM4-40GB          On  |   00000000:82:00.0 Off |                    0 |
+| N/A   31C    P0             72W /  400W |   32749MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   3  NVIDIA A100-SXM4-40GB          On  |   00000000:C1:00.0 Off |                    0 |
+| N/A   28C    P0             51W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    0   N/A  N/A         2255778      C   VLLM::EngineCore                       5726MiB |
+|    1   N/A  N/A         2255869      C   VLLM::EngineCore                      32738MiB |
+|    2   N/A  N/A         2255862      C   VLLM::EngineCore                      32738MiB |
++-----------------------------------------------------------------------------------------+
+
+=== GPU index / UUID map ===
+Field "bus_id" is not a valid field to query.
+
+
+=== Compute apps by GPU UUID/PID ===
+gpu_uuid, pid, process_name, used_gpu_memory [MiB]
+GPU-10f83a49-51eb-ea74-5c3a-70125c681979, 2255778, VLLM::EngineCore, 5726 MiB
+GPU-e2ac2ee6-977e-a132-e5b8-99a04d68e318, 2255869, VLLM::EngineCore, 32738 MiB
+GPU-ee28f968-30e0-46bf-efde-611c1f09d0ef, 2255862, VLLM::EngineCore, 32738 MiB
+
+=== User vLLM/Dynamo/disagg processes ===
+krajeshk 2248608       1  0 10:13 pts/0    00:00:03 python3 disagg_epd_proxy.py --host 0.0.0.0 --port 8000 --encode-servers-urls http://localhost:19534 --prefill-servers-urls http://localhost:19535 --decode-servers-urls http://localhost:19536
+krajeshk 2254898 2247111  0 10:22 pts/0    00:00:00 bash scripts/phase3/run_phase3_full_disaggregated.sh
+krajeshk 2254947 2254898  0 10:22 pts/0    00:00:00 bash scripts/launch_full_disagg_perlmutter.sh
+krajeshk 2254992 2254947  0 10:22 pts/0    00:00:00 bash scripts/launch_full_disagg_perlmutter.sh
+krajeshk 2254993 2254947  0 10:22 pts/0    00:00:00 bash scripts/launch_full_disagg_perlmutter.sh
+krajeshk 2254994 2254947  0 10:22 pts/0    00:00:00 bash scripts/launch_full_disagg_perlmutter.sh
+krajeshk 2255000 2254992 33 10:22 pts/0    00:00:26 /pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin/python3 /pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin/vllm serve Qwen/Qwen2-VL-2B-Instruct --port 19534 --enforce-eager --enable-request-id-headers --no-enable-prefix-caching --max-num-batched-tokens 114688 --max-num-seqs 128 --ec-transfer-config {       "ec_connector":"ECExampleConnector",       "ec_role":"ec_producer",       "ec_connector_extra_config":{         "shared_storage_path":"/pscratch/sd/k/krajeshk/prism_ec_cache"       }     }
+krajeshk 2255007 2254993 32 10:22 pts/0    00:00:25 /pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin/python3 /pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin/vllm serve Qwen/Qwen2-VL-2B-Instruct --port 19535 --enable-request-id-headers --max-num-seqs 128 --ec-transfer-config {       "ec_connector":"ECExampleConnector",       "ec_role":"ec_consumer",       "ec_connector_extra_config":{         "shared_storage_path":"/pscratch/sd/k/krajeshk/prism_ec_cache"       }     } --kv-transfer-config {       "kv_connector":"NixlConnector",       "kv_role":"kv_producer"     }
+krajeshk 2255008 2254994 36 10:22 pts/0    00:00:29 /pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin/python3 /pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin/vllm serve Qwen/Qwen2-VL-2B-Instruct --port 19536 --enable-request-id-headers --max-num-seqs 128 --kv-transfer-config {       "kv_connector":"NixlConnector",       "kv_role":"kv_consumer"     }
+krajeshk 2255777 2255000  0 10:22 pts/0    00:00:00 /pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin/python3 -c from multiprocessing.resource_tracker import main;main(55)
+krajeshk 2255778 2255000 69 10:22 pts/0    00:00:42 VLLM::EngineCore
+krajeshk 2255861 2255008  0 10:22 pts/0    00:00:00 /pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin/python3 -c from multiprocessing.resource_tracker import main;main(55)
+krajeshk 2255862 2255008 99 10:22 pts/0    00:01:30 VLLM::EngineCore
+krajeshk 2255868 2255007  0 10:22 pts/0    00:00:00 /pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin/python3 -c from multiprocessing.resource_tracker import main;main(55)
+krajeshk 2255869 2255007 99 10:22 pts/0    00:01:22 VLLM::EngineCore

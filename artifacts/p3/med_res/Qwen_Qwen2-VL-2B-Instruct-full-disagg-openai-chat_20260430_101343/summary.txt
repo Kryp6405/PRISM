@@ -1,0 +1,37 @@
+mode=full_disagg
+phase=p3
+comparison_framing=stage_disaggregated_scaleout
+gpu_budget=3
+gpu_mapping=gpu0:encoder,gpu1:prefill,gpu2:decode
+model=Qwen/Qwen2-VL-2B-Instruct
+workload_config=src/phase3/workloads/med_res.json
+workload_name=phase3_qwen2vl_2b_med_res_city_street
+workload_type=med_res
+image_source=custom
+image_path=src/phase3/workloads/images/med_res_1024.png
+image_width_mean=1024
+image_height_mean=1024
+prompt=Describe what you see in this image. Focus on the main scene, visible objects, spatial layout, and important visual details. Give a clear visual description without making assumptions beyond what is visible.
+num_images=1
+run_prefix=Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat
+timestamp=20260430_101343
+launcher_pid=1953261
+port=8000
+request_count=100
+concurrency_values=1 4 16 32
+output_tokens_mean=256
+output_tokens_stddev=0
+gpu_telemetry_mode=pynvml
+enable_streaming=false
+endpoint_type=chat
+use_server_token_count=true
+require_endpoint_ready=true
+run_dir=artifacts/p3/med_res/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_20260430_101343
+log_dir=artifacts/p3/med_res/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_20260430_101343/logs
+summary_dir=artifacts/p3/med_res/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_20260430_101343/summary
+
+aiperf_artifact_dirs:
+  - artifacts/p3/med_res/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_concurrency1_20260430_101343
+  - artifacts/p3/med_res/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_concurrency4_20260430_101343
+  - artifacts/p3/med_res/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_concurrency16_20260430_101343
+  - artifacts/p3/med_res/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_concurrency32_20260430_101343

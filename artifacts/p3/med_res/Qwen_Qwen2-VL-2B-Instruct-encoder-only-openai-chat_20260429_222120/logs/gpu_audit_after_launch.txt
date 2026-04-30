@@ -1,0 +1,58 @@
+=== GPU audit: after_launch ===
+timestamp=Wed Apr 29 10:21:34 PM PDT 2026
+hostname=nid001100
+USER=krajeshk
+OUTER_CUDA_VISIBLE_DEVICES=0,1,2,3
+
+=== Intended script GPU mapping ===
+GPU_E=0
+GPU_PD=1
+GPU_P=unset
+GPU_D=unset
+
+=== nvidia-smi full table ===
+Wed Apr 29 22:21:34 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:03:00.0 Off |                    0 |
+| N/A   31C    P0             55W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA A100-SXM4-40GB          On  |   00000000:41:00.0 Off |                    0 |
+| N/A   29C    P0             56W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   2  NVIDIA A100-SXM4-40GB          On  |   00000000:82:00.0 Off |                    0 |
+| N/A   30C    P0             54W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   3  NVIDIA A100-SXM4-40GB          On  |   00000000:C1:00.0 Off |                    0 |
+| N/A   30C    P0             55W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
+=== GPU index / UUID map ===
+Field "bus_id" is not a valid field to query.
+
+
+=== Compute apps by GPU UUID/PID ===
+gpu_uuid, pid, process_name, used_gpu_memory [MiB]
+
+=== User vLLM/Dynamo/disagg processes ===
+krajeshk 2206384       1  0 22:02 pts/0    00:00:09 python3 disagg_epd_proxy.py --host 0.0.0.0 --port 8000 --encode-servers-urls http://localhost:19534 --prefill-servers-urls disable --decode-servers-urls http://localhost:19535
+krajeshk 2213730 2202996  0 22:21 pts/0    00:00:00 bash scripts/phase3/run_phase3_encoder_disaggregated.sh
+krajeshk 2213822 2213817 99 22:21 pts/0    00:00:25 /pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin/python3 /pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin/vllm serve Qwen/Qwen2-VL-2B-Instruct --port 19535 --enable-request-id-headers --max-num-seqs 128 --ec-transfer-config {       "ec_connector":"ECExampleConnector",       "ec_role":"ec_consumer",       "ec_connector_extra_config":{         "shared_storage_path":"/pscratch/sd/k/krajeshk/prism_ec_cache"       }     }
+krajeshk 2213826 2213816 99 22:21 pts/0    00:00:21 /pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin/python3 /pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin/vllm serve Qwen/Qwen2-VL-2B-Instruct --port 19534 --enforce-eager --enable-request-id-headers --no-enable-prefix-caching --max-num-batched-tokens 114688 --max-num-seqs 128 --ec-transfer-config {       "ec_connector":"ECExampleConnector",       "ec_role":"ec_producer",       "ec_connector_extra_config":{         "shared_storage_path":"/pscratch/sd/k/krajeshk/prism_ec_cache"       }     }

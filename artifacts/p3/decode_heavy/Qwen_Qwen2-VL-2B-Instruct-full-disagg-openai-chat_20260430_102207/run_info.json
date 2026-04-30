@@ -1,0 +1,52 @@
+{
+  "mode": "full_disagg",
+  "phase": "p3",
+  "comparison_framing": "stage_disaggregated_scaleout",
+  "gpu_budget": 3,
+  "gpu_mapping": {
+    "gpu0": "encoder",
+    "gpu1": "prefill",
+    "gpu2": "decode"
+  },
+  "model": "Qwen/Qwen2-VL-2B-Instruct",
+  "workload_config": "src/phase3/workloads/decode_heavy.json",
+  "workload_name": "phase3_qwen2vl_2b_decode_heavy_city_analysis",
+  "workload_type": "decode_heavy",
+  "image_source": "custom",
+  "image_path": "src/phase3/workloads/images/high_res_2048.png",
+  "image_width_mean": 1024,
+  "image_height_mean": 1024,
+  "prompt": "Provide a detailed analysis of this image. First summarize the overall scene, then describe the major regions of the image from foreground to background, identify notable structures and spatial relationships, and conclude with a thorough interpretation of the visible environment. Finally, list possible location(s) around the world this image reprsents with evidence driven reasoning. Be detailed and comprehensive.",
+  "num_images": 1,
+  "custom_dataset_type": "single_turn",
+  "input_file_mode": "custom_jsonl",
+  "run_prefix": "Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat",
+  "timestamp": "20260430_102207",
+  "run_dir": "artifacts/p3/decode_heavy/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_20260430_102207",
+  "log_dir": "artifacts/p3/decode_heavy/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_20260430_102207/logs",
+  "port": 8000,
+  "request_count": 100,
+  "concurrency_values": [
+    1,
+    4,
+    16,
+    32
+  ],
+  "output_tokens_mean": 1024,
+  "output_tokens_stddev": 0.0,
+  "gpu_telemetry_mode": "pynvml",
+  "enable_streaming": false,
+  "endpoint_type": "chat",
+  "use_server_token_count": true,
+  "launcher": "bash scripts/launch_full_disagg_perlmutter.sh",
+  "encoder_gpu": "0",
+  "prefill_gpu": "1",
+  "decode_gpu": "2",
+  "require_endpoint_ready": "true",
+  "aiperf_artifact_dirs": [
+    "artifacts/p3/decode_heavy/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_concurrency1_20260430_102207",
+    "artifacts/p3/decode_heavy/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_concurrency4_20260430_102207",
+    "artifacts/p3/decode_heavy/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_concurrency16_20260430_102207",
+    "artifacts/p3/decode_heavy/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_concurrency32_20260430_102207"
+  ]
+}

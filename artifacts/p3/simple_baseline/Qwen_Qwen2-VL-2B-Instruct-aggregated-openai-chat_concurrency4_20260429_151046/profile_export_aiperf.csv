@@ -1,0 +1,86 @@
+Metric,avg,min,max,p1,p5,p10,p25,p50,p75,p90,p95,p99,std
+HTTP Blocked (ms),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+HTTP Chunks Received,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,0.00
+HTTP Chunks Sent,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,0.00
+HTTP Connecting (ms),0.05,0.00,1.25,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,1.13,0.22
+HTTP Connection Overhead (ms),0.07,0.00,1.81,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,1.62,0.32
+HTTP Connection Reused (ratio),0.96,0.00,1.00,0.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,0.20
+HTTP Data Received (KB),0.85,0.61,1.63,0.64,0.67,0.70,0.75,0.83,0.90,0.98,1.03,1.58,0.16
+HTTP Data Sent (KB),357.23,283.00,502.45,283.04,283.06,283.09,283.25,318.47,374.77,502.25,502.34,502.41,85.59
+HTTP DNS Lookup (ms),0.02,0.00,0.56,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.50,0.10
+HTTP Duration (excl. conn) (ms),549.00,278.38,1403.65,310.42,353.53,373.52,441.91,516.82,606.80,692.23,739.54,1382.74,197.95
+HTTP Receiving (ms),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+HTTP Sending (ms),0.18,0.10,1.68,0.10,0.10,0.10,0.11,0.12,0.13,0.14,0.18,1.58,0.28
+HTTP Total Time (ms),549.05,278.37,1403.64,310.41,353.52,373.51,441.90,516.81,606.79,692.22,739.53,1382.73,197.98
+HTTP Waiting (TTFB) (ms),548.81,278.25,1403.53,310.31,353.40,373.39,441.77,516.70,606.66,692.11,739.42,1382.59,197.92
+Image Latency (ms/image),549.04,278.44,1403.69,310.45,353.57,373.57,441.95,516.86,606.84,692.27,739.58,1382.78,197.95
+Image Throughput (images/sec),1.98,0.71,3.59,0.72,1.35,1.44,1.65,1.93,2.26,2.68,2.83,3.22,0.52
+Input Sequence Length (tokens),895.00,895.00,895.00,895.00,895.00,895.00,895.00,895.00,895.00,895.00,895.00,895.00,0.00
+Number of Images (images),1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,0.00
+OSL Mismatch Diff % (%),-62.75,-82.03,0.00,-79.32,-76.58,-75.78,-71.09,-64.45,-59.18,-53.75,-49.18,0.00,14.65
+Output Sequence Length (tokens),95.36,46.00,256.00,52.93,59.95,62.00,74.00,91.00,104.50,118.40,130.10,256.00,37.50
+Output Token Count (tokens),95.36,46.00,256.00,52.93,59.95,62.00,74.00,91.00,104.50,118.40,130.10,256.00,37.50
+Request Latency (ms),549.04,278.44,1403.69,310.45,353.57,373.57,441.95,516.86,606.84,692.27,739.58,1382.78,197.95
+Usage Completion Tokens (tokens),95.36,46.00,256.00,52.93,59.95,62.00,74.00,91.00,104.50,118.40,130.10,256.00,37.50
+Usage Prompt Tokens (tokens),895.00,895.00,895.00,895.00,895.00,895.00,895.00,895.00,895.00,895.00,895.00,895.00,0.00
+Usage Total Tokens (tokens),990.36,941.00,1151.00,947.93,954.95,957.00,969.00,986.00,999.50,1013.40,1025.10,1151.00,37.50
+
+Metric,Value
+Benchmark Duration (sec),14.01
+Maximum Response Timestamp (ns),1777500864144017152.00
+Minimum Request Timestamp (ns),1777500850137950208.00
+OSL Mismatch Count,97.00
+Output Token Throughput (tokens/sec),680.85
+Request Count,100.00
+Request Throughput (requests/sec),7.14
+Total Input Sequence Length (tokens),89500.00
+Total Output Sequence Length (tokens),9536.00
+Total Output Tokens (tokens),9536.00
+Total Token Throughput (tokens/sec),7070.94
+Total Usage Completion Tokens (tokens),9536.00
+Total Usage Prompt Tokens (tokens),89500.00
+Total Usage Total Tokens (tokens),99036.00
+
+
+Endpoint,GPU_Index,GPU_Name,GPU_UUID,Metric,avg,min,max,p1,p5,p10,p25,p50,p75,p90,p95,p99,std,Hostname
+localhost,0,NVIDIA A100-SXM4-40GB,GPU-5fbf3b8d-0687-c153-b9cb-85ed86cc84f4,GPU Power Usage (W),213.19,68.77,310.86,115.93,197.52,198.39,200.07,200.95,219.90,261.80,296.75,309.72,39.62,localhost
+localhost,0,NVIDIA A100-SXM4-40GB,GPU-5fbf3b8d-0687-c153-b9cb-85ed86cc84f4,Energy Consumption (MJ),0.00,,,,,,,,,,,,,localhost
+localhost,0,NVIDIA A100-SXM4-40GB,GPU-5fbf3b8d-0687-c153-b9cb-85ed86cc84f4,GPU Utilization (%),96.84,0.00,100.00,29.60,97.00,100.00,100.00,100.00,100.00,100.00,100.00,100.00,16.46,localhost
+localhost,0,NVIDIA A100-SXM4-40GB,GPU-5fbf3b8d-0687-c153-b9cb-85ed86cc84f4,GPU Memory Used (GB),35.31,35.31,35.31,35.31,35.31,35.31,35.31,35.31,35.31,35.31,35.31,35.31,0.00,localhost
+localhost,0,NVIDIA A100-SXM4-40GB,GPU-5fbf3b8d-0687-c153-b9cb-85ed86cc84f4,GPU Temperature (°C),38.71,31.00,42.00,32.11,36.55,37.00,38.00,39.00,40.00,40.00,40.15,41.63,1.84,localhost
+localhost,0,NVIDIA A100-SXM4-40GB,GPU-5fbf3b8d-0687-c153-b9cb-85ed86cc84f4,Memory Utilization (%),48.92,0.00,54.00,11.47,43.75,48.00,48.25,50.00,52.00,54.00,54.00,54.00,9.01,localhost
+localhost,0,NVIDIA A100-SXM4-40GB,GPU-5fbf3b8d-0687-c153-b9cb-85ed86cc84f4,SM Utilization (%),46.00,0.00,93.00,0.37,2.70,8.10,22.50,46.00,69.50,83.90,88.30,91.89,28.24,localhost
+localhost,0,NVIDIA A100-SXM4-40GB,GPU-5fbf3b8d-0687-c153-b9cb-85ed86cc84f4,Decoder Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,0,NVIDIA A100-SXM4-40GB,GPU-5fbf3b8d-0687-c153-b9cb-85ed86cc84f4,Encoder Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,0,NVIDIA A100-SXM4-40GB,GPU-5fbf3b8d-0687-c153-b9cb-85ed86cc84f4,JPEG Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,0,NVIDIA A100-SXM4-40GB,GPU-5fbf3b8d-0687-c153-b9cb-85ed86cc84f4,Power Violation (us),0.00,,,,,,,,,,,,,localhost
+localhost,1,NVIDIA A100-SXM4-40GB,GPU-47eca453-89c0-b408-c63d-9dbb6302145a,GPU Power Usage (W),50.64,50.52,50.88,50.54,50.58,50.58,50.58,50.64,50.64,50.66,50.83,50.88,0.07,localhost
+localhost,1,NVIDIA A100-SXM4-40GB,GPU-47eca453-89c0-b408-c63d-9dbb6302145a,Energy Consumption (MJ),0.00,,,,,,,,,,,,,localhost
+localhost,1,NVIDIA A100-SXM4-40GB,GPU-47eca453-89c0-b408-c63d-9dbb6302145a,GPU Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,1,NVIDIA A100-SXM4-40GB,GPU-47eca453-89c0-b408-c63d-9dbb6302145a,GPU Memory Used (GB),0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.00,localhost
+localhost,1,NVIDIA A100-SXM4-40GB,GPU-47eca453-89c0-b408-c63d-9dbb6302145a,GPU Temperature (°C),29.00,29.00,29.00,29.00,29.00,29.00,29.00,29.00,29.00,29.00,29.00,29.00,0.00,localhost
+localhost,1,NVIDIA A100-SXM4-40GB,GPU-47eca453-89c0-b408-c63d-9dbb6302145a,Memory Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,1,NVIDIA A100-SXM4-40GB,GPU-47eca453-89c0-b408-c63d-9dbb6302145a,Decoder Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,1,NVIDIA A100-SXM4-40GB,GPU-47eca453-89c0-b408-c63d-9dbb6302145a,Encoder Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,1,NVIDIA A100-SXM4-40GB,GPU-47eca453-89c0-b408-c63d-9dbb6302145a,JPEG Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,1,NVIDIA A100-SXM4-40GB,GPU-47eca453-89c0-b408-c63d-9dbb6302145a,Power Violation (us),0.00,,,,,,,,,,,,,localhost
+localhost,2,NVIDIA A100-SXM4-40GB,GPU-9aec5639-8d15-d360-c547-344cc572d0d6,GPU Power Usage (W),52.90,52.80,53.08,52.80,52.80,52.80,52.80,52.80,53.08,53.08,53.08,53.08,0.13,localhost
+localhost,2,NVIDIA A100-SXM4-40GB,GPU-9aec5639-8d15-d360-c547-344cc572d0d6,Energy Consumption (MJ),0.00,,,,,,,,,,,,,localhost
+localhost,2,NVIDIA A100-SXM4-40GB,GPU-9aec5639-8d15-d360-c547-344cc572d0d6,GPU Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,2,NVIDIA A100-SXM4-40GB,GPU-9aec5639-8d15-d360-c547-344cc572d0d6,GPU Memory Used (GB),0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.00,localhost
+localhost,2,NVIDIA A100-SXM4-40GB,GPU-9aec5639-8d15-d360-c547-344cc572d0d6,GPU Temperature (°C),29.00,29.00,29.00,29.00,29.00,29.00,29.00,29.00,29.00,29.00,29.00,29.00,0.00,localhost
+localhost,2,NVIDIA A100-SXM4-40GB,GPU-9aec5639-8d15-d360-c547-344cc572d0d6,Memory Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,2,NVIDIA A100-SXM4-40GB,GPU-9aec5639-8d15-d360-c547-344cc572d0d6,Decoder Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,2,NVIDIA A100-SXM4-40GB,GPU-9aec5639-8d15-d360-c547-344cc572d0d6,Encoder Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,2,NVIDIA A100-SXM4-40GB,GPU-9aec5639-8d15-d360-c547-344cc572d0d6,JPEG Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,2,NVIDIA A100-SXM4-40GB,GPU-9aec5639-8d15-d360-c547-344cc572d0d6,Power Violation (us),0.00,,,,,,,,,,,,,localhost
+localhost,3,NVIDIA A100-SXM4-40GB,GPU-797588e9-a7bd-601f-932c-8d2560ed4c9e,GPU Power Usage (W),53.16,53.08,53.38,53.08,53.08,53.15,53.15,53.15,53.15,53.21,53.23,53.38,0.06,localhost
+localhost,3,NVIDIA A100-SXM4-40GB,GPU-797588e9-a7bd-601f-932c-8d2560ed4c9e,Energy Consumption (MJ),0.00,,,,,,,,,,,,,localhost
+localhost,3,NVIDIA A100-SXM4-40GB,GPU-797588e9-a7bd-601f-932c-8d2560ed4c9e,GPU Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,3,NVIDIA A100-SXM4-40GB,GPU-797588e9-a7bd-601f-932c-8d2560ed4c9e,GPU Memory Used (GB),0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.00,localhost
+localhost,3,NVIDIA A100-SXM4-40GB,GPU-797588e9-a7bd-601f-932c-8d2560ed4c9e,GPU Temperature (°C),28.00,28.00,28.00,28.00,28.00,28.00,28.00,28.00,28.00,28.00,28.00,28.00,0.00,localhost
+localhost,3,NVIDIA A100-SXM4-40GB,GPU-797588e9-a7bd-601f-932c-8d2560ed4c9e,Memory Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,3,NVIDIA A100-SXM4-40GB,GPU-797588e9-a7bd-601f-932c-8d2560ed4c9e,Decoder Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,3,NVIDIA A100-SXM4-40GB,GPU-797588e9-a7bd-601f-932c-8d2560ed4c9e,Encoder Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,3,NVIDIA A100-SXM4-40GB,GPU-797588e9-a7bd-601f-932c-8d2560ed4c9e,JPEG Utilization (%),0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,localhost
+localhost,3,NVIDIA A100-SXM4-40GB,GPU-797588e9-a7bd-601f-932c-8d2560ed4c9e,Power Violation (us),0.00,,,,,,,,,,,,,localhost

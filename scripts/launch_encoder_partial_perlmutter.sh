@@ -95,7 +95,6 @@ capture_gpu_audit "before_launch"
 
   echo "Starting encoder worker on physical GPU $GPU_E"
   CUDA_VISIBLE_DEVICES="$GPU_E" vllm serve "$MODEL" \
-    --gpu-memory-utilization 0.01 \
     --port "$ENCODE_PORT" \
     --enforce-eager \
     --enable-request-id-headers \
@@ -119,9 +118,7 @@ ENCODER_PID=$!
 
   echo "Starting P/D worker on physical GPU $GPU_PD"
   CUDA_VISIBLE_DEVICES="$GPU_PD" vllm serve "$MODEL" \
-    --gpu-memory-utilization 0.7 \
     --port "$PD_PORT" \
-    --enforce-eager \
     --enable-request-id-headers \
     --max-num-seqs 128 \
     --ec-transfer-config "{

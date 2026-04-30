@@ -1,0 +1,24 @@
+{
+  "mode": "aggregated",
+  "phase": "p3",
+  "comparison_framing": "stage_disaggregated_scaleout",
+  "gpu_budget": 1,
+  "gpu_mapping": {
+    "gpu0": "aggregated_e_p_d"
+  },
+  "model": "Qwen/Qwen2-VL-2B-Instruct",
+  "port": 8000,
+  "discovery_backend": "file",
+  "workload_config": "src/phase3/workloads/med_res.json",
+  "workload_name": "phase3_qwen2vl_2b_med_res_city_street",
+  "workload_type": "med_res",
+  "image_source": "custom",
+  "image_path": "src/phase3/workloads/images/med_res_1024.png",
+  "image_width_mean": 1024,
+  "image_height_mean": 1024,
+  "prompt": "Describe what you see in this image. Focus on the main scene, visible objects, spatial layout, and important visual details. Give a clear visual description without making assumptions beyond what is visible.",
+  "enable_multimodal": true,
+  "limit_mm_per_prompt": {
+    "image": 1
+  }
+}

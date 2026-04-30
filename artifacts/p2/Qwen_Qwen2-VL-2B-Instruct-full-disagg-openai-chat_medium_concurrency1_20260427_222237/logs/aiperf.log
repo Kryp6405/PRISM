@@ -1,0 +1,160 @@
+2026-04-27 22:27:13.105 - aiperf.cli_runner - INFO - Starting AIPerf System
+2026-04-27 22:27:13.676 - aiperf.cli_runner - INFO - ✓ Tokenizer Qwen/Qwen2-VL-2B-Instruct detected
+2026-04-27 22:27:13.680 - aiperf.cli_runner - INFO - 1 tokenizer validated • 0.6s
+2026-04-27 22:27:13.748 - aiperf - WARNING - Using --osl without ignore_eos or min_tokens in --extra-inputs. Output sequence length cannot be guaranteed unless the server honors these parameters. Consider: --extra-inputs ignore_eos:true (generate until max_tokens) or --extra-inputs min_tokens:<value> (set minimum output length).
+2026-04-27 22:27:13.925 - system_controller - INFO - Registered Worker Manager (id: 'worker_manager')
+2026-04-27 22:27:13.964 - GPUTelemetryJSONLWriter_9ab0f83f - INFO - GPU telemetry export enabled: artifacts/p2/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_medium_concurrency1_20260427_222237/gpu_telemetry_export.jsonl
+2026-04-27 22:27:13.967 - system_controller - INFO - Registered Dataset Manager (id: 'dataset_manager')
+2026-04-27 22:27:13.968 - RecordExportResultsProcessor_31abb898 - INFO - Record metrics export enabled: artifacts/p2/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_medium_concurrency1_20260427_222237/profile_export.jsonl
+2026-04-27 22:27:13.985 - server_metrics_manager - INFO - Server Metrics: Discovered 1 endpoints: ['http://localhost:8000/metrics']
+2026-04-27 22:27:14.005 - system_controller - INFO - Registered Timing Manager (id: 'timing_manager')
+2026-04-27 22:27:14.025 - system_controller - INFO - Registered Record Processor (id: 'record_processor_193664f7')
+2026-04-27 22:27:14.036 - system_controller - INFO - Registered Server Metrics Manager (id: 'server_metrics_manager')
+2026-04-27 22:27:14.061 - system_controller - INFO - Registered Gpu Telemetry Manager (id: 'gpu_telemetry_manager')
+2026-04-27 22:27:14.074 - system_controller - INFO - Registered Worker (id: 'worker_aa1a2870')
+2026-04-27 22:27:14.117 - system_controller - INFO - Registered Records Manager (id: 'records_manager')
+2026-04-27 22:27:14.408 - system_controller - INFO - AIPerf System is CONFIGURING
+2026-04-27 22:27:14.415 - system_controller - INFO - Configuring all services to start profiling
+2026-04-27 22:27:14.418 - timing_manager - INFO - Waiting for dataset to be configured before configuring timing
+2026-04-27 22:27:14.418 - dataset_manager - INFO - Configuring tokenizer(s) for dataset manager
+2026-04-27 22:27:14.418 - InferenceResultParser_3197d7c8 - INFO - Tokenization is disabled for this endpoint, skipping tokenizer configuration
+2026-04-27 22:27:14.424 - system_controller - INFO - Server metrics disabled - no Prometheus endpoints reachable
+2026-04-27 22:27:14.458 - system_controller - INFO - GPU telemetry enabled - 1/1 endpoint(s) reachable
+2026-04-27 22:27:20.079 - dataset_manager - INFO - Tokenizer(s) configured in 5.65 seconds
+2026-04-27 22:27:20.081 - dataset_manager - INFO - Configuring dataset for dataset_manager
+2026-04-27 22:27:20.618 - SyntheticDatasetComposer - INFO - Using default sampling strategy for synthetic dataset: shuffle
+2026-04-27 22:27:27.433 - MemoryMapDatasetBackingStore_0d6f6739 - INFO - Memory-mapped backing store initialized (streaming to /tmp/aiperf_mmap_1d44e5c7-e9e4-4e3a-9443-53326f75e03c/dataset.dat)
+2026-04-27 22:27:27.490 - MemoryMapDatasetBackingStore_0d6f6739 - INFO - Data file finalized: 100 conversations, 34.82 MB
+2026-04-27 22:27:27.492 - MemoryMapDatasetBackingStore_0d6f6739 - INFO - Index file created: /tmp/aiperf_mmap_1d44e5c7-e9e4-4e3a-9443-53326f75e03c/index.dat
+2026-04-27 22:27:27.492 - dataset_manager - INFO - Backing store finalized: client_type=DatasetClientStoreType.MEMORY_MAP data_file_path=PosixPath('/tmp/aiperf_mmap_1d44e5c7-e9e4-4e3a-9443-53326f75e03c/dataset.dat') index_file_path=PosixPath('/tmp/aiperf_mmap_1d44e5c7-e9e4-4e3a-9443-53326f75e03c/index.dat') conversation_count=100 total_size_bytes=36515720
+2026-04-27 22:27:27.494 - dataset_manager - INFO - sampling strategy: shuffle, unique conversations: 100, unique turn count: 100
+2026-04-27 22:27:27.506 - PhaseOrchestrator_9f005dab - INFO - Initialized 1 phase(s): ['Profiling']
+2026-04-27 22:27:27.513 - dataset_manager - INFO - Generating inputs.json file at /global/u2/k/krajeshk/PRISM/artifacts/p2/Qwen_Qwen2-VL-2B-Instruct-full-disagg-openai-chat_medium_concurrency1_20260427_222237/inputs.json
+2026-04-27 22:27:27.657 - dataset_manager - INFO - inputs.json file generated in 0.14 seconds
+2026-04-27 22:27:27.942 - dataset_manager - INFO - Dataset client initialized and freed 100 conversations from memory
+2026-04-27 22:27:27.943 - dataset_manager - INFO - Dataset configured in 7.86 seconds
+2026-04-27 22:27:27.944 - system_controller - INFO - All services configured in 13.53 seconds
+2026-04-27 22:27:27.945 - system_controller - INFO - AIPerf System is CONFIGURED
+2026-04-27 22:27:27.956 - RateTiming - INFO - Creating interval generator: pattern=concurrency_burst, rate=None, smoothness=None
+2026-04-27 22:27:27.957 - PhaseRunner - NOTICE - Phase profiling started | target: 100 requests
+2026-04-27 22:27:27.959 - records_manager - INFO - Credit phase start: profiling
+2026-04-27 22:27:27.983 - pynvml_collector - INFO - PyNVML initialized with 4 GPU(s) (0 with GPM support)
+2026-04-27 22:27:27.990 - system_controller - INFO - All services started profiling successfully
+2026-04-27 22:27:27.997 - system_controller - INFO - AIPerf System is PROFILING
+2026-04-27 22:27:28.490 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 90 tokens (requested 256, diff -64.8%)
+2026-04-27 22:27:29.150 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 121 tokens (requested 256, diff -52.7%)
+2026-04-27 22:27:29.860 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 131 tokens (requested 256, diff -48.8%)
+2026-04-27 22:27:30.466 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 111 tokens (requested 256, diff -56.6%)
+2026-04-27 22:27:31.022 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 101 tokens (requested 256, diff -60.5%)
+2026-04-27 22:27:31.390 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 63 tokens (requested 256, diff -75.4%)
+2026-04-27 22:27:31.862 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 81 tokens (requested 256, diff -68.4%)
+2026-04-27 22:27:32.447 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 105 tokens (requested 256, diff -59.0%)
+2026-04-27 22:27:32.847 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 66 tokens (requested 256, diff -74.2%)
+2026-04-27 22:27:33.238 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 62 tokens (requested 256, diff -75.8%)
+2026-04-27 22:27:33.649 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 70 tokens (requested 256, diff -72.7%)
+2026-04-27 22:27:34.087 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 74 tokens (requested 256, diff -71.1%)
+2026-04-27 22:27:34.607 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 91 tokens (requested 256, diff -64.5%)
+2026-04-27 22:27:35.030 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 72 tokens (requested 256, diff -71.9%)
+2026-04-27 22:27:35.551 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 93 tokens (requested 256, diff -63.7%)
+2026-04-27 22:27:35.944 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 62 tokens (requested 256, diff -75.8%)
+2026-04-27 22:27:36.416 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 79 tokens (requested 256, diff -69.1%)
+2026-04-27 22:27:37.656 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 237 tokens (requested 256, diff -7.4%)
+2026-04-27 22:27:38.213 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 100 tokens (requested 256, diff -60.9%)
+2026-04-27 22:27:38.715 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 89 tokens (requested 256, diff -65.2%)
+2026-04-27 22:27:39.051 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 54 tokens (requested 256, diff -78.9%)
+2026-04-27 22:27:39.676 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 108 tokens (requested 256, diff -57.8%)
+2026-04-27 22:27:40.318 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 116 tokens (requested 256, diff -54.7%)
+2026-04-27 22:27:40.677 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 57 tokens (requested 256, diff -77.7%)
+2026-04-27 22:27:41.193 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 86 tokens (requested 256, diff -66.4%)
+2026-04-27 22:27:41.831 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 116 tokens (requested 256, diff -54.7%)
+2026-04-27 22:27:42.242 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 70 tokens (requested 256, diff -72.7%)
+2026-04-27 22:27:42.603 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 59 tokens (requested 256, diff -77.0%)
+2026-04-27 22:27:42.981 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 62 tokens (requested 256, diff -75.8%)
+2026-04-27 22:27:43.551 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 102 tokens (requested 256, diff -60.2%)
+2026-04-27 22:27:44.123 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 102 tokens (requested 256, diff -60.2%)
+2026-04-27 22:27:44.485 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 59 tokens (requested 256, diff -77.0%)
+2026-04-27 22:27:44.818 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 53 tokens (requested 256, diff -79.3%)
+2026-04-27 22:27:45.374 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 100 tokens (requested 256, diff -60.9%)
+2026-04-27 22:27:46.051 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 123 tokens (requested 256, diff -52.0%)
+2026-04-27 22:27:46.406 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 60 tokens (requested 256, diff -76.6%)
+2026-04-27 22:27:47.467 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 201 tokens (requested 256, diff -21.5%)
+2026-04-27 22:27:47.910 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 77 tokens (requested 256, diff -69.9%)
+2026-04-27 22:27:48.444 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 96 tokens (requested 256, diff -62.5%)
+2026-04-27 22:27:48.820 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 62 tokens (requested 256, diff -75.8%)
+2026-04-27 22:27:49.196 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 62 tokens (requested 256, diff -75.8%)
+2026-04-27 22:27:49.944 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 138 tokens (requested 256, diff -46.1%)
+2026-04-27 22:27:50.471 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 95 tokens (requested 256, diff -62.9%)
+2026-04-27 22:27:51.011 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 95 tokens (requested 256, diff -62.9%)
+2026-04-27 22:27:52.911 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 102 tokens (requested 256, diff -60.2%)
+2026-04-27 22:27:53.412 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 87 tokens (requested 256, diff -66.0%)
+2026-04-27 22:27:53.922 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 89 tokens (requested 256, diff -65.2%)
+2026-04-27 22:27:54.467 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 98 tokens (requested 256, diff -61.7%)
+2026-04-27 22:27:54.902 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 76 tokens (requested 256, diff -70.3%)
+2026-04-27 22:27:55.277 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 62 tokens (requested 256, diff -75.8%)
+2026-04-27 22:27:55.857 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 104 tokens (requested 256, diff -59.4%)
+2026-04-27 22:27:56.289 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 72 tokens (requested 256, diff -71.9%)
+2026-04-27 22:27:56.710 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 73 tokens (requested 256, diff -71.5%)
+2026-04-27 22:27:57.344 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 116 tokens (requested 256, diff -54.7%)
+2026-04-27 22:27:57.731 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 65 tokens (requested 256, diff -74.6%)
+2026-04-27 22:27:59.527 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 80 tokens (requested 256, diff -68.8%)
+2026-04-27 22:27:59.979 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 75 tokens (requested 256, diff -70.7%)
+2026-04-27 22:28:00.443 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 79 tokens (requested 256, diff -69.1%)
+2026-04-27 22:28:00.992 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 96 tokens (requested 256, diff -62.5%)
+2026-04-27 22:28:01.546 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 100 tokens (requested 256, diff -60.9%)
+2026-04-27 22:28:02.248 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 130 tokens (requested 256, diff -49.2%)
+2026-04-27 22:28:02.926 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 123 tokens (requested 256, diff -52.0%)
+2026-04-27 22:28:04.143 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 231 tokens (requested 256, diff -9.8%)
+2026-04-27 22:28:04.697 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 100 tokens (requested 256, diff -60.9%)
+2026-04-27 22:28:05.196 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 89 tokens (requested 256, diff -65.2%)
+2026-04-27 22:28:05.548 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 59 tokens (requested 256, diff -77.0%)
+2026-04-27 22:28:05.918 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 62 tokens (requested 256, diff -75.8%)
+2026-04-27 22:28:06.347 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 75 tokens (requested 256, diff -70.7%)
+2026-04-27 22:28:06.734 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 64 tokens (requested 256, diff -75.0%)
+2026-04-27 22:28:07.348 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 112 tokens (requested 256, diff -56.2%)
+2026-04-27 22:28:07.951 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 110 tokens (requested 256, diff -57.0%)
+2026-04-27 22:28:08.488 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 95 tokens (requested 256, diff -62.9%)
+2026-04-27 22:28:09.000 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 89 tokens (requested 256, diff -65.2%)
+2026-04-27 22:28:09.336 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 54 tokens (requested 256, diff -78.9%)
+2026-04-27 22:28:09.709 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 61 tokens (requested 256, diff -76.2%)
+2026-04-27 22:28:10.268 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 97 tokens (requested 256, diff -62.1%)
+2026-04-27 22:28:10.659 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 63 tokens (requested 256, diff -75.4%)
+2026-04-27 22:28:11.167 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 87 tokens (requested 256, diff -66.0%)
+2026-04-27 22:28:11.559 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 63 tokens (requested 256, diff -75.4%)
+2026-04-27 22:28:12.177 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 109 tokens (requested 256, diff -57.4%)
+2026-04-27 22:28:12.764 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 101 tokens (requested 256, diff -60.5%)
+2026-04-27 22:28:13.081 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 50 tokens (requested 256, diff -80.5%)
+2026-04-27 22:28:13.586 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 91 tokens (requested 256, diff -64.5%)
+2026-04-27 22:28:14.023 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 76 tokens (requested 256, diff -70.3%)
+2026-04-27 22:28:14.397 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 61 tokens (requested 256, diff -76.2%)
+2026-04-27 22:28:14.830 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 75 tokens (requested 256, diff -70.7%)
+2026-04-27 22:28:15.596 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 141 tokens (requested 256, diff -44.9%)
+2026-04-27 22:28:16.207 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 112 tokens (requested 256, diff -56.2%)
+2026-04-27 22:28:16.757 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 99 tokens (requested 256, diff -61.3%)
+2026-04-27 22:28:17.281 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 94 tokens (requested 256, diff -63.3%)
+2026-04-27 22:28:17.872 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 107 tokens (requested 256, diff -58.2%)
+2026-04-27 22:28:18.501 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 115 tokens (requested 256, diff -55.1%)
+2026-04-27 22:28:19.053 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 100 tokens (requested 256, diff -60.9%)
+2026-04-27 22:28:19.464 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 69 tokens (requested 256, diff -73.0%)
+2026-04-27 22:28:19.862 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 68 tokens (requested 256, diff -73.4%)
+2026-04-27 22:28:20.465 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 110 tokens (requested 256, diff -57.0%)
+2026-04-27 22:28:21.002 - PhaseRunner - NOTICE - Phase profiling sending complete | sent=100, completed=99, in_flight=1 | sessions: sent=100, completed=99
+2026-04-27 22:28:21.005 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 97 tokens (requested 256, diff -62.1%)
+2026-04-27 22:28:21.005 - records_manager - INFO - Sent 100 requests. Waiting for all to complete...
+2026-04-27 22:28:21.612 - PhaseRunner - NOTICE - Phase profiling complete | completed=100, cancelled=0, errors=0 | sessions: completed=100, cancelled=0 | elapsed=53.65s
+2026-04-27 22:28:21.613 - PhaseOrchestrator_9f005dab - NOTICE - All credits completed
+2026-04-27 22:28:21.613 - records_manager - INFO - Received CREDIT_PHASE_COMPLETE message, Phase complete: PhaseRecordsStats(phase=CreditPhase.PROFILING, start_ns=1777354047957342180, sent_end_ns=1777354101002771539, requests_end_ns=1777354101612253595, total_expected_requests=100, expected_duration_sec=None, expected_num_sessions=None, expected_grace_period_sec=None, final_requests_sent=None, final_requests_completed=100, final_requests_cancelled=0, final_request_errors=0, final_sent_sessions=None, final_completed_sessions=None, final_cancelled_sessions=None, timeout_triggered=False, grace_period_timeout_triggered=False, was_cancelled=False, records_end_ns=None, success_records=99, error_records=0)
+2026-04-27 22:28:21.614 - system_controller - INFO - Received credits complete from 'timing_manager'
+2026-04-27 22:28:21.614 - records_manager - NOTICE - All requests have completed, please wait for the results to be processed (currently 99 of 100 records processed)...
+2026-04-27 22:28:21.614 - aiperf.metrics.types.osl_mismatch_metrics - WARNING - OSL mismatch: got 111 tokens (requested 256, diff -56.6%)
+2026-04-27 22:28:21.615 - records_manager - INFO - All credits complete, please wait for the results to be processed...
+2026-04-27 22:28:21.617 - records_manager - INFO - Processed 100 valid requests and 0 errors (100 total).
+2026-04-27 22:28:21.617 - records_manager - INFO - Received all records, processing now...
+2026-04-27 22:28:21.619 - records_manager - INFO - Waiting 2.0s for server metrics flush period...
+2026-04-27 22:28:21.619 - gpu_telemetry_manager - INFO - GPU Telemetry: Profiling complete, capturing final metrics...
+2026-04-27 22:28:21.620 - gpu_telemetry_manager - WARNING - GPU Telemetry: Failed to capture final state from pynvml://localhost: 'PyNVMLTelemetryCollector' object has no attribute 'collect_and_process_metrics'
+2026-04-27 22:28:23.614 - records_manager - INFO - Processing records results...
+2026-04-27 22:28:23.622 - system_controller - INFO - Waiting for telemetry results...
+2026-04-27 22:28:23.627 - records_manager - INFO - _finalize_and_process_results completed
+2026-04-27 22:28:23.628 - system_controller - INFO - All results received, initiating shutdown
+2026-04-27 22:28:24.233 - ExporterManager - INFO - Exporting all records
+2026-04-27 22:28:24.360 - ExporterManager - INFO - Exporting console data
