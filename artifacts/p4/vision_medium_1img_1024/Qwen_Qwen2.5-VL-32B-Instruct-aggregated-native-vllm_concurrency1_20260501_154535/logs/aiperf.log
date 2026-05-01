@@ -1,0 +1,45 @@
+2026-05-01 15:49:04.001 - aiperf.cli_runner - INFO - Starting AIPerf System
+2026-05-01 15:49:04.187 - system_controller - INFO - Registered Worker Manager (id: 'worker_manager')
+2026-05-01 15:49:04.227 - GPUTelemetryJSONLWriter_a1f21a72 - INFO - GPU telemetry export enabled: artifacts/p4/vision_medium_1img_1024/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency1_20260501_154535/gpu_telemetry_export.jsonl
+2026-05-01 15:49:04.231 - RecordExportResultsProcessor_aa44591b - INFO - Record metrics export enabled: artifacts/p4/vision_medium_1img_1024/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency1_20260501_154535/profile_export.jsonl
+2026-05-01 15:49:04.230 - server_metrics_manager - INFO - Server Metrics: Discovered 1 endpoints: ['http://localhost:8000/metrics']
+2026-05-01 15:49:04.241 - system_controller - INFO - Registered Dataset Manager (id: 'dataset_manager')
+2026-05-01 15:49:04.275 - system_controller - INFO - Registered Gpu Telemetry Manager (id: 'gpu_telemetry_manager')
+2026-05-01 15:49:04.277 - system_controller - INFO - Registered Timing Manager (id: 'timing_manager')
+2026-05-01 15:49:04.299 - system_controller - INFO - Registered Server Metrics Manager (id: 'server_metrics_manager')
+2026-05-01 15:49:04.310 - system_controller - INFO - Registered Record Processor (id: 'record_processor_ee4e8db0')
+2026-05-01 15:49:04.331 - system_controller - INFO - Registered Worker (id: 'worker_0cdf2f87')
+2026-05-01 15:49:04.377 - system_controller - INFO - Registered Records Manager (id: 'records_manager')
+2026-05-01 15:49:04.680 - system_controller - INFO - AIPerf System is CONFIGURING
+2026-05-01 15:49:04.680 - system_controller - INFO - Configuring all services to start profiling
+2026-05-01 15:49:04.683 - timing_manager - INFO - Waiting for dataset to be configured before configuring timing
+2026-05-01 15:49:04.683 - InferenceResultParser_4bfd7d7a - INFO - Tokenization is disabled for this endpoint, skipping tokenizer configuration
+2026-05-01 15:49:04.683 - dataset_manager - INFO - Configuring tokenizer(s) for dataset manager
+2026-05-01 15:49:04.694 - server_metrics_manager - INFO - Server Metrics: Capturing baseline metrics...
+2026-05-01 15:49:04.716 - http://localhost:8000/metrics - INFO - Skipping unsupported summary metric: http_request_size_bytes
+2026-05-01 15:49:04.716 - http://localhost:8000/metrics - INFO - Skipping unsupported summary metric: http_response_size_bytes
+2026-05-01 15:49:04.718 - system_controller - INFO - Server metrics enabled - 1/1 endpoint(s) reachable.
+2026-05-01 15:49:04.734 - system_controller - INFO - GPU telemetry enabled - 1/1 endpoint(s) reachable
+2026-05-01 15:49:11.862 - dataset_manager - INFO - Tokenizer(s) configured in 7.17 seconds
+2026-05-01 15:49:11.862 - dataset_manager - INFO - Configuring dataset for dataset_manager
+2026-05-01 15:49:12.300 - CustomDatasetComposer - INFO - Using preferred sampling strategy for single_turn: sequential
+2026-05-01 15:51:18.181 - MemoryMapDatasetBackingStore_4ebf3955 - INFO - Memory-mapped backing store initialized (streaming to /tmp/aiperf_mmap_91a531e0-9dd0-43b2-b223-31c867fcb0b6/dataset.dat)
+2026-05-01 15:51:19.036 - MemoryMapDatasetBackingStore_4ebf3955 - INFO - Data file finalized: 200 conversations, 494.38 MB
+2026-05-01 15:51:19.037 - MemoryMapDatasetBackingStore_4ebf3955 - INFO - Index file created: /tmp/aiperf_mmap_91a531e0-9dd0-43b2-b223-31c867fcb0b6/index.dat
+2026-05-01 15:51:19.038 - dataset_manager - INFO - Backing store finalized: client_type=DatasetClientStoreType.MEMORY_MAP data_file_path=PosixPath('/tmp/aiperf_mmap_91a531e0-9dd0-43b2-b223-31c867fcb0b6/dataset.dat') index_file_path=PosixPath('/tmp/aiperf_mmap_91a531e0-9dd0-43b2-b223-31c867fcb0b6/index.dat') conversation_count=200 total_size_bytes=518400090
+2026-05-01 15:51:19.039 - dataset_manager - INFO - sampling strategy: sequential, unique conversations: 200, unique turn count: 200
+2026-05-01 15:51:19.045 - dataset_manager - INFO - Generating inputs.json file at /global/u2/k/krajeshk/PRISM/artifacts/p4/vision_medium_1img_1024/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency1_20260501_154535/inputs.json
+2026-05-01 15:51:19.122 - PhaseOrchestrator_fb32656d - INFO - Initialized 2 phase(s): ['Warmup', 'Profiling']
+2026-05-01 15:51:22.154 - dataset_manager - INFO - inputs.json file generated in 3.11 seconds
+2026-05-01 15:51:22.394 - dataset_manager - INFO - Dataset client initialized and freed 200 conversations from memory
+2026-05-01 15:51:22.394 - dataset_manager - INFO - Dataset configured in 130.53 seconds
+2026-05-01 15:51:22.396 - system_controller - INFO - All services configured in 137.71 seconds
+2026-05-01 15:51:22.397 - system_controller - INFO - AIPerf System is CONFIGURED
+2026-05-01 15:51:22.398 - server_metrics_manager - INFO - Server Metrics: Started 1 collector(s) successfully
+2026-05-01 15:51:22.401 - RateTiming - INFO - Creating interval generator: pattern=concurrency_burst, rate=None, smoothness=None
+2026-05-01 15:51:22.402 - PhaseRunner - NOTICE - Phase warmup started | target: 10 requests
+2026-05-01 15:51:22.403 - records_manager - INFO - Credit phase start: warmup
+2026-05-01 15:51:22.453 - pynvml_collector - INFO - PyNVML initialized with 4 GPU(s) (0 with GPM support)
+2026-05-01 15:51:22.455 - system_controller - INFO - All services started profiling successfully
+2026-05-01 15:51:22.456 - system_controller - INFO - AIPerf System is PROFILING
+2026-05-01 16:13:14.353 - PhaseRunner - NOTICE - Phase warmup sending complete | sent=10, completed=9, in_flight=1 | sessions: sent=10, completed=9

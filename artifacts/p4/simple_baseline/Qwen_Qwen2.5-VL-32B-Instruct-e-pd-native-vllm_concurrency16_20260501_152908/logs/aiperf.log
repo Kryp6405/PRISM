@@ -1,0 +1,106 @@
+2026-05-01 15:31:15.845 - aiperf.cli_runner - INFO - Starting AIPerf System
+2026-05-01 15:31:16.601 - aiperf.cli_runner - INFO - ✓ Tokenizer Qwen/Qwen2.5-VL-32B-Instruct detected
+2026-05-01 15:31:16.602 - aiperf.cli_runner - INFO - 1 tokenizer validated • 0.8s
+2026-05-01 15:31:16.705 - aiperf - WARNING - Using --osl without ignore_eos or min_tokens in --extra-inputs. Output sequence length cannot be guaranteed unless the server honors these parameters. Consider: --extra-inputs ignore_eos:true (generate until max_tokens) or --extra-inputs min_tokens:<value> (set minimum output length).
+2026-05-01 15:31:16.873 - system_controller - INFO - Registered Worker Manager (id: 'worker_manager')
+2026-05-01 15:31:16.919 - GPUTelemetryJSONLWriter_220c702d - INFO - GPU telemetry export enabled: artifacts/p4/simple_baseline/Qwen_Qwen2.5-VL-32B-Instruct-e-pd-native-vllm_concurrency16_20260501_152908/gpu_telemetry_export.jsonl
+2026-05-01 15:31:16.920 - server_metrics_manager - INFO - Server Metrics: Discovered 1 endpoints: ['http://localhost:8000/metrics']
+2026-05-01 15:31:16.932 - RecordExportResultsProcessor_300efcf5 - INFO - Record metrics export enabled: artifacts/p4/simple_baseline/Qwen_Qwen2.5-VL-32B-Instruct-e-pd-native-vllm_concurrency16_20260501_152908/profile_export.jsonl
+2026-05-01 15:31:16.965 - system_controller - INFO - Registered Gpu Telemetry Manager (id: 'gpu_telemetry_manager')
+2026-05-01 15:31:16.968 - system_controller - INFO - Registered Server Metrics Manager (id: 'server_metrics_manager')
+2026-05-01 15:31:16.997 - system_controller - INFO - Registered Record Processor (id: 'record_processor_d084ec59')
+2026-05-01 15:31:16.998 - system_controller - INFO - Registered Record Processor (id: 'record_processor_42b1b316')
+2026-05-01 15:31:17.001 - system_controller - INFO - Registered Record Processor (id: 'record_processor_4f3c6417')
+2026-05-01 15:31:17.004 - system_controller - INFO - Registered Dataset Manager (id: 'dataset_manager')
+2026-05-01 15:31:17.027 - system_controller - INFO - Registered Timing Manager (id: 'timing_manager')
+2026-05-01 15:31:17.031 - system_controller - INFO - Registered Worker (id: 'worker_6ec176e3')
+2026-05-01 15:31:17.038 - system_controller - INFO - Registered Worker (id: 'worker_816cc953')
+2026-05-01 15:31:17.054 - system_controller - INFO - Registered Worker (id: 'worker_e522b7fc')
+2026-05-01 15:31:17.057 - system_controller - INFO - Registered Worker (id: 'worker_ffeda39c')
+2026-05-01 15:31:17.059 - system_controller - INFO - Registered Worker (id: 'worker_8c395532')
+2026-05-01 15:31:17.061 - system_controller - INFO - Registered Worker (id: 'worker_262f73d9')
+2026-05-01 15:31:17.083 - system_controller - INFO - Registered Worker (id: 'worker_89f1956e')
+2026-05-01 15:31:17.091 - system_controller - INFO - Registered Worker (id: 'worker_c6c83e16')
+2026-05-01 15:31:17.098 - system_controller - INFO - Registered Record Processor (id: 'record_processor_4cc268c6')
+2026-05-01 15:31:17.101 - system_controller - INFO - Registered Worker (id: 'worker_6197c217')
+2026-05-01 15:31:17.102 - system_controller - INFO - Registered Worker (id: 'worker_78dc80e4')
+2026-05-01 15:31:17.178 - system_controller - INFO - Registered Worker (id: 'worker_31b9ea2a')
+2026-05-01 15:31:17.182 - system_controller - INFO - Registered Worker (id: 'worker_cc6cb3ff')
+2026-05-01 15:31:17.184 - system_controller - INFO - Registered Worker (id: 'worker_5b50f297')
+2026-05-01 15:31:17.186 - system_controller - INFO - Registered Worker (id: 'worker_dbd89bc6')
+2026-05-01 15:31:17.190 - system_controller - INFO - Registered Worker (id: 'worker_757b5abe')
+2026-05-01 15:31:17.193 - system_controller - INFO - Registered Worker (id: 'worker_3ce942f8')
+2026-05-01 15:31:17.435 - system_controller - INFO - Registered Records Manager (id: 'records_manager')
+2026-05-01 15:31:17.855 - system_controller - INFO - AIPerf System is CONFIGURING
+2026-05-01 15:31:17.857 - system_controller - INFO - Configuring all services to start profiling
+2026-05-01 15:31:17.860 - timing_manager - INFO - Waiting for dataset to be configured before configuring timing
+2026-05-01 15:31:17.860 - dataset_manager - INFO - Configuring tokenizer(s) for dataset manager
+2026-05-01 15:31:17.860 - InferenceResultParser_27dcf523 - INFO - Tokenization is disabled for this endpoint, skipping tokenizer configuration
+2026-05-01 15:31:17.860 - InferenceResultParser_88b8a36d - INFO - Tokenization is disabled for this endpoint, skipping tokenizer configuration
+2026-05-01 15:31:17.860 - InferenceResultParser_e66c6884 - INFO - Tokenization is disabled for this endpoint, skipping tokenizer configuration
+2026-05-01 15:31:17.860 - InferenceResultParser_a556d6f7 - INFO - Tokenization is disabled for this endpoint, skipping tokenizer configuration
+2026-05-01 15:31:17.867 - system_controller - INFO - Server metrics disabled - no Prometheus endpoints reachable
+2026-05-01 15:31:17.900 - system_controller - INFO - GPU telemetry enabled - 1/1 endpoint(s) reachable
+2026-05-01 15:31:29.171 - dataset_manager - INFO - Tokenizer(s) configured in 11.31 seconds
+2026-05-01 15:31:29.172 - dataset_manager - INFO - Configuring dataset for dataset_manager
+2026-05-01 15:31:29.797 - SyntheticDatasetComposer - INFO - Using default sampling strategy for synthetic dataset: shuffle
+2026-05-01 15:31:37.294 - MemoryMapDatasetBackingStore_46a4d8a7 - INFO - Memory-mapped backing store initialized (streaming to /tmp/aiperf_mmap_a51a0b33-ddd2-49e2-9d43-8f23dbaa6081/dataset.dat)
+2026-05-01 15:31:37.346 - MemoryMapDatasetBackingStore_46a4d8a7 - INFO - Data file finalized: 100 conversations, 33.83 MB
+2026-05-01 15:31:37.347 - MemoryMapDatasetBackingStore_46a4d8a7 - INFO - Index file created: /tmp/aiperf_mmap_a51a0b33-ddd2-49e2-9d43-8f23dbaa6081/index.dat
+2026-05-01 15:31:37.348 - dataset_manager - INFO - Backing store finalized: client_type=DatasetClientStoreType.MEMORY_MAP data_file_path=PosixPath('/tmp/aiperf_mmap_a51a0b33-ddd2-49e2-9d43-8f23dbaa6081/dataset.dat') index_file_path=PosixPath('/tmp/aiperf_mmap_a51a0b33-ddd2-49e2-9d43-8f23dbaa6081/index.dat') conversation_count=100 total_size_bytes=35475931
+2026-05-01 15:31:37.350 - dataset_manager - INFO - sampling strategy: shuffle, unique conversations: 100, unique turn count: 100
+2026-05-01 15:31:37.358 - dataset_manager - INFO - Generating inputs.json file at /global/u2/k/krajeshk/PRISM/artifacts/p4/simple_baseline/Qwen_Qwen2.5-VL-32B-Instruct-e-pd-native-vllm_concurrency16_20260501_152908/inputs.json
+2026-05-01 15:31:37.367 - PhaseOrchestrator_ffe5ae0f - INFO - Initialized 2 phase(s): ['Warmup', 'Profiling']
+2026-05-01 15:31:37.547 - dataset_manager - INFO - inputs.json file generated in 0.19 seconds
+2026-05-01 15:31:37.792 - dataset_manager - INFO - Dataset client initialized and freed 100 conversations from memory
+2026-05-01 15:31:37.794 - dataset_manager - INFO - Dataset configured in 8.62 seconds
+2026-05-01 15:31:37.795 - system_controller - INFO - All services configured in 19.94 seconds
+2026-05-01 15:31:37.797 - system_controller - INFO - AIPerf System is CONFIGURED
+2026-05-01 15:31:37.804 - RateTiming - INFO - Creating interval generator: pattern=concurrency_burst, rate=None, smoothness=None
+2026-05-01 15:31:37.805 - PhaseRunner - NOTICE - Phase warmup started | target: 10 requests
+2026-05-01 15:31:37.806 - records_manager - INFO - Credit phase start: warmup
+2026-05-01 15:31:37.831 - pynvml_collector - INFO - PyNVML initialized with 4 GPU(s) (0 with GPM support)
+2026-05-01 15:31:37.832 - system_controller - INFO - All services started profiling successfully
+2026-05-01 15:31:37.833 - system_controller - INFO - AIPerf System is PROFILING
+2026-05-01 15:31:37.907 - PhaseRunner - NOTICE - Phase warmup sending complete | sent=10, completed=9, in_flight=1 | sessions: sent=10, completed=9
+2026-05-01 15:31:37.917 - PhaseRunner - NOTICE - Phase warmup complete | completed=10, cancelled=0, errors=0 | sessions: completed=10, cancelled=0 | elapsed=0.11s
+2026-05-01 15:31:37.918 - RateTiming - INFO - Creating interval generator: pattern=concurrency_burst, rate=None, smoothness=None
+2026-05-01 15:31:37.918 - PhaseRunner - NOTICE - Phase profiling started | target: 50 requests
+2026-05-01 15:31:37.920 - records_manager - INFO - Credit phase start: profiling
+2026-05-01 15:31:38.003 - AioHttpClient - ERROR - Error in aiohttp request: ClientOSError(104, 'Connection reset by peer')
+2026-05-01 15:31:38.003 - AioHttpClient - ERROR - Error in aiohttp request: ClientOSError(104, 'Connection reset by peer')
+2026-05-01 15:31:38.009 - AioHttpClient - ERROR - Error in aiohttp request: ClientOSError(104, 'Connection reset by peer')
+2026-05-01 15:31:38.009 - AioHttpClient - ERROR - Error in aiohttp request: ClientOSError(104, 'Connection reset by peer')
+2026-05-01 15:31:38.009 - AioHttpClient - ERROR - Error in aiohttp request: ClientOSError(104, 'Connection reset by peer')
+2026-05-01 15:31:38.012 - AioHttpClient - ERROR - Error in aiohttp request: ClientOSError(104, 'Connection reset by peer')
+2026-05-01 15:31:38.018 - AioHttpClient - ERROR - Error in aiohttp request: ClientOSError(104, 'Connection reset by peer')
+2026-05-01 15:31:38.022 - AioHttpClient - ERROR - Error in aiohttp request: ClientOSError(104, 'Connection reset by peer')
+2026-05-01 15:31:38.029 - AioHttpClient - ERROR - Error in aiohttp request: ClientOSError(104, 'Connection reset by peer')
+2026-05-01 15:31:38.029 - AioHttpClient - ERROR - Error in aiohttp request: ClientOSError(104, 'Connection reset by peer')
+2026-05-01 15:31:38.032 - AioHttpClient - ERROR - Error in aiohttp request: ClientOSError(104, 'Connection reset by peer')
+2026-05-01 15:31:38.036 - AioHttpClient - ERROR - Error in aiohttp request: ClientOSError(104, 'Connection reset by peer')
+2026-05-01 15:31:38.038 - AioHttpClient - ERROR - Error in aiohttp request: ClientOSError(104, 'Connection reset by peer')
+2026-05-01 15:31:38.041 - AioHttpClient - ERROR - Error in aiohttp request: ClientOSError(104, 'Connection reset by peer')
+2026-05-01 15:31:38.048 - AioHttpClient - ERROR - Error in aiohttp request: ClientOSError(104, 'Connection reset by peer')
+2026-05-01 15:31:38.055 - AioHttpClient - ERROR - Error in aiohttp request: ClientOSError(104, 'Connection reset by peer')
+2026-05-01 15:31:38.107 - AioHttpClient - ERROR - Error in aiohttp request: ClientOSError(104, 'Connection reset by peer')
+2026-05-01 15:31:38.107 - PhaseRunner - NOTICE - Phase profiling sending complete | sent=50, completed=34, in_flight=16 | sessions: sent=50, completed=34
+2026-05-01 15:31:38.108 - records_manager - INFO - Sent 50 requests. Waiting for all to complete...
+2026-05-01 15:31:38.110 - AioHttpClient - ERROR - Error in aiohttp request: ClientOSError(104, 'Connection reset by peer')
+2026-05-01 15:31:38.141 - PhaseRunner - NOTICE - Phase profiling complete | completed=50, cancelled=0, errors=0 | sessions: completed=50, cancelled=0 | elapsed=0.22s
+2026-05-01 15:31:38.142 - PhaseOrchestrator_ffe5ae0f - NOTICE - All credits completed
+2026-05-01 15:31:38.142 - records_manager - INFO - Received CREDIT_PHASE_COMPLETE message, Phase complete: PhaseRecordsStats(phase=CreditPhase.PROFILING, start_ns=1777674697918939213, sent_end_ns=1777674698107234958, requests_end_ns=1777674698141230624, total_expected_requests=50, expected_duration_sec=None, expected_num_sessions=None, expected_grace_period_sec=None, final_requests_sent=None, final_requests_completed=50, final_requests_cancelled=0, final_request_errors=0, final_sent_sessions=None, final_completed_sessions=None, final_cancelled_sessions=None, timeout_triggered=False, grace_period_timeout_triggered=False, was_cancelled=False, records_end_ns=None, success_records=0, error_records=50)
+2026-05-01 15:31:38.143 - records_manager - NOTICE - All requests have completed, please wait for the results to be processed (currently 50 of 50 records processed)...
+2026-05-01 15:31:38.143 - system_controller - INFO - Received credits complete from 'timing_manager'
+2026-05-01 15:31:38.143 - records_manager - INFO - Processed 0 valid requests and 50 errors (50 total).
+2026-05-01 15:31:38.144 - records_manager - INFO - Received all records, processing now...
+2026-05-01 15:31:38.144 - records_manager - INFO - All credits complete, please wait for the results to be processed...
+2026-05-01 15:31:38.145 - gpu_telemetry_manager - INFO - GPU Telemetry: Profiling complete, capturing final metrics...
+2026-05-01 15:31:38.145 - gpu_telemetry_manager - WARNING - GPU Telemetry: Failed to capture final state from pynvml://localhost: 'PyNVMLTelemetryCollector' object has no attribute 'collect_and_process_metrics'
+2026-05-01 15:31:38.145 - records_manager - INFO - Waiting 2.0s for server metrics flush period...
+2026-05-01 15:31:40.144 - records_manager - INFO - Processing records results...
+2026-05-01 15:31:40.146 - system_controller - INFO - Waiting for telemetry results...
+2026-05-01 15:31:40.147 - records_manager - INFO - _finalize_and_process_results completed
+2026-05-01 15:31:40.147 - system_controller - INFO - All results received, initiating shutdown
+2026-05-01 15:31:40.751 - ExporterManager - INFO - Exporting all records
+2026-05-01 15:31:41.310 - ExporterManager - INFO - Exporting console data

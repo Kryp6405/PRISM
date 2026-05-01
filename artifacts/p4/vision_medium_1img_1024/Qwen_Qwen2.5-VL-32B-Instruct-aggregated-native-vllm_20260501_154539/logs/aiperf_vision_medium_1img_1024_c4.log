@@ -1,0 +1,391 @@
+15:56:28.334 INFO     Starting AIPerf System (cli_runner.py:75)
+15:56:28.528 INFO     Registered Worker Manager (id: 'worker_manager') (system_controller.py:340)
+15:56:28.564 INFO     GPU telemetry export enabled: artifacts/p4/vision_medium_1img_1024/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency4_20260501_154539/gpu_telemetry_export.jsonl (jsonl_writer.py:53)
+15:56:28.572 INFO     Record metrics export enabled: artifacts/p4/vision_medium_1img_1024/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency4_20260501_154539/profile_export.jsonl (record_export_results_processor.py:53)
+15:56:28.573 INFO     Server Metrics: Discovered 1 endpoints: ['http://localhost:8000/metrics'] (manager.py:70)
+15:56:28.583 INFO     Registered Dataset Manager (id: 'dataset_manager') (system_controller.py:340)
+15:56:28.600 INFO     Registered Record Processor (id: 'record_processor_5702eb7a') (system_controller.py:340)
+15:56:28.611 INFO     Registered Gpu Telemetry Manager (id: 'gpu_telemetry_manager') (system_controller.py:340)
+15:56:28.616 INFO     Registered Timing Manager (id: 'timing_manager') (system_controller.py:340)
+15:56:28.624 INFO     Registered Server Metrics Manager (id: 'server_metrics_manager') (system_controller.py:340)
+15:56:28.664 INFO     Registered Worker (id: 'worker_d41612a8') (system_controller.py:340)
+15:56:28.667 INFO     Registered Worker (id: 'worker_27fab339') (system_controller.py:340)
+15:56:28.672 INFO     Registered Worker (id: 'worker_01c8b9e2') (system_controller.py:340)
+15:56:28.675 INFO     Registered Worker (id: 'worker_c0c8b7fc') (system_controller.py:340)
+15:56:28.696 INFO     Registered Records Manager (id: 'records_manager') (system_controller.py:340)
+15:56:29.019 INFO     AIPerf System is CONFIGURING (system_controller.py:228)
+15:56:29.021 INFO     Configuring all services to start profiling (system_controller.py:241)
+15:56:29.022 INFO     Configuring tokenizer(s) for dataset manager (dataset_manager.py:105)
+15:56:29.023 INFO     Waiting for dataset to be configured before configuring timing (manager.py:96)
+15:56:29.023 INFO     Tokenization is disabled for this endpoint, skipping tokenizer configuration (inference_result_parser.py:66)
+15:56:29.028 INFO     Server metrics disabled - no Prometheus endpoints reachable (system_controller.py:453)
+15:56:29.071 INFO     GPU telemetry enabled - 1/1 endpoint(s) reachable (system_controller.py:431)
+15:56:35.048 INFO     Tokenizer(s) configured in 6.02 seconds (dataset_manager.py:109)
+15:56:35.049 INFO     Configuring dataset for dataset_manager (dataset_manager.py:111)
+15:56:35.450 INFO     Using preferred sampling strategy for single_turn: sequential (custom.py:165)
+15:58:38.702 INFO     Memory-mapped backing store initialized (streaming to /tmp/aiperf_mmap_9ad9ee01-a9aa-42b6-b0ca-02dd6f1bff16/dataset.dat) (memory_map_utils.py:87)
+15:58:39.555 INFO     Data file finalized: 200 conversations, 494.38 MB (memory_map_utils.py:144)
+15:58:39.559 INFO     Index file created: /tmp/aiperf_mmap_9ad9ee01-a9aa-42b6-b0ca-02dd6f1bff16/index.dat (memory_map_utils.py:157)
+15:58:39.560 INFO     Backing store finalized: client_type=DatasetClientStoreType.MEMORY_MAP data_file_path=PosixPath('/tmp/aiperf_mmap_9ad9ee01-a9aa-42b6-b0ca-02dd6f1bff16/dataset.dat') index_file_path=PosixPath('/tmp/aiperf_mmap_9ad9ee01-a9aa-42b6-b0ca-02dd6f1bff16/index.dat') conversation_count=200 total_size_bytes=518400090 (dataset_manager.py:319)
+15:58:39.562 INFO     sampling strategy: sequential, unique conversations: 200, unique turn count: 200 (dataset_manager.py:325)
+15:58:39.574 INFO     Generating inputs.json file at /global/u2/k/krajeshk/PRISM/artifacts/p4/vision_medium_1img_1024/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency4_20260501_154539/inputs.json (dataset_manager.py:211)
+15:58:39.578 INFO     Initialized 2 phase(s): ['Warmup', 'Profiling'] (phase_orchestrator.py:154)
+15:58:42.745 INFO     inputs.json file generated in 3.17 seconds (dataset_manager.py:229)
+15:58:42.988 INFO     Dataset client initialized and freed 200 conversations from memory (dataset_manager.py:139)
+15:58:42.989 INFO     Dataset configured in 127.94 seconds (dataset_manager.py:118)
+15:58:42.990 INFO     All services configured in 133.97 seconds (system_controller.py:253)
+15:58:42.991 INFO     AIPerf System is CONFIGURED (system_controller.py:230)
+15:58:42.995 INFO     Creating interval generator: pattern=concurrency_burst, rate=None, smoothness=None (request_rate.py:111)
+15:58:42.996 NOTICE   Phase warmup started | target: 10 requests (runner.py:236)
+15:58:42.997 INFO     Credit phase start: warmup (records_manager.py:369)
+15:58:43.011 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+15:58:43.024 INFO     PyNVML initialized with 4 GPU(s) (0 with GPM support) (pynvml_collector.py:188)
+15:58:43.025 INFO     All services started profiling successfully (system_controller.py:275)
+15:58:43.026 INFO     AIPerf System is PROFILING (system_controller.py:232)
+15:58:43.026 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+15:58:43.041 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+15:58:43.055 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+15:58:43.070 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.079 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.087 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.094 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.102 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.103 NOTICE   Phase warmup sending complete | sent=10, completed=9, in_flight=1 | sessions: sent=10, completed=9 (runner.py:466)
+15:58:43.110 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.111 NOTICE   Phase warmup complete | completed=10, cancelled=0, errors=0 | sessions: completed=10, cancelled=0 | elapsed=0.12s (runner.py:543)
+15:58:43.112 INFO     Creating interval generator: pattern=concurrency_burst, rate=None, smoothness=None (request_rate.py:111)
+15:58:43.113 NOTICE   Phase profiling started | target: 200 requests (runner.py:236)
+15:58:43.114 INFO     Credit phase start: profiling (records_manager.py:369)
+15:58:43.119 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.119 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.121 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.121 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.128 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.128 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.129 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.130 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.136 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.137 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.137 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.137 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.144 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.145 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.146 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.146 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.151 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.153 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.153 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.154 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.157 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.160 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.161 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.162 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.166 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.168 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.169 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.169 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.173 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.176 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.177 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.177 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.181 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.184 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.184 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.185 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.188 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.192 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.192 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.193 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.196 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.200 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.201 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.201 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.203 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.209 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.211 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.211 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.211 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.217 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.218 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.219 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.219 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.236 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.237 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.237 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.237 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.244 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.244 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.244 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.246 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.252 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.252 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.253 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.254 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.259 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.260 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.260 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.263 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.266 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.267 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.267 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.270 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.274 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.275 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.276 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.278 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.281 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.283 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.283 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.285 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.288 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.291 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.291 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.295 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.296 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.299 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.299 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.303 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.303 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.306 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.307 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.311 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.311 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.314 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.315 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.319 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.319 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.322 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.323 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.326 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.328 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.329 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.330 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.334 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.335 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.337 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.337 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.342 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.343 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.346 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.347 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.349 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.350 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.354 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.355 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.356 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.358 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.362 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.363 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.364 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.366 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.370 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.370 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.372 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.374 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.377 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.378 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.379 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.381 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.386 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.386 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.387 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.390 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.393 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.393 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.394 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.397 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.400 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.401 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.402 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.404 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.408 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.409 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.409 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.412 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.416 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.416 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.417 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.420 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.423 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.424 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.425 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.428 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.431 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.432 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.433 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.435 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.439 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.439 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.440 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.443 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.446 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.447 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.448 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.451 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.453 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.454 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.456 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.459 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.462 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.462 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.463 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.466 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.469 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.469 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.470 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.473 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.476 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.477 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.478 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.481 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.483 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.484 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.487 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.489 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.491 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.492 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.494 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.496 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.498 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.500 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.502 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.504 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.505 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.508 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.509 NOTICE   Phase profiling sending complete | sent=200, completed=196, in_flight=4 | sessions: sent=200, completed=196 (runner.py:466)
+15:58:43.509 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.510 INFO     Sent 200 requests. Waiting for all to complete... (records_manager.py:377)
+15:58:43.511 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.513 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.515 ERROR    Error in aiohttp request: ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed ('127.0.0.1', 8000)")) (aiohttp_client.py:264)
+15:58:43.516 NOTICE   Phase profiling complete | completed=200, cancelled=0, errors=0 | sessions: completed=200, cancelled=0 | elapsed=0.40s (runner.py:543)
+15:58:43.516 NOTICE   All credits completed (phase_orchestrator.py:169)
+15:58:43.517 INFO     Received CREDIT_PHASE_COMPLETE message, Phase complete: PhaseRecordsStats(phase=CreditPhase.PROFILING, start_ns=1777676323113096153, sent_end_ns=1777676323509323207, requests_end_ns=1777676323516258570, total_expected_requests=200, expected_duration_sec=None, expected_num_sessions=None, expected_grace_period_sec=None, final_requests_sent=None, final_requests_completed=200, final_requests_cancelled=0, final_request_errors=0, final_sent_sessions=None, final_completed_sessions=None, final_cancelled_sessions=None, timeout_triggered=False, grace_period_timeout_triggered=False, was_cancelled=False, records_end_ns=None, success_records=0, error_records=194) (records_manager.py:393)
+15:58:43.517 NOTICE   All requests have completed, please wait for the results to be processed (currently 194 of 200 records processed)... (records_manager.py:396)
+15:58:43.517 INFO     Received credits complete from 'timing_manager' (system_controller.py:375)
+15:58:43.518 INFO     All credits complete, please wait for the results to be processed... (records_manager.py:411)
+15:58:43.523 INFO     Processed 0 valid requests and 200 errors (200 total). (records_manager.py:244)
+15:58:43.523 INFO     Received all records, processing now... (records_manager.py:248)
+15:58:43.524 INFO     GPU Telemetry: Profiling complete, capturing final metrics... (manager.py:368)
+15:58:43.524 INFO     Waiting 2.0s for server metrics flush period... (records_manager.py:298)
+15:58:43.525 WARNING  GPU Telemetry: Failed to capture final state from pynvml://localhost: 'PyNVMLTelemetryCollector' object has no attribute 'collect_and_process_metrics' (manager.py:375)
+15:58:45.516 INFO     Processing records results... (records_manager.py:558)
+15:58:45.519 INFO     Waiting for telemetry results... (system_controller.py:671)
+15:58:45.524 INFO     _finalize_and_process_results completed (records_manager.py:305)
+15:58:45.525 INFO     All results received, initiating shutdown (system_controller.py:668)
+15:58:46.129 INFO     Exporting all records (exporter_manager.py:60)
+15:58:46.225 INFO     Exporting console data (exporter_manager.py:116)
+
+
+                                                         NVIDIA AIPerf | Error Summary                                                         
+┏━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓
+┃ Code ┃                 Type ┃ Message                                                                                               ┃ Count ┃
+┡━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
+│  N/A │ ClientConnectorError │ ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None,   │   200 │
+│      │                      │ proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, "Connect call failed           │       │
+│      │                      │ ('127.0.0.1', 8000)"))                                                                                │       │
+└──────┴──────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────┴───────┘
+
+
+            NVIDIA AIPerf | LLM Metrics             
+┏━━━━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┓
+┃ Metric ┃ avg ┃ min ┃ max ┃ p99 ┃ p90 ┃ p50 ┃ std ┃
+┡━━━━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━┩
+└────────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┘
+
+
+                      NVIDIA AIPerf | GPU Telemetry Summary                       
+                           1/1 DCGM endpoints reachable                           
+                                  • localhost ✔                                   
+                                                                                  
+                    localhost | GPU 0 | NVIDIA A100-SXM4-40GB                     
+┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━┓
+┃                  Metric ┃   avg ┃   min ┃   max ┃   p99 ┃   p90 ┃   p50 ┃  std ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━┩
+│     GPU Power Usage (W) │ 52.10 │ 52.10 │ 52.10 │ 52.10 │ 52.10 │ 52.10 │ 0.00 │
+│ Energy Consumption (MJ) │  0.00 │   N/A │   N/A │   N/A │   N/A │   N/A │  N/A │
+│     GPU Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    GPU Memory Used (GB) │  0.54 │  0.54 │  0.54 │  0.54 │  0.54 │  0.54 │ 0.00 │
+│    GPU Temperature (°C) │ 30.00 │ 30.00 │ 30.00 │ 30.00 │ 30.00 │ 30.00 │ 0.00 │
+│  Memory Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│ Decoder Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│ Encoder Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    JPEG Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    Power Violation (us) │  0.00 │   N/A │   N/A │   N/A │   N/A │   N/A │  N/A │
+└─────────────────────────┴───────┴───────┴───────┴───────┴───────┴───────┴──────┘
+
+                    localhost | GPU 1 | NVIDIA A100-SXM4-40GB                     
+┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━┓
+┃                  Metric ┃   avg ┃   min ┃   max ┃   p99 ┃   p90 ┃   p50 ┃  std ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━┩
+│     GPU Power Usage (W) │ 53.40 │ 53.40 │ 53.40 │ 53.40 │ 53.40 │ 53.40 │ 0.00 │
+│ Energy Consumption (MJ) │  0.00 │   N/A │   N/A │   N/A │   N/A │   N/A │  N/A │
+│     GPU Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    GPU Memory Used (GB) │  0.54 │  0.54 │  0.54 │  0.54 │  0.54 │  0.54 │ 0.00 │
+│    GPU Temperature (°C) │ 29.00 │ 29.00 │ 29.00 │ 29.00 │ 29.00 │ 29.00 │ 0.00 │
+│  Memory Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│ Decoder Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│ Encoder Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    JPEG Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    Power Violation (us) │  0.00 │   N/A │   N/A │   N/A │   N/A │   N/A │  N/A │
+└─────────────────────────┴───────┴───────┴───────┴───────┴───────┴───────┴──────┘
+
+                    localhost | GPU 2 | NVIDIA A100-SXM4-40GB                     
+┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━┓
+┃                  Metric ┃   avg ┃   min ┃   max ┃   p99 ┃   p90 ┃   p50 ┃  std ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━┩
+│     GPU Power Usage (W) │ 56.49 │ 56.49 │ 56.49 │ 56.49 │ 56.49 │ 56.49 │ 0.00 │
+│ Energy Consumption (MJ) │  0.00 │   N/A │   N/A │   N/A │   N/A │   N/A │  N/A │
+│     GPU Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    GPU Memory Used (GB) │  0.54 │  0.54 │  0.54 │  0.54 │  0.54 │  0.54 │ 0.00 │
+│    GPU Temperature (°C) │ 30.00 │ 30.00 │ 30.00 │ 30.00 │ 30.00 │ 30.00 │ 0.00 │
+│  Memory Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│ Decoder Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│ Encoder Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    JPEG Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    Power Violation (us) │  0.00 │   N/A │   N/A │   N/A │   N/A │   N/A │  N/A │
+└─────────────────────────┴───────┴───────┴───────┴───────┴───────┴───────┴──────┘
+
+                    localhost | GPU 3 | NVIDIA A100-SXM4-40GB                     
+┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━┓
+┃                  Metric ┃   avg ┃   min ┃   max ┃   p99 ┃   p90 ┃   p50 ┃  std ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━┩
+│     GPU Power Usage (W) │ 52.99 │ 52.99 │ 52.99 │ 52.99 │ 52.99 │ 52.99 │ 0.00 │
+│ Energy Consumption (MJ) │  0.00 │   N/A │   N/A │   N/A │   N/A │   N/A │  N/A │
+│     GPU Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    GPU Memory Used (GB) │  0.54 │  0.54 │  0.54 │  0.54 │  0.54 │  0.54 │ 0.00 │
+│    GPU Temperature (°C) │ 29.00 │ 29.00 │ 29.00 │ 29.00 │ 29.00 │ 29.00 │ 0.00 │
+│  Memory Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│ Decoder Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│ Encoder Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    JPEG Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    Power Violation (us) │  0.00 │   N/A │   N/A │   N/A │   N/A │   N/A │  N/A │
+└─────────────────────────┴───────┴───────┴───────┴───────┴───────┴───────┴──────┘
+
+CLI Command: aiperf profile --model 'Qwen/Qwen2.5-VL-32B-Instruct' --url 'http://localhost:8000' --endpoint-type 'chat' --input-file 
+'artifacts/p4/vision_medium_1img_1024/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency4_20260501_154539/inputs.jsonl' 
+--custom-dataset-type 'single_turn' --concurrency 4 --request-count 200 --warmup-request-count 10 --warmup-concurrency 1 
+--use-server-token-count --gpu-telemetry 'pynvml' --output-artifact-dir 
+'artifacts/p4/vision_medium_1img_1024/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency4_20260501_154539' --streaming
+CSV Export: 
+/global/u2/k/krajeshk/PRISM/artifacts/p4/vision_medium_1img_1024/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency4_20260501_1545
+39/profile_export_aiperf.csv
+JSON Export: 
+/global/u2/k/krajeshk/PRISM/artifacts/p4/vision_medium_1img_1024/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency4_20260501_1545
+39/profile_export_aiperf.json
+Log File: 
+/global/u2/k/krajeshk/PRISM/artifacts/p4/vision_medium_1img_1024/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency4_20260501_1545
+39/logs/aiperf.log
+

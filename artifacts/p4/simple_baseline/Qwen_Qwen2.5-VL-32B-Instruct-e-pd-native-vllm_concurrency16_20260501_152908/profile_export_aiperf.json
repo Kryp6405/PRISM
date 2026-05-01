@@ -1,0 +1,130 @@
+{
+  "schema_version": "1.0",
+  "aiperf_version": "0.6.0.post1",
+  "benchmark_id": "a51a0b33-ddd2-49e2-9d43-8f23dbaa6081",
+  "error_request_count": {
+    "unit": "requests",
+    "avg": 50.0
+  },
+  "telemetry_data": {
+    "summary": {
+      "endpoints_configured": [
+        "pynvml://localhost"
+      ],
+      "endpoints_successful": [
+        "pynvml://localhost"
+      ],
+      "start_time": "2026-05-01T15:31:37.918939",
+      "end_time": "2026-05-01T15:31:40.145680"
+    },
+    "endpoints": {
+      "localhost": {
+        "gpus": {
+          "gpu_0": {
+            "gpu_index": 0,
+            "gpu_name": "NVIDIA A100-SXM4-40GB",
+            "gpu_uuid": "GPU-f31deb06-6e43-f718-2660-1b6122d1bb93",
+            "hostname": "localhost",
+            "metrics": {}
+          },
+          "gpu_1": {
+            "gpu_index": 1,
+            "gpu_name": "NVIDIA A100-SXM4-40GB",
+            "gpu_uuid": "GPU-814ec1ba-7b95-6d88-a728-c1be5a95ce66",
+            "hostname": "localhost",
+            "metrics": {}
+          },
+          "gpu_2": {
+            "gpu_index": 2,
+            "gpu_name": "NVIDIA A100-SXM4-40GB",
+            "gpu_uuid": "GPU-5d9e712f-7262-595e-ea9d-f0b232071fe5",
+            "hostname": "localhost",
+            "metrics": {}
+          },
+          "gpu_3": {
+            "gpu_index": 3,
+            "gpu_name": "NVIDIA A100-SXM4-40GB",
+            "gpu_uuid": "GPU-9fc7c0b6-bf99-6ae4-bcd2-b20dfb80ce90",
+            "hostname": "localhost",
+            "metrics": {}
+          }
+        }
+      }
+    },
+    "error_summary": []
+  },
+  "input_config": {
+    "endpoint": {
+      "model_names": [
+        "Qwen/Qwen2.5-VL-32B-Instruct"
+      ],
+      "type": "chat",
+      "streaming": true,
+      "urls": [
+        "http://localhost:8000"
+      ],
+      "use_server_token_count": true
+    },
+    "input": {
+      "image": {
+        "width": {
+          "mean": 512.0
+        },
+        "height": {
+          "mean": 512.0
+        }
+      },
+      "prompt": {
+        "output_tokens": {
+          "mean": 64,
+          "stddev": 0.0
+        }
+      }
+    },
+    "output": {
+      "artifact_directory": "artifacts/p4/simple_baseline/Qwen_Qwen2.5-VL-32B-Instruct-e-pd-native-vllm_concurrency16_20260501_152908"
+    },
+    "loadgen": {
+      "concurrency": 16,
+      "arrival_pattern": "concurrency_burst",
+      "request_count": 50,
+      "warmup_request_count": 10,
+      "warmup_concurrency": 1
+    },
+    "cli_command": "aiperf profile --model 'Qwen/Qwen2.5-VL-32B-Instruct' --url 'http://localhost:8000' --endpoint-type 'chat' --image-width-mean 512 --image-height-mean 512 --concurrency 16 --request-count 50 --warmup-request-count 10 --warmup-concurrency 1 --use-server-token-count --prompt-output-tokens-mean 64 --prompt-output-tokens-stddev 0 --gpu-telemetry 'pynvml' --server-metrics 'http://localhost:8000/metrics' --output-artifact-dir 'artifacts/p4/simple_baseline/Qwen_Qwen2.5-VL-32B-Instruct-e-pd-native-vllm_concurrency16_20260501_152908' --streaming",
+    "benchmark_id": "a51a0b33-ddd2-49e2-9d43-8f23dbaa6081",
+    "gpu_telemetry": [
+      "pynvml"
+    ],
+    "server_metrics": [
+      "http://localhost:8000/metrics"
+    ]
+  },
+  "was_cancelled": false,
+  "error_summary": [
+    {
+      "error_details": {
+        "type": "InvalidInferenceResultError",
+        "message": "InvalidInferenceResultError('Invalid inference result: No responses were received')",
+        "cause_chain": [
+          "InvalidInferenceResultError"
+        ]
+      },
+      "count": 32
+    },
+    {
+      "error_details": {
+        "type": "ClientOSError",
+        "message": "ClientOSError(104, 'Connection reset by peer')",
+        "cause": "ConnectionResetError(104, 'Connection reset by peer')",
+        "cause_chain": [
+          "ClientOSError",
+          "ConnectionResetError"
+        ]
+      },
+      "count": 18
+    }
+  ],
+  "start_time": "2026-05-01T15:31:37.918939",
+  "end_time": "2026-05-01T15:31:38.141231"
+}

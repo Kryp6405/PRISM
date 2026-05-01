@@ -1,0 +1,161 @@
+15:30:29.963 INFO     Starting AIPerf System (cli_runner.py:75)
+15:30:30.528 INFO     ✓ Tokenizer Qwen/Qwen2.5-VL-32B-Instruct detected (tokenizer_display.py:203)
+15:30:30.529 INFO     1 tokenizer validated • 0.6s (tokenizer_display.py:212)
+15:30:30.614 WARNING  Using --osl without ignore_eos or min_tokens in --extra-inputs. Output sequence length cannot be guaranteed unless the server honors these parameters. Consider: --extra-inputs ignore_eos:true (generate until max_tokens) or --extra-inputs min_tokens:<value> (set minimum output length). (cli_utils.py:153)
+15:30:30.773 INFO     Registered Worker Manager (id: 'worker_manager') (system_controller.py:340)
+15:30:30.826 INFO     Server Metrics: Discovered 1 endpoints: ['http://localhost:8000/metrics'] (manager.py:70)
+15:30:30.870 INFO     GPU telemetry export enabled: artifacts/p4/simple_baseline/Qwen_Qwen2.5-VL-32B-Instruct-e-pd-native-vllm_concurrency1_20260501_152908/gpu_telemetry_export.jsonl (jsonl_writer.py:53)
+15:30:30.872 INFO     Registered Dataset Manager (id: 'dataset_manager') (system_controller.py:340)
+15:30:30.875 INFO     Record metrics export enabled: artifacts/p4/simple_baseline/Qwen_Qwen2.5-VL-32B-Instruct-e-pd-native-vllm_concurrency1_20260501_152908/profile_export.jsonl (record_export_results_processor.py:53)
+15:30:30.880 INFO     Registered Server Metrics Manager (id: 'server_metrics_manager') (system_controller.py:340)
+15:30:30.884 INFO     Registered Gpu Telemetry Manager (id: 'gpu_telemetry_manager') (system_controller.py:340)
+15:30:30.903 INFO     Registered Timing Manager (id: 'timing_manager') (system_controller.py:340)
+15:30:30.944 INFO     Registered Record Processor (id: 'record_processor_eaa28a23') (system_controller.py:340)
+15:30:30.954 INFO     Registered Worker (id: 'worker_e767be58') (system_controller.py:340)
+15:30:31.072 INFO     Registered Records Manager (id: 'records_manager') (system_controller.py:340)
+15:30:31.261 INFO     AIPerf System is CONFIGURING (system_controller.py:228)
+15:30:31.262 INFO     Configuring all services to start profiling (system_controller.py:241)
+15:30:31.265 INFO     Configuring tokenizer(s) for dataset manager (dataset_manager.py:105)
+15:30:31.265 INFO     Tokenization is disabled for this endpoint, skipping tokenizer configuration (inference_result_parser.py:66)
+15:30:31.265 INFO     Waiting for dataset to be configured before configuring timing (manager.py:96)
+15:30:31.271 INFO     Server metrics disabled - no Prometheus endpoints reachable (system_controller.py:453)
+15:30:31.309 INFO     GPU telemetry enabled - 1/1 endpoint(s) reachable (system_controller.py:431)
+15:30:37.070 INFO     Tokenizer(s) configured in 5.80 seconds (dataset_manager.py:109)
+15:30:37.071 INFO     Configuring dataset for dataset_manager (dataset_manager.py:111)
+15:30:37.645 INFO     Using default sampling strategy for synthetic dataset: shuffle (synthetic.py:26)
+15:30:45.386 INFO     Memory-mapped backing store initialized (streaming to /tmp/aiperf_mmap_9a92b825-b563-46f9-a73c-a7da189de21c/dataset.dat) (memory_map_utils.py:87)
+15:30:45.444 INFO     Data file finalized: 100 conversations, 35.01 MB (memory_map_utils.py:144)
+15:30:45.445 INFO     Index file created: /tmp/aiperf_mmap_9a92b825-b563-46f9-a73c-a7da189de21c/index.dat (memory_map_utils.py:157)
+15:30:45.446 INFO     Backing store finalized: client_type=DatasetClientStoreType.MEMORY_MAP data_file_path=PosixPath('/tmp/aiperf_mmap_9a92b825-b563-46f9-a73c-a7da189de21c/dataset.dat') index_file_path=PosixPath('/tmp/aiperf_mmap_9a92b825-b563-46f9-a73c-a7da189de21c/index.dat') conversation_count=100 total_size_bytes=36707503 (dataset_manager.py:319)
+15:30:45.448 INFO     sampling strategy: shuffle, unique conversations: 100, unique turn count: 100 (dataset_manager.py:325)
+15:30:45.454 INFO     Generating inputs.json file at /global/u2/k/krajeshk/PRISM/artifacts/p4/simple_baseline/Qwen_Qwen2.5-VL-32B-Instruct-e-pd-native-vllm_concurrency1_20260501_152908/inputs.json (dataset_manager.py:211)
+15:30:45.462 INFO     Initialized 2 phase(s): ['Warmup', 'Profiling'] (phase_orchestrator.py:154)
+15:30:45.670 INFO     inputs.json file generated in 0.22 seconds (dataset_manager.py:229)
+15:30:46.011 INFO     Dataset client initialized and freed 100 conversations from memory (dataset_manager.py:139)
+15:30:46.012 INFO     Dataset configured in 8.94 seconds (dataset_manager.py:118)
+15:30:46.013 INFO     All services configured in 14.75 seconds (system_controller.py:253)
+15:30:46.013 INFO     AIPerf System is CONFIGURED (system_controller.py:230)
+15:30:46.018 INFO     Creating interval generator: pattern=concurrency_burst, rate=None, smoothness=None (request_rate.py:111)
+15:30:46.019 NOTICE   Phase warmup started | target: 10 requests (runner.py:236)
+15:30:46.020 INFO     Credit phase start: warmup (records_manager.py:369)
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+15:30:46.036 ERROR    Error in aiohttp request: ServerDisconnectedError('Server disconnected') (aiohttp_client.py:264)
+15:30:46.045 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.045 INFO     PyNVML initialized with 4 GPU(s) (0 with GPM support) (pynvml_collector.py:188)
+15:30:46.046 INFO     All services started profiling successfully (system_controller.py:275)
+15:30:46.046 INFO     AIPerf System is PROFILING (system_controller.py:232)
+15:30:46.053 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.063 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.069 NOTICE   Phase warmup sending complete | sent=10, completed=9, in_flight=1 | sessions: sent=10, completed=9 (runner.py:466)
+15:30:46.070 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.071 NOTICE   Phase warmup complete | completed=10, cancelled=0, errors=0 | sessions: completed=10, cancelled=0 | elapsed=0.05s (runner.py:543)
+15:30:46.072 INFO     Creating interval generator: pattern=concurrency_burst, rate=None, smoothness=None (request_rate.py:111)
+15:30:46.072 NOTICE   Phase profiling started | target: 50 requests (runner.py:236)
+15:30:46.073 INFO     Credit phase start: profiling (records_manager.py:369)
+15:30:46.081 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.090 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.098 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.107 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.115 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.124 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.133 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.141 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.149 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.158 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.165 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.173 ERROR    Error in aiohttp request: ServerDisconnectedError('Server disconnected') (aiohttp_client.py:264)
+15:30:46.183 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.190 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.198 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.206 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.213 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.222 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.229 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.239 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.246 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.254 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.262 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.270 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.276 NOTICE   Phase profiling sending complete | sent=50, completed=49, in_flight=1 | sessions: sent=50, completed=49 (runner.py:466)
+15:30:46.277 INFO     Sent 50 requests. Waiting for all to complete... (records_manager.py:377)
+15:30:46.277 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:30:46.278 NOTICE   Phase profiling complete | completed=50, cancelled=0, errors=0 | sessions: completed=50, cancelled=0 | elapsed=0.21s (runner.py:543)
+15:30:46.278 NOTICE   All credits completed (phase_orchestrator.py:169)
+15:30:46.279 INFO     Received CREDIT_PHASE_COMPLETE message, Phase complete: PhaseRecordsStats(phase=CreditPhase.PROFILING, start_ns=1777674646072610249, sent_end_ns=1777674646276127690, requests_end_ns=1777674646278366175, total_expected_requests=50, expected_duration_sec=None, expected_num_sessions=None, expected_grace_period_sec=None, final_requests_sent=None, final_requests_completed=50, final_requests_cancelled=0, final_request_errors=0, final_sent_sessions=None, final_completed_sessions=None, final_cancelled_sessions=None, timeout_triggered=False, grace_period_timeout_triggered=False, was_cancelled=False, records_end_ns=None, success_records=0, error_records=49) (records_manager.py:393)
+15:30:46.279 INFO     Received credits complete from 'timing_manager' (system_controller.py:375)
+15:30:46.279 NOTICE   All requests have completed, please wait for the results to be processed (currently 49 of 50 records processed)... (records_manager.py:396)
+15:30:46.280 INFO     All credits complete, please wait for the results to be processed... (records_manager.py:411)
+15:30:46.281 INFO     Processed 0 valid requests and 50 errors (50 total). (records_manager.py:244)
+15:30:46.281 INFO     Received all records, processing now... (records_manager.py:248)
+15:30:46.282 INFO     GPU Telemetry: Profiling complete, capturing final metrics... (manager.py:368)
+15:30:46.282 INFO     Waiting 2.0s for server metrics flush period... (records_manager.py:298)
+15:30:46.283 WARNING  GPU Telemetry: Failed to capture final state from pynvml://localhost: 'PyNVMLTelemetryCollector' object has no attribute 'collect_and_process_metrics' (manager.py:375)
+15:30:48.280 INFO     Processing records results... (records_manager.py:558)
+15:30:48.282 INFO     Waiting for telemetry results... (system_controller.py:671)
+15:30:48.283 INFO     _finalize_and_process_results completed (records_manager.py:305)
+15:30:48.283 INFO     All results received, initiating shutdown (system_controller.py:668)
+15:30:48.886 INFO     Exporting all records (exporter_manager.py:60)
+15:30:49.008 INFO     Exporting console data (exporter_manager.py:116)
+
+
+                                                   NVIDIA AIPerf | Error Summary                                                    
+┏━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓
+┃ Code ┃                        Type ┃ Message                                                                             ┃ Count ┃
+┡━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
+│  N/A │ InvalidInferenceResultError │ InvalidInferenceResultError('Invalid inference result: No responses were received') │    25 │
+│  N/A │               ClientOSError │ ClientOSError(104, 'Connection reset by peer')                                      │    24 │
+│  N/A │     ServerDisconnectedError │ ServerDisconnectedError('Server disconnected')                                      │     1 │
+└──────┴─────────────────────────────┴─────────────────────────────────────────────────────────────────────────────────────┴───────┘
+
+
+            NVIDIA AIPerf | LLM Metrics             
+┏━━━━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┓
+┃ Metric ┃ avg ┃ min ┃ max ┃ p99 ┃ p90 ┃ p50 ┃ std ┃
+┡━━━━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━┩
+└────────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┘
+
+
+       NVIDIA AIPerf | GPU Telemetry Summary        
+            1/1 DCGM endpoints reachable            
+                   • localhost ✔                    
+                                                    
+     localhost | GPU 0 | NVIDIA A100-SXM4-40GB      
+┏━━━━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┓
+┃ Metric ┃ avg ┃ min ┃ max ┃ p99 ┃ p90 ┃ p50 ┃ std ┃
+┡━━━━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━┩
+└────────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┘
+
+     localhost | GPU 1 | NVIDIA A100-SXM4-40GB      
+┏━━━━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┓
+┃ Metric ┃ avg ┃ min ┃ max ┃ p99 ┃ p90 ┃ p50 ┃ std ┃
+┡━━━━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━┩
+└────────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┘
+
+     localhost | GPU 2 | NVIDIA A100-SXM4-40GB      
+┏━━━━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┓
+┃ Metric ┃ avg ┃ min ┃ max ┃ p99 ┃ p90 ┃ p50 ┃ std ┃
+┡━━━━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━┩
+└────────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┘
+
+     localhost | GPU 3 | NVIDIA A100-SXM4-40GB      
+┏━━━━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┓
+┃ Metric ┃ avg ┃ min ┃ max ┃ p99 ┃ p90 ┃ p50 ┃ std ┃
+┡━━━━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━┩
+└────────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┘
+
+CLI Command: aiperf profile --model 'Qwen/Qwen2.5-VL-32B-Instruct' --url 'http://localhost:8000' --endpoint-type 'chat' --image-width-mean 512 
+--image-height-mean 512 --concurrency 1 --request-count 50 --warmup-request-count 10 --warmup-concurrency 1 --use-server-token-count 
+--prompt-output-tokens-mean 64 --prompt-output-tokens-stddev 0 --gpu-telemetry 'pynvml' --server-metrics 'http://localhost:8000/metrics' 
+--output-artifact-dir 'artifacts/p4/simple_baseline/Qwen_Qwen2.5-VL-32B-Instruct-e-pd-native-vllm_concurrency1_20260501_152908' --streaming
+CSV Export: 
+/global/u2/k/krajeshk/PRISM/artifacts/p4/simple_baseline/Qwen_Qwen2.5-VL-32B-Instruct-e-pd-native-vllm_concurrency1_20260501_152908/profile_exp
+ort_aiperf.csv
+JSON Export: 
+/global/u2/k/krajeshk/PRISM/artifacts/p4/simple_baseline/Qwen_Qwen2.5-VL-32B-Instruct-e-pd-native-vllm_concurrency1_20260501_152908/profile_exp
+ort_aiperf.json
+Log File: 
+/global/u2/k/krajeshk/PRISM/artifacts/p4/simple_baseline/Qwen_Qwen2.5-VL-32B-Instruct-e-pd-native-vllm_concurrency1_20260501_152908/logs/aiperf
+.log
+

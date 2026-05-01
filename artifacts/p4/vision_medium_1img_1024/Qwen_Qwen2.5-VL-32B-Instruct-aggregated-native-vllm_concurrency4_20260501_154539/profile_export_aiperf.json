@@ -1,0 +1,653 @@
+{
+  "schema_version": "1.0",
+  "aiperf_version": "0.6.0.post1",
+  "benchmark_id": "9ad9ee01-a9aa-42b6-b0ca-02dd6f1bff16",
+  "error_request_count": {
+    "unit": "requests",
+    "avg": 200.0
+  },
+  "telemetry_data": {
+    "summary": {
+      "endpoints_configured": [
+        "pynvml://localhost"
+      ],
+      "endpoints_successful": [
+        "pynvml://localhost"
+      ],
+      "start_time": "2026-05-01T15:58:43.113096",
+      "end_time": "2026-05-01T15:58:45.518630"
+    },
+    "endpoints": {
+      "localhost": {
+        "gpus": {
+          "gpu_0": {
+            "gpu_index": 0,
+            "gpu_name": "NVIDIA A100-SXM4-40GB",
+            "gpu_uuid": "GPU-f31deb06-6e43-f718-2660-1b6122d1bb93",
+            "hostname": "localhost",
+            "metrics": {
+              "gpu_power_usage": {
+                "unit": "W",
+                "avg": 52.098,
+                "p1": 52.098,
+                "p5": 52.098,
+                "p10": 52.098,
+                "p25": 52.098,
+                "p50": 52.098,
+                "p75": 52.098,
+                "p90": 52.098,
+                "p95": 52.098,
+                "p99": 52.098,
+                "min": 52.098,
+                "max": 52.098,
+                "std": 0.0
+              },
+              "energy_consumption": {
+                "unit": "MJ",
+                "avg": 0.000021067999995239006
+              },
+              "gpu_utilization": {
+                "unit": "%",
+                "avg": 0.0,
+                "p1": 0.0,
+                "p5": 0.0,
+                "p10": 0.0,
+                "p25": 0.0,
+                "p50": 0.0,
+                "p75": 0.0,
+                "p90": 0.0,
+                "p95": 0.0,
+                "p99": 0.0,
+                "min": 0.0,
+                "max": 0.0,
+                "std": 0.0
+              },
+              "gpu_memory_used": {
+                "unit": "GB",
+                "avg": 0.5438177280000001,
+                "p1": 0.5438177280000001,
+                "p5": 0.5438177280000001,
+                "p10": 0.5438177280000001,
+                "p25": 0.5438177280000001,
+                "p50": 0.5438177280000001,
+                "p75": 0.5438177280000001,
+                "p90": 0.5438177280000001,
+                "p95": 0.5438177280000001,
+                "p99": 0.5438177280000001,
+                "min": 0.5438177280000001,
+                "max": 0.5438177280000001,
+                "std": 0.0
+              },
+              "gpu_temperature": {
+                "unit": "°C",
+                "avg": 30.0,
+                "p1": 30.0,
+                "p5": 30.0,
+                "p10": 30.0,
+                "p25": 30.0,
+                "p50": 30.0,
+                "p75": 30.0,
+                "p90": 30.0,
+                "p95": 30.0,
+                "p99": 30.0,
+                "min": 30.0,
+                "max": 30.0,
+                "std": 0.0
+              },
+              "mem_utilization": {
+                "unit": "%",
+                "avg": 0.0,
+                "p1": 0.0,
+                "p5": 0.0,
+                "p10": 0.0,
+                "p25": 0.0,
+                "p50": 0.0,
+                "p75": 0.0,
+                "p90": 0.0,
+                "p95": 0.0,
+                "p99": 0.0,
+                "min": 0.0,
+                "max": 0.0,
+                "std": 0.0
+              },
+              "decoder_utilization": {
+                "unit": "%",
+                "avg": 0.0,
+                "p1": 0.0,
+                "p5": 0.0,
+                "p10": 0.0,
+                "p25": 0.0,
+                "p50": 0.0,
+                "p75": 0.0,
+                "p90": 0.0,
+                "p95": 0.0,
+                "p99": 0.0,
+                "min": 0.0,
+                "max": 0.0,
+                "std": 0.0
+              },
+              "encoder_utilization": {
+                "unit": "%",
+                "avg": 0.0,
+                "p1": 0.0,
+                "p5": 0.0,
+                "p10": 0.0,
+                "p25": 0.0,
+                "p50": 0.0,
+                "p75": 0.0,
+                "p90": 0.0,
+                "p95": 0.0,
+                "p99": 0.0,
+                "min": 0.0,
+                "max": 0.0,
+                "std": 0.0
+              },
+              "jpg_utilization": {
+                "unit": "%",
+                "avg": 0.0,
+                "p1": 0.0,
+                "p5": 0.0,
+                "p10": 0.0,
+                "p25": 0.0,
+                "p50": 0.0,
+                "p75": 0.0,
+                "p90": 0.0,
+                "p95": 0.0,
+                "p99": 0.0,
+                "min": 0.0,
+                "max": 0.0,
+                "std": 0.0
+              },
+              "power_violation": {
+                "unit": "us",
+                "avg": 0.0
+              }
+            }
+          },
+          "gpu_1": {
+            "gpu_index": 1,
+            "gpu_name": "NVIDIA A100-SXM4-40GB",
+            "gpu_uuid": "GPU-814ec1ba-7b95-6d88-a728-c1be5a95ce66",
+            "hostname": "localhost",
+            "metrics": {
+              "gpu_power_usage": {
+                "unit": "W",
+                "avg": 53.397,
+                "p1": 53.397,
+                "p5": 53.397,
+                "p10": 53.397,
+                "p25": 53.397,
+                "p50": 53.397,
+                "p75": 53.397,
+                "p90": 53.397,
+                "p95": 53.397,
+                "p99": 53.397,
+                "min": 53.397,
+                "max": 53.397,
+                "std": 0.0
+              },
+              "energy_consumption": {
+                "unit": "MJ",
+                "avg": 0.000021593000013808705
+              },
+              "gpu_utilization": {
+                "unit": "%",
+                "avg": 0.0,
+                "p1": 0.0,
+                "p5": 0.0,
+                "p10": 0.0,
+                "p25": 0.0,
+                "p50": 0.0,
+                "p75": 0.0,
+                "p90": 0.0,
+                "p95": 0.0,
+                "p99": 0.0,
+                "min": 0.0,
+                "max": 0.0,
+                "std": 0.0
+              },
+              "gpu_memory_used": {
+                "unit": "GB",
+                "avg": 0.5438177280000001,
+                "p1": 0.5438177280000001,
+                "p5": 0.5438177280000001,
+                "p10": 0.5438177280000001,
+                "p25": 0.5438177280000001,
+                "p50": 0.5438177280000001,
+                "p75": 0.5438177280000001,
+                "p90": 0.5438177280000001,
+                "p95": 0.5438177280000001,
+                "p99": 0.5438177280000001,
+                "min": 0.5438177280000001,
+                "max": 0.5438177280000001,
+                "std": 0.0
+              },
+              "gpu_temperature": {
+                "unit": "°C",
+                "avg": 29.0,
+                "p1": 29.0,
+                "p5": 29.0,
+                "p10": 29.0,
+                "p25": 29.0,
+                "p50": 29.0,
+                "p75": 29.0,
+                "p90": 29.0,
+                "p95": 29.0,
+                "p99": 29.0,
+                "min": 29.0,
+                "max": 29.0,
+                "std": 0.0
+              },
+              "mem_utilization": {
+                "unit": "%",
+                "avg": 0.0,
+                "p1": 0.0,
+                "p5": 0.0,
+                "p10": 0.0,
+                "p25": 0.0,
+                "p50": 0.0,
+                "p75": 0.0,
+                "p90": 0.0,
+                "p95": 0.0,
+                "p99": 0.0,
+                "min": 0.0,
+                "max": 0.0,
+                "std": 0.0
+              },
+              "decoder_utilization": {
+                "unit": "%",
+                "avg": 0.0,
+                "p1": 0.0,
+                "p5": 0.0,
+                "p10": 0.0,
+                "p25": 0.0,
+                "p50": 0.0,
+                "p75": 0.0,
+                "p90": 0.0,
+                "p95": 0.0,
+                "p99": 0.0,
+                "min": 0.0,
+                "max": 0.0,
+                "std": 0.0
+              },
+              "encoder_utilization": {
+                "unit": "%",
+                "avg": 0.0,
+                "p1": 0.0,
+                "p5": 0.0,
+                "p10": 0.0,
+                "p25": 0.0,
+                "p50": 0.0,
+                "p75": 0.0,
+                "p90": 0.0,
+                "p95": 0.0,
+                "p99": 0.0,
+                "min": 0.0,
+                "max": 0.0,
+                "std": 0.0
+              },
+              "jpg_utilization": {
+                "unit": "%",
+                "avg": 0.0,
+                "p1": 0.0,
+                "p5": 0.0,
+                "p10": 0.0,
+                "p25": 0.0,
+                "p50": 0.0,
+                "p75": 0.0,
+                "p90": 0.0,
+                "p95": 0.0,
+                "p99": 0.0,
+                "min": 0.0,
+                "max": 0.0,
+                "std": 0.0
+              },
+              "power_violation": {
+                "unit": "us",
+                "avg": 0.0
+              }
+            }
+          },
+          "gpu_2": {
+            "gpu_index": 2,
+            "gpu_name": "NVIDIA A100-SXM4-40GB",
+            "gpu_uuid": "GPU-5d9e712f-7262-595e-ea9d-f0b232071fe5",
+            "hostname": "localhost",
+            "metrics": {
+              "gpu_power_usage": {
+                "unit": "W",
+                "avg": 56.493,
+                "p1": 56.493,
+                "p5": 56.493,
+                "p10": 56.493,
+                "p25": 56.493,
+                "p50": 56.493,
+                "p75": 56.493,
+                "p90": 56.493,
+                "p95": 56.493,
+                "p99": 56.493,
+                "min": 56.493,
+                "max": 56.493,
+                "std": 0.0
+              },
+              "energy_consumption": {
+                "unit": "MJ",
+                "avg": 0.000017145000015261758
+              },
+              "gpu_utilization": {
+                "unit": "%",
+                "avg": 0.0,
+                "p1": 0.0,
+                "p5": 0.0,
+                "p10": 0.0,
+                "p25": 0.0,
+                "p50": 0.0,
+                "p75": 0.0,
+                "p90": 0.0,
+                "p95": 0.0,
+                "p99": 0.0,
+                "min": 0.0,
+                "max": 0.0,
+                "std": 0.0
+              },
+              "gpu_memory_used": {
+                "unit": "GB",
+                "avg": 0.5438177280000001,
+                "p1": 0.5438177280000001,
+                "p5": 0.5438177280000001,
+                "p10": 0.5438177280000001,
+                "p25": 0.5438177280000001,
+                "p50": 0.5438177280000001,
+                "p75": 0.5438177280000001,
+                "p90": 0.5438177280000001,
+                "p95": 0.5438177280000001,
+                "p99": 0.5438177280000001,
+                "min": 0.5438177280000001,
+                "max": 0.5438177280000001,
+                "std": 0.0
+              },
+              "gpu_temperature": {
+                "unit": "°C",
+                "avg": 30.0,
+                "p1": 30.0,
+                "p5": 30.0,
+                "p10": 30.0,
+                "p25": 30.0,
+                "p50": 30.0,
+                "p75": 30.0,
+                "p90": 30.0,
+                "p95": 30.0,
+                "p99": 30.0,
+                "min": 30.0,
+                "max": 30.0,
+                "std": 0.0
+              },
+              "mem_utilization": {
+                "unit": "%",
+                "avg": 0.0,
+                "p1": 0.0,
+                "p5": 0.0,
+                "p10": 0.0,
+                "p25": 0.0,
+                "p50": 0.0,
+                "p75": 0.0,
+                "p90": 0.0,
+                "p95": 0.0,
+                "p99": 0.0,
+                "min": 0.0,
+                "max": 0.0,
+                "std": 0.0
+              },
+              "decoder_utilization": {
+                "unit": "%",
+                "avg": 0.0,
+                "p1": 0.0,
+                "p5": 0.0,
+                "p10": 0.0,
+                "p25": 0.0,
+                "p50": 0.0,
+                "p75": 0.0,
+                "p90": 0.0,
+                "p95": 0.0,
+                "p99": 0.0,
+                "min": 0.0,
+                "max": 0.0,
+                "std": 0.0
+              },
+              "encoder_utilization": {
+                "unit": "%",
+                "avg": 0.0,
+                "p1": 0.0,
+                "p5": 0.0,
+                "p10": 0.0,
+                "p25": 0.0,
+                "p50": 0.0,
+                "p75": 0.0,
+                "p90": 0.0,
+                "p95": 0.0,
+                "p99": 0.0,
+                "min": 0.0,
+                "max": 0.0,
+                "std": 0.0
+              },
+              "jpg_utilization": {
+                "unit": "%",
+                "avg": 0.0,
+                "p1": 0.0,
+                "p5": 0.0,
+                "p10": 0.0,
+                "p25": 0.0,
+                "p50": 0.0,
+                "p75": 0.0,
+                "p90": 0.0,
+                "p95": 0.0,
+                "p99": 0.0,
+                "min": 0.0,
+                "max": 0.0,
+                "std": 0.0
+              },
+              "power_violation": {
+                "unit": "us",
+                "avg": 0.0
+              }
+            }
+          },
+          "gpu_3": {
+            "gpu_index": 3,
+            "gpu_name": "NVIDIA A100-SXM4-40GB",
+            "gpu_uuid": "GPU-9fc7c0b6-bf99-6ae4-bcd2-b20dfb80ce90",
+            "hostname": "localhost",
+            "metrics": {
+              "gpu_power_usage": {
+                "unit": "W",
+                "avg": 52.987,
+                "p1": 52.987,
+                "p5": 52.987,
+                "p10": 52.987,
+                "p25": 52.987,
+                "p50": 52.987,
+                "p75": 52.987,
+                "p90": 52.987,
+                "p95": 52.987,
+                "p99": 52.987,
+                "min": 52.987,
+                "max": 52.987,
+                "std": 0.0
+              },
+              "energy_consumption": {
+                "unit": "MJ",
+                "avg": 0.000021459000009826923
+              },
+              "gpu_utilization": {
+                "unit": "%",
+                "avg": 0.0,
+                "p1": 0.0,
+                "p5": 0.0,
+                "p10": 0.0,
+                "p25": 0.0,
+                "p50": 0.0,
+                "p75": 0.0,
+                "p90": 0.0,
+                "p95": 0.0,
+                "p99": 0.0,
+                "min": 0.0,
+                "max": 0.0,
+                "std": 0.0
+              },
+              "gpu_memory_used": {
+                "unit": "GB",
+                "avg": 0.5438177280000001,
+                "p1": 0.5438177280000001,
+                "p5": 0.5438177280000001,
+                "p10": 0.5438177280000001,
+                "p25": 0.5438177280000001,
+                "p50": 0.5438177280000001,
+                "p75": 0.5438177280000001,
+                "p90": 0.5438177280000001,
+                "p95": 0.5438177280000001,
+                "p99": 0.5438177280000001,
+                "min": 0.5438177280000001,
+                "max": 0.5438177280000001,
+                "std": 0.0
+              },
+              "gpu_temperature": {
+                "unit": "°C",
+                "avg": 29.0,
+                "p1": 29.0,
+                "p5": 29.0,
+                "p10": 29.0,
+                "p25": 29.0,
+                "p50": 29.0,
+                "p75": 29.0,
+                "p90": 29.0,
+                "p95": 29.0,
+                "p99": 29.0,
+                "min": 29.0,
+                "max": 29.0,
+                "std": 0.0
+              },
+              "mem_utilization": {
+                "unit": "%",
+                "avg": 0.0,
+                "p1": 0.0,
+                "p5": 0.0,
+                "p10": 0.0,
+                "p25": 0.0,
+                "p50": 0.0,
+                "p75": 0.0,
+                "p90": 0.0,
+                "p95": 0.0,
+                "p99": 0.0,
+                "min": 0.0,
+                "max": 0.0,
+                "std": 0.0
+              },
+              "decoder_utilization": {
+                "unit": "%",
+                "avg": 0.0,
+                "p1": 0.0,
+                "p5": 0.0,
+                "p10": 0.0,
+                "p25": 0.0,
+                "p50": 0.0,
+                "p75": 0.0,
+                "p90": 0.0,
+                "p95": 0.0,
+                "p99": 0.0,
+                "min": 0.0,
+                "max": 0.0,
+                "std": 0.0
+              },
+              "encoder_utilization": {
+                "unit": "%",
+                "avg": 0.0,
+                "p1": 0.0,
+                "p5": 0.0,
+                "p10": 0.0,
+                "p25": 0.0,
+                "p50": 0.0,
+                "p75": 0.0,
+                "p90": 0.0,
+                "p95": 0.0,
+                "p99": 0.0,
+                "min": 0.0,
+                "max": 0.0,
+                "std": 0.0
+              },
+              "jpg_utilization": {
+                "unit": "%",
+                "avg": 0.0,
+                "p1": 0.0,
+                "p5": 0.0,
+                "p10": 0.0,
+                "p25": 0.0,
+                "p50": 0.0,
+                "p75": 0.0,
+                "p90": 0.0,
+                "p95": 0.0,
+                "p99": 0.0,
+                "min": 0.0,
+                "max": 0.0,
+                "std": 0.0
+              },
+              "power_violation": {
+                "unit": "us",
+                "avg": 0.0
+              }
+            }
+          }
+        }
+      }
+    },
+    "error_summary": []
+  },
+  "input_config": {
+    "endpoint": {
+      "model_names": [
+        "Qwen/Qwen2.5-VL-32B-Instruct"
+      ],
+      "type": "chat",
+      "streaming": true,
+      "urls": [
+        "http://localhost:8000"
+      ],
+      "use_server_token_count": true
+    },
+    "input": {
+      "file": "artifacts/p4/vision_medium_1img_1024/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency4_20260501_154539/inputs.jsonl",
+      "custom_dataset_type": "single_turn"
+    },
+    "output": {
+      "artifact_directory": "artifacts/p4/vision_medium_1img_1024/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency4_20260501_154539"
+    },
+    "loadgen": {
+      "concurrency": 4,
+      "arrival_pattern": "concurrency_burst",
+      "request_count": 200,
+      "warmup_request_count": 10,
+      "warmup_concurrency": 1
+    },
+    "cli_command": "aiperf profile --model 'Qwen/Qwen2.5-VL-32B-Instruct' --url 'http://localhost:8000' --endpoint-type 'chat' --input-file 'artifacts/p4/vision_medium_1img_1024/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency4_20260501_154539/inputs.jsonl' --custom-dataset-type 'single_turn' --concurrency 4 --request-count 200 --warmup-request-count 10 --warmup-concurrency 1 --use-server-token-count --gpu-telemetry 'pynvml' --output-artifact-dir 'artifacts/p4/vision_medium_1img_1024/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency4_20260501_154539' --streaming",
+    "benchmark_id": "9ad9ee01-a9aa-42b6-b0ca-02dd6f1bff16",
+    "gpu_telemetry": [
+      "pynvml"
+    ]
+  },
+  "was_cancelled": false,
+  "error_summary": [
+    {
+      "error_details": {
+        "type": "ClientConnectorError",
+        "message": "ClientConnectorError(ConnectionKey(host='localhost', port=8000, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None), ConnectionRefusedError(111, \"Connect call failed ('127.0.0.1', 8000)\"))",
+        "cause": "ConnectionRefusedError(111, \"Connect call failed ('127.0.0.1', 8000)\")",
+        "cause_chain": [
+          "ClientConnectorError",
+          "ConnectionRefusedError"
+        ]
+      },
+      "count": 200
+    }
+  ],
+  "start_time": "2026-05-01T15:58:43.113096",
+  "end_time": "2026-05-01T15:58:43.516258"
+}

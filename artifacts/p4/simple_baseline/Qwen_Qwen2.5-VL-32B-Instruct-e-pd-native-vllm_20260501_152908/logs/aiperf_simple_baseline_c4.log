@@ -1,0 +1,166 @@
+15:30:53.067 INFO     Starting AIPerf System (cli_runner.py:75)
+15:30:53.668 INFO     ✓ Tokenizer Qwen/Qwen2.5-VL-32B-Instruct detected (tokenizer_display.py:203)
+15:30:53.669 INFO     1 tokenizer validated • 0.6s (tokenizer_display.py:212)
+15:30:53.736 WARNING  Using --osl without ignore_eos or min_tokens in --extra-inputs. Output sequence length cannot be guaranteed unless the server honors these parameters. Consider: --extra-inputs ignore_eos:true (generate until max_tokens) or --extra-inputs min_tokens:<value> (set minimum output length). (cli_utils.py:153)
+15:30:53.883 INFO     Registered Worker Manager (id: 'worker_manager') (system_controller.py:340)
+15:30:53.934 INFO     Server Metrics: Discovered 1 endpoints: ['http://localhost:8000/metrics'] (manager.py:70)
+15:30:53.936 INFO     GPU telemetry export enabled: artifacts/p4/simple_baseline/Qwen_Qwen2.5-VL-32B-Instruct-e-pd-native-vllm_concurrency4_20260501_152908/gpu_telemetry_export.jsonl (jsonl_writer.py:53)
+15:30:53.940 INFO     Record metrics export enabled: artifacts/p4/simple_baseline/Qwen_Qwen2.5-VL-32B-Instruct-e-pd-native-vllm_concurrency4_20260501_152908/profile_export.jsonl (record_export_results_processor.py:53)
+15:30:53.943 INFO     Registered Dataset Manager (id: 'dataset_manager') (system_controller.py:340)
+15:30:53.963 INFO     Registered Record Processor (id: 'record_processor_55ac31ae') (system_controller.py:340)
+15:30:53.977 INFO     Registered Timing Manager (id: 'timing_manager') (system_controller.py:340)
+15:30:53.980 INFO     Registered Gpu Telemetry Manager (id: 'gpu_telemetry_manager') (system_controller.py:340)
+15:30:53.996 INFO     Registered Server Metrics Manager (id: 'server_metrics_manager') (system_controller.py:340)
+15:30:54.047 INFO     Registered Worker (id: 'worker_d92da2f7') (system_controller.py:340)
+15:30:54.053 INFO     Registered Worker (id: 'worker_09755334') (system_controller.py:340)
+15:30:54.081 INFO     Registered Worker (id: 'worker_1ef05207') (system_controller.py:340)
+15:30:54.081 INFO     Registered Worker (id: 'worker_0ddddd42') (system_controller.py:340)
+15:30:54.150 INFO     Registered Records Manager (id: 'records_manager') (system_controller.py:340)
+15:30:54.375 INFO     AIPerf System is CONFIGURING (system_controller.py:228)
+15:30:54.375 INFO     Configuring all services to start profiling (system_controller.py:241)
+15:30:54.378 INFO     Waiting for dataset to be configured before configuring timing (manager.py:96)
+15:30:54.378 INFO     Configuring tokenizer(s) for dataset manager (dataset_manager.py:105)
+15:30:54.378 INFO     Tokenization is disabled for this endpoint, skipping tokenizer configuration (inference_result_parser.py:66)
+15:30:54.383 INFO     Server metrics disabled - no Prometheus endpoints reachable (system_controller.py:453)
+15:30:54.423 INFO     GPU telemetry enabled - 1/1 endpoint(s) reachable (system_controller.py:431)
+15:31:00.104 INFO     Tokenizer(s) configured in 5.72 seconds (dataset_manager.py:109)
+15:31:00.104 INFO     Configuring dataset for dataset_manager (dataset_manager.py:111)
+15:31:00.628 INFO     Using default sampling strategy for synthetic dataset: shuffle (synthetic.py:26)
+15:31:08.108 INFO     Memory-mapped backing store initialized (streaming to /tmp/aiperf_mmap_058adbb0-efcd-4953-9efe-5cceb6041a25/dataset.dat) (memory_map_utils.py:87)
+15:31:08.157 INFO     Data file finalized: 100 conversations, 34.29 MB (memory_map_utils.py:144)
+15:31:08.158 INFO     Index file created: /tmp/aiperf_mmap_058adbb0-efcd-4953-9efe-5cceb6041a25/index.dat (memory_map_utils.py:157)
+15:31:08.159 INFO     Backing store finalized: client_type=DatasetClientStoreType.MEMORY_MAP data_file_path=PosixPath('/tmp/aiperf_mmap_058adbb0-efcd-4953-9efe-5cceb6041a25/dataset.dat') index_file_path=PosixPath('/tmp/aiperf_mmap_058adbb0-efcd-4953-9efe-5cceb6041a25/index.dat') conversation_count=100 total_size_bytes=35960406 (dataset_manager.py:319)
+15:31:08.161 INFO     sampling strategy: shuffle, unique conversations: 100, unique turn count: 100 (dataset_manager.py:325)
+15:31:08.173 INFO     Initialized 2 phase(s): ['Warmup', 'Profiling'] (phase_orchestrator.py:154)
+15:31:08.175 INFO     Generating inputs.json file at /global/u2/k/krajeshk/PRISM/artifacts/p4/simple_baseline/Qwen_Qwen2.5-VL-32B-Instruct-e-pd-native-vllm_concurrency4_20260501_152908/inputs.json (dataset_manager.py:211)
+15:31:08.308 INFO     inputs.json file generated in 0.13 seconds (dataset_manager.py:229)
+15:31:08.530 INFO     Dataset client initialized and freed 100 conversations from memory (dataset_manager.py:139)
+15:31:08.531 INFO     Dataset configured in 8.43 seconds (dataset_manager.py:118)
+15:31:08.533 INFO     All services configured in 14.16 seconds (system_controller.py:253)
+15:31:08.533 INFO     AIPerf System is CONFIGURED (system_controller.py:230)
+15:31:08.536 INFO     Creating interval generator: pattern=concurrency_burst, rate=None, smoothness=None (request_rate.py:111)
+15:31:08.537 NOTICE   Phase warmup started | target: 10 requests (runner.py:236)
+15:31:08.538 INFO     Credit phase start: warmup (records_manager.py:369)
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+15:31:08.564 INFO     PyNVML initialized with 4 GPU(s) (0 with GPM support) (pynvml_collector.py:188)
+15:31:08.565 INFO     All services started profiling successfully (system_controller.py:275)
+15:31:08.566 INFO     AIPerf System is PROFILING (system_controller.py:232)
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+15:31:08.605 NOTICE   Phase warmup sending complete | sent=10, completed=9, in_flight=1 | sessions: sent=10, completed=9 (runner.py:466)
+15:31:08.610 NOTICE   Phase warmup complete | completed=10, cancelled=0, errors=0 | sessions: completed=10, cancelled=0 | elapsed=0.07s (runner.py:543)
+15:31:08.611 INFO     Creating interval generator: pattern=concurrency_burst, rate=None, smoothness=None (request_rate.py:111)
+15:31:08.612 NOTICE   Phase profiling started | target: 50 requests (runner.py:236)
+15:31:08.613 INFO     Credit phase start: profiling (records_manager.py:369)
+15:31:08.630 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:31:08.634 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:31:08.634 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:31:08.636 ERROR    Error in aiohttp request: ServerDisconnectedError('Server disconnected') (aiohttp_client.py:264)
+15:31:08.651 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:31:08.655 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:31:08.661 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:31:08.671 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:31:08.693 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:31:08.695 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:31:08.697 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:31:08.702 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:31:08.719 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:31:08.721 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:31:08.726 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:31:08.730 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:31:08.744 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:31:08.749 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:31:08.752 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:31:08.755 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:31:08.771 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:31:08.774 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:31:08.777 ERROR    Error in aiohttp request: ClientOSError(104, 'Connection reset by peer') (aiohttp_client.py:264)
+15:31:08.778 NOTICE   Phase profiling sending complete | sent=50, completed=46, in_flight=4 | sessions: sent=50, completed=46 (runner.py:466)
+15:31:08.779 INFO     Sent 50 requests. Waiting for all to complete... (records_manager.py:377)
+15:31:08.799 NOTICE   Phase profiling complete | completed=50, cancelled=0, errors=0 | sessions: completed=50, cancelled=0 | elapsed=0.19s (runner.py:543)
+15:31:08.799 NOTICE   All credits completed (phase_orchestrator.py:169)
+15:31:08.800 INFO     Received CREDIT_PHASE_COMPLETE message, Phase complete: PhaseRecordsStats(phase=CreditPhase.PROFILING, start_ns=1777674668612476766, sent_end_ns=1777674668778587329, requests_end_ns=1777674668799139962, total_expected_requests=50, expected_duration_sec=None, expected_num_sessions=None, expected_grace_period_sec=None, final_requests_sent=None, final_requests_completed=50, final_requests_cancelled=0, final_request_errors=0, final_sent_sessions=None, final_completed_sessions=None, final_cancelled_sessions=None, timeout_triggered=False, grace_period_timeout_triggered=False, was_cancelled=False, records_end_ns=None, success_records=0, error_records=49) (records_manager.py:393)
+15:31:08.800 INFO     Received credits complete from 'timing_manager' (system_controller.py:375)
+15:31:08.800 NOTICE   All requests have completed, please wait for the results to be processed (currently 49 of 50 records processed)... (records_manager.py:396)
+15:31:08.801 INFO     All credits complete, please wait for the results to be processed... (records_manager.py:411)
+15:31:08.803 INFO     Processed 0 valid requests and 50 errors (50 total). (records_manager.py:244)
+15:31:08.803 INFO     Received all records, processing now... (records_manager.py:248)
+15:31:08.805 INFO     Waiting 2.0s for server metrics flush period... (records_manager.py:298)
+15:31:08.805 INFO     GPU Telemetry: Profiling complete, capturing final metrics... (manager.py:368)
+15:31:08.805 WARNING  GPU Telemetry: Failed to capture final state from pynvml://localhost: 'PyNVMLTelemetryCollector' object has no attribute 'collect_and_process_metrics' (manager.py:375)
+15:31:10.799 INFO     Processing records results... (records_manager.py:558)
+15:31:10.802 INFO     Waiting for telemetry results... (system_controller.py:671)
+15:31:10.802 INFO     _finalize_and_process_results completed (records_manager.py:305)
+15:31:10.803 INFO     All results received, initiating shutdown (system_controller.py:668)
+15:31:11.406 INFO     Exporting all records (exporter_manager.py:60)
+15:31:11.502 INFO     Exporting console data (exporter_manager.py:116)
+
+
+                                                   NVIDIA AIPerf | Error Summary                                                    
+┏━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓
+┃ Code ┃                        Type ┃ Message                                                                             ┃ Count ┃
+┡━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
+│  N/A │ InvalidInferenceResultError │ InvalidInferenceResultError('Invalid inference result: No responses were received') │    27 │
+│  N/A │               ClientOSError │ ClientOSError(104, 'Connection reset by peer')                                      │    22 │
+│  N/A │     ServerDisconnectedError │ ServerDisconnectedError('Server disconnected')                                      │     1 │
+└──────┴─────────────────────────────┴─────────────────────────────────────────────────────────────────────────────────────┴───────┘
+
+
+            NVIDIA AIPerf | LLM Metrics             
+┏━━━━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┓
+┃ Metric ┃ avg ┃ min ┃ max ┃ p99 ┃ p90 ┃ p50 ┃ std ┃
+┡━━━━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━┩
+└────────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┘
+
+
+       NVIDIA AIPerf | GPU Telemetry Summary        
+            1/1 DCGM endpoints reachable            
+                   • localhost ✔                    
+                                                    
+     localhost | GPU 0 | NVIDIA A100-SXM4-40GB      
+┏━━━━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┓
+┃ Metric ┃ avg ┃ min ┃ max ┃ p99 ┃ p90 ┃ p50 ┃ std ┃
+┡━━━━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━┩
+└────────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┘
+
+     localhost | GPU 1 | NVIDIA A100-SXM4-40GB      
+┏━━━━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┓
+┃ Metric ┃ avg ┃ min ┃ max ┃ p99 ┃ p90 ┃ p50 ┃ std ┃
+┡━━━━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━┩
+└────────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┘
+
+     localhost | GPU 2 | NVIDIA A100-SXM4-40GB      
+┏━━━━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┓
+┃ Metric ┃ avg ┃ min ┃ max ┃ p99 ┃ p90 ┃ p50 ┃ std ┃
+┡━━━━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━┩
+└────────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┘
+
+     localhost | GPU 3 | NVIDIA A100-SXM4-40GB      
+┏━━━━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┓
+┃ Metric ┃ avg ┃ min ┃ max ┃ p99 ┃ p90 ┃ p50 ┃ std ┃
+┡━━━━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━┩
+└────────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┘
+
+CLI Command: aiperf profile --model 'Qwen/Qwen2.5-VL-32B-Instruct' --url 'http://localhost:8000' --endpoint-type 'chat' --image-width-mean 512 
+--image-height-mean 512 --concurrency 4 --request-count 50 --warmup-request-count 10 --warmup-concurrency 1 --use-server-token-count 
+--prompt-output-tokens-mean 64 --prompt-output-tokens-stddev 0 --gpu-telemetry 'pynvml' --server-metrics 'http://localhost:8000/metrics' 
+--output-artifact-dir 'artifacts/p4/simple_baseline/Qwen_Qwen2.5-VL-32B-Instruct-e-pd-native-vllm_concurrency4_20260501_152908' --streaming
+CSV Export: 
+/global/u2/k/krajeshk/PRISM/artifacts/p4/simple_baseline/Qwen_Qwen2.5-VL-32B-Instruct-e-pd-native-vllm_concurrency4_20260501_152908/profile_exp
+ort_aiperf.csv
+JSON Export: 
+/global/u2/k/krajeshk/PRISM/artifacts/p4/simple_baseline/Qwen_Qwen2.5-VL-32B-Instruct-e-pd-native-vllm_concurrency4_20260501_152908/profile_exp
+ort_aiperf.json
+Log File: 
+/global/u2/k/krajeshk/PRISM/artifacts/p4/simple_baseline/Qwen_Qwen2.5-VL-32B-Instruct-e-pd-native-vllm_concurrency4_20260501_152908/logs/aiperf
+.log
+

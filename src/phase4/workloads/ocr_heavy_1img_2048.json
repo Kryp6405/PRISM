@@ -1,0 +1,17 @@
+{
+  "name": "phase4_qwen25vl_32b_ocr_heavy_1img_2048",
+  "model": "Qwen/Qwen2.5-VL-32B-Instruct",
+  "workload_type": "ocr_heavy_1img_2048",
+  "image_source": "custom",
+  "image_path": "src/phase3/workloads/images/ocr_1528.png",
+  "image_width_mean": 2048,
+  "image_height_mean": 2048,
+  "concurrency_values": [1, 2, 4, 8, 16],
+  "request_count": 150,
+  "output_tokens_mean": 512,
+  "output_tokens_stddev": 0,
+  "endpoint_type": "chat",
+  "use_server_token_count": true,
+  "num_images": 1,
+  "prompt": "Analyze this figure carefully. Identify the main panels, titles, axes, row and column labels, legends, annotations, and visible trends. Extract readable text and values when possible, but do not invent unclear details. Finish with a concise interpretation of the figure."
+}

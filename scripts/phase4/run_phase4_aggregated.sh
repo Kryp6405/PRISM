@@ -112,8 +112,9 @@ write_custom_inputs_jsonl() {
   local prompt="$3"
   local image_path="$4"
   local output_length="$5"
+  local num_images="$6"
 
-  python3 - "$input_file" "$request_count" "$prompt" "$image_path" "$output_length" <<'PY'
+  python3 - "$input_file" "$request_count" "$prompt" "$image_path" "$output_length" "$num_images" <<'PY'
 import json
 import sys
 from pathlib import Path
@@ -123,6 +124,7 @@ request_count = int(sys.argv[2])
 prompt = sys.argv[3]
 image_path = sys.argv[4]
 output_length = int(sys.argv[5])
+num_images = int(sys.argv[6])
 
 out_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -130,7 +132,7 @@ with out_path.open("w") as f:
     for i in range(request_count):
         row = {
             "texts": [f"{prompt}\n\nRequest ID: {i}"],
-            "images": [image_path],
+            "images": [image_path for _ in range(num_images)],
             "output_length": output_length,
         }
         f.write(json.dumps(row) + "\n")
@@ -294,7 +296,8 @@ for CONCURRENCY in $CONCURRENCY_VALUES; do
       "$REQUEST_COUNT" \
       "$PROMPT" \
       "$IMAGE_PATH" \
-      "$OUTPUT_TOKENS_MEAN"
+      "$OUTPUT_TOKENS_MEAN" \
+      "$NUM_IMAGES"
 
     AIPERF_CMD=(
       aiperf profile

@@ -1,0 +1,18 @@
+{
+  "name": "phase4_qwen25vl_32b_video_light_8frames_512",
+  "model": "Qwen/Qwen2.5-VL-32B-Instruct",
+  "workload_type": "video_light_8frames_512",
+  "image_source": "custom",
+  "image_path": "src/phase4/workloads/videos/sample_8s.mp4",
+  "image_width_mean": 512,
+  "image_height_mean": 512,
+  "concurrency_values": [1, 2, 4, 8],
+  "request_count": 50,
+  "output_tokens_mean": 256,
+  "output_tokens_stddev": 0,
+  "endpoint_type": "chat",
+  "use_server_token_count": true,
+  "num_images": 0,
+  "num_videos": 1,
+  "prompt": "Analyze this short video. Describe the main scene, important objects, motion, temporal changes, and any events that occur. Keep the answer grounded in visible evidence."
+}
