@@ -1,0 +1,798 @@
+PRISM / vLLM Disaggregation Command Log
+========================================
+
+Collected vLLM serve, proxy, and AIPerf commands from the simple workload sweep and encoder-heavy workload sweep.
+
+Workloads:
+- Simple: Qwen/Qwen2-VL-2B-Instruct, image 512x512, concurrency 4, output 256 tokens, 50 requests + 10 warmup.
+- Encoder-heavy: Qwen/Qwen2-VL-2B-Instruct, image 1024x1024 + 1 synthetic video, video 4s x 4 FPS = 16 frames, concurrency 8, output 256 tokens, 100 requests + 10 warmup.
+
+Common setup used in most shells
+--------------------------------
+
+module load gcc/13.2.0 cuda/12.8 python/3.12.11
+
+export PRISM_ROOT=$SCRATCH/PRISM_env
+source $PRISM_ROOT/venvs/prism-env/bin/activate
+
+export HF_HOME=$PRISM_ROOT/.cache/hf_home
+export TRANSFORMERS_HOME=$PRISM_ROOT/.cache/transformers
+export VLLM_CACHE_ROOT=$PRISM_ROOT/.cache/vllm
+export TORCHINDUCTOR_CACHE_DIR=$PRISM_ROOT/.cache/torchinductor
+export TRITON_CACHE_DIR=$PRISM_ROOT/.cache/triton
+export TMPDIR=$PRISM_ROOT/.cache/tmp
+
+export TORCH_LIB=$PRISM_ROOT/venvs/prism-env/lib/python3.12/site-packages/torch/lib
+export LD_LIBRARY_PATH="$TORCH_LIB:${LD_LIBRARY_PATH:-}"
+
+export MODEL="Qwen/Qwen2-VL-2B-Instruct"
+
+Useful cleanup:
+
+pkill -f "vllm serve" || true
+pkill -f "disagg_epd_proxy.py" || true
+
+For full E+P+D with NIXL, also use this in prefill/decode shells:
+
+export OPENSSL3_LIB=/opt/apps/cuda/12.8/nsight-systems-2024.6.2/host-linux-x64
+export TORCH_LIB=$PRISM_ROOT/venvs/prism-env/lib/python3.12/site-packages/torch/lib
+export LD_LIBRARY_PATH="$OPENSSL3_LIB:$TORCH_LIB:${LD_LIBRARY_PATH:-}"
+
+
+============================================================
+SIMPLE WORKLOAD SWEEP
+============================================================
+
+SIMPLE 1: Aggregated A100/A100, 2 GPU, TP=2
+-------------------------------------------
+
+export MODEL="Qwen/Qwen2-VL-2B-Instruct"
+export PORT=8000
+
+CUDA_VISIBLE_DEVICES=0,1 PYTHONUNBUFFERED=1 VLLM_LOGGING_LEVEL=INFO \
+vllm serve "$MODEL" \
+  --host 0.0.0.0 \
+  --port "$PORT" \
+  --tensor-parallel-size 2 \
+  --gpu-memory-utilization 0.90 \
+  --max-num-seqs 16 \
+  --limit-mm-per-prompt '{"image":1}'
+
+export OUT_DIR=$SCRATCH/PRISM/artifacts/qwen2vl_2b_aggregated_tp2_2gpu_img512_c4_out256
+
+aiperf profile \
+  --model "$MODEL" \
+  --url http://localhost:$PORT \
+  --endpoint-type chat \
+  --image-width-mean 512 \
+  --image-height-mean 512 \
+  --concurrency 4 \
+  --request-count 50 \
+  --warmup-request-count 10 \
+  --use-server-token-count \
+  --prompt-output-tokens-mean 256 \
+  --prompt-output-tokens-stddev 0 \
+  --gpu-telemetry "pynvml" \
+  --extra-inputs ignore_eos:true \
+  --output-artifact-dir "$OUT_DIR"
+
+
+SIMPLE 2: Partial disagg A100/A100, E+PD, 2 GPUs
+------------------------------------------------
+
+export MODEL="Qwen/Qwen2-VL-2B-Instruct"
+export ENCODE_PORT=19534
+export PD_PORT=19535
+export PORT=8000
+export EC_SHARED_STORAGE_PATH=$SCRATCH/PRISM/tacc/p1/qwen2vl_2b_epd_2gpu_img512_c4_out256/ec_cache
+rm -rf "$EC_SHARED_STORAGE_PATH"
+mkdir -p "$EC_SHARED_STORAGE_PATH"
+
+# Shell 1: A100 PD EC consumer
+
+CUDA_VISIBLE_DEVICES=1 PYTHONUNBUFFERED=1 VLLM_LOGGING_LEVEL=INFO \
+vllm serve "$MODEL" \
+  --host 127.0.0.1 \
+  --port "$PD_PORT" \
+  --gpu-memory-utilization 0.90 \
+  --max-num-seqs 16 \
+  --limit-mm-per-prompt '{"image":1}' \
+  --ec-transfer-config "{
+    \"ec_connector\":\"ECExampleConnector\",
+    \"ec_role\":\"ec_consumer\",
+    \"ec_connector_extra_config\":{
+      \"shared_storage_path\":\"$EC_SHARED_STORAGE_PATH\"
+    }
+  }"
+
+# Shell 2: A100 encoder EC producer
+
+CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 VLLM_LOGGING_LEVEL=INFO \
+vllm serve "$MODEL" \
+  --host 127.0.0.1 \
+  --port "$ENCODE_PORT" \
+  --gpu-memory-utilization 0.25 \
+  --enforce-eager \
+  --no-enable-prefix-caching \
+  --max-num-batched-tokens 8192 \
+  --max-num-seqs 16 \
+  --limit-mm-per-prompt '{"image":1}' \
+  --ec-transfer-config "{
+    \"ec_connector\":\"ECExampleConnector\",
+    \"ec_role\":\"ec_producer\",
+    \"ec_connector_extra_config\":{
+      \"shared_storage_path\":\"$EC_SHARED_STORAGE_PATH\"
+    }
+  }"
+
+# Shell 3: proxy
+
+cd $PRISM_ROOT/src/vllm/examples/online_serving/disaggregated_encoder
+
+PYTHONUNBUFFERED=1 python3 disagg_epd_proxy.py \
+  --host 0.0.0.0 \
+  --port "$PORT" \
+  --encode-servers-urls "http://localhost:$ENCODE_PORT" \
+  --prefill-servers-urls "disable" \
+  --decode-servers-urls "http://localhost:$PD_PORT"
+
+# Shell 4: AIPerf
+
+export OUT_DIR=$SCRATCH/PRISM/artifacts/qwen2vl_2b_epd_2gpu_img512_c4_out256
+
+aiperf profile \
+  --model "$MODEL" \
+  --url http://localhost:$PORT \
+  --endpoint-type chat \
+  --image-width-mean 512 \
+  --image-height-mean 512 \
+  --concurrency 4 \
+  --request-count 50 \
+  --warmup-request-count 10 \
+  --use-server-token-count \
+  --prompt-output-tokens-mean 256 \
+  --prompt-output-tokens-stddev 0 \
+  --gpu-telemetry "pynvml" \
+  --extra-inputs ignore_eos:true \
+  --output-artifact-dir "$OUT_DIR"
+
+
+SIMPLE 3: Partial disagg hetero, A100 encoder + H100 PD
+-------------------------------------------------------
+
+export MODEL="Qwen/Qwen2-VL-2B-Instruct"
+export A100_HOST="c315-011.ls6.tacc.utexas.edu"
+export H100_HOST="c318-001.ls6.tacc.utexas.edu"
+export ENCODE_PORT=19534
+export PD_PORT=19535
+export PORT=8000
+export EC_SHARED_STORAGE_PATH=$SCRATCH/PRISM/tacc/p1/qwen2vl_2b_epd_hetero_a100e_h100pd_img512_c4_out256/ec_cache
+rm -rf "$EC_SHARED_STORAGE_PATH"
+mkdir -p "$EC_SHARED_STORAGE_PATH"
+
+# H100 node: PD EC consumer
+
+CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 VLLM_LOGGING_LEVEL=INFO \
+vllm serve "$MODEL" \
+  --host 0.0.0.0 \
+  --port "$PD_PORT" \
+  --gpu-memory-utilization 0.90 \
+  --max-num-seqs 16 \
+  --limit-mm-per-prompt '{"image":1}' \
+  --ec-transfer-config "{
+    \"ec_connector\":\"ECExampleConnector\",
+    \"ec_role\":\"ec_consumer\",
+    \"ec_connector_extra_config\":{
+      \"shared_storage_path\":\"$EC_SHARED_STORAGE_PATH\"
+    }
+  }"
+
+# A100 node: encoder EC producer
+
+CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 VLLM_LOGGING_LEVEL=INFO \
+vllm serve "$MODEL" \
+  --host 0.0.0.0 \
+  --port "$ENCODE_PORT" \
+  --gpu-memory-utilization 0.25 \
+  --enforce-eager \
+  --no-enable-prefix-caching \
+  --max-num-batched-tokens 8192 \
+  --max-num-seqs 16 \
+  --limit-mm-per-prompt '{"image":1}' \
+  --ec-transfer-config "{
+    \"ec_connector\":\"ECExampleConnector\",
+    \"ec_role\":\"ec_producer\",
+    \"ec_connector_extra_config\":{
+      \"shared_storage_path\":\"$EC_SHARED_STORAGE_PATH\"
+    }
+  }"
+
+# A100 node: proxy
+
+cd $PRISM_ROOT/src/vllm/examples/online_serving/disaggregated_encoder
+
+PYTHONUNBUFFERED=1 python3 disagg_epd_proxy.py \
+  --host 0.0.0.0 \
+  --port "$PORT" \
+  --encode-servers-urls "http://localhost:$ENCODE_PORT" \
+  --prefill-servers-urls "disable" \
+  --decode-servers-urls "http://$H100_HOST:$PD_PORT"
+
+# A100 node: AIPerf
+
+export OUT_DIR=$SCRATCH/PRISM/artifacts/qwen2vl_2b_epd_hetero_a100e_h100pd_img512_c4_out256
+
+aiperf profile \
+  --model "$MODEL" \
+  --url http://localhost:$PORT \
+  --endpoint-type chat \
+  --image-width-mean 512 \
+  --image-height-mean 512 \
+  --concurrency 4 \
+  --request-count 50 \
+  --warmup-request-count 10 \
+  --use-server-token-count \
+  --prompt-output-tokens-mean 256 \
+  --prompt-output-tokens-stddev 0 \
+  --gpu-telemetry "pynvml" \
+  --extra-inputs ignore_eos:true \
+  --output-artifact-dir "$OUT_DIR"
+
+
+SIMPLE 4: Aggregated H100, 1 GPU, no TP
+---------------------------------------
+
+export MODEL="Qwen/Qwen2-VL-2B-Instruct"
+export PORT=8000
+export OUT_DIR=$SCRATCH/PRISM/artifacts/qwen2vl_2b_aggregated_h100_1gpu_img512_c4_out256
+
+CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 VLLM_LOGGING_LEVEL=INFO \
+vllm serve "$MODEL" \
+  --host 0.0.0.0 \
+  --port "$PORT" \
+  --gpu-memory-utilization 0.90 \
+  --max-num-seqs 16 \
+  --limit-mm-per-prompt '{"image":1}'
+
+aiperf profile \
+  --model "$MODEL" \
+  --url http://localhost:$PORT \
+  --endpoint-type chat \
+  --image-width-mean 512 \
+  --image-height-mean 512 \
+  --concurrency 4 \
+  --request-count 50 \
+  --warmup-request-count 10 \
+  --use-server-token-count \
+  --prompt-output-tokens-mean 256 \
+  --prompt-output-tokens-stddev 0 \
+  --extra-inputs ignore_eos:true \
+  --output-artifact-dir "$OUT_DIR"
+
+
+SIMPLE 5: Full disagg hetero, E=A100, P=A100, D=H100
+----------------------------------------------------
+
+# Shared setup in every shell:
+
+export PRISM_ROOT=$SCRATCH/PRISM_env
+source $PRISM_ROOT/venvs/prism-env/bin/activate
+
+export MODEL="Qwen/Qwen2-VL-2B-Instruct"
+export A100_HOST="c315-011.ls6.tacc.utexas.edu"
+export H100_HOST="c318-001.ls6.tacc.utexas.edu"
+
+export ENCODE_PORT=19534
+export PREFILL_PORT=19535
+export DECODE_PORT=19536
+export PORT=8000
+
+export EC_SHARED_STORAGE_PATH=$SCRATCH/PRISM/tacc/p1/qwen2vl_2b_full_epd_a100e_a100p_h100d_img512_c4_out256/ec_cache
+
+export OPENSSL3_LIB=/opt/apps/cuda/12.8/nsight-systems-2024.6.2/host-linux-x64
+export TORCH_LIB=$PRISM_ROOT/venvs/prism-env/lib/python3.12/site-packages/torch/lib
+export LD_LIBRARY_PATH="$OPENSSL3_LIB:$TORCH_LIB:${LD_LIBRARY_PATH:-}"
+
+rm -rf "$EC_SHARED_STORAGE_PATH"
+mkdir -p "$EC_SHARED_STORAGE_PATH"
+
+# A100 shell 1: encoder
+
+CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 VLLM_LOGGING_LEVEL=INFO \
+vllm serve "$MODEL" \
+  --host 0.0.0.0 \
+  --port "$ENCODE_PORT" \
+  --gpu-memory-utilization 0.25 \
+  --enforce-eager \
+  --enable-request-id-headers \
+  --no-enable-prefix-caching \
+  --max-num-batched-tokens 8192 \
+  --max-num-seqs 16 \
+  --limit-mm-per-prompt '{"image":1}' \
+  --ec-transfer-config "{
+    \"ec_connector\":\"ECExampleConnector\",
+    \"ec_role\":\"ec_producer\",
+    \"ec_connector_extra_config\":{
+      \"shared_storage_path\":\"$EC_SHARED_STORAGE_PATH\"
+    }
+  }"
+
+# A100 shell 2: prefill
+
+export UCX_TLS=all
+export UCX_NET_DEVICES=all
+export VLLM_NIXL_SIDE_CHANNEL_HOST="$A100_HOST"
+export VLLM_NIXL_SIDE_CHANNEL_PORT=5559
+
+CUDA_VISIBLE_DEVICES=1 PYTHONUNBUFFERED=1 VLLM_LOGGING_LEVEL=INFO \
+vllm serve "$MODEL" \
+  --host 0.0.0.0 \
+  --port "$PREFILL_PORT" \
+  --gpu-memory-utilization 0.90 \
+  --enable-request-id-headers \
+  --max-num-batched-tokens 8192 \
+  --max-num-seqs 16 \
+  --limit-mm-per-prompt '{"image":1}' \
+  --ec-transfer-config "{
+    \"ec_connector\":\"ECExampleConnector\",
+    \"ec_role\":\"ec_consumer\",
+    \"ec_connector_extra_config\":{
+      \"shared_storage_path\":\"$EC_SHARED_STORAGE_PATH\"
+    }
+  }" \
+  --kv-transfer-config '{
+    "kv_connector":"NixlConnector",
+    "kv_role":"kv_producer",
+    "kv_load_failure_policy":"fail"
+  }'
+
+# H100 shell 1: decode
+
+export UCX_TLS=all
+export UCX_NET_DEVICES=all
+export VLLM_NIXL_SIDE_CHANNEL_HOST="$H100_HOST"
+export VLLM_NIXL_SIDE_CHANNEL_PORT=6000
+
+CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 VLLM_LOGGING_LEVEL=INFO \
+vllm serve "$MODEL" \
+  --host 0.0.0.0 \
+  --port "$DECODE_PORT" \
+  --gpu-memory-utilization 0.90 \
+  --enable-request-id-headers \
+  --max-num-batched-tokens 8192 \
+  --max-num-seqs 16 \
+  --limit-mm-per-prompt '{"image":1}' \
+  --kv-transfer-config '{
+    "kv_connector":"NixlConnector",
+    "kv_role":"kv_consumer",
+    "kv_load_failure_policy":"fail"
+  }'
+
+# A100 shell 3: proxy
+
+cd $PRISM_ROOT/src/vllm/examples/online_serving/disaggregated_encoder
+
+PYTHONUNBUFFERED=1 python3 disagg_epd_proxy.py \
+  --host 0.0.0.0 \
+  --port "$PORT" \
+  --encode-servers-urls "http://localhost:$ENCODE_PORT" \
+  --prefill-servers-urls "http://localhost:$PREFILL_PORT" \
+  --decode-servers-urls "http://$H100_HOST:$DECODE_PORT"
+
+# A100 shell 4: AIPerf
+
+export OUT_DIR=$SCRATCH/PRISM/artifacts/qwen2vl_2b_full_epd_a100e_a100p_h100d_img512_c4_out256
+
+aiperf profile \
+  --model "$MODEL" \
+  --url http://localhost:$PORT \
+  --endpoint-type chat \
+  --image-width-mean 512 \
+  --image-height-mean 512 \
+  --concurrency 4 \
+  --request-count 50 \
+  --warmup-request-count 10 \
+  --use-server-token-count \
+  --prompt-output-tokens-mean 256 \
+  --prompt-output-tokens-stddev 0 \
+  --gpu-telemetry "pynvml" \
+  --extra-inputs ignore_eos:true \
+  --output-artifact-dir "$OUT_DIR"
+
+
+============================================================
+ENCODER-HEAVY WORKLOAD SWEEP
+============================================================
+
+ENCODER-HEAVY 1: Aggregated A100/A100, 2 GPU, TP=2
+--------------------------------------------------
+
+export MODEL="Qwen/Qwen2-VL-2B-Instruct"
+export PORT=8000
+
+CUDA_VISIBLE_DEVICES=0,1 PYTHONUNBUFFERED=1 VLLM_LOGGING_LEVEL=INFO \
+vllm serve "$MODEL" \
+  --host 0.0.0.0 \
+  --port "$PORT" \
+  --tensor-parallel-size 2 \
+  --gpu-memory-utilization 0.90 \
+  --max-num-seqs 16 \
+  --limit-mm-per-prompt '{"image":1,"video":1}'
+
+export OUT_DIR=$SCRATCH/PRISM/artifacts/qwen2vl_2b_aggregated_tp2_2gpu_img1024_video_c8_out256
+
+aiperf profile \
+  --model "$MODEL" \
+  --url http://localhost:$PORT \
+  --endpoint-type chat \
+  --image-width-mean 1024 \
+  --image-height-mean 1024 \
+  --video-batch-size 1 \
+  --video-duration 4 \
+  --video-fps 4 \
+  --video-width 1024 \
+  --video-height 1024 \
+  --concurrency 8 \
+  --request-count 100 \
+  --warmup-request-count 10 \
+  --use-server-token-count \
+  --prompt-output-tokens-mean 256 \
+  --prompt-output-tokens-stddev 0 \
+  --gpu-telemetry "pynvml" \
+  --extra-inputs ignore_eos:true \
+  --output-artifact-dir "$OUT_DIR"
+
+
+ENCODER-HEAVY 2: Partial disagg A100/A100, E+PD
+-----------------------------------------------
+
+export MODEL="Qwen/Qwen2-VL-2B-Instruct"
+export ENCODE_PORT=19534
+export PD_PORT=19535
+export PORT=8000
+export EC_SHARED_STORAGE_PATH=$SCRATCH/PRISM/tacc/p1/qwen2vl_2b_epd_a100a100_img1024_video_c8_out256/ec_cache
+rm -rf "$EC_SHARED_STORAGE_PATH"
+mkdir -p "$EC_SHARED_STORAGE_PATH"
+
+# Shell 1: A100 PD worker
+
+CUDA_VISIBLE_DEVICES=1 PYTHONUNBUFFERED=1 VLLM_LOGGING_LEVEL=INFO \
+vllm serve "$MODEL" \
+  --host 127.0.0.1 \
+  --port "$PD_PORT" \
+  --gpu-memory-utilization 0.90 \
+  --max-num-seqs 16 \
+  --limit-mm-per-prompt '{"image":1,"video":1}' \
+  --ec-transfer-config "{
+    \"ec_connector\":\"ECExampleConnector\",
+    \"ec_role\":\"ec_consumer\",
+    \"ec_connector_extra_config\":{
+      \"shared_storage_path\":\"$EC_SHARED_STORAGE_PATH\"
+    }
+  }"
+
+# Shell 2: A100 encoder worker
+
+CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 VLLM_LOGGING_LEVEL=INFO \
+vllm serve "$MODEL" \
+  --host 127.0.0.1 \
+  --port "$ENCODE_PORT" \
+  --gpu-memory-utilization 0.25 \
+  --enforce-eager \
+  --no-enable-prefix-caching \
+  --max-num-batched-tokens 8192 \
+  --max-num-seqs 16 \
+  --limit-mm-per-prompt '{"image":1,"video":1}' \
+  --ec-transfer-config "{
+    \"ec_connector\":\"ECExampleConnector\",
+    \"ec_role\":\"ec_producer\",
+    \"ec_connector_extra_config\":{
+      \"shared_storage_path\":\"$EC_SHARED_STORAGE_PATH\"
+    }
+  }"
+
+# Shell 3: proxy
+
+cd $PRISM_ROOT/src/vllm/examples/online_serving/disaggregated_encoder
+
+PYTHONUNBUFFERED=1 python3 disagg_epd_proxy.py \
+  --host 0.0.0.0 \
+  --port "$PORT" \
+  --encode-servers-urls "http://localhost:$ENCODE_PORT" \
+  --prefill-servers-urls "disable" \
+  --decode-servers-urls "http://localhost:$PD_PORT"
+
+# Shell 4: AIPerf
+
+export OUT_DIR=$SCRATCH/PRISM/artifacts/qwen2vl_2b_epd_a100a100_img1024_video_c8_out256
+
+aiperf profile \
+  --model "$MODEL" \
+  --url http://localhost:$PORT \
+  --endpoint-type chat \
+  --image-width-mean 1024 \
+  --image-height-mean 1024 \
+  --video-batch-size 1 \
+  --video-duration 4 \
+  --video-fps 4 \
+  --video-width 1024 \
+  --video-height 1024 \
+  --concurrency 8 \
+  --request-count 100 \
+  --warmup-request-count 10 \
+  --use-server-token-count \
+  --prompt-output-tokens-mean 256 \
+  --prompt-output-tokens-stddev 0 \
+  --gpu-telemetry "pynvml" \
+  --extra-inputs ignore_eos:true \
+  --output-artifact-dir "$OUT_DIR"
+
+
+ENCODER-HEAVY 3: Partial disagg hetero, A100 encoder + H100 PD
+--------------------------------------------------------------
+
+export MODEL="Qwen/Qwen2-VL-2B-Instruct"
+export A100_HOST="c315-011.ls6.tacc.utexas.edu"
+export H100_HOST="c318-001.ls6.tacc.utexas.edu"
+export ENCODE_PORT=19534
+export PD_PORT=19535
+export PORT=8000
+export EC_SHARED_STORAGE_PATH=$SCRATCH/PRISM/tacc/p1/qwen2vl_2b_epd_hetero_a100e_h100pd_img1024_video_c8_out256/ec_cache
+rm -rf "$EC_SHARED_STORAGE_PATH"
+mkdir -p "$EC_SHARED_STORAGE_PATH"
+
+# H100 node: PD worker
+
+CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 VLLM_LOGGING_LEVEL=INFO \
+vllm serve "$MODEL" \
+  --host 0.0.0.0 \
+  --port "$PD_PORT" \
+  --gpu-memory-utilization 0.90 \
+  --max-num-seqs 16 \
+  --limit-mm-per-prompt '{"image":1,"video":1}' \
+  --ec-transfer-config "{
+    \"ec_connector\":\"ECExampleConnector\",
+    \"ec_role\":\"ec_consumer\",
+    \"ec_connector_extra_config\":{
+      \"shared_storage_path\":\"$EC_SHARED_STORAGE_PATH\"
+    }
+  }"
+
+# A100 node: encoder worker
+
+CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 VLLM_LOGGING_LEVEL=INFO \
+vllm serve "$MODEL" \
+  --host 0.0.0.0 \
+  --port "$ENCODE_PORT" \
+  --gpu-memory-utilization 0.25 \
+  --enforce-eager \
+  --no-enable-prefix-caching \
+  --max-num-batched-tokens 8192 \
+  --max-num-seqs 16 \
+  --limit-mm-per-prompt '{"image":1,"video":1}' \
+  --ec-transfer-config "{
+    \"ec_connector\":\"ECExampleConnector\",
+    \"ec_role\":\"ec_producer\",
+    \"ec_connector_extra_config\":{
+      \"shared_storage_path\":\"$EC_SHARED_STORAGE_PATH\"
+    }
+  }"
+
+# A100 node: proxy
+
+cd $PRISM_ROOT/src/vllm/examples/online_serving/disaggregated_encoder
+
+PYTHONUNBUFFERED=1 python3 disagg_epd_proxy.py \
+  --host 0.0.0.0 \
+  --port "$PORT" \
+  --encode-servers-urls "http://localhost:$ENCODE_PORT" \
+  --prefill-servers-urls "disable" \
+  --decode-servers-urls "http://$H100_HOST:$PD_PORT"
+
+# A100 node: AIPerf
+
+export OUT_DIR=$SCRATCH/PRISM/artifacts/qwen2vl_2b_epd_hetero_a100proxy_img1024_video_c8_out256
+
+aiperf profile \
+  --model "$MODEL" \
+  --url http://localhost:$PORT \
+  --endpoint-type chat \
+  --image-width-mean 1024 \
+  --image-height-mean 1024 \
+  --video-batch-size 1 \
+  --video-duration 4 \
+  --video-fps 4 \
+  --video-width 1024 \
+  --video-height 1024 \
+  --concurrency 8 \
+  --request-count 100 \
+  --warmup-request-count 10 \
+  --use-server-token-count \
+  --prompt-output-tokens-mean 256 \
+  --prompt-output-tokens-stddev 0 \
+  --extra-inputs ignore_eos:true \
+  --output-artifact-dir "$OUT_DIR"
+
+
+ENCODER-HEAVY 4: Aggregated H100, 1 GPU, no TP
+----------------------------------------------
+
+export MODEL="Qwen/Qwen2-VL-2B-Instruct"
+export PORT=8000
+export OUT_DIR=$SCRATCH/PRISM/artifacts/qwen2vl_2b_aggregated_h100_1gpu_img1024_video_c8_out256
+
+CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 VLLM_LOGGING_LEVEL=INFO \
+vllm serve "$MODEL" \
+  --host 0.0.0.0 \
+  --port "$PORT" \
+  --gpu-memory-utilization 0.90 \
+  --max-num-seqs 16 \
+  --limit-mm-per-prompt '{"image":1,"video":1}'
+
+aiperf profile \
+  --model "$MODEL" \
+  --url http://localhost:$PORT \
+  --endpoint-type chat \
+  --image-width-mean 1024 \
+  --image-height-mean 1024 \
+  --video-batch-size 1 \
+  --video-duration 4 \
+  --video-fps 4 \
+  --video-width 1024 \
+  --video-height 1024 \
+  --concurrency 8 \
+  --request-count 100 \
+  --warmup-request-count 10 \
+  --use-server-token-count \
+  --prompt-output-tokens-mean 256 \
+  --prompt-output-tokens-stddev 0 \
+  --extra-inputs ignore_eos:true \
+  --output-artifact-dir "$OUT_DIR"
+
+
+ENCODER-HEAVY 5: Full disagg hetero, E=A100, P=A100, D=H100
+-----------------------------------------------------------
+
+# Shared setup in every shell:
+
+export PRISM_ROOT=$SCRATCH/PRISM_env
+source $PRISM_ROOT/venvs/prism-env/bin/activate
+
+export MODEL="Qwen/Qwen2-VL-2B-Instruct"
+export A100_HOST="c315-011.ls6.tacc.utexas.edu"
+export H100_HOST="c318-001.ls6.tacc.utexas.edu"
+
+export ENCODE_PORT=19534
+export PREFILL_PORT=19535
+export DECODE_PORT=19536
+export PORT=8000
+
+export EC_SHARED_STORAGE_PATH=$SCRATCH/PRISM/tacc/p1/qwen2vl_2b_full_epd_a100e_a100p_h100d_img1024_video_c8_out256/ec_cache
+
+export OPENSSL3_LIB=/opt/apps/cuda/12.8/nsight-systems-2024.6.2/host-linux-x64
+export TORCH_LIB=$PRISM_ROOT/venvs/prism-env/lib/python3.12/site-packages/torch/lib
+export LD_LIBRARY_PATH="$OPENSSL3_LIB:$TORCH_LIB:${LD_LIBRARY_PATH:-}"
+
+rm -rf "$EC_SHARED_STORAGE_PATH"
+mkdir -p "$EC_SHARED_STORAGE_PATH"
+
+# A100 shell 1: encoder
+
+CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 VLLM_LOGGING_LEVEL=INFO \
+vllm serve "$MODEL" \
+  --host 0.0.0.0 \
+  --port "$ENCODE_PORT" \
+  --gpu-memory-utilization 0.25 \
+  --enforce-eager \
+  --enable-request-id-headers \
+  --no-enable-prefix-caching \
+  --max-num-batched-tokens 8192 \
+  --max-num-seqs 16 \
+  --limit-mm-per-prompt '{"image":1,"video":1}' \
+  --ec-transfer-config "{
+    \"ec_connector\":\"ECExampleConnector\",
+    \"ec_role\":\"ec_producer\",
+    \"ec_connector_extra_config\":{
+      \"shared_storage_path\":\"$EC_SHARED_STORAGE_PATH\"
+    }
+  }"
+
+# A100 shell 2: prefill
+
+export UCX_TLS=all
+export UCX_NET_DEVICES=all
+export VLLM_NIXL_SIDE_CHANNEL_HOST="$A100_HOST"
+export VLLM_NIXL_SIDE_CHANNEL_PORT=5559
+
+CUDA_VISIBLE_DEVICES=1 PYTHONUNBUFFERED=1 VLLM_LOGGING_LEVEL=INFO \
+vllm serve "$MODEL" \
+  --host 0.0.0.0 \
+  --port "$PREFILL_PORT" \
+  --gpu-memory-utilization 0.90 \
+  --enable-request-id-headers \
+  --max-num-batched-tokens 8192 \
+  --max-num-seqs 16 \
+  --limit-mm-per-prompt '{"image":1,"video":1}' \
+  --ec-transfer-config "{
+    \"ec_connector\":\"ECExampleConnector\",
+    \"ec_role\":\"ec_consumer\",
+    \"ec_connector_extra_config\":{
+      \"shared_storage_path\":\"$EC_SHARED_STORAGE_PATH\"
+    }
+  }" \
+  --kv-transfer-config '{
+    "kv_connector":"NixlConnector",
+    "kv_role":"kv_producer",
+    "kv_load_failure_policy":"fail"
+  }'
+
+# H100 shell 1: decode
+
+export UCX_TLS=all
+export UCX_NET_DEVICES=all
+export VLLM_NIXL_SIDE_CHANNEL_HOST="$H100_HOST"
+export VLLM_NIXL_SIDE_CHANNEL_PORT=6000
+
+CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 VLLM_LOGGING_LEVEL=INFO \
+vllm serve "$MODEL" \
+  --host 0.0.0.0 \
+  --port "$DECODE_PORT" \
+  --gpu-memory-utilization 0.90 \
+  --enable-request-id-headers \
+  --max-num-batched-tokens 8192 \
+  --max-num-seqs 16 \
+  --limit-mm-per-prompt '{"image":1,"video":1}' \
+  --kv-transfer-config '{
+    "kv_connector":"NixlConnector",
+    "kv_role":"kv_consumer",
+    "kv_load_failure_policy":"fail"
+  }'
+
+# A100 shell 3: proxy
+
+cd $PRISM_ROOT/src/vllm/examples/online_serving/disaggregated_encoder
+
+PYTHONUNBUFFERED=1 python3 disagg_epd_proxy.py \
+  --host 0.0.0.0 \
+  --port "$PORT" \
+  --encode-servers-urls "http://localhost:$ENCODE_PORT" \
+  --prefill-servers-urls "http://localhost:$PREFILL_PORT" \
+  --decode-servers-urls "http://$H100_HOST:$DECODE_PORT"
+
+# A100 shell 4: AIPerf
+
+export OUT_DIR=$SCRATCH/PRISM/artifacts/qwen2vl_2b_full_epd_a100e_a100p_h100d_img1024_video_c8_out256
+
+aiperf profile \
+  --model "$MODEL" \
+  --url http://localhost:$PORT \
+  --endpoint-type chat \
+  --image-width-mean 1024 \
+  --image-height-mean 1024 \
+  --video-batch-size 1 \
+  --video-duration 4 \
+  --video-fps 4 \
+  --video-width 1024 \
+  --video-height 1024 \
+  --concurrency 8 \
+  --request-count 100 \
+  --warmup-request-count 10 \
+  --use-server-token-count \
+  --prompt-output-tokens-mean 256 \
+  --prompt-output-tokens-stddev 0 \
+  --extra-inputs ignore_eos:true \
+  --output-artifact-dir "$OUT_DIR"
+
+
+Notes
+-----
+
+- For E+PD, encoder = EC producer and PD = EC consumer.
+- For full E+P+D:
+  - Encoder = EC producer.
+  - Prefill = EC consumer + NIXL KV producer.
+  - Decode = NIXL KV consumer.
+- Full E+P+D requires NIXL and OpenSSL 3 library in LD_LIBRARY_PATH.
+- For cross-node NIXL, VLLM_NIXL_SIDE_CHANNEL_HOST must be the real hostname, not localhost.
+- Encoder kept --enforce-eager because encoder CUDA graph capture crashed earlier.
+- Prefill/decode commands omit --enforce-eager for performance.

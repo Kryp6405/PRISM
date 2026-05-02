@@ -1,0 +1,11 @@
+Config,Avg Latency (ms),P50 Latency (ms),P90 Latency (ms),P99 Latency (ms),Request Throughput (req/s),Output Token Throughput (tok/s),Image Throughput (img/s),Latency Reduction vs Agg TP=2 (%),Req Throughput Gain vs Agg TP=2 (%),Tail Spread P99-P50 (ms)
+"Agg TP=2
+A100+A100",1407.41,1411.91,1429.64,1446.07,2.74,701.78,0.71,0.0,0.0,34.16
+"E+PD
+A100+A100",1371.85,1364.95,1402.95,1457.72,2.8,716.63,0.73,2.5266,2.1898,92.77
+"E+PD
+A100+H100",1036.83,1032.56,1051.67,1096.25,3.71,948.53,0.96,26.3306,35.4015,63.69
+"Full E+P+D
+A100+A100+H100",1069.27,1064.73,1078.59,1180.45,3.6,921.45,0.94,24.0257,31.3869,115.72
+"Agg 1GPU
+H100",1016.45,1015.16,1027.78,1055.52,3.79,969.19,0.98,27.7787,38.3212,40.36

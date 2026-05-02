@@ -1,0 +1,20 @@
+Brief analysis report
+
+For the simple workload, the A100/A100 aggregated TP=2 baseline gives 
+1407 ms avg latency, 2.74 req/s, and 702 tok/s. A100/A100 partial 
+disaggregation is only slightly better at 1372 ms, 2.80 req/s, and 
+717 tok/s, so on a light workload, equal-GPU disaggregation gives only 
+a small gain over TP=2.
+
+The bigger improvement comes from heterogeneous placement. A100 encoder + 
+H100 PD reaches 1037 ms and 3.71 req/s, which is about 35% higher throughput 
+than A100 TP=2. Full E+P+D is close but slightly worse at 1069 ms and 
+3.60 req/s, likely because the extra prefill/decode split adds NIXL/proxy 
+coordination overhead without enough workload pressure to benefit from the 
+extra stage separation.
+
+Single-GPU aggregated H100 still wins overall: 1016 ms, 3.79 req/s, and 969 tok/s. 
+That makes sense because the model fits on one H100, so it avoids EC/NIXL/proxy 
+overhead while using the fastest GPU locally. The main takeaway is: for 
+simple workloads, disaggregation only helps modestly unless it enables hetero 
+placement; full disagg is not automatically better than partial disagg.

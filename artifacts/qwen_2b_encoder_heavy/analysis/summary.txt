@@ -1,0 +1,22 @@
+Brief analysis report
+
+For the encoder-heavy workload, the baseline was A100/A100 aggregated 
+TP=2: 2116 ms avg latency, 3.67 req/s, and 939 tok/s. Partial disaggregation 
+on A100/A100 improves this to 1927 ms, 4.01 req/s, and 1027 tok/s, which is 
+about 9% better throughput and 9% lower latency. This suggests that even with 
+equal A100 GPU budget, stage-aware E+PD mapping can beat naive tensor parallelism 
+because TP adds synchronization/communication overhead.
+
+The big jump comes from heterogeneity. A100 encoder + H100 PD reaches 1343 ms 
+and 5.75 req/s, while full E+P+D with A100 encoder, A100 prefill, H100 decode 
+is very similar at 1337 ms and 5.78 req/s. That means the H100 on the 
+generation side is doing most of the useful work; splitting prefill separately 
+does not add much for this specific workload and may add some extra 
+coordination/tail overhead.
+
+The best result is still single-GPU aggregated H100: 1276 ms, 6.05 req/s, 
+and 1550 tok/s. That makes sense because it keeps the whole model local on 
+the fastest GPU and avoids proxy, EC, NIXL, and cross-node transfer overhead. 
+So the clean story is: if one H100 is available and the model fits, aggregated 
+H100 wins; if scaling from A100s or using mixed resources, disaggregation is much 
+better than A100 TP=2 and hetero placement is the key win. 
