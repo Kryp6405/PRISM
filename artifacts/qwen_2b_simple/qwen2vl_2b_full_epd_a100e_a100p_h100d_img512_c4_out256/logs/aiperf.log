@@ -1,0 +1,66 @@
+2026-05-02 17:27:19.566 - server_metrics_manager - INFO - Server Metrics: Discovered 1 endpoints: ['http://localhost:8000/metrics']
+2026-05-02 17:27:19.573 - system_controller - INFO - Registered Worker Manager (id: 'worker_manager')
+2026-05-02 17:27:19.617 - GPUTelemetryJSONLWriter_2ba61e91 - INFO - GPU telemetry export enabled: /scratch/10698/akarshsri/PRISM/artifacts/qwen2vl_2b_full_epd_a100e_a100p_h100d_img512_c4_out256/gpu_telemetry_export.jsonl
+2026-05-02 17:27:19.719 - RecordExportResultsProcessor_129c7d51 - INFO - Record metrics export enabled: /scratch/10698/akarshsri/PRISM/artifacts/qwen2vl_2b_full_epd_a100e_a100p_h100d_img512_c4_out256/profile_export.jsonl
+2026-05-02 17:27:19.724 - system_controller - INFO - Registered Gpu Telemetry Manager (id: 'gpu_telemetry_manager')
+2026-05-02 17:27:19.731 - system_controller - INFO - Registered Server Metrics Manager (id: 'server_metrics_manager')
+2026-05-02 17:27:19.924 - system_controller - INFO - Registered Dataset Manager (id: 'dataset_manager')
+2026-05-02 17:27:19.941 - system_controller - INFO - Registered Timing Manager (id: 'timing_manager')
+2026-05-02 17:27:19.986 - system_controller - INFO - Registered Worker (id: 'worker_b9988ea1')
+2026-05-02 17:27:19.996 - system_controller - INFO - Registered Record Processor (id: 'record_processor_14061d65')
+2026-05-02 17:27:20.004 - system_controller - INFO - Registered Records Manager (id: 'records_manager')
+2026-05-02 17:27:20.022 - system_controller - INFO - Registered Worker (id: 'worker_5dadeab5')
+2026-05-02 17:27:20.033 - system_controller - INFO - Registered Worker (id: 'worker_1154a3c0')
+2026-05-02 17:27:20.050 - system_controller - INFO - Registered Worker (id: 'worker_c9f555b9')
+2026-05-02 17:27:20.497 - system_controller - INFO - AIPerf System is CONFIGURING
+2026-05-02 17:27:20.504 - system_controller - INFO - Configuring all services to start profiling
+2026-05-02 17:27:20.512 - InferenceResultParser_08df44da - INFO - Tokenization is disabled for this endpoint, skipping tokenizer configuration
+2026-05-02 17:27:20.512 - timing_manager - INFO - Waiting for dataset to be configured before configuring timing
+2026-05-02 17:27:20.512 - dataset_manager - INFO - Configuring tokenizer(s) for dataset manager
+2026-05-02 17:27:20.518 - system_controller - INFO - Server metrics disabled - no Prometheus endpoints reachable
+2026-05-02 17:27:20.547 - system_controller - INFO - GPU telemetry enabled - 1/1 endpoint(s) reachable
+2026-05-02 17:28:12.585 - dataset_manager - INFO - Tokenizer(s) configured in 52.05 seconds
+2026-05-02 17:28:12.587 - dataset_manager - INFO - Configuring dataset for dataset_manager
+2026-05-02 17:28:14.180 - SyntheticDatasetComposer - INFO - Using default sampling strategy for synthetic dataset: shuffle
+2026-05-02 17:28:21.402 - MemoryMapDatasetBackingStore_9580f13f - INFO - Memory-mapped backing store initialized (streaming to /scratch/10698/akarshsri/PRISM_env/.cache/tmp/aiperf_mmap_bd1b046c-89a2-48a3-9f46-dc28c5f9a4c3/dataset.dat)
+2026-05-02 17:28:21.519 - MemoryMapDatasetBackingStore_9580f13f - INFO - Data file finalized: 100 conversations, 35.65 MB
+2026-05-02 17:28:21.584 - MemoryMapDatasetBackingStore_9580f13f - INFO - Index file created: /scratch/10698/akarshsri/PRISM_env/.cache/tmp/aiperf_mmap_bd1b046c-89a2-48a3-9f46-dc28c5f9a4c3/index.dat
+2026-05-02 17:28:21.600 - dataset_manager - INFO - Backing store finalized: client_type=DatasetClientStoreType.MEMORY_MAP data_file_path=PosixPath('/scratch/10698/akarshsri/PRISM_env/.cache/tmp/aiperf_mmap_bd1b046c-89a2-48a3-9f46-dc28c5f9a4c3/dataset.dat') index_file_path=PosixPath('/scratch/10698/akarshsri/PRISM_env/.cache/tmp/aiperf_mmap_bd1b046c-89a2-48a3-9f46-dc28c5f9a4c3/index.dat') conversation_count=100 total_size_bytes=37382455 compressed_data_file_path=None compressed_index_file_path=None compressed_size_bytes=0
+2026-05-02 17:28:21.614 - dataset_manager - INFO - sampling strategy: shuffle, unique conversations: 100, unique turn count: 100
+2026-05-02 17:28:21.630 - dataset_manager - INFO - Generating inputs.json file at /scratch/10698/akarshsri/PRISM/artifacts/qwen2vl_2b_full_epd_a100e_a100p_h100d_img512_c4_out256/inputs.json
+2026-05-02 17:28:21.648 - PhaseOrchestrator_bfca00bd - INFO - Initialized 2 phase(s): ['Warmup', 'Profiling']
+2026-05-02 17:28:21.737 - dataset_manager - INFO - inputs.json file generated in 0.10 seconds
+2026-05-02 17:28:22.397 - dataset_manager - INFO - Dataset client initialized and freed 100 conversations from memory
+2026-05-02 17:28:22.405 - dataset_manager - INFO - Dataset configured in 9.82 seconds
+2026-05-02 17:28:22.413 - system_controller - INFO - All services configured in 61.90 seconds
+2026-05-02 17:28:22.423 - system_controller - INFO - AIPerf System is CONFIGURED
+2026-05-02 17:28:22.469 - pynvml_collector - INFO - PyNVML initialized with 3 GPU(s) (0 with GPM support)
+2026-05-02 17:28:22.508 - system_controller - INFO - All services started profiling successfully
+2026-05-02 17:28:22.514 - system_controller - INFO - AIPerf System is PROFILING
+2026-05-02 17:28:22.519 - RateTiming - INFO - Creating interval generator: pattern=concurrency_burst, rate=None, smoothness=None
+2026-05-02 17:28:22.525 - PhaseRunner - NOTICE - Phase warmup started | target: 10 requests
+2026-05-02 17:28:22.534 - records_manager - INFO - Credit phase start: warmup
+2026-05-02 17:28:39.085 - PhaseRunner - NOTICE - Phase warmup sending complete | sent=10, completed=6, in_flight=4 | sessions: sent=10, completed=6
+2026-05-02 17:28:40.266 - PhaseRunner - NOTICE - Phase warmup complete | completed=10, cancelled=0, errors=0 | sessions: completed=10, cancelled=0 | elapsed=17.74s
+2026-05-02 17:28:40.273 - RateTiming - INFO - Creating interval generator: pattern=concurrency_burst, rate=None, smoothness=None
+2026-05-02 17:28:40.276 - PhaseRunner - NOTICE - Phase profiling started | target: 50 requests
+2026-05-02 17:28:40.292 - records_manager - INFO - Credit phase start: profiling
+2026-05-02 17:28:53.140 - PhaseRunner - NOTICE - Phase profiling sending complete | sent=50, completed=46, in_flight=4 | sessions: sent=50, completed=46
+2026-05-02 17:28:53.141 - records_manager - INFO - Sent 50 requests. Waiting for all to complete...
+2026-05-02 17:28:54.186 - PhaseRunner - NOTICE - Phase profiling complete | completed=50, cancelled=0, errors=0 | sessions: completed=50, cancelled=0 | elapsed=13.91s
+2026-05-02 17:28:54.191 - PhaseOrchestrator_bfca00bd - NOTICE - All credits completed
+2026-05-02 17:28:54.191 - records_manager - INFO - Received CREDIT_PHASE_COMPLETE message, Phase complete: PhaseRecordsStats(phase=CreditPhase.PROFILING, start_ns=1777760920275920636, sent_end_ns=1777760933140557583, requests_end_ns=1777760934186389762, total_expected_requests=50, expected_duration_sec=None, expected_num_sessions=None, expected_grace_period_sec=None, final_requests_sent=None, final_requests_completed=50, final_requests_cancelled=0, final_request_errors=0, final_sent_sessions=None, final_completed_sessions=None, final_cancelled_sessions=None, timeout_triggered=False, grace_period_timeout_triggered=False, was_cancelled=False, records_end_ns=None, success_records=50, error_records=0)
+2026-05-02 17:28:54.199 - records_manager - NOTICE - All requests have completed, please wait for the results to be processed (currently 50 of 50 records processed)...
+2026-05-02 17:28:54.204 - records_manager - INFO - Processed 50 valid requests and 0 errors (50 total).
+2026-05-02 17:28:54.207 - system_controller - INFO - Received credits complete from 'timing_manager'
+2026-05-02 17:28:54.210 - records_manager - INFO - Received all records, processing now...
+2026-05-02 17:28:54.221 - records_manager - INFO - All credits complete, please wait for the results to be processed...
+2026-05-02 17:28:54.223 - gpu_telemetry_manager - INFO - GPU Telemetry: Profiling complete, capturing final metrics...
+2026-05-02 17:28:54.232 - records_manager - INFO - Waiting 2.0s for server metrics flush period...
+2026-05-02 17:28:54.237 - gpu_telemetry_manager - WARNING - GPU Telemetry: Failed to capture final state from pynvml://localhost: 'PyNVMLTelemetryCollector' object has no attribute 'collect_and_process_metrics'
+2026-05-02 17:28:56.196 - records_manager - INFO - Processing records results...
+2026-05-02 17:28:56.211 - system_controller - INFO - Waiting for telemetry results...
+2026-05-02 17:28:56.215 - records_manager - INFO - _finalize_and_process_results completed
+2026-05-02 17:28:56.224 - system_controller - INFO - All results received, initiating shutdown
+2026-05-02 17:28:57.014 - ExporterManager - INFO - Exporting all records
+2026-05-02 17:28:57.228 - ExporterManager - INFO - Exporting console data
