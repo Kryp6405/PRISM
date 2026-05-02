@@ -227,7 +227,48 @@ if [[ "$READY" -ne 1 ]]; then
   exit 1
 fi
 
-echo "E/PD stack is ready. Starting AIPerf sweep."
+echo "E/PD /v1/models is ready. Running real warmup completion check..."
+
+WARMUP_OK=0
+for _ in $(seq 1 120); do
+  if ! kill -0 "$LAUNCHER_PID" 2>/dev/null; then
+    echo "Launcher exited during warmup check. Inspect logs in $LOG_DIR" >&2
+    exit 1
+  fi
+
+  if curl -sS --max-time 60 "http://localhost:${PORT}/v1/chat/completions" \
+    -H "Content-Type: application/json" \
+    -d "{
+      \"model\": \"$MODEL\",
+      \"messages\": [
+        {
+          \"role\": \"user\",
+          \"content\": \"Say hello in one short sentence.\"
+        }
+      ],
+      \"max_tokens\": 8
+    }" > "$LOG_DIR/epd_warmup_completion.json" 2>"$LOG_DIR/epd_warmup_completion.err"; then
+
+    if grep -q '"choices"' "$LOG_DIR/epd_warmup_completion.json"; then
+      WARMUP_OK=1
+      break
+    fi
+  fi
+
+  sleep 5
+done
+
+if [[ "$WARMUP_OK" -ne 1 ]]; then
+  echo "E/PD warmup completion failed. Inspect:" >&2
+  echo "  $LOG_DIR/epd_warmup_completion.json" >&2
+  echo "  $LOG_DIR/epd_warmup_completion.err" >&2
+  echo "  $LOG_DIR/proxy.log" >&2
+  echo "  $LOG_DIR/encoder.log" >&2
+  echo "  $LOG_DIR/pd_vllm.log" >&2
+  exit 1
+fi
+
+echo "E/PD stack passed real warmup completion. Starting AIPerf sweep."
 
 if [[ -f "$LOG_DIR/cluster_env.sh" ]]; then
   # shellcheck disable=SC1090

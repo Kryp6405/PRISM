@@ -1,0 +1,93 @@
+Launching native vLLM aggregated baseline
+MODEL=Qwen/Qwen2.5-VL-32B-Instruct
+PORT=8000
+TP_SIZE=4
+PP_SIZE=2
+MAX_MODEL_LEN=16384
+GPU_MEMORY_UTILIZATION=0.92
+GPUS_PER_NODE=4
+CPUS_PER_RAY_NODE=5
+EXPECTED_NODES=2
+EXPECTED_GPUS_TOTAL=8
+HEAD_NODE=nid001121
+WORKER_NODE=nid001124
+HEAD_IP=128.55.70.29
+RAY_ADDRESS=128.55.70.29:6379
+LOG_DIR=artifacts/p4/simple_baseline/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_20260502_013518/logs
+Allocated Slurm nodes:
+  nid001121
+  nid001124
+Wrote cluster env to artifacts/p4/simple_baseline/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_20260502_013518/logs/cluster_env.sh
+Stopping any existing Ray processes...
+Stopping Ray on allocated nodes...
+Starting Ray head on nid001121
+Starting Ray worker on nid001124
+Checking Ray status...
+======== Autoscaler status: 2026-05-02 01:36:25.542203 ========
+Node status
+---------------------------------------------------------------
+Active:
+ 1 node_82b2fe13f0df3e2b70008958beb4dd4270d839347c4649142040efde
+ 1 node_7a06d577a7db2c8a7d539f2a73910ef2d0e41d68f202960510980e54
+Pending:
+ (no pending nodes)
+Recent failures:
+ (no failures)
+
+Resources
+---------------------------------------------------------------
+Total Usage:
+ 0.0/10.0 CPU
+ 0.0/8.0 GPU
+ 0B/316.83GiB memory
+ 0B/135.79GiB object_store_memory
+
+From request_resources:
+ (none)
+Pending Demands:
+ (no resource demands)
+Checking Ray cluster resources...
+2026-05-02 01:36:30,953	INFO worker.py:1810 -- Connecting to existing Ray cluster at address: 128.55.70.29:6379...
+2026-05-02 01:36:31,109	INFO worker.py:2013 -- Connected to Ray cluster.
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/ray/_private/worker.py:2052: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+=== Ray alive nodes ===
+{
+  "NodeManagerAddress": "128.55.70.29",
+  "Alive": true,
+  "Resources": {
+    "GPU": 4.0,
+    "object_store_memory": 73259285299.0,
+    "node:128.55.70.29": 1.0,
+    "memory": 170938332365.0,
+    "CPU": 5.0,
+    "node:__internal_head__": 1.0,
+    "accelerator_type:A100": 1.0
+  }
+}
+{
+  "NodeManagerAddress": "128.55.69.36",
+  "Alive": true,
+  "Resources": {
+    "GPU": 4.0,
+    "memory": 169259274240.0,
+    "CPU": 5.0,
+    "object_store_memory": 72539688960.0,
+    "node:128.55.69.36": 1.0,
+    "accelerator_type:A100": 1.0
+  }
+}
+=== Ray cluster resources ===
+{
+  "memory": 340197606605.0,
+  "GPU": 8.0,
+  "node:__internal_head__": 1.0,
+  "node:128.55.70.29": 1.0,
+  "accelerator_type:A100": 2.0,
+  "CPU": 10.0,
+  "object_store_memory": 145798974259.0,
+  "node:128.55.69.36": 1.0
+}
+OK: Ray sees 2 alive nodes and 8 GPUs.
+Starting vLLM serve on Ray cluster...
+Stopping Ray on allocated nodes...
