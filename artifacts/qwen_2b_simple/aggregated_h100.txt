@@ -1,0 +1,43 @@
+((prism-env) ) c318-001.ls6(1017)$ aiperf profile \
+>   --model "$MODEL" \
+>   --url http://localhost:$PORT \
+>   --endpoint-type chat \
+>   --image-width-mean 512 \
+>   --image-height-mean 512 \
+>   --concurrency 4 \
+>   --request-count 50 \
+>   --warmup-request-count 10 \
+>   --use-server-token-count \
+>   --prompt-output-tokens-mean 256 \
+>   --prompt-output-tokens-stddev 0 \
+>   --extra-inputs ignore_eos:true \
+>   --output-artifact-dir "$OUT_DIR"
+
+
+                                          NVIDIA AIPerf | LLM Metrics                                           
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━┓
+┃                               Metric ┃      avg ┃    min ┃      max ┃      p99 ┃      p90 ┃      p50 ┃   std ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━┩
+│                 Request Latency (ms) │ 1,016.45 │ 967.48 │ 1,055.67 │ 1,055.52 │ 1,027.78 │ 1,015.16 │ 15.48 │
+│      Output Sequence Length (tokens) │   256.00 │ 256.00 │   256.00 │   256.00 │   256.00 │   256.00 │  0.00 │
+│       Input Sequence Length (tokens) │   895.00 │ 895.00 │   895.00 │   895.00 │   895.00 │   895.00 │  0.00 │
+│ Output Token Throughput (tokens/sec) │   969.19 │    N/A │      N/A │      N/A │      N/A │      N/A │   N/A │
+│        Image Throughput (images/sec) │     0.98 │   0.95 │     1.03 │     1.03 │     1.00 │     0.99 │  0.01 │
+│             Image Latency (ms/image) │ 1,016.45 │ 967.48 │ 1,055.67 │ 1,055.52 │ 1,027.78 │ 1,015.16 │ 15.48 │
+│    Request Throughput (requests/sec) │     3.79 │    N/A │      N/A │      N/A │      N/A │      N/A │   N/A │
+│             Request Count (requests) │    50.00 │    N/A │      N/A │      N/A │      N/A │      N/A │   N/A │
+└──────────────────────────────────────┴──────────┴────────┴──────────┴──────────┴──────────┴──────────┴───────┘
+
+CLI Command: aiperf profile --model 'Qwen/Qwen2-VL-2B-Instruct' --url 'http://localhost:8000' --endpoint-type 'chat' 
+--image-width-mean 512 --image-height-mean 512 --concurrency 4 --request-count 50 --warmup-request-count 10 
+--use-server-token-count --prompt-output-tokens-mean 256 --prompt-output-tokens-stddev 0 --extra-inputs 'ignore_eos:true' 
+--output-artifact-dir '/scratch/10698/akarshsri/PRISM/artifacts/qwen2vl_2b_aggregated_h100_1gpu_img512_c4_out256'
+Benchmark Duration: 13.21 sec
+CSV Export: /scratch/10698/akarshsri/PRISM/artifacts/qwen2vl_2b_aggregated_h100_1gpu_img512_c4_out256/profile_export_aiperf.csv
+JSON Export: 
+/scratch/10698/akarshsri/PRISM/artifacts/qwen2vl_2b_aggregated_h100_1gpu_img512_c4_out256/profile_export_aiperf.json
+Server Metrics CSV Export: 
+/scratch/10698/akarshsri/PRISM/artifacts/qwen2vl_2b_aggregated_h100_1gpu_img512_c4_out256/server_metrics_export.csv
+Server Metrics JSON Export: 
+/scratch/10698/akarshsri/PRISM/artifacts/qwen2vl_2b_aggregated_h100_1gpu_img512_c4_out256/server_metrics_export.json
+Log File: /scratch/10698/akarshsri/PRISM/artifacts/qwen2vl_2b_aggregated_h100_1gpu_img512_c4_out256/logs/aiperf.log
