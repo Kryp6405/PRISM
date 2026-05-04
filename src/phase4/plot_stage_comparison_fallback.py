@@ -384,10 +384,10 @@ def maybe_normalize_token_average(metric_key: str, value: float, metrics: dict[s
     If token average looks like a total, divide by request_count.
 
     Examples:
-      3200 / 50 = 64
-      6400 / 50 = 128
-      51200 / 50 = 1024
-      10240 / 10 = 1024
+      input:  44751 / 50 ≈ 895
+      output: 3200 / 50 = 64
+      output: 6400 / 50 = 128
+      output: 51200 / 50 = 1024
     """
     if metric_key not in {"input_tokens_avg", "output_tokens_avg"}:
         return value
@@ -398,20 +398,13 @@ def maybe_normalize_token_average(metric_key: str, value: float, metrics: dict[s
 
     divided = value / request_count
 
-    # Expected per-request values in these workloads:
-    # input: 895 or 5900
-    # output: 64, 128, or 1024
-    plausible_per_request = 1 <= divided <= 20000
+    # If value is clearly too large to be a per-request sequence length
+    # and dividing gives a plausible per-request sequence length, normalize.
+    if value > 20000 and 1 <= divided <= 20000:
+        return divided
 
-    # If value is clearly an aggregate across requests, divide.
-    # This catches 3200=64*50, 6400=128*50, 51200=1024*50.
-    looks_like_total = (
-        value > 1500
-        and plausible_per_request
-        and abs(divided - round(divided)) < 1e-6
-    )
-
-    if looks_like_total:
+    # Also catch output totals like 3200=64*50 and 6400=128*50.
+    if metric_key == "output_tokens_avg" and value > 1500 and 1 <= divided <= 20000:
         return divided
 
     return value
@@ -444,6 +437,10 @@ def normalize_token_metrics(metrics: dict[str, float]) -> dict[str, float]:
                 metrics["output_tokens_avg"],
                 metrics,
             )
+
+    for key in ["input_tokens_avg", "output_tokens_avg"]:
+        if key in metrics and "request_count" in metrics:
+            metrics[key] = maybe_normalize_token_average(key, metrics[key], metrics)
 
     # Do not expose total fields downstream.
     metrics.pop("input_tokens_total", None)

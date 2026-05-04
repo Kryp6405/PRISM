@@ -1,0 +1,47 @@
+[00:13:31] === Phase 4 E/P/D native vLLM launch ===
+[00:13:31] MODEL=Qwen/Qwen2.5-VL-32B-Instruct
+[00:13:31] PORT=8000
+[00:13:31] ENCODE_PORT=19534
+[00:13:31] PREFILL_PORT=19535
+[00:13:31] DECODE_PORT=19536
+[00:13:31] CLIENT_NODE=nid008225  CLIENT_IP=128.55.82.96
+[00:13:31] ENCODER_NODE=nid008225  GPUs 0,1  TP=2
+[00:13:31] PREFILL_NODE=nid008225  GPUs 2,3  TP=1 PP=2
+[00:13:31] DECODE_NODE=nid008569  DECODE_IP=128.55.83.58  GPUs 0,1,2,3  TP=2 PP=2
+[00:13:31] EC_SHARED_STORAGE_PATH=/pscratch/sd/k/krajeshk/prism_ec_cache_epd
+[00:13:31] PREFILL_NIXL_SIDE_CHANNEL_HOST=128.55.82.96  PORT=5559
+[00:13:31] DECODE_NIXL_SIDE_CHANNEL_HOST=128.55.83.58  PORT=6000
+[00:13:31] MAX_MODEL_LEN=16384  GPU_MEMORY_UTILIZATION=0.90
+[00:13:31] LIMIT_MM_PER_PROMPT={"image":1,"video":0}
+[00:13:31] LOG_DIR=artifacts/p4/encoder_heavy/Qwen_Qwen2.5-VL-32B-Instruct-e-p-d-native-vllm_20260504_001329/logs
+Allocated Slurm nodes:
+  nid008225
+  nid008569
+
+Layout:
+  nid008225  GPUs 0,1  -> Encoder  (TP=2)
+  nid008225  GPUs 2,3  -> Prefill  (TP=1 PP=2)
+  nid008569  GPUs 0,1,2,3    -> Decode   (TP=2 PP=2)
+
+No Ray. Each role is a single-node vLLM service. NixlConnector for KV transfer.
+[00:13:32] Wrote cluster env to artifacts/p4/encoder_heavy/Qwen_Qwen2.5-VL-32B-Instruct-e-p-d-native-vllm_20260504_001329/logs/cluster_env.sh
+[00:13:32] Cleaning existing processes...
+[00:13:32] Stopping E/P/D native vLLM stack...
+[00:13:38] === Step 1: Encoder vLLM on nid008225 GPUs 0,1 (TP=2) ===
+[00:13:38] Encoder PID=2320741
+[00:13:38] Waiting for Encoder backend /v1/models on localhost:19534 (timeout=1200s)...
+[00:16:02] Encoder backend /v1/models is reachable.
+[00:16:02] === Step 2: Prefill vLLM on nid008225 GPUs 2,3 (TP=1 PP=2) ===
+[00:16:02] Prefill PID=2323280
+[00:16:02] Waiting for Prefill backend /v1/models on localhost:19535 (timeout=1200s)...
+[00:17:34] Prefill backend /v1/models is reachable.
+[00:17:34] === Step 3: Decode vLLM on nid008569 GPUs 0,1,2,3 (TP=2 PP=2) ===
+[00:17:34] Decode PID=2324710
+[00:17:34] Waiting for Decode backend /v1/models on 128.55.83.58:19536 (timeout=1200s)...
+[00:19:39] Decode backend /v1/models is reachable.
+[00:19:39] === Step 4: E/P/D proxy on nid008225 port 8000 ===
+[00:19:39] Proxy PID=2325245
+[00:19:39] Waiting for E/P/D proxy /v1/models on localhost:8000 (timeout=1200s)...
+[00:19:41] E/P/D proxy /v1/models is reachable.
+[00:19:41] === E/P/D native vLLM stack launched. Tailing children. ===
+[00:30:18] Stopping E/P/D native vLLM stack...

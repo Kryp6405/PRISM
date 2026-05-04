@@ -83,7 +83,7 @@ METRIC_LABELS = {
     "image_throughput_ips": "Image Throughput (img/s)",
     "input_tokens_avg": "Avg Input Tokens",
     "output_tokens_avg": "Avg Output Tokens",
-    "request_count": "Request Count",
+    "request_count": "Successful Request Count",
 }
 
 LATENCY_METRICS = [
@@ -104,12 +104,14 @@ SINGLE_METRICS = [
     "image_throughput_ips",
     "input_tokens_avg",
     "output_tokens_avg",
+    "request_count",
 ]
 
 
 def safe_float(value: Any) -> float | None:
     if value is None:
         return None
+
     if isinstance(value, (int, float)):
         value = float(value)
         if math.isnan(value):
@@ -173,7 +175,16 @@ def extract_concurrency(path: Path) -> int | None:
     return int(match.group(1)) if match else None
 
 
+def normalize_metric_name(name: str) -> str:
+    return re.sub(r"\s+", " ", name.strip())
+
+
 def parse_csv_metrics(path: Path) -> dict[str, float]:
+    """
+    Fallback parser for AIPerf console table CSV.
+
+    JSON is preferred because it has exact keys, but CSV is useful if JSON is missing.
+    """
     metrics: dict[str, float] = {}
 
     try:
@@ -187,6 +198,7 @@ def parse_csv_metrics(path: Path) -> dict[str, float]:
 
     fieldnames = set(rows[0].keys())
     metric_field = None
+
     for candidate in ["Metric", "metric", "name", "Metric Name"]:
         if candidate in fieldnames:
             metric_field = candidate
@@ -196,14 +208,14 @@ def parse_csv_metrics(path: Path) -> dict[str, float]:
         return metrics
 
     for row in rows:
-        metric_name = str(row.get(metric_field, "")).strip()
+        metric_name = normalize_metric_name(str(row.get(metric_field, "")))
 
         avg = safe_float(row.get("avg") or row.get("Avg") or row.get("mean") or row.get("Mean"))
         p50 = safe_float(row.get("p50") or row.get("P50"))
         p90 = safe_float(row.get("p90") or row.get("P90"))
         p99 = safe_float(row.get("p99") or row.get("P99"))
 
-        if "Request Latency" in metric_name:
+        if metric_name == "Request Latency (ms)" or "Request Latency" in metric_name:
             if avg is not None:
                 metrics["request_latency_ms_avg"] = avg
             if p50 is not None:
@@ -213,106 +225,112 @@ def parse_csv_metrics(path: Path) -> dict[str, float]:
             if p99 is not None:
                 metrics["request_latency_ms_p99"] = p99
 
-        elif "Request Throughput" in metric_name and avg is not None:
-            metrics["request_throughput_rps"] = avg
+        elif metric_name == "Request Throughput (requests/sec)" or "Request Throughput" in metric_name:
+            if avg is not None:
+                metrics["request_throughput_rps"] = avg
 
-        elif "Output Token Throughput" in metric_name and avg is not None:
-            metrics["output_token_throughput_tps"] = avg
+        elif metric_name == "Output Token Throughput (tokens/sec)" or "Output Token Throughput" in metric_name:
+            if avg is not None:
+                metrics["output_token_throughput_tps"] = avg
 
-        elif "Image Throughput" in metric_name and avg is not None:
-            metrics["image_throughput_ips"] = avg
+        elif metric_name == "Image Throughput (images/sec)" or "Image Throughput" in metric_name:
+            if avg is not None:
+                metrics["image_throughput_ips"] = avg
 
-        elif "Input Sequence Length" in metric_name and avg is not None:
-            metrics["input_tokens_avg"] = avg
+        elif metric_name == "Input Sequence Length (tokens)" or "Input Sequence Length" in metric_name:
+            if avg is not None:
+                metrics["input_tokens_avg"] = avg
 
-        elif "Output Sequence Length" in metric_name and avg is not None:
-            metrics["output_tokens_avg"] = avg
+        elif metric_name == "Output Sequence Length (tokens)" or "Output Sequence Length" in metric_name:
+            if avg is not None:
+                metrics["output_tokens_avg"] = avg
 
-        elif "Request Count" in metric_name and avg is not None:
-            metrics["request_count"] = avg
+        elif metric_name == "Request Count (requests)" or "Request Count" in metric_name:
+            if avg is not None:
+                metrics["request_count"] = avg
 
     return metrics
 
 
-def flatten_json(obj: Any, prefix: str = "") -> dict[str, Any]:
-    out: dict[str, Any] = {}
+def get_json_stat(data: dict[str, Any], metric_name: str, stat_name: str = "avg") -> float | None:
+    """
+    Read exact AIPerf JSON metric field.
 
-    if isinstance(obj, dict):
-        for k, v in obj.items():
-            key = f"{prefix}.{k}" if prefix else str(k)
-            out[key] = v
-            out.update(flatten_json(v, key))
-    elif isinstance(obj, list):
-        for i, v in enumerate(obj):
-            key = f"{prefix}.{i}" if prefix else str(i)
-            out[key] = v
-            out.update(flatten_json(v, key))
-
-    return out
-
-
-def normalize_key(s: str) -> str:
-    return re.sub(r"[^a-z0-9]+", "_", s.lower()).strip("_")
+    Example:
+      data["input_sequence_length"]["avg"]
+      data["request_latency"]["p99"]
+    """
+    obj = data.get(metric_name)
+    if not isinstance(obj, dict):
+        return None
+    return safe_float(obj.get(stat_name))
 
 
 def parse_json_metrics(path: Path) -> dict[str, float]:
+    """
+    Parse AIPerf JSON using exact metric keys only.
+
+    Do NOT fuzzy match token fields. AIPerf JSON also contains totals like:
+      total_isl
+      total_osl
+      total_usage_prompt_tokens
+      total_usage_completion_tokens
+
+    The correct per-request sequence length fields are:
+      input_sequence_length.avg
+      output_sequence_length.avg
+    """
     try:
         with path.open() as f:
             data = json.load(f)
     except Exception:
         return {}
 
-    flat = flatten_json(data)
     metrics: dict[str, float] = {}
 
-    aliases = {
-        "request_latency_ms_avg": ["request_latency_ms_avg", "request_latency_avg", "request_latency_ms", "Request Latency (ms)"],
-        "request_latency_ms_p50": ["request_latency_ms_p50", "request_latency_p50"],
-        "request_latency_ms_p90": ["request_latency_ms_p90", "request_latency_p90"],
-        "request_latency_ms_p99": ["request_latency_ms_p99", "request_latency_p99"],
-        "request_throughput_rps": ["request_throughput_rps", "request_throughput", "Request Throughput (requests/sec)"],
-        "output_token_throughput_tps": ["output_token_throughput_tps", "output_token_throughput", "Output Token Throughput (tokens/sec)"],
-        "image_throughput_ips": ["image_throughput_ips", "image_throughput", "Image Throughput (images/sec)"],
-        "input_tokens_avg": ["input_tokens_avg", "input_sequence_length", "Input Sequence Length (tokens)"],
-        "output_tokens_avg": ["output_tokens_avg", "output_sequence_length", "Output Sequence Length (tokens)"],
+    exact_map = {
+        "request_latency_ms_avg": ("request_latency", "avg"),
+        "request_latency_ms_p50": ("request_latency", "p50"),
+        "request_latency_ms_p90": ("request_latency", "p90"),
+        "request_latency_ms_p99": ("request_latency", "p99"),
+        "request_throughput_rps": ("request_throughput", "avg"),
+        "output_token_throughput_tps": ("output_token_throughput", "avg"),
+        "image_throughput_ips": ("image_throughput", "avg"),
+        "input_tokens_avg": ("input_sequence_length", "avg"),
+        "output_tokens_avg": ("output_sequence_length", "avg"),
+        "request_count": ("request_count", "avg"),
     }
 
-    normalized_flat = {normalize_key(k): v for k, v in flat.items()}
-
-    for metric_key, names in aliases.items():
-        normalized_names = [normalize_key(n) for n in names]
-
-        for nk, value in normalized_flat.items():
-            if any(n == nk or nk.endswith(n) or n in nk for n in normalized_names):
-                val = safe_float(value)
-                if val is not None:
-                    metrics[metric_key] = val
-                    break
+    for out_key, (json_key, stat_key) in exact_map.items():
+        val = get_json_stat(data, json_key, stat_key)
+        if val is not None:
+            metrics[out_key] = val
 
     return metrics
 
 
 def parse_artifact_dir(run_dir: Path) -> dict[str, float]:
-    candidates = [
-        run_dir / "profile_export_aiperf.csv",
-        run_dir / "profile_export.csv",
-        run_dir / "profile_export_aiperf.json",
-        run_dir / "profile_export.json",
-    ]
+    """
+    Parse AIPerf artifact directory.
 
-    for candidate in candidates:
-        if not candidate.exists():
-            continue
+    Prefer JSON because it has exact metric keys:
+      input_sequence_length.avg
+      output_sequence_length.avg
+      request_count.avg
 
-        if candidate.suffix == ".csv":
-            metrics = parse_csv_metrics(candidate)
-        elif candidate.suffix == ".json":
+    Fall back to CSV if JSON is missing.
+    """
+    for candidate in [run_dir / "profile_export_aiperf.json", run_dir / "profile_export.json"]:
+        if candidate.exists():
             metrics = parse_json_metrics(candidate)
-        else:
-            metrics = {}
+            if metrics:
+                return metrics
 
-        if metrics:
-            return metrics
+    for candidate in [run_dir / "profile_export_aiperf.csv", run_dir / "profile_export.csv"]:
+        if candidate.exists():
+            metrics = parse_csv_metrics(candidate)
+            if metrics:
+                return metrics
 
     return {}
 
@@ -321,10 +339,10 @@ def discover_runs(artifact_root: Path) -> list[dict[str, Any]]:
     candidate_dirs: set[Path] = set()
 
     for pattern in [
-        "**/profile_export_aiperf.csv",
-        "**/profile_export.csv",
         "**/profile_export_aiperf.json",
         "**/profile_export.json",
+        "**/profile_export_aiperf.csv",
+        "**/profile_export.csv",
     ]:
         for file in artifact_root.glob(pattern):
             candidate_dirs.add(file.parent)
