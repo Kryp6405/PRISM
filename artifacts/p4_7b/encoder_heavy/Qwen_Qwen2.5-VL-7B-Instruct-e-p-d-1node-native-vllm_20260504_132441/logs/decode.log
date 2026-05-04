@@ -1,0 +1,273 @@
+(APIServer pid=85430) INFO 05-04 13:25:20 [utils.py:302] 
+(APIServer pid=85430) INFO 05-04 13:25:20 [utils.py:302]        █     █     █▄   ▄█
+(APIServer pid=85430) INFO 05-04 13:25:20 [utils.py:302]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.17.1.dev0+gb31e9326a.d20260406
+(APIServer pid=85430) INFO 05-04 13:25:20 [utils.py:302]   █▄█▀ █     █     █     █  model   Qwen/Qwen2.5-VL-7B-Instruct
+(APIServer pid=85430) INFO 05-04 13:25:20 [utils.py:302]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=85430) INFO 05-04 13:25:20 [utils.py:302] 
+(APIServer pid=85430) INFO 05-04 13:25:20 [utils.py:238] non-default args: {'model_tag': 'Qwen/Qwen2.5-VL-7B-Instruct', 'host': '0.0.0.0', 'port': 19536, 'enable_request_id_headers': True, 'model': 'Qwen/Qwen2.5-VL-7B-Instruct', 'max_model_len': 16384, 'enforce_eager': True, 'tensor_parallel_size': 2, 'limit_mm_per_prompt': {'image': 1, 'video': 0}, 'max_num_seqs': 128, 'kv_transfer_config': KVTransferConfig(kv_connector='NixlConnector', engine_id='d91e4acf-def4-4c89-9b03-4c91d695ec48', kv_buffer_device='cuda', kv_buffer_size=1000000000.0, kv_role='kv_consumer', kv_rank=None, kv_parallel_size=1, kv_ip='127.0.0.1', kv_port=14579, kv_connector_extra_config={}, kv_connector_module_path=None, enable_permute_local_kv=False, kv_load_failure_policy='fail')}
+(APIServer pid=85430) INFO 05-04 13:25:21 [model.py:531] Resolved architecture: Qwen2_5_VLForConditionalGeneration
+(APIServer pid=85430) INFO 05-04 13:25:21 [model.py:1554] Using max model len 16384
+(APIServer pid=85430) INFO 05-04 13:25:21 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=2048.
+(APIServer pid=85430) INFO 05-04 13:25:21 [vllm.py:747] Asynchronous scheduling is enabled.
+(APIServer pid=85430) WARNING 05-04 13:25:21 [vllm.py:781] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(APIServer pid=85430) WARNING 05-04 13:25:21 [vllm.py:792] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(APIServer pid=85430) INFO 05-04 13:25:21 [vllm.py:957] Cudagraph is disabled under eager mode
+(APIServer pid=85430) WARNING 05-04 13:25:21 [vllm.py:1187] Turning off hybrid kv cache manager because `--kv-transfer-config` is set. This will reduce the performance of vLLM on LLMs with sliding window attention or Mamba attention. If you are a developer of kv connector, please consider supporting hybrid kv cache manager for your connector by making sure your connector is a subclass of `SupportsHMA` defined in kv_connector/v1/base.py and use --no-disable-hybrid-kv-cache-manager to start vLLM.
+(APIServer pid=85430) The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+(EngineCore_DP0 pid=87471) INFO 05-04 13:25:38 [core.py:101] Initializing a V1 LLM engine (v0.17.1.dev0+gb31e9326a.d20260406) with config: model='Qwen/Qwen2.5-VL-7B-Instruct', speculative_config=None, tokenizer='Qwen/Qwen2.5-VL-7B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=16384, download_dir=None, load_format=auto, tensor_parallel_size=2, pipeline_parallel_size=1, data_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=Qwen/Qwen2.5-VL-7B-Instruct, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'level': None, 'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['all'], 'splitting_ops': [], 'compile_mm_encoder': False, 'compile_sizes': [], 'compile_ranges_split_points': [2048], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 0, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}
+(EngineCore_DP0 pid=87471) WARNING 05-04 13:25:38 [multiproc_executor.py:945] Reducing Torch parallelism from 64 threads to 1 to avoid unnecessary CPU contention. Set OMP_NUM_THREADS in the external environment to tune this value as needed.
+(EngineCore_DP0 pid=87471) INFO 05-04 13:25:38 [multiproc_executor.py:134] DP group leader: node_rank=0, node_rank_within_dp=0, master_addr=127.0.0.1, mq_connect_ip=128.55.82.233 (local), world_size=2, local_world_size=2
+(Worker pid=87803) INFO 05-04 13:25:50 [parallel_state.py:1393] world_size=2 rank=1 local_rank=1 distributed_init_method=tcp://127.0.0.1:58765 backend=nccl
+(Worker pid=87802) INFO 05-04 13:25:50 [parallel_state.py:1393] world_size=2 rank=0 local_rank=0 distributed_init_method=tcp://127.0.0.1:58765 backend=nccl
+(Worker pid=87803) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.
+(Worker pid=87802) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.
+(Worker pid=87803) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.nvrtc module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.nvrtc module instead.
+(Worker pid=87802) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.nvrtc module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.nvrtc module instead.
+(Worker pid=87802) INFO 05-04 13:25:51 [pynccl.py:111] vLLM is using nccl==2.28.9
+(Worker pid=87802) WARNING 05-04 13:25:52 [symm_mem.py:67] SymmMemCommunicator: Device capability 8.0 not supported, communicator is not available.
+(Worker pid=87803) WARNING 05-04 13:25:52 [symm_mem.py:67] SymmMemCommunicator: Device capability 8.0 not supported, communicator is not available.
+(Worker pid=87802) INFO 05-04 13:25:52 [parallel_state.py:1715] rank 0 in world size 2 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A
+(Worker pid=87803) INFO 05-04 13:25:52 [parallel_state.py:1715] rank 1 in world size 2 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 1, EP rank N/A, EPLB rank N/A
+(Worker pid=87802) The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+(Worker pid=87803) The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+(Worker pid=87802) INFO 05-04 13:25:57 [base.py:106] Offloader set to NoopOffloader
+(Worker pid=87802) (Worker_TP0 pid=87802) INFO 05-04 13:25:57 [gpu_model_runner.py:4255] Starting to load model Qwen/Qwen2.5-VL-7B-Instruct...
+(Worker pid=87803) INFO 05-04 13:25:57 [base.py:106] Offloader set to NoopOffloader
+(Worker pid=87802) (Worker_TP0 pid=87802) INFO 05-04 13:25:58 [cuda.py:453] Using backend AttentionBackendEnum.FLASH_ATTN for vit attention
+(Worker pid=87802) (Worker_TP0 pid=87802) INFO 05-04 13:25:58 [mm_encoder_attention.py:215] Using AttentionBackendEnum.FLASH_ATTN for MMEncoderAttention.
+(Worker pid=87803) (Worker_TP1 pid=87803) INFO 05-04 13:25:58 [cuda.py:453] Using backend AttentionBackendEnum.FLASH_ATTN for vit attention
+(Worker pid=87802) (Worker_TP0 pid=87802) INFO 05-04 13:25:58 [vllm.py:747] Asynchronous scheduling is enabled.
+(Worker pid=87802) (Worker_TP0 pid=87802) WARNING 05-04 13:25:58 [vllm.py:781] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(Worker pid=87802) (Worker_TP0 pid=87802) WARNING 05-04 13:25:58 [vllm.py:792] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(Worker pid=87803) (Worker_TP1 pid=87803) INFO 05-04 13:25:58 [mm_encoder_attention.py:215] Using AttentionBackendEnum.FLASH_ATTN for MMEncoderAttention.
+(Worker pid=87802) (Worker_TP0 pid=87802) INFO 05-04 13:25:58 [vllm.py:957] Cudagraph is disabled under eager mode
+(Worker pid=87802) (Worker_TP0 pid=87802) INFO 05-04 13:25:58 [cuda.py:405] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].
+(Worker pid=87802) (Worker_TP0 pid=87802) INFO 05-04 13:25:58 [flash_attn.py:587] Using FlashAttention version 2
+(Worker pid=87803) (Worker_TP1 pid=87803) INFO 05-04 13:25:58 [vllm.py:747] Asynchronous scheduling is enabled.
+(Worker pid=87803) (Worker_TP1 pid=87803) WARNING 05-04 13:25:58 [vllm.py:781] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(Worker pid=87803) (Worker_TP1 pid=87803) WARNING 05-04 13:25:58 [vllm.py:792] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(Worker pid=87803) (Worker_TP1 pid=87803) INFO 05-04 13:25:58 [vllm.py:957] Cudagraph is disabled under eager mode
+(Worker pid=87802) (Worker_TP0 pid=87802) Loading safetensors checkpoint shards:   0% Completed | 0/5 [00:00<?, ?it/s]
+(Worker pid=87802) (Worker_TP0 pid=87802) Loading safetensors checkpoint shards:  20% Completed | 1/5 [00:01<00:05,  1.33s/it]
+(Worker pid=87802) (Worker_TP0 pid=87802) Loading safetensors checkpoint shards:  40% Completed | 2/5 [00:02<00:04,  1.35s/it]
+(Worker pid=87802) (Worker_TP0 pid=87802) Loading safetensors checkpoint shards:  60% Completed | 3/5 [00:04<00:02,  1.37s/it]
+(Worker pid=87802) (Worker_TP0 pid=87802) Loading safetensors checkpoint shards:  80% Completed | 4/5 [00:05<00:01,  1.38s/it]
+(Worker pid=87802) (Worker_TP0 pid=87802) Loading safetensors checkpoint shards: 100% Completed | 5/5 [00:05<00:00,  1.01s/it]
+(Worker pid=87802) (Worker_TP0 pid=87802) Loading safetensors checkpoint shards: 100% Completed | 5/5 [00:05<00:00,  1.17s/it]
+(Worker pid=87802) (Worker_TP0 pid=87802) 
+(Worker pid=87802) (Worker_TP0 pid=87802) INFO 05-04 13:26:04 [default_loader.py:293] Loading weights took 5.87 seconds
+(Worker pid=87802) (Worker_TP0 pid=87802) INFO 05-04 13:26:05 [gpu_model_runner.py:4338] Model loading took 7.87 GiB memory and 6.711908 seconds
+(Worker pid=87803) (Worker_TP1 pid=87803) INFO 05-04 13:26:05 [gpu_model_runner.py:5254] Encoder cache will be initialized with a budget of 16384 tokens, and profiled with 1 image items of the maximum feature size.
+(Worker pid=87802) (Worker_TP0 pid=87802) INFO 05-04 13:26:05 [gpu_model_runner.py:5254] Encoder cache will be initialized with a budget of 16384 tokens, and profiled with 1 image items of the maximum feature size.
+(Worker pid=87802) (Worker_TP0 pid=87802) INFO 05-04 13:26:08 [gpu_worker.py:424] Available KV cache memory: 61.87 GiB
+(EngineCore_DP0 pid=87471) INFO 05-04 13:26:08 [kv_cache_utils.py:1314] GPU KV cache size: 2,316,880 tokens
+(EngineCore_DP0 pid=87471) INFO 05-04 13:26:08 [kv_cache_utils.py:1319] Maximum concurrency for 16,384 tokens per request: 141.41x
+(Worker pid=87802) (Worker_TP0 pid=87802) INFO 05-04 13:26:08 [nixl_connector.py:101] Setting UCX_RCACHE_MAX_UNRELEASED to '1024' to avoid a rare memory leak in UCX when using NIXL.
+(Worker pid=87803) (Worker_TP1 pid=87803) INFO 05-04 13:26:08 [nixl_connector.py:101] Setting UCX_RCACHE_MAX_UNRELEASED to '1024' to avoid a rare memory leak in UCX when using NIXL.
+(Worker pid=87803) (Worker_TP1 pid=87803) INFO 05-04 13:26:08 [nixl_connector.py:114] NIXL is available
+(Worker pid=87803) (Worker_TP1 pid=87803) INFO 05-04 13:26:08 [factory.py:64] Creating v1 connector with name: NixlConnector and engine_id: d91e4acf-def4-4c89-9b03-4c91d695ec48
+(Worker pid=87803) (Worker_TP1 pid=87803) WARNING 05-04 13:26:08 [base.py:166] Initializing KVConnectorBase_V1. This API is experimental and subject to change in the future as we iterate the design.
+(Worker pid=87803) (Worker_TP1 pid=87803) INFO 05-04 13:26:08 [nixl_connector.py:864] Initializing NIXL wrapper
+(Worker pid=87803) (Worker_TP1 pid=87803) INFO 05-04 13:26:08 [nixl_connector.py:865] Initializing NIXL worker d91e4acf-def4-4c89-9b03-4c91d695ec48
+(Worker pid=87802) (Worker_TP0 pid=87802) INFO 05-04 13:26:08 [nixl_connector.py:114] NIXL is available
+(Worker pid=87802) (Worker_TP0 pid=87802) INFO 05-04 13:26:08 [factory.py:64] Creating v1 connector with name: NixlConnector and engine_id: d91e4acf-def4-4c89-9b03-4c91d695ec48
+(Worker pid=87802) (Worker_TP0 pid=87802) WARNING 05-04 13:26:08 [base.py:166] Initializing KVConnectorBase_V1. This API is experimental and subject to change in the future as we iterate the design.
+(Worker pid=87802) (Worker_TP0 pid=87802) INFO 05-04 13:26:08 [nixl_connector.py:864] Initializing NIXL wrapper
+(Worker pid=87802) (Worker_TP0 pid=87802) INFO 05-04 13:26:08 [nixl_connector.py:865] Initializing NIXL worker d91e4acf-def4-4c89-9b03-4c91d695ec48
+(Worker pid=87802) (Worker_TP0 pid=87802) 2026-05-04 13:26:09 NIXL INFO    _api.py:363 Backend UCX was instantiated
+(Worker pid=87802) (Worker_TP0 pid=87802) 2026-05-04 13:26:09 NIXL INFO    _api.py:253 Initialized NIXL agent: f70e6358-d23b-4244-b189-716957bdf1c6
+(Worker pid=87802) (Worker_TP0 pid=87802) INFO 05-04 13:26:09 [nixl_connector.py:363] NixlConnector setting KV cache layout to HND for better xfer performance.
+(Worker pid=87802) (Worker_TP0 pid=87802) INFO 05-04 13:26:09 [nixl_connector.py:1341] Registering KV_Caches. use_mla: False, kv_buffer_device: cuda, use_host_buffer: False
+(Worker pid=87803) (Worker_TP1 pid=87803) 2026-05-04 13:26:09 NIXL INFO    _api.py:363 Backend UCX was instantiated
+(Worker pid=87803) (Worker_TP1 pid=87803) 2026-05-04 13:26:09 NIXL INFO    _api.py:253 Initialized NIXL agent: 67ad788b-35f1-46b9-971e-7938b1927f11
+(Worker pid=87803) (Worker_TP1 pid=87803) INFO 05-04 13:26:09 [nixl_connector.py:363] NixlConnector setting KV cache layout to HND for better xfer performance.
+(Worker pid=87803) (Worker_TP1 pid=87803) INFO 05-04 13:26:09 [nixl_connector.py:1341] Registering KV_Caches. use_mla: False, kv_buffer_device: cuda, use_host_buffer: False
+(EngineCore_DP0 pid=87471) INFO 05-04 13:26:11 [core.py:282] init engine (profile, create kv cache, warmup model) took 5.92 seconds
+(EngineCore_DP0 pid=87471) INFO 05-04 13:26:12 [nixl_connector.py:101] Setting UCX_RCACHE_MAX_UNRELEASED to '1024' to avoid a rare memory leak in UCX when using NIXL.
+(EngineCore_DP0 pid=87471) INFO 05-04 13:26:12 [nixl_connector.py:114] NIXL is available
+(EngineCore_DP0 pid=87471) INFO 05-04 13:26:12 [factory.py:64] Creating v1 connector with name: NixlConnector and engine_id: d91e4acf-def4-4c89-9b03-4c91d695ec48
+(EngineCore_DP0 pid=87471) WARNING 05-04 13:26:12 [base.py:166] Initializing KVConnectorBase_V1. This API is experimental and subject to change in the future as we iterate the design.
+(EngineCore_DP0 pid=87471) INFO 05-04 13:26:12 [nixl_connector.py:538] Initializing NIXL Scheduler d91e4acf-def4-4c89-9b03-4c91d695ec48
+(EngineCore_DP0 pid=87471) The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+(EngineCore_DP0 pid=87471) INFO 05-04 13:26:18 [vllm.py:747] Asynchronous scheduling is enabled.
+(EngineCore_DP0 pid=87471) WARNING 05-04 13:26:18 [vllm.py:781] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(EngineCore_DP0 pid=87471) WARNING 05-04 13:26:18 [vllm.py:792] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(EngineCore_DP0 pid=87471) INFO 05-04 13:26:18 [vllm.py:957] Cudagraph is disabled under eager mode
+(APIServer pid=85430) INFO 05-04 13:26:18 [nixl_connector.py:101] Setting UCX_RCACHE_MAX_UNRELEASED to '1024' to avoid a rare memory leak in UCX when using NIXL.
+(APIServer pid=85430) INFO 05-04 13:26:18 [nixl_connector.py:114] NIXL is available
+(APIServer pid=85430) INFO 05-04 13:26:18 [api_server.py:495] Supported tasks: ['generate']
+(APIServer pid=85430) WARNING 05-04 13:26:19 [model.py:1355] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'repetition_penalty': 1.05, 'temperature': 1e-06}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`.
+(APIServer pid=85430) INFO 05-04 13:26:19 [serving.py:185] Warming up chat template processing...
+(APIServer pid=85430) INFO 05-04 13:26:22 [hf.py:318] Detected the chat template content format to be 'openai'. You can set `--chat-template-content-format` to override this.
+(APIServer pid=85430) INFO 05-04 13:26:22 [serving.py:210] Chat template warmup completed in 2816.0ms
+(APIServer pid=85430) INFO 05-04 13:26:22 [api_server.py:500] Starting vLLM API server 0 on http://0.0.0.0:19536
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:38] Available routes are:
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /openapi.json, Methods: HEAD, GET
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /docs, Methods: HEAD, GET
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /docs/oauth2-redirect, Methods: HEAD, GET
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /redoc, Methods: HEAD, GET
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /tokenize, Methods: POST
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /detokenize, Methods: POST
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /load, Methods: GET
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /version, Methods: GET
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /health, Methods: GET
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /metrics, Methods: GET
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /v1/models, Methods: GET
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /ping, Methods: GET
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /ping, Methods: POST
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /invocations, Methods: POST
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /v1/chat/completions, Methods: POST
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /v1/chat/completions/render, Methods: POST
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /v1/responses, Methods: POST
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /v1/responses/{response_id}, Methods: GET
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /v1/responses/{response_id}/cancel, Methods: POST
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /v1/completions, Methods: POST
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /v1/completions/render, Methods: POST
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /v1/messages, Methods: POST
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /v1/messages/count_tokens, Methods: POST
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /inference/v1/generate, Methods: POST
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /scale_elastic_ep, Methods: POST
+(APIServer pid=85430) INFO 05-04 13:26:22 [launcher.py:47] Route: /is_scaling_elastic_ep, Methods: POST
+(APIServer pid=85430) INFO:     Started server process [85430]
+(APIServer pid=85430) INFO:     Waiting for application startup.
+(APIServer pid=85430) INFO:     Application startup complete.
+(APIServer pid=85430) INFO:     127.0.0.1:59880 - "GET /v1/models HTTP/1.1" 200 OK
+(APIServer pid=85430) WARNING 05-04 13:28:22 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(Worker pid=87803) (Worker_TP1 pid=87803) INFO 05-04 13:28:22 [nixl_connector.py:1122] NIXL compatibility check passed (hash: a6a6673f582530f106785ce04ef6929744505fbc6fc06ec1de77055ced52c9d2)
+(Worker pid=87802) (Worker_TP0 pid=87802) INFO 05-04 13:28:22 [nixl_connector.py:1122] NIXL compatibility check passed (hash: a6a6673f582530f106785ce04ef6929744505fbc6fc06ec1de77055ced52c9d2)
+(APIServer pid=85430) INFO:     127.0.0.1:35272 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) WARNING 05-04 13:28:30 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) INFO 05-04 13:28:32 [loggers.py:259] Engine 000: Avg prompt throughput: 0.2 tokens/s, Avg generation throughput: 16.2 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.3%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%, MM cache hit rate: 0.0%
+(APIServer pid=85430) INFO 05-04 13:28:32 [metrics.py:103] KV Transfer metrics: Num successful transfers=4, Avg xfer time (ms)=1283.818, P90 xfer time (ms)=1327.294, Avg post time (ms)=5.019, P90 post time (ms)=7.873, Avg MB per transfer=161.438, Throughput (MB/s)=125.748, Avg number of descriptors=20664.0
+(APIServer pid=85430) INFO:     127.0.0.1:35272 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) WARNING 05-04 13:28:35 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) INFO:     127.0.0.1:35272 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) WARNING 05-04 13:28:40 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) INFO 05-04 13:28:42 [loggers.py:259] Engine 000: Avg prompt throughput: 0.2 tokens/s, Avg generation throughput: 25.9 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.3%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%, MM cache hit rate: 50.0%
+(APIServer pid=85430) INFO 05-04 13:28:42 [metrics.py:103] KV Transfer metrics: Num successful transfers=4, Avg xfer time (ms)=1244.154, P90 xfer time (ms)=1259.164, Avg post time (ms)=9.044, P90 post time (ms)=11.869, Avg MB per transfer=161.438, Throughput (MB/s)=129.757, Avg number of descriptors=20664.0
+(APIServer pid=85430) INFO:     127.0.0.1:35272 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) WARNING 05-04 13:28:46 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:28:46 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:28:47 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:28:47 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) INFO 05-04 13:28:52 [loggers.py:259] Engine 000: Avg prompt throughput: 0.4 tokens/s, Avg generation throughput: 33.5 tokens/s, Running: 4 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.0%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%, MM cache hit rate: 50.0%
+(APIServer pid=85430) INFO 05-04 13:28:52 [metrics.py:103] KV Transfer metrics: Num successful transfers=8, Avg xfer time (ms)=4190.742, P90 xfer time (ms)=4864.416, Avg post time (ms)=14.788, P90 post time (ms)=24.474, Avg MB per transfer=161.438, Throughput (MB/s)=38.522, Avg number of descriptors=20664.0
+(APIServer pid=85430) INFO:     127.0.0.1:35272 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54632 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54638 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54646 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) WARNING 05-04 13:28:55 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:28:55 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:28:56 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:28:56 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) INFO 05-04 13:29:02 [loggers.py:259] Engine 000: Avg prompt throughput: 0.4 tokens/s, Avg generation throughput: 72.8 tokens/s, Running: 4 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.0%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%, MM cache hit rate: 66.7%
+(APIServer pid=85430) INFO 05-04 13:29:02 [metrics.py:103] KV Transfer metrics: Num successful transfers=8, Avg xfer time (ms)=4061.231, P90 xfer time (ms)=4690.911, Avg post time (ms)=13.371, P90 post time (ms)=23.658, Avg MB per transfer=161.438, Throughput (MB/s)=39.751, Avg number of descriptors=20664.0
+(APIServer pid=85430) INFO:     127.0.0.1:54632 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54646 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54638 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:35272 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) WARNING 05-04 13:29:04 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:29:04 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:29:05 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:29:05 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) INFO:     127.0.0.1:54632 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54646 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54638 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:35272 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO 05-04 13:29:12 [loggers.py:259] Engine 000: Avg prompt throughput: 0.4 tokens/s, Avg generation throughput: 56.4 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%, MM cache hit rate: 75.0%
+(APIServer pid=85430) INFO 05-04 13:29:12 [metrics.py:103] KV Transfer metrics: Num successful transfers=8, Avg xfer time (ms)=4291.793, P90 xfer time (ms)=4808.777, Avg post time (ms)=19.132, P90 post time (ms)=36.78, Avg MB per transfer=161.438, Throughput (MB/s)=37.615, Avg number of descriptors=20664.0
+(APIServer pid=85430) WARNING 05-04 13:29:13 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:29:13 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:29:14 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:29:14 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) INFO:     127.0.0.1:54632 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54646 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54638 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:35272 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) WARNING 05-04 13:29:22 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) INFO 05-04 13:29:22 [loggers.py:259] Engine 000: Avg prompt throughput: 0.4 tokens/s, Avg generation throughput: 51.2 tokens/s, Running: 0 reqs, Waiting: 1 reqs, GPU KV cache usage: 0.3%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%, MM cache hit rate: 81.0%
+(APIServer pid=85430) INFO 05-04 13:29:22 [metrics.py:103] KV Transfer metrics: Num successful transfers=8, Avg xfer time (ms)=4360.57, P90 xfer time (ms)=4808.121, Avg post time (ms)=12.414, P90 post time (ms)=16.478, Avg MB per transfer=161.438, Throughput (MB/s)=37.022, Avg number of descriptors=20664.0
+(APIServer pid=85430) WARNING 05-04 13:29:23 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:29:23 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:29:24 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) INFO:     127.0.0.1:54632 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54646 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54638 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:35272 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) WARNING 05-04 13:29:31 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:29:32 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:29:32 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:29:32 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) INFO 05-04 13:29:32 [loggers.py:259] Engine 000: Avg prompt throughput: 0.4 tokens/s, Avg generation throughput: 51.2 tokens/s, Running: 0 reqs, Waiting: 4 reqs, GPU KV cache usage: 1.0%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%, MM cache hit rate: 85.7%
+(APIServer pid=85430) INFO 05-04 13:29:32 [metrics.py:103] KV Transfer metrics: Num successful transfers=8, Avg xfer time (ms)=4264.781, P90 xfer time (ms)=4956.854, Avg post time (ms)=15.411, P90 post time (ms)=26.356, Avg MB per transfer=161.438, Throughput (MB/s)=37.854, Avg number of descriptors=20664.0
+(APIServer pid=85430) INFO:     127.0.0.1:54632 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54646 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54638 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:35272 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) WARNING 05-04 13:29:40 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:29:41 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:29:41 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:29:41 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) INFO 05-04 13:29:42 [loggers.py:259] Engine 000: Avg prompt throughput: 0.4 tokens/s, Avg generation throughput: 51.2 tokens/s, Running: 0 reqs, Waiting: 4 reqs, GPU KV cache usage: 1.0%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%, MM cache hit rate: 87.5%
+(APIServer pid=85430) INFO 05-04 13:29:42 [metrics.py:103] KV Transfer metrics: Num successful transfers=8, Avg xfer time (ms)=4491.834, P90 xfer time (ms)=4959.497, Avg post time (ms)=18.733, P90 post time (ms)=37.569, Avg MB per transfer=161.438, Throughput (MB/s)=35.94, Avg number of descriptors=20664.0
+(APIServer pid=85430) INFO:     127.0.0.1:54632 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54646 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54638 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:35272 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) WARNING 05-04 13:29:49 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:29:50 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:29:50 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:29:50 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) INFO 05-04 13:29:52 [loggers.py:259] Engine 000: Avg prompt throughput: 0.4 tokens/s, Avg generation throughput: 51.2 tokens/s, Running: 0 reqs, Waiting: 4 reqs, GPU KV cache usage: 1.0%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%, MM cache hit rate: 88.9%
+(APIServer pid=85430) INFO 05-04 13:29:52 [metrics.py:103] KV Transfer metrics: Num successful transfers=8, Avg xfer time (ms)=4406.878, P90 xfer time (ms)=4955.335, Avg post time (ms)=18.168, P90 post time (ms)=34.315, Avg MB per transfer=161.438, Throughput (MB/s)=36.633, Avg number of descriptors=20664.0
+(APIServer pid=85430) INFO:     127.0.0.1:54632 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54646 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54638 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:35272 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) WARNING 05-04 13:29:58 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:29:59 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:29:59 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:29:59 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) INFO 05-04 13:30:02 [loggers.py:259] Engine 000: Avg prompt throughput: 0.4 tokens/s, Avg generation throughput: 51.2 tokens/s, Running: 0 reqs, Waiting: 4 reqs, GPU KV cache usage: 1.0%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%, MM cache hit rate: 90.0%
+(APIServer pid=85430) INFO 05-04 13:30:02 [metrics.py:103] KV Transfer metrics: Num successful transfers=8, Avg xfer time (ms)=4315.496, P90 xfer time (ms)=4883.584, Avg post time (ms)=12.766, P90 post time (ms)=20.909, Avg MB per transfer=161.438, Throughput (MB/s)=37.409, Avg number of descriptors=20664.0
+(APIServer pid=85430) INFO:     127.0.0.1:54632 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54646 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54638 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:35272 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) WARNING 05-04 13:30:07 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:30:07 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:30:08 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:30:08 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) INFO 05-04 13:30:12 [loggers.py:259] Engine 000: Avg prompt throughput: 0.8 tokens/s, Avg generation throughput: 55.6 tokens/s, Running: 4 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.0%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%, MM cache hit rate: 90.9%
+(APIServer pid=85430) INFO 05-04 13:30:12 [metrics.py:103] KV Transfer metrics: Num successful transfers=16, Avg xfer time (ms)=4345.088, P90 xfer time (ms)=4882.159, Avg post time (ms)=14.048, P90 post time (ms)=27.234, Avg MB per transfer=161.438, Throughput (MB/s)=37.154, Avg number of descriptors=20664.0
+(APIServer pid=85430) INFO:     127.0.0.1:54632 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54646 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54638 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:35272 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) WARNING 05-04 13:30:16 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:30:16 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:30:17 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:30:17 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) INFO 05-04 13:30:22 [loggers.py:259] Engine 000: Avg prompt throughput: 0.4 tokens/s, Avg generation throughput: 70.4 tokens/s, Running: 4 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.0%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%, MM cache hit rate: 91.7%
+(APIServer pid=85430) INFO 05-04 13:30:22 [metrics.py:103] KV Transfer metrics: Num successful transfers=8, Avg xfer time (ms)=4292.579, P90 xfer time (ms)=4887.585, Avg post time (ms)=17.439, P90 post time (ms)=37.376, Avg MB per transfer=161.438, Throughput (MB/s)=37.609, Avg number of descriptors=20664.0
+(APIServer pid=85430) INFO:     127.0.0.1:54632 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54646 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54638 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:35272 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) WARNING 05-04 13:30:25 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:30:25 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:30:26 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:30:26 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) INFO 05-04 13:30:32 [loggers.py:259] Engine 000: Avg prompt throughput: 0.4 tokens/s, Avg generation throughput: 65.4 tokens/s, Running: 4 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.0%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%, MM cache hit rate: 92.3%
+(APIServer pid=85430) INFO 05-04 13:30:32 [metrics.py:103] KV Transfer metrics: Num successful transfers=8, Avg xfer time (ms)=4380.18, P90 xfer time (ms)=4801.177, Avg post time (ms)=17.414, P90 post time (ms)=33.467, Avg MB per transfer=161.438, Throughput (MB/s)=36.856, Avg number of descriptors=20664.0
+(APIServer pid=85430) INFO:     127.0.0.1:54632 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54646 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54638 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:35272 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) WARNING 05-04 13:30:34 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) WARNING 05-04 13:30:34 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=85430) INFO:     127.0.0.1:54632 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO:     127.0.0.1:54646 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=85430) INFO 05-04 13:30:42 [loggers.py:259] Engine 000: Avg prompt throughput: 0.2 tokens/s, Avg generation throughput: 39.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%, MM cache hit rate: 92.6%
+(APIServer pid=85430) INFO 05-04 13:30:42 [metrics.py:103] KV Transfer metrics: Num successful transfers=4, Avg xfer time (ms)=2260.092, P90 xfer time (ms)=2445.115, Avg post time (ms)=19.082, P90 post time (ms)=32.737, Avg MB per transfer=161.438, Throughput (MB/s)=71.43, Avg number of descriptors=20664.0
+(APIServer pid=85430) INFO 05-04 13:30:52 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%, MM cache hit rate: 92.6%

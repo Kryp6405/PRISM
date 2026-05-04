@@ -1,0 +1,25 @@
+[12:37:49] === Phase 4 7B 1-node aggregated launch ===
+[12:37:49] MODEL=Qwen/Qwen2.5-VL-7B-Instruct
+[12:37:49] PORT=8000
+[12:37:49] CLIENT_NODE=nid008432
+[12:37:49] CLIENT_IP=128.55.82.199
+[12:37:49] VLLM_ROOT=/pscratch/sd/k/krajeshk/PRISM_env/vllm
+[12:37:49] VENV_ACTIVATE=/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin/activate
+[12:37:49] AGG_CUDA_VISIBLE_DEVICES=0,1,2,3
+[12:37:50] AGG_TP_SIZE=4
+[12:37:50] AGG_PP_SIZE=1
+[12:37:50] MAX_MODEL_LEN=16384
+[12:37:50] GPU_MEMORY_UTILIZATION=0.90
+[12:37:50] LIMIT_MM_PER_PROMPT={"image":1,"video":0}
+[12:37:50] LOG_DIR=artifacts/p4_7b/baseline/Qwen_Qwen2.5-VL-7B-Instruct-aggregated-1node-native-vllm_20260504_123748/logs
+Allocated Slurm nodes:
+  nid008432
+
+Layout:
+  nid008432 GPUs 0,1,2,3 -> Aggregated TP=4 PP=1
+[12:37:50] Wrote cluster env to artifacts/p4_7b/baseline/Qwen_Qwen2.5-VL-7B-Instruct-aggregated-1node-native-vllm_20260504_123748/logs/cluster_env.sh
+[12:37:50] Cleaning existing processes...
+[12:37:50] Stopping aggregated 1-node vLLM stack...
+[12:37:55] Starting aggregated vLLM on nid008432 GPUs 0,1,2,3
+[12:37:55] Aggregated 1-node vLLM launched. Waiting on child process...
+[12:40:49] Stopping aggregated 1-node vLLM stack...

@@ -1,35 +1,22 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-###############################################################################
-# Phase 4 aggregated native vLLM run script.
-#
-# Runs:
-#   native vLLM aggregated baseline
-#   TP=4, PP=2 across 2 nodes
-#   AIPerf workload sweep with warmup
-###############################################################################
-
-MODEL="${MODEL:-Qwen/Qwen2.5-VL-32B-Instruct}"
 PORT="${PORT:-8000}"
-
-PHASE="${PHASE:-p4}"
 ARTIFACT_ROOT="${ARTIFACT_ROOT:-artifacts}"
-WORKLOAD_CONFIG="${WORKLOAD_CONFIG:-src/phase4/workloads/simple_baseline.json}"
+WORKLOAD_CONFIG="${WORKLOAD_CONFIG:-src/phase4/workloads/baseline.json}"
 
-AGG_LAUNCH_CMD="${AGG_LAUNCH_CMD:-bash scripts/phase4/launch_aggregated_vllm.sh}"
-
-WARMUP_REQUEST_COUNT="${WARMUP_REQUEST_COUNT:-10}"
+WARMUP_REQUEST_COUNT="${WARMUP_REQUEST_COUNT:-4}"
 WARMUP_CONCURRENCY="${WARMUP_CONCURRENCY:-1}"
 
-GPU_TELEMETRY_MODE="${GPU_TELEMETRY_MODE:-pynvml}"
+GPU_TELEMETRY_MODE="${GPU_TELEMETRY_MODE:-none}"
 CLUSTER_GPU_TELEMETRY="${CLUSTER_GPU_TELEMETRY:-true}"
 CLUSTER_GPU_TELEMETRY_INTERVAL_SEC="${CLUSTER_GPU_TELEMETRY_INTERVAL_SEC:-2}"
 
-ENABLE_STREAMING="${ENABLE_STREAMING:-true}"
+ENABLE_STREAMING="${ENABLE_STREAMING:-false}"
 USE_LEGACY_MAX_TOKENS="${USE_LEGACY_MAX_TOKENS:-false}"
+AIPERF_EXTRA_INPUTS="${AIPERF_EXTRA_INPUTS:-ignore_eos:true}"
 
-REQUEST_TIMEOUT_READY_SEC="${REQUEST_TIMEOUT_READY_SEC:-900}"
+PROXY_READY_TIMEOUT_SEC="${PROXY_READY_TIMEOUT_SEC:-1200}"
 
 log() {
   echo "[$(date '+%H:%M:%S')] $*"
@@ -48,15 +35,12 @@ if key == "concurrency_values":
     print(" ".join(map(str, data.get("concurrency_values", []))))
 else:
     value = data.get(key, "")
-    if isinstance(value, bool):
-        print(str(value).lower())
-    else:
-        print(value)
+    print(str(value).lower() if isinstance(value, bool) else value)
 PY
 }
 
 if [[ ! -f "$WORKLOAD_CONFIG" ]]; then
-  log "Missing workload config: $WORKLOAD_CONFIG" >&2
+  log "ERROR: Missing workload config: $WORKLOAD_CONFIG" >&2
   exit 1
 fi
 
@@ -71,24 +55,12 @@ CONCURRENCY_VALUES="$(read_workload_field concurrency_values)"
 PROMPT="$(read_workload_field prompt)"
 NUM_IMAGES="$(read_workload_field num_images)"
 ENDPOINT_TYPE="$(read_workload_field endpoint_type)"
-USE_SERVER_TOKEN_COUNT="$(read_workload_field use_server_token_count)"
 OUTPUT_TOKENS_MEAN="$(read_workload_field output_tokens_mean)"
 OUTPUT_TOKENS_STDDEV="$(read_workload_field output_tokens_stddev)"
 
-: "${WORKLOAD_NAME:?Missing name in $WORKLOAD_CONFIG}"
-: "${WORKLOAD_TYPE:?Missing workload_type in $WORKLOAD_CONFIG}"
-: "${IMAGE_SOURCE:?Missing image_source in $WORKLOAD_CONFIG}"
-: "${REQUEST_COUNT:?Missing request_count in $WORKLOAD_CONFIG}"
-: "${CONCURRENCY_VALUES:?Missing concurrency_values in $WORKLOAD_CONFIG}"
-: "${PROMPT:?Missing prompt in $WORKLOAD_CONFIG}"
-: "${NUM_IMAGES:?Missing num_images in $WORKLOAD_CONFIG}"
-: "${ENDPOINT_TYPE:?Missing endpoint_type in $WORKLOAD_CONFIG}"
-: "${OUTPUT_TOKENS_MEAN:?Missing output_tokens_mean in $WORKLOAD_CONFIG}"
-: "${OUTPUT_TOKENS_STDDEV:?Missing output_tokens_stddev in $WORKLOAD_CONFIG}"
-
 if [[ "$IMAGE_SOURCE" == "custom" ]]; then
   if [[ -z "$IMAGE_PATH" || ! -f "$IMAGE_PATH" ]]; then
-    log "Custom workload requires valid image_path, got: $IMAGE_PATH" >&2
+    log "ERROR: Custom workload requires valid image_path, got: '$IMAGE_PATH'" >&2
     exit 1
   fi
 
@@ -100,7 +72,7 @@ PY
 )"
 fi
 
-RUN_PREFIX="${RUN_PREFIX:-${MODEL//\//_}-aggregated-native-vllm}"
+RUN_PREFIX="${RUN_PREFIX:-${MODEL//\//_}-${MODE_NAME}}"
 TIMESTAMP="$(date +%Y%m%d_%H%M%S)"
 
 WORKLOAD_ARTIFACT_ROOT="${ARTIFACT_ROOT}/${PHASE}/${WORKLOAD_TYPE}"
@@ -157,7 +129,7 @@ cp "$WORKLOAD_CONFIG" "$RUN_DIR/workload.json"
 cat > "$RUN_DIR/run_config.json" <<EOF
 {
   "phase": "$PHASE",
-  "mode": "aggregated_native_vllm",
+  "mode": "$MODE_NAME",
   "model": "$MODEL",
   "port": $PORT,
   "workload_config": "$WORKLOAD_CONFIG",
@@ -174,11 +146,13 @@ cat > "$RUN_DIR/run_config.json" <<EOF
   "gpu_telemetry_mode": "$GPU_TELEMETRY_MODE",
   "cluster_gpu_telemetry": "$CLUSTER_GPU_TELEMETRY",
   "cluster_gpu_telemetry_interval_sec": $CLUSTER_GPU_TELEMETRY_INTERVAL_SEC,
-  "launch_cmd": "$AGG_LAUNCH_CMD"
+  "enable_streaming": "$ENABLE_STREAMING",
+  "aiperf_extra_inputs": "$AIPERF_EXTRA_INPUTS",
+  "launch_cmd": "$LAUNCH_CMD"
 }
 EOF
 
-log "=== Phase 4 aggregated native vLLM run ==="
+log "=== Phase 4 7B 1-node ${MODE_NAME} run ==="
 log "MODEL=$MODEL"
 log "WORKLOAD_CONFIG=$WORKLOAD_CONFIG"
 log "WORKLOAD_TYPE=$WORKLOAD_TYPE"
@@ -196,29 +170,27 @@ log "GPU_TELEMETRY_MODE=$GPU_TELEMETRY_MODE"
 log "CLUSTER_GPU_TELEMETRY=$CLUSTER_GPU_TELEMETRY"
 log "CLUSTER_GPU_TELEMETRY_INTERVAL_SEC=$CLUSTER_GPU_TELEMETRY_INTERVAL_SEC"
 log "ENABLE_STREAMING=$ENABLE_STREAMING"
-
-if [[ "$GPU_TELEMETRY_MODE" == "pynvml" ]]; then
-  log "WARNING: AIPerf pynvml telemetry only sees GPUs local to the AIPerf process."
-  log "WARNING: For 2-node runs, use gpu_telemetry_all_nodes.csv for 8-GPU telemetry."
-fi
+log "AIPERF_EXTRA_INPUTS=$AIPERF_EXTRA_INPUTS"
 
 LOG_DIR="$LOG_DIR" \
 MODEL="$MODEL" \
 PORT="$PORT" \
-bash -lc "$AGG_LAUNCH_CMD" > "$LOG_DIR/launcher.log" 2>&1 &
-LAUNCHER_PID=$!
+MAX_IMAGES_PER_PROMPT="$NUM_IMAGES" \
+bash -lc "$LAUNCH_CMD" > "$LOG_DIR/launcher.log" 2>&1 &
 
-log "Launcher PID: $LAUNCHER_PID"
-log "Waiting for vLLM readiness on port $PORT..."
+LAUNCHER_PID=$!
+log "Launcher PID=$LAUNCHER_PID"
+
+log "Waiting for frontend /v1/models on port $PORT, timeout=${PROXY_READY_TIMEOUT_SEC}s..."
 
 READY=0
-for _ in $(seq 1 "$REQUEST_TIMEOUT_READY_SEC"); do
+for _ in $(seq 1 "$PROXY_READY_TIMEOUT_SEC"); do
   if ! kill -0 "$LAUNCHER_PID" 2>/dev/null; then
-    log "Launcher exited early. Inspect $LOG_DIR/launcher.log and $LOG_DIR/vllm_serve.log" >&2
+    log "ERROR: Launcher exited early. Check $LOG_DIR/launcher.log" >&2
     exit 1
   fi
 
-  if curl -s --max-time 2 "http://localhost:${PORT}/v1/models" >/dev/null 2>&1; then
+  if curl -sf --max-time 3 "http://localhost:${PORT}/v1/models" >/dev/null 2>&1; then
     READY=1
     break
   fi
@@ -227,25 +199,30 @@ for _ in $(seq 1 "$REQUEST_TIMEOUT_READY_SEC"); do
 done
 
 if [[ "$READY" -ne 1 ]]; then
-  log "vLLM did not become ready. Inspect logs in $LOG_DIR" >&2
+  log "ERROR: Frontend did not become reachable within ${PROXY_READY_TIMEOUT_SEC}s." >&2
   exit 1
 fi
 
-log "vLLM is ready. Starting AIPerf sweep."
+log "Frontend /v1/models is reachable."
 
-if [[ -f "$LOG_DIR/cluster_env.sh" ]]; then
+CLUSTER_ENV_FILE="$LOG_DIR/cluster_env.sh"
+log "Waiting for cluster_env.sh to appear..."
+
+for _ in $(seq 1 30); do
+  [[ -f "$CLUSTER_ENV_FILE" ]] && break
+  sleep 2
+done
+
+if [[ -f "$CLUSTER_ENV_FILE" ]]; then
   # shellcheck disable=SC1090
-  source "$LOG_DIR/cluster_env.sh"
-fi
-
-log "Checking Ray 8-GPU validation output..."
-if [[ -f "$LOG_DIR/ray_cluster_resources.txt" ]]; then
-  cat "$LOG_DIR/ray_cluster_resources.txt"
+  source "$CLUSTER_ENV_FILE"
+  log "Sourced cluster env."
 else
-  log "WARNING: Missing $LOG_DIR/ray_cluster_resources.txt"
+  log "WARNING: cluster_env.sh not found."
 fi
 
-log "Checking live GPU usage on all nodes before AIPerf..."
+log "GPU snapshot before AIPerf sweep..."
+
 {
   for node in $(scontrol show hostnames "$SLURM_JOB_NODELIST"); do
     ssh -q "$node" "
@@ -253,7 +230,7 @@ log "Checking live GPU usage on all nodes before AIPerf..."
       nvidia-smi \
         --query-gpu=index,memory.used,memory.total,utilization.gpu,power.draw,temperature.gpu \
         --format=csv,noheader,nounits \
-      | awk -v host=\"\$host\" 'BEGIN { OFS=\",\" } { print host, \$0 }'
+      | awk -v host=\"\$host\" 'BEGIN{OFS=\",\"}{print host,\$0}'
     " 2>/dev/null || true
   done
 } | tee "$LOG_DIR/live_gpu_usage_before_aiperf.csv"
@@ -273,14 +250,14 @@ start_cluster_gpu_sampler() {
           nvidia-smi \
             --query-gpu=timestamp,index,uuid,name,memory.used,memory.total,utilization.gpu,power.draw,temperature.gpu \
             --format=csv,noheader,nounits \
-          | awk -v host=\"\$host\" 'BEGIN { OFS=\",\" } { print host, \$0 }'
+          | awk -v host=\"\$host\" 'BEGIN{OFS=\",\"}{print host,\$0}'
         " 2>/dev/null || true
       done
       sleep "$interval_sec"
     done
   } > "$out_file" 2>"${out_file}.err" &
 
-  log $!
+  echo $!
 }
 
 AIPERF_OUT_DIRS=()
@@ -288,8 +265,8 @@ AIPERF_OUT_DIRS=()
 for CONCURRENCY in $CONCURRENCY_VALUES; do
   OUT_DIR="${WORKLOAD_ARTIFACT_ROOT}/${RUN_PREFIX}_concurrency${CONCURRENCY}_${TIMESTAMP}"
   mkdir -p "$OUT_DIR"
-  AIPERF_OUT_DIRS+=("$OUT_DIR")
 
+  AIPERF_OUT_DIRS+=("$OUT_DIR")
   cp "$WORKLOAD_CONFIG" "$OUT_DIR/workload.json"
 
   log "=== AIPerf concurrency=$CONCURRENCY -> $OUT_DIR ==="
@@ -317,8 +294,8 @@ for CONCURRENCY in $CONCURRENCY_VALUES; do
       --warmup-request-count "$WARMUP_REQUEST_COUNT"
       --warmup-concurrency "$WARMUP_CONCURRENCY"
       --use-server-token-count
+      --server-metrics "http://localhost:${PORT}/metrics"
       --output-artifact-dir "$OUT_DIR"
-      --extra-inputs ignore_eos:true
     )
   else
     AIPERF_CMD=(
@@ -335,32 +312,32 @@ for CONCURRENCY in $CONCURRENCY_VALUES; do
       --use-server-token-count
       --prompt-output-tokens-mean "$OUTPUT_TOKENS_MEAN"
       --prompt-output-tokens-stddev "$OUTPUT_TOKENS_STDDEV"
+      --server-metrics "http://localhost:${PORT}/metrics"
       --output-artifact-dir "$OUT_DIR"
-      --extra-inputs ignore_eos:true
     )
   fi
 
-  if [[ "${GPU_TELEMETRY_MODE:-none}" == "none" ]]; then
+  if [[ -n "$AIPERF_EXTRA_INPUTS" ]]; then
+    AIPERF_CMD+=(--extra-inputs "$AIPERF_EXTRA_INPUTS")
+  fi
+
+  if [[ "$GPU_TELEMETRY_MODE" == "none" ]]; then
     AIPERF_CMD+=(--no-gpu-telemetry)
   else
     AIPERF_CMD+=(--gpu-telemetry "$GPU_TELEMETRY_MODE")
   fi
-  if [[ "$USE_LEGACY_MAX_TOKENS" == "true" ]]; then
-    AIPERF_CMD+=(--use-legacy-max-tokens)
-  fi
 
-  if [[ "$ENABLE_STREAMING" == "true" ]]; then
-    AIPERF_CMD+=(--streaming)
-  fi
+  [[ "$USE_LEGACY_MAX_TOKENS" == "true" ]] && AIPERF_CMD+=(--use-legacy-max-tokens)
+  [[ "$ENABLE_STREAMING" == "true" ]] && AIPERF_CMD+=(--streaming)
 
   printf "%q " "${AIPERF_CMD[@]}" > "$OUT_DIR/aiperf_command.txt"
-  log >> "$OUT_DIR/aiperf_command.txt"
+  echo >> "$OUT_DIR/aiperf_command.txt"
 
   GPU_SAMPLER_OUT="$OUT_DIR/gpu_telemetry_all_nodes.csv"
   GPU_SAMPLER_TMP="$OUT_DIR/gpu_telemetry_all_nodes.tmp"
   GPU_SAMPLER_STOP="$OUT_DIR/gpu_sampler.stop"
 
-  log "host,timestamp,gpu_index,uuid,name,memory_used_mb,memory_total_mb,gpu_util_percent,power_watts,temp_c" > "$GPU_SAMPLER_OUT"
+  echo "host,timestamp,gpu_index,uuid,name,memory_used_mb,memory_total_mb,gpu_util_percent,power_watts,temp_c" > "$GPU_SAMPLER_OUT"
 
   if [[ "$CLUSTER_GPU_TELEMETRY" == "true" ]]; then
     SAMPLER_PID="$(start_cluster_gpu_sampler "$GPU_SAMPLER_TMP" "$GPU_SAMPLER_STOP" "$CLUSTER_GPU_TELEMETRY_INTERVAL_SEC")"
@@ -376,12 +353,10 @@ for CONCURRENCY in $CONCURRENCY_VALUES; do
   if [[ -n "${SAMPLER_PID:-}" ]]; then
     touch "$GPU_SAMPLER_STOP"
     wait "$SAMPLER_PID" 2>/dev/null || true
-
     cat "$GPU_SAMPLER_TMP" >> "$GPU_SAMPLER_OUT" || true
     rm -f "$GPU_SAMPLER_TMP"
   fi
 
-  log "Checking live GPU usage after AIPerf concurrency=$CONCURRENCY..."
   {
     for node in $(scontrol show hostnames "$SLURM_JOB_NODELIST"); do
       ssh -q "$node" "
@@ -389,26 +364,28 @@ for CONCURRENCY in $CONCURRENCY_VALUES; do
         nvidia-smi \
           --query-gpu=index,memory.used,memory.total,utilization.gpu,power.draw,temperature.gpu \
           --format=csv,noheader,nounits \
-        | awk -v host=\"\$host\" 'BEGIN { OFS=\",\" } { print host, \$0 }'
+        | awk -v host=\"\$host\" 'BEGIN{OFS=\",\"}{print host,\$0}'
       " 2>/dev/null || true
     done
   } | tee "$OUT_DIR/gpu_after_aiperf.csv"
 
   if [[ "$CLUSTER_GPU_TELEMETRY" == "true" ]]; then
     {
-      log "=== Unique GPU telemetry hosts for concurrency=$CONCURRENCY ==="
+      echo "=== Unique GPU telemetry hosts for concurrency=$CONCURRENCY ==="
       cut -d, -f1 "$GPU_SAMPLER_OUT" | tail -n +2 | sort | uniq -c || true
-      log
-      log "=== First telemetry rows ==="
+      echo
+      echo "=== First telemetry rows ==="
       head -20 "$GPU_SAMPLER_OUT" || true
     } | tee "$OUT_DIR/gpu_telemetry_summary.txt"
   fi
 
   if [[ "$AIPERF_RC" -ne 0 ]]; then
-    log "AIPerf failed for concurrency=$CONCURRENCY. See $LOG_DIR/aiperf_${WORKLOAD_TYPE}_c${CONCURRENCY}.log" >&2
+    log "ERROR: AIPerf failed for concurrency=$CONCURRENCY, rc=$AIPERF_RC." >&2
+    log "  Log: $LOG_DIR/aiperf_${WORKLOAD_TYPE}_c${CONCURRENCY}.log" >&2
     exit "$AIPERF_RC"
   fi
 
+  log "AIPerf concurrency=$CONCURRENCY complete."
   rm -f "$OUT_DIR/inputs.json"
 done
 
@@ -418,7 +395,7 @@ import sys
 
 out = {
     "phase": "$PHASE",
-    "mode": "aggregated_native_vllm",
+    "mode": "$MODE_NAME",
     "model": "$MODEL",
     "run_prefix": "$RUN_PREFIX",
     "timestamp": "$TIMESTAMP",
@@ -438,35 +415,40 @@ out = {
     "gpu_telemetry_mode": "$GPU_TELEMETRY_MODE",
     "cluster_gpu_telemetry": "$CLUSTER_GPU_TELEMETRY",
     "cluster_gpu_telemetry_interval_sec": int("$CLUSTER_GPU_TELEMETRY_INTERVAL_SEC"),
+    "enable_streaming": "$ENABLE_STREAMING",
+    "aiperf_extra_inputs": "$AIPERF_EXTRA_INPUTS",
     "aiperf_artifact_dirs": sys.argv[2:],
 }
+
 with open(sys.argv[1], "w") as f:
     json.dump(out, f, indent=2)
     f.write("\n")
 PY
 
 {
-  log "mode=aggregated_native_vllm"
-  log "phase=$PHASE"
-  log "model=$MODEL"
-  log "workload_type=$WORKLOAD_TYPE"
-  log "run_prefix=$RUN_PREFIX"
-  log "timestamp=$TIMESTAMP"
-  log "run_dir=$RUN_DIR"
-  log "log_dir=$LOG_DIR"
-  log "request_count=$REQUEST_COUNT"
-  log "concurrency_values=$CONCURRENCY_VALUES"
-  log "output_tokens_mean=$OUTPUT_TOKENS_MEAN"
-  log "warmup_request_count=$WARMUP_REQUEST_COUNT"
-  log "warmup_concurrency=$WARMUP_CONCURRENCY"
-  log "gpu_telemetry_mode=$GPU_TELEMETRY_MODE"
-  log "cluster_gpu_telemetry=$CLUSTER_GPU_TELEMETRY"
-  log
-  log "aiperf_artifact_dirs:"
+  echo "mode=$MODE_NAME"
+  echo "phase=$PHASE"
+  echo "model=$MODEL"
+  echo "workload_type=$WORKLOAD_TYPE"
+  echo "run_prefix=$RUN_PREFIX"
+  echo "timestamp=$TIMESTAMP"
+  echo "run_dir=$RUN_DIR"
+  echo "log_dir=$LOG_DIR"
+  echo "request_count=$REQUEST_COUNT"
+  echo "concurrency_values=$CONCURRENCY_VALUES"
+  echo "output_tokens_mean=$OUTPUT_TOKENS_MEAN"
+  echo "warmup_request_count=$WARMUP_REQUEST_COUNT"
+  echo "warmup_concurrency=$WARMUP_CONCURRENCY"
+  echo "gpu_telemetry_mode=$GPU_TELEMETRY_MODE"
+  echo "cluster_gpu_telemetry=$CLUSTER_GPU_TELEMETRY"
+  echo "enable_streaming=$ENABLE_STREAMING"
+  echo "aiperf_extra_inputs=$AIPERF_EXTRA_INPUTS"
+  echo
+  echo "aiperf_artifact_dirs:"
   for d in "${AIPERF_OUT_DIRS[@]}"; do
-    log "  - $d"
+    echo "  - $d"
   done
 } > "$RUN_DIR/summary.txt"
 
-log "=== Phase 4 aggregated run complete ==="
+log "=== Phase 4 7B 1-node $MODE_NAME run complete ==="
 log "RUN_DIR=$RUN_DIR"

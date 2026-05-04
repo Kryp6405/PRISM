@@ -1,0 +1,33 @@
+[13:18:43] === Phase 4 7B 1-node E/PD launch ===
+[13:18:43] MODEL=Qwen/Qwen2.5-VL-7B-Instruct
+[13:18:43] PORT=8000
+[13:18:43] ENCODE_PORT=19534
+[13:18:43] PD_PORT=19535
+[13:18:43] CLIENT_NODE=nid008500
+[13:18:43] CLIENT_IP=128.55.82.233
+[13:18:43] VLLM_ROOT=/pscratch/sd/k/krajeshk/PRISM_env/vllm
+[13:18:43] VENV_ACTIVATE=/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/bin/activate
+[13:18:43] EC_SHARED_STORAGE_PATH=/pscratch/sd/k/krajeshk/prism_ec_cache_epd_1node_7b
+[13:18:43] ENCODER_CUDA_VISIBLE_DEVICES=0,1
+[13:18:43] ENCODER_TP_SIZE=2
+[13:18:43] PD_CUDA_VISIBLE_DEVICES=2,3
+[13:18:43] PD_TP_SIZE=1
+[13:18:43] PD_PP_SIZE=2
+[13:18:43] MAX_MODEL_LEN=16384
+[13:18:43] GPU_MEMORY_UTILIZATION=0.90
+[13:18:43] LIMIT_MM_PER_PROMPT={"image":1,"video":0}
+[13:18:43] LOG_DIR=artifacts/p4_7b/decode_heavy/Qwen_Qwen2.5-VL-7B-Instruct-e-pd-1node-native-vllm_20260504_131841/logs
+Allocated Slurm nodes:
+  nid008500
+
+Layout:
+  nid008500 GPUs 0,1 -> Encoder TP=2
+  nid008500 GPUs 2,3 -> P/D TP=1 PP=2
+[13:18:43] Wrote cluster env to artifacts/p4_7b/decode_heavy/Qwen_Qwen2.5-VL-7B-Instruct-e-pd-1node-native-vllm_20260504_131841/logs/cluster_env.sh
+[13:18:43] Cleaning existing processes...
+[13:18:43] Stopping E/PD 1-node vLLM stack...
+[13:18:48] Starting encoder vLLM producer on nid008500 GPUs 0,1
+[13:18:58] Starting P/D vLLM consumer on nid008500 GPUs 2,3
+[13:19:09] Starting E/PD proxy on nid008500 port 8000
+[13:19:09] E/PD 1-node native vLLM stack launched. Waiting on child processes...
+[13:22:00] Stopping E/PD 1-node vLLM stack...

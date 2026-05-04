@@ -1,0 +1,20 @@
+mode=e-p-d-1node-native-vllm
+phase=p4_7b
+model=Qwen/Qwen2.5-VL-7B-Instruct
+workload_type=encoder_heavy
+run_prefix=Qwen_Qwen2.5-VL-7B-Instruct-e-p-d-1node-native-vllm
+timestamp=20260504_132441
+run_dir=artifacts/p4_7b/encoder_heavy/Qwen_Qwen2.5-VL-7B-Instruct-e-p-d-1node-native-vllm_20260504_132441
+log_dir=artifacts/p4_7b/encoder_heavy/Qwen_Qwen2.5-VL-7B-Instruct-e-p-d-1node-native-vllm_20260504_132441/logs
+request_count=50
+concurrency_values=4
+output_tokens_mean=128
+warmup_request_count=4
+warmup_concurrency=1
+gpu_telemetry_mode=none
+cluster_gpu_telemetry=true
+enable_streaming=false
+aiperf_extra_inputs=ignore_eos:true
+
+aiperf_artifact_dirs:
+  - artifacts/p4_7b/encoder_heavy/Qwen_Qwen2.5-VL-7B-Instruct-e-p-d-1node-native-vllm_concurrency4_20260504_132441

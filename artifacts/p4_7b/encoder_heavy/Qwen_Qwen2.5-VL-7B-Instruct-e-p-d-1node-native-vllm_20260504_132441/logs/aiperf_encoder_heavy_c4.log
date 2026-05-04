@@ -1,0 +1,107 @@
+13:26:25.704 INFO     Starting AIPerf System (cli_runner.py:75)
+13:26:26.294 INFO     ✓ Tokenizer Qwen/Qwen2.5-VL-7B-Instruct detected (tokenizer_display.py:203)
+13:26:26.296 INFO     1 tokenizer validated • 0.6s (tokenizer_display.py:212)
+13:26:26.495 INFO     GPU telemetry disabled via --no-gpu-telemetry (system_controller.py:213)
+13:26:26.508 INFO     Registered Worker Manager (id: 'worker_manager') (system_controller.py:340)
+13:26:26.551 INFO     Record metrics export enabled: artifacts/p4_7b/encoder_heavy/Qwen_Qwen2.5-VL-7B-Instruct-e-p-d-1node-native-vllm_concurrency4_20260504_132441/profile_export.jsonl (record_export_results_processor.py:53)
+13:26:26.554 INFO     Server Metrics: Discovered 1 endpoints: ['http://localhost:8000/metrics'] (manager.py:70)
+13:26:26.568 INFO     Registered Dataset Manager (id: 'dataset_manager') (system_controller.py:340)
+13:26:26.595 INFO     Registered Server Metrics Manager (id: 'server_metrics_manager') (system_controller.py:340)
+13:26:26.631 INFO     Registered Timing Manager (id: 'timing_manager') (system_controller.py:340)
+13:26:26.633 INFO     Registered Record Processor (id: 'record_processor_2ab23d9e') (system_controller.py:340)
+13:26:26.667 INFO     Registered Worker (id: 'worker_6919b2c8') (system_controller.py:340)
+13:26:26.669 INFO     Registered Records Manager (id: 'records_manager') (system_controller.py:340)
+13:26:26.670 INFO     Registered Worker (id: 'worker_41a45aa2') (system_controller.py:340)
+13:26:26.691 INFO     Registered Worker (id: 'worker_07717010') (system_controller.py:340)
+13:26:26.695 INFO     Registered Worker (id: 'worker_02734be4') (system_controller.py:340)
+13:26:27.001 INFO     AIPerf System is CONFIGURING (system_controller.py:228)
+13:26:27.002 INFO     Configuring all services to start profiling (system_controller.py:241)
+13:26:27.004 INFO     Configuring tokenizer(s) for dataset manager (dataset_manager.py:105)
+13:26:27.004 INFO     Waiting for dataset to be configured before configuring timing (manager.py:96)
+13:26:27.004 INFO     Tokenization is disabled for this endpoint, skipping tokenizer configuration (inference_result_parser.py:66)
+13:26:27.009 INFO     Server metrics disabled - no Prometheus endpoints reachable (system_controller.py:453)
+13:26:32.724 INFO     Tokenizer(s) configured in 5.72 seconds (dataset_manager.py:109)
+13:26:32.725 INFO     Configuring dataset for dataset_manager (dataset_manager.py:111)
+13:26:33.174 INFO     Using default sampling strategy for synthetic dataset: shuffle (synthetic.py:26)
+13:28:04.083 INFO     Memory-mapped backing store initialized (streaming to /tmp/aiperf_mmap_b00a6c17-fff1-4a0b-aeb9-404dfb35e1c6/dataset.dat) (memory_map_utils.py:87)
+13:28:04.544 INFO     Data file finalized: 100 conversations, 298.75 MB (memory_map_utils.py:144)
+13:28:04.546 INFO     Index file created: /tmp/aiperf_mmap_b00a6c17-fff1-4a0b-aeb9-404dfb35e1c6/index.dat (memory_map_utils.py:157)
+13:28:04.548 INFO     Backing store finalized: client_type=DatasetClientStoreType.MEMORY_MAP data_file_path=PosixPath('/tmp/aiperf_mmap_b00a6c17-fff1-4a0b-aeb9-404dfb35e1c6/dataset.dat') index_file_path=PosixPath('/tmp/aiperf_mmap_b00a6c17-fff1-4a0b-aeb9-404dfb35e1c6/index.dat') conversation_count=100 total_size_bytes=313262051 (dataset_manager.py:319)
+13:28:04.550 INFO     sampling strategy: shuffle, unique conversations: 100, unique turn count: 100 (dataset_manager.py:325)
+13:28:04.562 INFO     Initialized 2 phase(s): ['Warmup', 'Profiling'] (phase_orchestrator.py:154)
+13:28:04.574 INFO     Generating inputs.json file at /global/u2/k/krajeshk/PRISM/artifacts/p4_7b/encoder_heavy/Qwen_Qwen2.5-VL-7B-Instruct-e-p-d-1node-native-vllm_concurrency4_20260504_132441/inputs.json (dataset_manager.py:211)
+13:28:05.516 INFO     inputs.json file generated in 0.94 seconds (dataset_manager.py:229)
+13:28:05.774 INFO     Dataset client initialized and freed 100 conversations from memory (dataset_manager.py:139)
+13:28:05.775 INFO     Dataset configured in 93.05 seconds (dataset_manager.py:118)
+13:28:05.777 INFO     All services configured in 98.77 seconds (system_controller.py:253)
+13:28:05.777 INFO     AIPerf System is CONFIGURED (system_controller.py:230)
+13:28:05.779 INFO     All services started profiling successfully (system_controller.py:275)
+13:28:05.780 INFO     AIPerf System is PROFILING (system_controller.py:232)
+13:28:05.781 INFO     Creating interval generator: pattern=concurrency_burst, rate=None, smoothness=None (request_rate.py:111)
+13:28:05.784 NOTICE   Phase warmup started | target: 4 requests (runner.py:236)
+13:28:05.786 INFO     Credit phase start: warmup (records_manager.py:369)
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+13:28:39.966 NOTICE   Phase warmup sending complete | sent=4, completed=3, in_flight=1 | sessions: sent=4, completed=3 (runner.py:466)
+13:28:44.852 NOTICE   Phase warmup complete | completed=4, cancelled=0, errors=0 | sessions: completed=4, cancelled=0 | elapsed=39.07s (runner.py:543)
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+13:28:44.854 INFO     Creating interval generator: pattern=concurrency_burst, rate=None, smoothness=None (request_rate.py:111)
+13:28:44.855 NOTICE   Phase profiling started | target: 50 requests (runner.py:236)
+13:28:44.856 INFO     Credit phase start: profiling (records_manager.py:369)
+13:30:33.736 NOTICE   Phase profiling sending complete | sent=50, completed=47, in_flight=3 | sessions: sent=50, completed=47 (runner.py:466)
+13:30:33.741 INFO     Sent 50 requests. Waiting for all to complete... (records_manager.py:377)
+13:30:40.047 NOTICE   Phase profiling complete | completed=50, cancelled=0, errors=0 | sessions: completed=50, cancelled=0 | elapsed=115.19s (runner.py:543)
+13:30:40.048 NOTICE   All credits completed (phase_orchestrator.py:169)
+13:30:40.049 INFO     Received CREDIT_PHASE_COMPLETE message, Phase complete: PhaseRecordsStats(phase=CreditPhase.PROFILING, start_ns=1777926524855665712, sent_end_ns=1777926633736785415, requests_end_ns=1777926640047492801, total_expected_requests=50, expected_duration_sec=None, expected_num_sessions=None, expected_grace_period_sec=None, final_requests_sent=None, final_requests_completed=50, final_requests_cancelled=0, final_request_errors=0, final_sent_sessions=None, final_completed_sessions=None, final_cancelled_sessions=None, timeout_triggered=False, grace_period_timeout_triggered=False, was_cancelled=False, records_end_ns=None, success_records=48, error_records=0) (records_manager.py:393)
+13:30:40.049 NOTICE   All requests have completed, please wait for the results to be processed (currently 48 of 50 records processed)... (records_manager.py:396)
+13:30:40.050 INFO     Received credits complete from 'timing_manager' (system_controller.py:375)
+13:30:40.050 INFO     All credits complete, please wait for the results to be processed... (records_manager.py:411)
+13:30:40.058 INFO     Processed 50 valid requests and 0 errors (50 total). (records_manager.py:244)
+13:30:40.059 INFO     Received all records, processing now... (records_manager.py:248)
+13:30:40.063 INFO     Waiting 2.0s for server metrics flush period... (records_manager.py:298)
+13:30:42.049 INFO     Processing records results... (records_manager.py:558)
+13:30:42.066 INFO     _finalize_and_process_results completed (records_manager.py:305)
+13:30:42.066 INFO     All results received, initiating shutdown (system_controller.py:668)
+13:30:42.671 INFO     Exporting all records (exporter_manager.py:60)
+13:30:42.767 INFO     Exporting console data (exporter_manager.py:116)
+
+
+                                            NVIDIA AIPerf | LLM Metrics                                            
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━┓
+┃                               Metric ┃      avg ┃      min ┃      max ┃      p99 ┃      p90 ┃      p50 ┃    std ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━┩
+│                 Request Latency (ms) │ 8,955.26 │ 6,303.74 │ 9,484.21 │ 9,482.91 │ 9,257.83 │ 9,004.63 │ 565.36 │
+│      Output Sequence Length (tokens) │   128.00 │   128.00 │   128.00 │   128.00 │   128.00 │   128.00 │   0.00 │
+│       Input Sequence Length (tokens) │ 5,900.02 │ 5,900.00 │ 5,901.00 │ 5,900.51 │ 5,900.00 │ 5,900.00 │   0.14 │
+│ Output Token Throughput (tokens/sec) │    55.56 │      N/A │      N/A │      N/A │      N/A │      N/A │    N/A │
+│        Image Throughput (images/sec) │     0.11 │     0.11 │     0.16 │     0.16 │     0.11 │     0.11 │   0.01 │
+│             Image Latency (ms/image) │ 8,955.26 │ 6,303.74 │ 9,484.21 │ 9,482.91 │ 9,257.83 │ 9,004.63 │ 565.36 │
+│    Request Throughput (requests/sec) │     0.43 │      N/A │      N/A │      N/A │      N/A │      N/A │    N/A │
+│             Request Count (requests) │    50.00 │      N/A │      N/A │      N/A │      N/A │      N/A │    N/A │
+└──────────────────────────────────────┴──────────┴──────────┴──────────┴──────────┴──────────┴──────────┴────────┘
+
+CLI Command: aiperf profile --model 'Qwen/Qwen2.5-VL-7B-Instruct' --url 'http://localhost:8000' --endpoint-type 'chat' --image-width-mean 2048 
+--image-height-mean 2048 --concurrency 4 --request-count 50 --warmup-request-count 4 --warmup-concurrency 1 --use-server-token-count 
+--prompt-output-tokens-mean 128 --prompt-output-tokens-stddev 0 --server-metrics 'http://localhost:8000/metrics' --output-artifact-dir 
+'artifacts/p4_7b/encoder_heavy/Qwen_Qwen2.5-VL-7B-Instruct-e-p-d-1node-native-vllm_concurrency4_20260504_132441' --extra-inputs 
+'ignore_eos:true' --no-gpu-telemetry
+Benchmark Duration: 115.18 sec
+CSV Export: 
+/global/u2/k/krajeshk/PRISM/artifacts/p4_7b/encoder_heavy/Qwen_Qwen2.5-VL-7B-Instruct-e-p-d-1node-native-vllm_concurrency4_20260504_132441/profi
+le_export_aiperf.csv
+JSON Export: 
+/global/u2/k/krajeshk/PRISM/artifacts/p4_7b/encoder_heavy/Qwen_Qwen2.5-VL-7B-Instruct-e-p-d-1node-native-vllm_concurrency4_20260504_132441/profi
+le_export_aiperf.json
+Log File: 
+/global/u2/k/krajeshk/PRISM/artifacts/p4_7b/encoder_heavy/Qwen_Qwen2.5-VL-7B-Instruct-e-p-d-1node-native-vllm_concurrency4_20260504_132441/logs/
+aiperf.log
+
