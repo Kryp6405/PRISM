@@ -1,0 +1,10 @@
+Allocated Slurm nodes:
+  nid008560
+  nid008561
+
+Layout:
+  nid008560 GPUs 0,1 -> Encoder
+  nid008560 GPUs 2,3 -> Idle
+  nid008561 GPUs 0,1,2,3 -> P/D
+
+No Ray is used. Encoder and P/D are separate node-local vLLM services.

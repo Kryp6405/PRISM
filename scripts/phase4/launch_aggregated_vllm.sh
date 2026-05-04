@@ -20,6 +20,7 @@ PP_SIZE="${PP_SIZE:-2}"
 MAX_MODEL_LEN="${MAX_MODEL_LEN:-16384}"
 GPU_MEMORY_UTILIZATION="${GPU_MEMORY_UTILIZATION:-0.92}"
 MAX_IMAGES_PER_PROMPT="${MAX_IMAGES_PER_PROMPT:-1}"
+MAX_VIDEOS_PER_PROMPT="${MAX_VIDEOS_PER_PROMPT:-0}"
 
 VENV_ACTIVATE="${VENV_ACTIVATE:-}"
 RAY_PORT="${RAY_PORT:-6379}"
@@ -224,12 +225,13 @@ export RAY_ADDRESS='$RAY_ADDRESS'
 vllm serve '$MODEL' \
   --host 0.0.0.0 \
   --port '$PORT' \
+  --enforce-eager \
   --tensor-parallel-size '$TP_SIZE' \
   --pipeline-parallel-size '$PP_SIZE' \
   --distributed-executor-backend ray \
   --max-model-len '$MAX_MODEL_LEN' \
   --gpu-memory-utilization '$GPU_MEMORY_UTILIZATION' \
-  --limit-mm-per-prompt '{\"image\":$MAX_IMAGES_PER_PROMPT,\"video\":0}' \
+  --limit-mm-per-prompt '{\"image\":$MAX_IMAGES_PER_PROMPT,\"video\":$MAX_VIDEOS_PER_PROMPT}' \
   --mm-encoder-tp-mode data \
   --enable-request-id-headers
 " > "$LOG_DIR/vllm_serve.log" 2>&1

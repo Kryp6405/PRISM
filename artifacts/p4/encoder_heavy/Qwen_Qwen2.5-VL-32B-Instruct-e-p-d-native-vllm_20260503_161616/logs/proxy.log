@@ -1,0 +1,575 @@
+/pscratch/sd/k/krajeshk/PRISM_env/vllm/examples/online_serving/disaggregated_encoder/disagg_epd_proxy.py:290: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("startup")
+/pscratch/sd/k/krajeshk/PRISM_env/vllm/examples/online_serving/disaggregated_encoder/disagg_epd_proxy.py:302: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("shutdown")
+2026-05-03 16:20:47,390 INFO: Disaggregated prefill phase is enabled. Running E + P + D...
+2026-05-03 16:20:47,390 INFO: Proxy listening on 0.0.0.0:8000
+2026-05-03 16:20:47,390 INFO: Encode servers: ['http://localhost:19534']
+2026-05-03 16:20:47,390 INFO: Prefill instances ['http://localhost:19535']
+2026-05-03 16:20:47,390 INFO: Decode servers: ['http://128.55.83.54:19536']
+INFO:     Started server process [1908065]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-03 16:20:47,637 INFO: >>> [272b6817-b374-4e7d-a70c-8f5fa0182813] GET /v1/models from 127.0.0.1
+2026-05-03 16:20:47,639 INFO: <<< [272b6817-b374-4e7d-a70c-8f5fa0182813] GET /v1/models completed with status 200
+INFO:     127.0.0.1:42520 - "GET /v1/models HTTP/1.1" 200 OK
+2026-05-03 16:20:48,396 INFO: >>> [97671722-b3b7-41a8-8194-d329de0c04f3] GET /v1/models from 127.0.0.1
+2026-05-03 16:20:48,397 INFO: <<< [97671722-b3b7-41a8-8194-d329de0c04f3] GET /v1/models completed with status 200
+INFO:     127.0.0.1:42532 - "GET /v1/models HTTP/1.1" 200 OK
+2026-05-03 16:20:53,422 INFO: >>> [5402984e-587b-4385-9b5f-c10fcdc926f2] HEAD /metrics from 127.0.0.1
+INFO:     127.0.0.1:51588 - "HEAD /metrics HTTP/1.1" 404 Not Found
+2026-05-03 16:20:53,422 INFO: <<< [5402984e-587b-4385-9b5f-c10fcdc926f2] HEAD /metrics completed with status 404
+2026-05-03 16:20:53,423 INFO: >>> [35a977fd-b136-44c4-8273-67d8ca351c90] GET /metrics from 127.0.0.1
+INFO:     127.0.0.1:51588 - "GET /metrics HTTP/1.1" 404 Not Found
+2026-05-03 16:20:53,423 INFO: <<< [35a977fd-b136-44c4-8273-67d8ca351c90] GET /metrics completed with status 404
+2026-05-03 16:22:23,226 INFO: >>> [0da60d56-ca4b-4387-87b5-ae576498f32b] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:22:23,242 INFO: [0da60d56-ca4b-4387-87b5-ae576498f32b] Processing multimodal items...
+2026-05-03 16:22:23,242 INFO: [0da60d56-ca4b-4387-87b5-ae576498f32b] got 1 multimodal items...
+2026-05-03 16:22:29,069 INFO: [0da60d56-ca4b-4387-87b5-ae576498f32b] All 1 encoder requests completed successfully
+2026-05-03 16:22:29,069 INFO: [0da60d56-ca4b-4387-87b5-ae576498f32b] Processing through prefill: http://localhost:19535
+2026-05-03 16:22:29,069 INFO: [0da60d56-ca4b-4387-87b5-ae576498f32b] Sending prefill request to: http://localhost:19535
+2026-05-03 16:22:34,559 INFO: [0da60d56-ca4b-4387-87b5-ae576498f32b] Prefill request completed successfully
+2026-05-03 16:22:34,559 INFO: [0da60d56-ca4b-4387-87b5-ae576498f32b] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:22:51,789 INFO: <<< [0da60d56-ca4b-4387-87b5-ae576498f32b] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:52594 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:22:51,805 INFO: >>> [6a90d4f2-0e65-45ed-a481-80ea70818370] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:22:51,811 INFO: [6a90d4f2-0e65-45ed-a481-80ea70818370] Processing multimodal items...
+2026-05-03 16:22:51,811 INFO: [6a90d4f2-0e65-45ed-a481-80ea70818370] got 1 multimodal items...
+2026-05-03 16:22:52,743 INFO: [6a90d4f2-0e65-45ed-a481-80ea70818370] All 1 encoder requests completed successfully
+2026-05-03 16:22:52,743 INFO: [6a90d4f2-0e65-45ed-a481-80ea70818370] Processing through prefill: http://localhost:19535
+2026-05-03 16:22:52,743 INFO: [6a90d4f2-0e65-45ed-a481-80ea70818370] Sending prefill request to: http://localhost:19535
+2026-05-03 16:22:54,643 INFO: [6a90d4f2-0e65-45ed-a481-80ea70818370] Prefill request completed successfully
+2026-05-03 16:22:54,643 INFO: [6a90d4f2-0e65-45ed-a481-80ea70818370] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:23:07,298 INFO: <<< [6a90d4f2-0e65-45ed-a481-80ea70818370] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:60386 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:23:07,311 INFO: >>> [c908ca3d-9982-4c9d-baee-9f64a80d0b2b] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:23:07,318 INFO: [c908ca3d-9982-4c9d-baee-9f64a80d0b2b] Processing multimodal items...
+2026-05-03 16:23:07,318 INFO: [c908ca3d-9982-4c9d-baee-9f64a80d0b2b] got 1 multimodal items...
+2026-05-03 16:23:07,548 INFO: [c908ca3d-9982-4c9d-baee-9f64a80d0b2b] All 1 encoder requests completed successfully
+2026-05-03 16:23:07,548 INFO: [c908ca3d-9982-4c9d-baee-9f64a80d0b2b] Processing through prefill: http://localhost:19535
+2026-05-03 16:23:07,548 INFO: [c908ca3d-9982-4c9d-baee-9f64a80d0b2b] Sending prefill request to: http://localhost:19535
+2026-05-03 16:23:09,271 INFO: [c908ca3d-9982-4c9d-baee-9f64a80d0b2b] Prefill request completed successfully
+2026-05-03 16:23:09,271 INFO: [c908ca3d-9982-4c9d-baee-9f64a80d0b2b] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:23:21,647 INFO: <<< [c908ca3d-9982-4c9d-baee-9f64a80d0b2b] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:39304 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:23:21,663 INFO: >>> [2a9155e8-ab20-4d44-a3bb-670cf06ec2f7] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:23:21,674 INFO: [2a9155e8-ab20-4d44-a3bb-670cf06ec2f7] Processing multimodal items...
+2026-05-03 16:23:21,674 INFO: [2a9155e8-ab20-4d44-a3bb-670cf06ec2f7] got 1 multimodal items...
+2026-05-03 16:23:21,942 INFO: [2a9155e8-ab20-4d44-a3bb-670cf06ec2f7] All 1 encoder requests completed successfully
+2026-05-03 16:23:21,942 INFO: [2a9155e8-ab20-4d44-a3bb-670cf06ec2f7] Processing through prefill: http://localhost:19535
+2026-05-03 16:23:21,942 INFO: [2a9155e8-ab20-4d44-a3bb-670cf06ec2f7] Sending prefill request to: http://localhost:19535
+2026-05-03 16:23:23,722 INFO: [2a9155e8-ab20-4d44-a3bb-670cf06ec2f7] Prefill request completed successfully
+2026-05-03 16:23:23,722 INFO: [2a9155e8-ab20-4d44-a3bb-670cf06ec2f7] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:23:36,079 INFO: <<< [2a9155e8-ab20-4d44-a3bb-670cf06ec2f7] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:48412 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:23:36,092 INFO: >>> [06249306-7c74-4cf4-af08-14369ced0861] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:23:36,094 INFO: >>> [f18b5a72-cae7-4af8-bea9-9daa195bf005] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:23:36,095 INFO: >>> [8a35280a-334b-471b-928a-909fc6d51da6] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:23:36,097 INFO: >>> [b1b041a9-4eec-4a55-b75d-00e2921c7fe8] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:23:36,108 INFO: [06249306-7c74-4cf4-af08-14369ced0861] Processing multimodal items...
+2026-05-03 16:23:36,108 INFO: [06249306-7c74-4cf4-af08-14369ced0861] got 1 multimodal items...
+2026-05-03 16:23:36,121 INFO: [f18b5a72-cae7-4af8-bea9-9daa195bf005] Processing multimodal items...
+2026-05-03 16:23:36,121 INFO: [f18b5a72-cae7-4af8-bea9-9daa195bf005] got 1 multimodal items...
+2026-05-03 16:23:36,141 INFO: [8a35280a-334b-471b-928a-909fc6d51da6] Processing multimodal items...
+2026-05-03 16:23:36,141 INFO: [8a35280a-334b-471b-928a-909fc6d51da6] got 1 multimodal items...
+2026-05-03 16:23:36,148 INFO: [b1b041a9-4eec-4a55-b75d-00e2921c7fe8] Processing multimodal items...
+2026-05-03 16:23:36,148 INFO: [b1b041a9-4eec-4a55-b75d-00e2921c7fe8] got 1 multimodal items...
+2026-05-03 16:23:36,789 INFO: [06249306-7c74-4cf4-af08-14369ced0861] All 1 encoder requests completed successfully
+2026-05-03 16:23:36,789 INFO: [06249306-7c74-4cf4-af08-14369ced0861] Processing through prefill: http://localhost:19535
+2026-05-03 16:23:36,789 INFO: [06249306-7c74-4cf4-af08-14369ced0861] Sending prefill request to: http://localhost:19535
+2026-05-03 16:23:37,296 INFO: [f18b5a72-cae7-4af8-bea9-9daa195bf005] All 1 encoder requests completed successfully
+2026-05-03 16:23:37,296 INFO: [f18b5a72-cae7-4af8-bea9-9daa195bf005] Processing through prefill: http://localhost:19535
+2026-05-03 16:23:37,296 INFO: [f18b5a72-cae7-4af8-bea9-9daa195bf005] Sending prefill request to: http://localhost:19535
+2026-05-03 16:23:37,391 INFO: [b1b041a9-4eec-4a55-b75d-00e2921c7fe8] All 1 encoder requests completed successfully
+2026-05-03 16:23:37,391 INFO: [b1b041a9-4eec-4a55-b75d-00e2921c7fe8] Processing through prefill: http://localhost:19535
+2026-05-03 16:23:37,391 INFO: [b1b041a9-4eec-4a55-b75d-00e2921c7fe8] Sending prefill request to: http://localhost:19535
+2026-05-03 16:23:37,399 INFO: [8a35280a-334b-471b-928a-909fc6d51da6] All 1 encoder requests completed successfully
+2026-05-03 16:23:37,399 INFO: [8a35280a-334b-471b-928a-909fc6d51da6] Processing through prefill: http://localhost:19535
+2026-05-03 16:23:37,399 INFO: [8a35280a-334b-471b-928a-909fc6d51da6] Sending prefill request to: http://localhost:19535
+2026-05-03 16:23:38,576 INFO: [06249306-7c74-4cf4-af08-14369ced0861] Prefill request completed successfully
+2026-05-03 16:23:38,576 INFO: [06249306-7c74-4cf4-af08-14369ced0861] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:23:40,150 INFO: [f18b5a72-cae7-4af8-bea9-9daa195bf005] Prefill request completed successfully
+2026-05-03 16:23:40,150 INFO: [f18b5a72-cae7-4af8-bea9-9daa195bf005] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:23:41,762 INFO: [8a35280a-334b-471b-928a-909fc6d51da6] Prefill request completed successfully
+2026-05-03 16:23:41,762 INFO: [8a35280a-334b-471b-928a-909fc6d51da6] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:23:43,230 INFO: [b1b041a9-4eec-4a55-b75d-00e2921c7fe8] Prefill request completed successfully
+2026-05-03 16:23:43,230 INFO: [b1b041a9-4eec-4a55-b75d-00e2921c7fe8] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:24:06,785 INFO: <<< [8a35280a-334b-471b-928a-909fc6d51da6] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:48412 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38734 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38726 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:24:06,786 INFO: <<< [b1b041a9-4eec-4a55-b75d-00e2921c7fe8] POST /v1/chat/completions completed with status 200
+2026-05-03 16:24:06,786 INFO: <<< [06249306-7c74-4cf4-af08-14369ced0861] POST /v1/chat/completions completed with status 200
+2026-05-03 16:24:06,786 INFO: <<< [f18b5a72-cae7-4af8-bea9-9daa195bf005] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:38732 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:24:06,795 INFO: >>> [64b1f569-ec2a-47cd-8197-810b37df9d62] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:24:06,797 INFO: >>> [9a53ba99-3dba-4d8e-9180-b280a6e81834] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:24:06,798 INFO: >>> [af99ce40-819d-4a89-9232-5eb503606752] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:24:06,800 INFO: >>> [7db7cba8-256f-4dbb-a3a2-8d9787018867] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:24:06,814 INFO: [64b1f569-ec2a-47cd-8197-810b37df9d62] Processing multimodal items...
+2026-05-03 16:24:06,815 INFO: [64b1f569-ec2a-47cd-8197-810b37df9d62] got 1 multimodal items...
+2026-05-03 16:24:06,827 INFO: [af99ce40-819d-4a89-9232-5eb503606752] Processing multimodal items...
+2026-05-03 16:24:06,827 INFO: [af99ce40-819d-4a89-9232-5eb503606752] got 1 multimodal items...
+2026-05-03 16:24:06,839 INFO: [9a53ba99-3dba-4d8e-9180-b280a6e81834] Processing multimodal items...
+2026-05-03 16:24:06,839 INFO: [9a53ba99-3dba-4d8e-9180-b280a6e81834] got 1 multimodal items...
+2026-05-03 16:24:06,856 INFO: [7db7cba8-256f-4dbb-a3a2-8d9787018867] Processing multimodal items...
+2026-05-03 16:24:06,856 INFO: [7db7cba8-256f-4dbb-a3a2-8d9787018867] got 1 multimodal items...
+2026-05-03 16:24:08,008 INFO: [64b1f569-ec2a-47cd-8197-810b37df9d62] All 1 encoder requests completed successfully
+2026-05-03 16:24:08,008 INFO: [64b1f569-ec2a-47cd-8197-810b37df9d62] Processing through prefill: http://localhost:19535
+2026-05-03 16:24:08,008 INFO: [64b1f569-ec2a-47cd-8197-810b37df9d62] Sending prefill request to: http://localhost:19535
+2026-05-03 16:24:08,468 INFO: [9a53ba99-3dba-4d8e-9180-b280a6e81834] All 1 encoder requests completed successfully
+2026-05-03 16:24:08,468 INFO: [9a53ba99-3dba-4d8e-9180-b280a6e81834] Processing through prefill: http://localhost:19535
+2026-05-03 16:24:08,468 INFO: [9a53ba99-3dba-4d8e-9180-b280a6e81834] Sending prefill request to: http://localhost:19535
+2026-05-03 16:24:08,474 INFO: [af99ce40-819d-4a89-9232-5eb503606752] All 1 encoder requests completed successfully
+2026-05-03 16:24:08,474 INFO: [af99ce40-819d-4a89-9232-5eb503606752] Processing through prefill: http://localhost:19535
+2026-05-03 16:24:08,474 INFO: [af99ce40-819d-4a89-9232-5eb503606752] Sending prefill request to: http://localhost:19535
+2026-05-03 16:24:08,478 INFO: [7db7cba8-256f-4dbb-a3a2-8d9787018867] All 1 encoder requests completed successfully
+2026-05-03 16:24:08,478 INFO: [7db7cba8-256f-4dbb-a3a2-8d9787018867] Processing through prefill: http://localhost:19535
+2026-05-03 16:24:08,478 INFO: [7db7cba8-256f-4dbb-a3a2-8d9787018867] Sending prefill request to: http://localhost:19535
+2026-05-03 16:24:09,965 INFO: [64b1f569-ec2a-47cd-8197-810b37df9d62] Prefill request completed successfully
+2026-05-03 16:24:09,965 INFO: [64b1f569-ec2a-47cd-8197-810b37df9d62] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:24:11,574 INFO: [9a53ba99-3dba-4d8e-9180-b280a6e81834] Prefill request completed successfully
+2026-05-03 16:24:11,574 INFO: [9a53ba99-3dba-4d8e-9180-b280a6e81834] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:24:13,186 INFO: [af99ce40-819d-4a89-9232-5eb503606752] Prefill request completed successfully
+2026-05-03 16:24:13,186 INFO: [af99ce40-819d-4a89-9232-5eb503606752] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:24:14,592 INFO: [7db7cba8-256f-4dbb-a3a2-8d9787018867] Prefill request completed successfully
+2026-05-03 16:24:14,592 INFO: [7db7cba8-256f-4dbb-a3a2-8d9787018867] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:24:39,795 INFO: <<< [64b1f569-ec2a-47cd-8197-810b37df9d62] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:38726 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38734 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:24:39,795 INFO: <<< [9a53ba99-3dba-4d8e-9180-b280a6e81834] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:48412 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38732 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:24:39,795 INFO: <<< [af99ce40-819d-4a89-9232-5eb503606752] POST /v1/chat/completions completed with status 200
+2026-05-03 16:24:39,795 INFO: <<< [7db7cba8-256f-4dbb-a3a2-8d9787018867] POST /v1/chat/completions completed with status 200
+2026-05-03 16:24:39,803 INFO: >>> [114fed3f-1be0-40e7-99c5-d6a645b066c6] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:24:39,804 INFO: >>> [34e338ab-7d19-4f9d-afe1-5e36a25007ad] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:24:39,804 INFO: >>> [3133c2bc-c62e-4cef-b2aa-d2a33cd87c9c] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:24:39,807 INFO: >>> [4512d1bc-3e4e-42e8-a895-fd557d737e8e] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:24:39,814 INFO: [114fed3f-1be0-40e7-99c5-d6a645b066c6] Processing multimodal items...
+2026-05-03 16:24:39,814 INFO: [114fed3f-1be0-40e7-99c5-d6a645b066c6] got 1 multimodal items...
+2026-05-03 16:24:39,823 INFO: [34e338ab-7d19-4f9d-afe1-5e36a25007ad] Processing multimodal items...
+2026-05-03 16:24:39,823 INFO: [34e338ab-7d19-4f9d-afe1-5e36a25007ad] got 1 multimodal items...
+2026-05-03 16:24:39,836 INFO: [3133c2bc-c62e-4cef-b2aa-d2a33cd87c9c] Processing multimodal items...
+2026-05-03 16:24:39,836 INFO: [3133c2bc-c62e-4cef-b2aa-d2a33cd87c9c] got 1 multimodal items...
+2026-05-03 16:24:39,847 INFO: [4512d1bc-3e4e-42e8-a895-fd557d737e8e] Processing multimodal items...
+2026-05-03 16:24:39,847 INFO: [4512d1bc-3e4e-42e8-a895-fd557d737e8e] got 1 multimodal items...
+2026-05-03 16:24:40,276 INFO: [34e338ab-7d19-4f9d-afe1-5e36a25007ad] All 1 encoder requests completed successfully
+2026-05-03 16:24:40,276 INFO: [34e338ab-7d19-4f9d-afe1-5e36a25007ad] Processing through prefill: http://localhost:19535
+2026-05-03 16:24:40,276 INFO: [34e338ab-7d19-4f9d-afe1-5e36a25007ad] Sending prefill request to: http://localhost:19535
+2026-05-03 16:24:40,326 INFO: [114fed3f-1be0-40e7-99c5-d6a645b066c6] All 1 encoder requests completed successfully
+2026-05-03 16:24:40,326 INFO: [114fed3f-1be0-40e7-99c5-d6a645b066c6] Processing through prefill: http://localhost:19535
+2026-05-03 16:24:40,326 INFO: [114fed3f-1be0-40e7-99c5-d6a645b066c6] Sending prefill request to: http://localhost:19535
+2026-05-03 16:24:40,618 INFO: [3133c2bc-c62e-4cef-b2aa-d2a33cd87c9c] All 1 encoder requests completed successfully
+2026-05-03 16:24:40,618 INFO: [3133c2bc-c62e-4cef-b2aa-d2a33cd87c9c] Processing through prefill: http://localhost:19535
+2026-05-03 16:24:40,618 INFO: [3133c2bc-c62e-4cef-b2aa-d2a33cd87c9c] Sending prefill request to: http://localhost:19535
+2026-05-03 16:24:40,626 INFO: [4512d1bc-3e4e-42e8-a895-fd557d737e8e] All 1 encoder requests completed successfully
+2026-05-03 16:24:40,626 INFO: [4512d1bc-3e4e-42e8-a895-fd557d737e8e] Processing through prefill: http://localhost:19535
+2026-05-03 16:24:40,626 INFO: [4512d1bc-3e4e-42e8-a895-fd557d737e8e] Sending prefill request to: http://localhost:19535
+2026-05-03 16:24:42,037 INFO: [34e338ab-7d19-4f9d-afe1-5e36a25007ad] Prefill request completed successfully
+2026-05-03 16:24:42,037 INFO: [34e338ab-7d19-4f9d-afe1-5e36a25007ad] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:24:43,726 INFO: [114fed3f-1be0-40e7-99c5-d6a645b066c6] Prefill request completed successfully
+2026-05-03 16:24:43,726 INFO: [114fed3f-1be0-40e7-99c5-d6a645b066c6] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:24:45,326 INFO: [4512d1bc-3e4e-42e8-a895-fd557d737e8e] Prefill request completed successfully
+2026-05-03 16:24:45,326 INFO: [4512d1bc-3e4e-42e8-a895-fd557d737e8e] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:24:46,732 INFO: [3133c2bc-c62e-4cef-b2aa-d2a33cd87c9c] Prefill request completed successfully
+2026-05-03 16:24:46,732 INFO: [3133c2bc-c62e-4cef-b2aa-d2a33cd87c9c] Forwarding to decode: http://128.55.83.54:19536
+INFO:     127.0.0.1:48412 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:25:11,650 INFO: <<< [34e338ab-7d19-4f9d-afe1-5e36a25007ad] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:38734 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38726 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38732 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:25:11,650 INFO: <<< [114fed3f-1be0-40e7-99c5-d6a645b066c6] POST /v1/chat/completions completed with status 200
+2026-05-03 16:25:11,650 INFO: <<< [3133c2bc-c62e-4cef-b2aa-d2a33cd87c9c] POST /v1/chat/completions completed with status 200
+2026-05-03 16:25:11,650 INFO: <<< [4512d1bc-3e4e-42e8-a895-fd557d737e8e] POST /v1/chat/completions completed with status 200
+2026-05-03 16:25:11,657 INFO: >>> [3b2007f4-26ca-42b1-a20e-c1c845fa539d] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:25:11,658 INFO: >>> [ae4ae4d7-b0e5-44a4-97fb-cf183a2aac64] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:25:11,665 INFO: [3b2007f4-26ca-42b1-a20e-c1c845fa539d] Processing multimodal items...
+2026-05-03 16:25:11,665 INFO: [3b2007f4-26ca-42b1-a20e-c1c845fa539d] got 1 multimodal items...
+2026-05-03 16:25:11,666 INFO: >>> [462a7bed-9417-4079-a49a-90b15d77f9a2] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:25:11,670 INFO: >>> [9e752752-07c3-4cb1-8036-de23533ebed3] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:25:11,675 INFO: [ae4ae4d7-b0e5-44a4-97fb-cf183a2aac64] Processing multimodal items...
+2026-05-03 16:25:11,675 INFO: [ae4ae4d7-b0e5-44a4-97fb-cf183a2aac64] got 1 multimodal items...
+2026-05-03 16:25:11,698 INFO: [462a7bed-9417-4079-a49a-90b15d77f9a2] Processing multimodal items...
+2026-05-03 16:25:11,698 INFO: [462a7bed-9417-4079-a49a-90b15d77f9a2] got 1 multimodal items...
+2026-05-03 16:25:11,715 INFO: [9e752752-07c3-4cb1-8036-de23533ebed3] Processing multimodal items...
+2026-05-03 16:25:11,715 INFO: [9e752752-07c3-4cb1-8036-de23533ebed3] got 1 multimodal items...
+2026-05-03 16:25:11,988 INFO: [ae4ae4d7-b0e5-44a4-97fb-cf183a2aac64] All 1 encoder requests completed successfully
+2026-05-03 16:25:11,988 INFO: [ae4ae4d7-b0e5-44a4-97fb-cf183a2aac64] Processing through prefill: http://localhost:19535
+2026-05-03 16:25:11,988 INFO: [ae4ae4d7-b0e5-44a4-97fb-cf183a2aac64] Sending prefill request to: http://localhost:19535
+2026-05-03 16:25:12,200 INFO: [3b2007f4-26ca-42b1-a20e-c1c845fa539d] All 1 encoder requests completed successfully
+2026-05-03 16:25:12,200 INFO: [3b2007f4-26ca-42b1-a20e-c1c845fa539d] Processing through prefill: http://localhost:19535
+2026-05-03 16:25:12,200 INFO: [3b2007f4-26ca-42b1-a20e-c1c845fa539d] Sending prefill request to: http://localhost:19535
+2026-05-03 16:25:12,248 INFO: [9e752752-07c3-4cb1-8036-de23533ebed3] All 1 encoder requests completed successfully
+2026-05-03 16:25:12,248 INFO: [9e752752-07c3-4cb1-8036-de23533ebed3] Processing through prefill: http://localhost:19535
+2026-05-03 16:25:12,248 INFO: [9e752752-07c3-4cb1-8036-de23533ebed3] Sending prefill request to: http://localhost:19535
+2026-05-03 16:25:12,366 INFO: [462a7bed-9417-4079-a49a-90b15d77f9a2] All 1 encoder requests completed successfully
+2026-05-03 16:25:12,366 INFO: [462a7bed-9417-4079-a49a-90b15d77f9a2] Processing through prefill: http://localhost:19535
+2026-05-03 16:25:12,366 INFO: [462a7bed-9417-4079-a49a-90b15d77f9a2] Sending prefill request to: http://localhost:19535
+2026-05-03 16:25:13,734 INFO: [ae4ae4d7-b0e5-44a4-97fb-cf183a2aac64] Prefill request completed successfully
+2026-05-03 16:25:13,735 INFO: [ae4ae4d7-b0e5-44a4-97fb-cf183a2aac64] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:25:15,418 INFO: [3b2007f4-26ca-42b1-a20e-c1c845fa539d] Prefill request completed successfully
+2026-05-03 16:25:15,418 INFO: [3b2007f4-26ca-42b1-a20e-c1c845fa539d] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:25:16,990 INFO: [9e752752-07c3-4cb1-8036-de23533ebed3] Prefill request completed successfully
+2026-05-03 16:25:16,990 INFO: [9e752752-07c3-4cb1-8036-de23533ebed3] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:25:18,396 INFO: [462a7bed-9417-4079-a49a-90b15d77f9a2] Prefill request completed successfully
+2026-05-03 16:25:18,396 INFO: [462a7bed-9417-4079-a49a-90b15d77f9a2] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:25:43,084 INFO: <<< [ae4ae4d7-b0e5-44a4-97fb-cf183a2aac64] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:48412 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38734 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38726 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38732 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:25:43,084 INFO: <<< [462a7bed-9417-4079-a49a-90b15d77f9a2] POST /v1/chat/completions completed with status 200
+2026-05-03 16:25:43,084 INFO: <<< [3b2007f4-26ca-42b1-a20e-c1c845fa539d] POST /v1/chat/completions completed with status 200
+2026-05-03 16:25:43,084 INFO: <<< [9e752752-07c3-4cb1-8036-de23533ebed3] POST /v1/chat/completions completed with status 200
+2026-05-03 16:25:43,091 INFO: >>> [4ceac895-4cc6-4601-b9a7-77f0d9723d2d] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:25:43,092 INFO: >>> [d3e3c358-0ad9-4f03-9c82-06661ed00ae9] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:25:43,093 INFO: >>> [7687fb58-d332-4a3c-ae42-1dc409986c49] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:25:43,094 INFO: >>> [0341ebce-998b-4583-9e66-f32fa5c68c0a] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:25:43,099 INFO: [4ceac895-4cc6-4601-b9a7-77f0d9723d2d] Processing multimodal items...
+2026-05-03 16:25:43,099 INFO: [4ceac895-4cc6-4601-b9a7-77f0d9723d2d] got 1 multimodal items...
+2026-05-03 16:25:43,112 INFO: [7687fb58-d332-4a3c-ae42-1dc409986c49] Processing multimodal items...
+2026-05-03 16:25:43,112 INFO: [7687fb58-d332-4a3c-ae42-1dc409986c49] got 1 multimodal items...
+2026-05-03 16:25:43,121 INFO: [0341ebce-998b-4583-9e66-f32fa5c68c0a] Processing multimodal items...
+2026-05-03 16:25:43,121 INFO: [0341ebce-998b-4583-9e66-f32fa5c68c0a] got 1 multimodal items...
+2026-05-03 16:25:43,128 INFO: [d3e3c358-0ad9-4f03-9c82-06661ed00ae9] Processing multimodal items...
+2026-05-03 16:25:43,128 INFO: [d3e3c358-0ad9-4f03-9c82-06661ed00ae9] got 1 multimodal items...
+2026-05-03 16:25:43,548 INFO: [4ceac895-4cc6-4601-b9a7-77f0d9723d2d] All 1 encoder requests completed successfully
+2026-05-03 16:25:43,548 INFO: [4ceac895-4cc6-4601-b9a7-77f0d9723d2d] Processing through prefill: http://localhost:19535
+2026-05-03 16:25:43,548 INFO: [4ceac895-4cc6-4601-b9a7-77f0d9723d2d] Sending prefill request to: http://localhost:19535
+2026-05-03 16:25:43,553 INFO: [7687fb58-d332-4a3c-ae42-1dc409986c49] All 1 encoder requests completed successfully
+2026-05-03 16:25:43,553 INFO: [7687fb58-d332-4a3c-ae42-1dc409986c49] Processing through prefill: http://localhost:19535
+2026-05-03 16:25:43,553 INFO: [7687fb58-d332-4a3c-ae42-1dc409986c49] Sending prefill request to: http://localhost:19535
+2026-05-03 16:25:43,687 INFO: [0341ebce-998b-4583-9e66-f32fa5c68c0a] All 1 encoder requests completed successfully
+2026-05-03 16:25:43,687 INFO: [0341ebce-998b-4583-9e66-f32fa5c68c0a] Processing through prefill: http://localhost:19535
+2026-05-03 16:25:43,687 INFO: [0341ebce-998b-4583-9e66-f32fa5c68c0a] Sending prefill request to: http://localhost:19535
+2026-05-03 16:25:43,802 INFO: [d3e3c358-0ad9-4f03-9c82-06661ed00ae9] All 1 encoder requests completed successfully
+2026-05-03 16:25:43,802 INFO: [d3e3c358-0ad9-4f03-9c82-06661ed00ae9] Processing through prefill: http://localhost:19535
+2026-05-03 16:25:43,802 INFO: [d3e3c358-0ad9-4f03-9c82-06661ed00ae9] Sending prefill request to: http://localhost:19535
+2026-05-03 16:25:45,331 INFO: [7687fb58-d332-4a3c-ae42-1dc409986c49] Prefill request completed successfully
+2026-05-03 16:25:45,331 INFO: [7687fb58-d332-4a3c-ae42-1dc409986c49] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:25:46,942 INFO: [4ceac895-4cc6-4601-b9a7-77f0d9723d2d] Prefill request completed successfully
+2026-05-03 16:25:46,942 INFO: [4ceac895-4cc6-4601-b9a7-77f0d9723d2d] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:25:48,585 INFO: [0341ebce-998b-4583-9e66-f32fa5c68c0a] Prefill request completed successfully
+2026-05-03 16:25:48,585 INFO: [0341ebce-998b-4583-9e66-f32fa5c68c0a] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:25:49,991 INFO: [d3e3c358-0ad9-4f03-9c82-06661ed00ae9] Prefill request completed successfully
+2026-05-03 16:25:49,992 INFO: [d3e3c358-0ad9-4f03-9c82-06661ed00ae9] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:26:15,658 INFO: <<< [0341ebce-998b-4583-9e66-f32fa5c68c0a] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:38732 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38734 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:26:15,659 INFO: <<< [7687fb58-d332-4a3c-ae42-1dc409986c49] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:48412 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38726 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:26:15,659 INFO: <<< [d3e3c358-0ad9-4f03-9c82-06661ed00ae9] POST /v1/chat/completions completed with status 200
+2026-05-03 16:26:15,659 INFO: <<< [4ceac895-4cc6-4601-b9a7-77f0d9723d2d] POST /v1/chat/completions completed with status 200
+2026-05-03 16:26:15,667 INFO: >>> [0a9f10ce-1ef1-48ae-b7e9-54af0c241533] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:26:15,667 INFO: >>> [b47fe1e6-2cb4-4848-998a-c706840b4c92] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:26:15,668 INFO: >>> [07be2c1d-db25-4e35-af5c-b7584e979816] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:26:15,668 INFO: >>> [122b3ff1-b42c-49ea-b783-93d30dd42789] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:26:15,680 INFO: [122b3ff1-b42c-49ea-b783-93d30dd42789] Processing multimodal items...
+2026-05-03 16:26:15,680 INFO: [122b3ff1-b42c-49ea-b783-93d30dd42789] got 1 multimodal items...
+2026-05-03 16:26:15,689 INFO: [0a9f10ce-1ef1-48ae-b7e9-54af0c241533] Processing multimodal items...
+2026-05-03 16:26:15,689 INFO: [0a9f10ce-1ef1-48ae-b7e9-54af0c241533] got 1 multimodal items...
+2026-05-03 16:26:15,699 INFO: [b47fe1e6-2cb4-4848-998a-c706840b4c92] Processing multimodal items...
+2026-05-03 16:26:15,699 INFO: [b47fe1e6-2cb4-4848-998a-c706840b4c92] got 1 multimodal items...
+2026-05-03 16:26:15,705 INFO: [07be2c1d-db25-4e35-af5c-b7584e979816] Processing multimodal items...
+2026-05-03 16:26:15,705 INFO: [07be2c1d-db25-4e35-af5c-b7584e979816] got 1 multimodal items...
+2026-05-03 16:26:16,161 INFO: [0a9f10ce-1ef1-48ae-b7e9-54af0c241533] All 1 encoder requests completed successfully
+2026-05-03 16:26:16,161 INFO: [0a9f10ce-1ef1-48ae-b7e9-54af0c241533] Processing through prefill: http://localhost:19535
+2026-05-03 16:26:16,161 INFO: [0a9f10ce-1ef1-48ae-b7e9-54af0c241533] Sending prefill request to: http://localhost:19535
+2026-05-03 16:26:16,228 INFO: [07be2c1d-db25-4e35-af5c-b7584e979816] All 1 encoder requests completed successfully
+2026-05-03 16:26:16,228 INFO: [07be2c1d-db25-4e35-af5c-b7584e979816] Processing through prefill: http://localhost:19535
+2026-05-03 16:26:16,228 INFO: [07be2c1d-db25-4e35-af5c-b7584e979816] Sending prefill request to: http://localhost:19535
+2026-05-03 16:26:16,523 INFO: [122b3ff1-b42c-49ea-b783-93d30dd42789] All 1 encoder requests completed successfully
+2026-05-03 16:26:16,523 INFO: [122b3ff1-b42c-49ea-b783-93d30dd42789] Processing through prefill: http://localhost:19535
+2026-05-03 16:26:16,523 INFO: [122b3ff1-b42c-49ea-b783-93d30dd42789] Sending prefill request to: http://localhost:19535
+2026-05-03 16:26:16,528 INFO: [b47fe1e6-2cb4-4848-998a-c706840b4c92] All 1 encoder requests completed successfully
+2026-05-03 16:26:16,528 INFO: [b47fe1e6-2cb4-4848-998a-c706840b4c92] Processing through prefill: http://localhost:19535
+2026-05-03 16:26:16,528 INFO: [b47fe1e6-2cb4-4848-998a-c706840b4c92] Sending prefill request to: http://localhost:19535
+2026-05-03 16:26:17,913 INFO: [0a9f10ce-1ef1-48ae-b7e9-54af0c241533] Prefill request completed successfully
+2026-05-03 16:26:17,913 INFO: [0a9f10ce-1ef1-48ae-b7e9-54af0c241533] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:26:19,523 INFO: [07be2c1d-db25-4e35-af5c-b7584e979816] Prefill request completed successfully
+2026-05-03 16:26:19,523 INFO: [07be2c1d-db25-4e35-af5c-b7584e979816] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:26:21,135 INFO: [b47fe1e6-2cb4-4848-998a-c706840b4c92] Prefill request completed successfully
+2026-05-03 16:26:21,135 INFO: [b47fe1e6-2cb4-4848-998a-c706840b4c92] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:26:22,541 INFO: [122b3ff1-b42c-49ea-b783-93d30dd42789] Prefill request completed successfully
+2026-05-03 16:26:22,541 INFO: [122b3ff1-b42c-49ea-b783-93d30dd42789] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:26:47,388 INFO: <<< [b47fe1e6-2cb4-4848-998a-c706840b4c92] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:38734 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48412 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38732 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:26:47,388 INFO: <<< [07be2c1d-db25-4e35-af5c-b7584e979816] POST /v1/chat/completions completed with status 200
+2026-05-03 16:26:47,388 INFO: <<< [122b3ff1-b42c-49ea-b783-93d30dd42789] POST /v1/chat/completions completed with status 200
+2026-05-03 16:26:47,388 INFO: <<< [0a9f10ce-1ef1-48ae-b7e9-54af0c241533] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:38726 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:26:47,395 INFO: >>> [0710cebd-61cb-4186-89b4-ebd8b7e6d96f] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:26:47,395 INFO: >>> [16841b8a-e5f7-4245-ba12-d2ced18aa350] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:26:47,396 INFO: >>> [d51cae96-68fd-4f8c-ae6c-b14c7ac062c2] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:26:47,396 INFO: >>> [8aa04b5c-52a8-49d2-aaa4-f5797bf9b83a] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:26:47,407 INFO: [16841b8a-e5f7-4245-ba12-d2ced18aa350] Processing multimodal items...
+2026-05-03 16:26:47,407 INFO: [16841b8a-e5f7-4245-ba12-d2ced18aa350] got 1 multimodal items...
+2026-05-03 16:26:47,415 INFO: [d51cae96-68fd-4f8c-ae6c-b14c7ac062c2] Processing multimodal items...
+2026-05-03 16:26:47,415 INFO: [d51cae96-68fd-4f8c-ae6c-b14c7ac062c2] got 1 multimodal items...
+2026-05-03 16:26:47,423 INFO: [0710cebd-61cb-4186-89b4-ebd8b7e6d96f] Processing multimodal items...
+2026-05-03 16:26:47,423 INFO: [0710cebd-61cb-4186-89b4-ebd8b7e6d96f] got 1 multimodal items...
+2026-05-03 16:26:47,435 INFO: [8aa04b5c-52a8-49d2-aaa4-f5797bf9b83a] Processing multimodal items...
+2026-05-03 16:26:47,435 INFO: [8aa04b5c-52a8-49d2-aaa4-f5797bf9b83a] got 1 multimodal items...
+2026-05-03 16:26:47,951 INFO: [d51cae96-68fd-4f8c-ae6c-b14c7ac062c2] All 1 encoder requests completed successfully
+2026-05-03 16:26:47,951 INFO: [d51cae96-68fd-4f8c-ae6c-b14c7ac062c2] Processing through prefill: http://localhost:19535
+2026-05-03 16:26:47,951 INFO: [d51cae96-68fd-4f8c-ae6c-b14c7ac062c2] Sending prefill request to: http://localhost:19535
+2026-05-03 16:26:47,995 INFO: [0710cebd-61cb-4186-89b4-ebd8b7e6d96f] All 1 encoder requests completed successfully
+2026-05-03 16:26:47,995 INFO: [0710cebd-61cb-4186-89b4-ebd8b7e6d96f] Processing through prefill: http://localhost:19535
+2026-05-03 16:26:47,995 INFO: [0710cebd-61cb-4186-89b4-ebd8b7e6d96f] Sending prefill request to: http://localhost:19535
+2026-05-03 16:26:48,290 INFO: [8aa04b5c-52a8-49d2-aaa4-f5797bf9b83a] All 1 encoder requests completed successfully
+2026-05-03 16:26:48,290 INFO: [8aa04b5c-52a8-49d2-aaa4-f5797bf9b83a] Processing through prefill: http://localhost:19535
+2026-05-03 16:26:48,290 INFO: [8aa04b5c-52a8-49d2-aaa4-f5797bf9b83a] Sending prefill request to: http://localhost:19535
+2026-05-03 16:26:48,296 INFO: [16841b8a-e5f7-4245-ba12-d2ced18aa350] All 1 encoder requests completed successfully
+2026-05-03 16:26:48,296 INFO: [16841b8a-e5f7-4245-ba12-d2ced18aa350] Processing through prefill: http://localhost:19535
+2026-05-03 16:26:48,296 INFO: [16841b8a-e5f7-4245-ba12-d2ced18aa350] Sending prefill request to: http://localhost:19535
+2026-05-03 16:26:49,692 INFO: [d51cae96-68fd-4f8c-ae6c-b14c7ac062c2] Prefill request completed successfully
+2026-05-03 16:26:49,692 INFO: [d51cae96-68fd-4f8c-ae6c-b14c7ac062c2] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:26:51,303 INFO: [0710cebd-61cb-4186-89b4-ebd8b7e6d96f] Prefill request completed successfully
+2026-05-03 16:26:51,303 INFO: [0710cebd-61cb-4186-89b4-ebd8b7e6d96f] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:26:52,917 INFO: [16841b8a-e5f7-4245-ba12-d2ced18aa350] Prefill request completed successfully
+2026-05-03 16:26:52,917 INFO: [16841b8a-e5f7-4245-ba12-d2ced18aa350] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:26:54,324 INFO: [8aa04b5c-52a8-49d2-aaa4-f5797bf9b83a] Prefill request completed successfully
+2026-05-03 16:26:54,324 INFO: [8aa04b5c-52a8-49d2-aaa4-f5797bf9b83a] Forwarding to decode: http://128.55.83.54:19536
+INFO:     127.0.0.1:38732 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:27:19,706 INFO: <<< [8aa04b5c-52a8-49d2-aaa4-f5797bf9b83a] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:38734 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48412 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38726 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:27:19,706 INFO: <<< [d51cae96-68fd-4f8c-ae6c-b14c7ac062c2] POST /v1/chat/completions completed with status 200
+2026-05-03 16:27:19,706 INFO: <<< [0710cebd-61cb-4186-89b4-ebd8b7e6d96f] POST /v1/chat/completions completed with status 200
+2026-05-03 16:27:19,706 INFO: <<< [16841b8a-e5f7-4245-ba12-d2ced18aa350] POST /v1/chat/completions completed with status 200
+2026-05-03 16:27:19,713 INFO: >>> [f69ae38b-a935-469e-90df-d032b26f256a] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:27:19,714 INFO: >>> [6a4f56c5-f50c-49e0-b77c-c4ad7ea53882] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:27:19,714 INFO: >>> [f759f0f3-308b-4728-8cdb-ede35dec0515] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:27:19,716 INFO: >>> [f98670e3-c0d8-4b73-896b-f1fbe99b43bb] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:27:19,726 INFO: [f69ae38b-a935-469e-90df-d032b26f256a] Processing multimodal items...
+2026-05-03 16:27:19,726 INFO: [f69ae38b-a935-469e-90df-d032b26f256a] got 1 multimodal items...
+2026-05-03 16:27:19,735 INFO: [6a4f56c5-f50c-49e0-b77c-c4ad7ea53882] Processing multimodal items...
+2026-05-03 16:27:19,735 INFO: [6a4f56c5-f50c-49e0-b77c-c4ad7ea53882] got 1 multimodal items...
+2026-05-03 16:27:19,740 INFO: [f759f0f3-308b-4728-8cdb-ede35dec0515] Processing multimodal items...
+2026-05-03 16:27:19,740 INFO: [f759f0f3-308b-4728-8cdb-ede35dec0515] got 1 multimodal items...
+2026-05-03 16:27:19,765 INFO: [f98670e3-c0d8-4b73-896b-f1fbe99b43bb] Processing multimodal items...
+2026-05-03 16:27:19,765 INFO: [f98670e3-c0d8-4b73-896b-f1fbe99b43bb] got 1 multimodal items...
+2026-05-03 16:27:20,240 INFO: [6a4f56c5-f50c-49e0-b77c-c4ad7ea53882] All 1 encoder requests completed successfully
+2026-05-03 16:27:20,240 INFO: [6a4f56c5-f50c-49e0-b77c-c4ad7ea53882] Processing through prefill: http://localhost:19535
+2026-05-03 16:27:20,240 INFO: [6a4f56c5-f50c-49e0-b77c-c4ad7ea53882] Sending prefill request to: http://localhost:19535
+2026-05-03 16:27:20,326 INFO: [f69ae38b-a935-469e-90df-d032b26f256a] All 1 encoder requests completed successfully
+2026-05-03 16:27:20,326 INFO: [f69ae38b-a935-469e-90df-d032b26f256a] Processing through prefill: http://localhost:19535
+2026-05-03 16:27:20,326 INFO: [f69ae38b-a935-469e-90df-d032b26f256a] Sending prefill request to: http://localhost:19535
+2026-05-03 16:27:20,587 INFO: [f759f0f3-308b-4728-8cdb-ede35dec0515] All 1 encoder requests completed successfully
+2026-05-03 16:27:20,587 INFO: [f759f0f3-308b-4728-8cdb-ede35dec0515] Processing through prefill: http://localhost:19535
+2026-05-03 16:27:20,587 INFO: [f759f0f3-308b-4728-8cdb-ede35dec0515] Sending prefill request to: http://localhost:19535
+2026-05-03 16:27:20,593 INFO: [f98670e3-c0d8-4b73-896b-f1fbe99b43bb] All 1 encoder requests completed successfully
+2026-05-03 16:27:20,593 INFO: [f98670e3-c0d8-4b73-896b-f1fbe99b43bb] Processing through prefill: http://localhost:19535
+2026-05-03 16:27:20,593 INFO: [f98670e3-c0d8-4b73-896b-f1fbe99b43bb] Sending prefill request to: http://localhost:19535
+2026-05-03 16:27:22,012 INFO: [6a4f56c5-f50c-49e0-b77c-c4ad7ea53882] Prefill request completed successfully
+2026-05-03 16:27:22,012 INFO: [6a4f56c5-f50c-49e0-b77c-c4ad7ea53882] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:27:23,623 INFO: [f69ae38b-a935-469e-90df-d032b26f256a] Prefill request completed successfully
+2026-05-03 16:27:23,623 INFO: [f69ae38b-a935-469e-90df-d032b26f256a] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:27:25,268 INFO: [f759f0f3-308b-4728-8cdb-ede35dec0515] Prefill request completed successfully
+2026-05-03 16:27:25,268 INFO: [f759f0f3-308b-4728-8cdb-ede35dec0515] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:27:26,675 INFO: [f98670e3-c0d8-4b73-896b-f1fbe99b43bb] Prefill request completed successfully
+2026-05-03 16:27:26,675 INFO: [f98670e3-c0d8-4b73-896b-f1fbe99b43bb] Forwarding to decode: http://128.55.83.54:19536
+INFO:     127.0.0.1:38732 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:27:50,966 INFO: <<< [f759f0f3-308b-4728-8cdb-ede35dec0515] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:38734 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38726 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48412 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:27:50,966 INFO: <<< [f98670e3-c0d8-4b73-896b-f1fbe99b43bb] POST /v1/chat/completions completed with status 200
+2026-05-03 16:27:50,966 INFO: <<< [6a4f56c5-f50c-49e0-b77c-c4ad7ea53882] POST /v1/chat/completions completed with status 200
+2026-05-03 16:27:50,966 INFO: <<< [f69ae38b-a935-469e-90df-d032b26f256a] POST /v1/chat/completions completed with status 200
+2026-05-03 16:27:50,974 INFO: >>> [165d69c2-13a3-406a-a02c-de522903ff5a] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:27:50,975 INFO: >>> [9453f2cc-4f11-489d-bd5e-ce8f6958d7d3] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:27:50,976 INFO: >>> [a01a6489-1f8b-4c0b-a82a-05308a23cd5a] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:27:50,977 INFO: >>> [3ffe2340-3b97-4a46-b393-2839593c1e6e] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:27:50,986 INFO: [165d69c2-13a3-406a-a02c-de522903ff5a] Processing multimodal items...
+2026-05-03 16:27:50,986 INFO: [165d69c2-13a3-406a-a02c-de522903ff5a] got 1 multimodal items...
+2026-05-03 16:27:50,997 INFO: [9453f2cc-4f11-489d-bd5e-ce8f6958d7d3] Processing multimodal items...
+2026-05-03 16:27:50,997 INFO: [9453f2cc-4f11-489d-bd5e-ce8f6958d7d3] got 1 multimodal items...
+2026-05-03 16:27:51,007 INFO: [a01a6489-1f8b-4c0b-a82a-05308a23cd5a] Processing multimodal items...
+2026-05-03 16:27:51,007 INFO: [a01a6489-1f8b-4c0b-a82a-05308a23cd5a] got 1 multimodal items...
+2026-05-03 16:27:51,026 INFO: [3ffe2340-3b97-4a46-b393-2839593c1e6e] Processing multimodal items...
+2026-05-03 16:27:51,026 INFO: [3ffe2340-3b97-4a46-b393-2839593c1e6e] got 1 multimodal items...
+2026-05-03 16:27:51,518 INFO: [165d69c2-13a3-406a-a02c-de522903ff5a] All 1 encoder requests completed successfully
+2026-05-03 16:27:51,518 INFO: [165d69c2-13a3-406a-a02c-de522903ff5a] Processing through prefill: http://localhost:19535
+2026-05-03 16:27:51,518 INFO: [165d69c2-13a3-406a-a02c-de522903ff5a] Sending prefill request to: http://localhost:19535
+2026-05-03 16:27:51,611 INFO: [9453f2cc-4f11-489d-bd5e-ce8f6958d7d3] All 1 encoder requests completed successfully
+2026-05-03 16:27:51,611 INFO: [9453f2cc-4f11-489d-bd5e-ce8f6958d7d3] Processing through prefill: http://localhost:19535
+2026-05-03 16:27:51,611 INFO: [9453f2cc-4f11-489d-bd5e-ce8f6958d7d3] Sending prefill request to: http://localhost:19535
+2026-05-03 16:27:51,923 INFO: [a01a6489-1f8b-4c0b-a82a-05308a23cd5a] All 1 encoder requests completed successfully
+2026-05-03 16:27:51,923 INFO: [a01a6489-1f8b-4c0b-a82a-05308a23cd5a] Processing through prefill: http://localhost:19535
+2026-05-03 16:27:51,924 INFO: [a01a6489-1f8b-4c0b-a82a-05308a23cd5a] Sending prefill request to: http://localhost:19535
+2026-05-03 16:27:51,929 INFO: [3ffe2340-3b97-4a46-b393-2839593c1e6e] All 1 encoder requests completed successfully
+2026-05-03 16:27:51,929 INFO: [3ffe2340-3b97-4a46-b393-2839593c1e6e] Processing through prefill: http://localhost:19535
+2026-05-03 16:27:51,929 INFO: [3ffe2340-3b97-4a46-b393-2839593c1e6e] Sending prefill request to: http://localhost:19535
+2026-05-03 16:27:53,268 INFO: [165d69c2-13a3-406a-a02c-de522903ff5a] Prefill request completed successfully
+2026-05-03 16:27:53,268 INFO: [165d69c2-13a3-406a-a02c-de522903ff5a] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:27:54,878 INFO: [9453f2cc-4f11-489d-bd5e-ce8f6958d7d3] Prefill request completed successfully
+2026-05-03 16:27:54,879 INFO: [9453f2cc-4f11-489d-bd5e-ce8f6958d7d3] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:27:56,491 INFO: [a01a6489-1f8b-4c0b-a82a-05308a23cd5a] Prefill request completed successfully
+2026-05-03 16:27:56,491 INFO: [a01a6489-1f8b-4c0b-a82a-05308a23cd5a] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:27:57,900 INFO: [3ffe2340-3b97-4a46-b393-2839593c1e6e] Prefill request completed successfully
+2026-05-03 16:27:57,901 INFO: [3ffe2340-3b97-4a46-b393-2839593c1e6e] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:28:22,197 INFO: <<< [165d69c2-13a3-406a-a02c-de522903ff5a] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:48412 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38732 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38734 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:28:22,198 INFO: <<< [3ffe2340-3b97-4a46-b393-2839593c1e6e] POST /v1/chat/completions completed with status 200
+2026-05-03 16:28:22,198 INFO: <<< [a01a6489-1f8b-4c0b-a82a-05308a23cd5a] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:38726 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:28:22,198 INFO: <<< [9453f2cc-4f11-489d-bd5e-ce8f6958d7d3] POST /v1/chat/completions completed with status 200
+2026-05-03 16:28:22,206 INFO: >>> [532fd34e-2ed5-4211-9ec1-ab8d2216084b] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:28:22,207 INFO: >>> [02aac250-32ef-4dad-8624-c68f3afeb83a] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:28:22,207 INFO: >>> [d0be9f07-78e9-4c07-9d24-6ac99f31d21a] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:28:22,209 INFO: >>> [5b67bcfe-1632-4e0b-8c70-2cbb0338b305] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:28:22,217 INFO: [532fd34e-2ed5-4211-9ec1-ab8d2216084b] Processing multimodal items...
+2026-05-03 16:28:22,217 INFO: [532fd34e-2ed5-4211-9ec1-ab8d2216084b] got 1 multimodal items...
+2026-05-03 16:28:22,226 INFO: [02aac250-32ef-4dad-8624-c68f3afeb83a] Processing multimodal items...
+2026-05-03 16:28:22,226 INFO: [02aac250-32ef-4dad-8624-c68f3afeb83a] got 1 multimodal items...
+2026-05-03 16:28:22,229 INFO: [d0be9f07-78e9-4c07-9d24-6ac99f31d21a] Processing multimodal items...
+2026-05-03 16:28:22,230 INFO: [d0be9f07-78e9-4c07-9d24-6ac99f31d21a] got 1 multimodal items...
+2026-05-03 16:28:22,243 INFO: [5b67bcfe-1632-4e0b-8c70-2cbb0338b305] Processing multimodal items...
+2026-05-03 16:28:22,243 INFO: [5b67bcfe-1632-4e0b-8c70-2cbb0338b305] got 1 multimodal items...
+2026-05-03 16:28:22,707 INFO: [02aac250-32ef-4dad-8624-c68f3afeb83a] All 1 encoder requests completed successfully
+2026-05-03 16:28:22,707 INFO: [02aac250-32ef-4dad-8624-c68f3afeb83a] Processing through prefill: http://localhost:19535
+2026-05-03 16:28:22,707 INFO: [02aac250-32ef-4dad-8624-c68f3afeb83a] Sending prefill request to: http://localhost:19535
+2026-05-03 16:28:22,715 INFO: [532fd34e-2ed5-4211-9ec1-ab8d2216084b] All 1 encoder requests completed successfully
+2026-05-03 16:28:22,715 INFO: [532fd34e-2ed5-4211-9ec1-ab8d2216084b] Processing through prefill: http://localhost:19535
+2026-05-03 16:28:22,715 INFO: [532fd34e-2ed5-4211-9ec1-ab8d2216084b] Sending prefill request to: http://localhost:19535
+2026-05-03 16:28:22,722 INFO: [d0be9f07-78e9-4c07-9d24-6ac99f31d21a] All 1 encoder requests completed successfully
+2026-05-03 16:28:22,722 INFO: [d0be9f07-78e9-4c07-9d24-6ac99f31d21a] Processing through prefill: http://localhost:19535
+2026-05-03 16:28:22,722 INFO: [d0be9f07-78e9-4c07-9d24-6ac99f31d21a] Sending prefill request to: http://localhost:19535
+2026-05-03 16:28:22,775 INFO: [5b67bcfe-1632-4e0b-8c70-2cbb0338b305] All 1 encoder requests completed successfully
+2026-05-03 16:28:22,775 INFO: [5b67bcfe-1632-4e0b-8c70-2cbb0338b305] Processing through prefill: http://localhost:19535
+2026-05-03 16:28:22,775 INFO: [5b67bcfe-1632-4e0b-8c70-2cbb0338b305] Sending prefill request to: http://localhost:19535
+2026-05-03 16:28:24,684 INFO: [532fd34e-2ed5-4211-9ec1-ab8d2216084b] Prefill request completed successfully
+2026-05-03 16:28:24,684 INFO: [532fd34e-2ed5-4211-9ec1-ab8d2216084b] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:28:26,254 INFO: [02aac250-32ef-4dad-8624-c68f3afeb83a] Prefill request completed successfully
+2026-05-03 16:28:26,254 INFO: [02aac250-32ef-4dad-8624-c68f3afeb83a] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:28:27,868 INFO: [d0be9f07-78e9-4c07-9d24-6ac99f31d21a] Prefill request completed successfully
+2026-05-03 16:28:27,868 INFO: [d0be9f07-78e9-4c07-9d24-6ac99f31d21a] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:28:29,275 INFO: [5b67bcfe-1632-4e0b-8c70-2cbb0338b305] Prefill request completed successfully
+2026-05-03 16:28:29,276 INFO: [5b67bcfe-1632-4e0b-8c70-2cbb0338b305] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:28:55,092 INFO: <<< [532fd34e-2ed5-4211-9ec1-ab8d2216084b] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:48412 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38734 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:28:55,093 INFO: <<< [d0be9f07-78e9-4c07-9d24-6ac99f31d21a] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:38726 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38732 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:28:55,093 INFO: <<< [02aac250-32ef-4dad-8624-c68f3afeb83a] POST /v1/chat/completions completed with status 200
+2026-05-03 16:28:55,093 INFO: <<< [5b67bcfe-1632-4e0b-8c70-2cbb0338b305] POST /v1/chat/completions completed with status 200
+2026-05-03 16:28:55,102 INFO: >>> [60064bd5-1acf-4f50-a4f1-25b5e0646ad5] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:28:55,103 INFO: >>> [cc923749-a738-4a17-8f17-7e65a05d433c] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:28:55,103 INFO: >>> [2568d91a-920d-4b7b-8584-5f6594bec610] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:28:55,105 INFO: >>> [22f785cc-ee15-4333-8772-20e1601e13ff] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:28:55,114 INFO: [60064bd5-1acf-4f50-a4f1-25b5e0646ad5] Processing multimodal items...
+2026-05-03 16:28:55,114 INFO: [60064bd5-1acf-4f50-a4f1-25b5e0646ad5] got 1 multimodal items...
+2026-05-03 16:28:55,123 INFO: [cc923749-a738-4a17-8f17-7e65a05d433c] Processing multimodal items...
+2026-05-03 16:28:55,123 INFO: [cc923749-a738-4a17-8f17-7e65a05d433c] got 1 multimodal items...
+2026-05-03 16:28:55,133 INFO: [2568d91a-920d-4b7b-8584-5f6594bec610] Processing multimodal items...
+2026-05-03 16:28:55,133 INFO: [2568d91a-920d-4b7b-8584-5f6594bec610] got 1 multimodal items...
+2026-05-03 16:28:55,150 INFO: [22f785cc-ee15-4333-8772-20e1601e13ff] Processing multimodal items...
+2026-05-03 16:28:55,150 INFO: [22f785cc-ee15-4333-8772-20e1601e13ff] got 1 multimodal items...
+2026-05-03 16:28:55,367 INFO: [cc923749-a738-4a17-8f17-7e65a05d433c] All 1 encoder requests completed successfully
+2026-05-03 16:28:55,367 INFO: [cc923749-a738-4a17-8f17-7e65a05d433c] Processing through prefill: http://localhost:19535
+2026-05-03 16:28:55,367 INFO: [cc923749-a738-4a17-8f17-7e65a05d433c] Sending prefill request to: http://localhost:19535
+2026-05-03 16:28:55,643 INFO: [60064bd5-1acf-4f50-a4f1-25b5e0646ad5] All 1 encoder requests completed successfully
+2026-05-03 16:28:55,643 INFO: [60064bd5-1acf-4f50-a4f1-25b5e0646ad5] Processing through prefill: http://localhost:19535
+2026-05-03 16:28:55,643 INFO: [60064bd5-1acf-4f50-a4f1-25b5e0646ad5] Sending prefill request to: http://localhost:19535
+2026-05-03 16:28:55,647 INFO: [2568d91a-920d-4b7b-8584-5f6594bec610] All 1 encoder requests completed successfully
+2026-05-03 16:28:55,647 INFO: [2568d91a-920d-4b7b-8584-5f6594bec610] Processing through prefill: http://localhost:19535
+2026-05-03 16:28:55,647 INFO: [2568d91a-920d-4b7b-8584-5f6594bec610] Sending prefill request to: http://localhost:19535
+2026-05-03 16:28:55,713 INFO: [22f785cc-ee15-4333-8772-20e1601e13ff] All 1 encoder requests completed successfully
+2026-05-03 16:28:55,713 INFO: [22f785cc-ee15-4333-8772-20e1601e13ff] Processing through prefill: http://localhost:19535
+2026-05-03 16:28:55,713 INFO: [22f785cc-ee15-4333-8772-20e1601e13ff] Sending prefill request to: http://localhost:19535
+2026-05-03 16:28:57,129 INFO: [cc923749-a738-4a17-8f17-7e65a05d433c] Prefill request completed successfully
+2026-05-03 16:28:57,129 INFO: [cc923749-a738-4a17-8f17-7e65a05d433c] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:28:58,819 INFO: [60064bd5-1acf-4f50-a4f1-25b5e0646ad5] Prefill request completed successfully
+2026-05-03 16:28:58,819 INFO: [60064bd5-1acf-4f50-a4f1-25b5e0646ad5] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:29:00,424 INFO: [2568d91a-920d-4b7b-8584-5f6594bec610] Prefill request completed successfully
+2026-05-03 16:29:00,424 INFO: [2568d91a-920d-4b7b-8584-5f6594bec610] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:29:01,831 INFO: [22f785cc-ee15-4333-8772-20e1601e13ff] Prefill request completed successfully
+2026-05-03 16:29:01,831 INFO: [22f785cc-ee15-4333-8772-20e1601e13ff] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:29:26,354 INFO: <<< [60064bd5-1acf-4f50-a4f1-25b5e0646ad5] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:38734 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48412 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38732 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:29:26,354 INFO: <<< [cc923749-a738-4a17-8f17-7e65a05d433c] POST /v1/chat/completions completed with status 200
+2026-05-03 16:29:26,354 INFO: <<< [22f785cc-ee15-4333-8772-20e1601e13ff] POST /v1/chat/completions completed with status 200
+2026-05-03 16:29:26,355 INFO: <<< [2568d91a-920d-4b7b-8584-5f6594bec610] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:38726 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:29:26,362 INFO: >>> [07bdd98a-9ba6-46a9-acab-75c5d1e7f613] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:29:26,365 INFO: >>> [32eb8b52-90a2-475c-9f9e-24075d4d2d92] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:29:26,366 INFO: >>> [a9a61ba8-c747-42f9-bd82-3f9b25182f9c] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:29:26,371 INFO: [07bdd98a-9ba6-46a9-acab-75c5d1e7f613] Processing multimodal items...
+2026-05-03 16:29:26,371 INFO: [07bdd98a-9ba6-46a9-acab-75c5d1e7f613] got 1 multimodal items...
+2026-05-03 16:29:26,377 INFO: >>> [0c041e80-20c7-429a-9fb1-00f349286600] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:29:26,386 INFO: [32eb8b52-90a2-475c-9f9e-24075d4d2d92] Processing multimodal items...
+2026-05-03 16:29:26,387 INFO: [32eb8b52-90a2-475c-9f9e-24075d4d2d92] got 1 multimodal items...
+2026-05-03 16:29:26,403 INFO: [a9a61ba8-c747-42f9-bd82-3f9b25182f9c] Processing multimodal items...
+2026-05-03 16:29:26,403 INFO: [a9a61ba8-c747-42f9-bd82-3f9b25182f9c] got 1 multimodal items...
+2026-05-03 16:29:26,419 INFO: [0c041e80-20c7-429a-9fb1-00f349286600] Processing multimodal items...
+2026-05-03 16:29:26,420 INFO: [0c041e80-20c7-429a-9fb1-00f349286600] got 1 multimodal items...
+2026-05-03 16:29:26,695 INFO: [07bdd98a-9ba6-46a9-acab-75c5d1e7f613] All 1 encoder requests completed successfully
+2026-05-03 16:29:26,695 INFO: [07bdd98a-9ba6-46a9-acab-75c5d1e7f613] Processing through prefill: http://localhost:19535
+2026-05-03 16:29:26,695 INFO: [07bdd98a-9ba6-46a9-acab-75c5d1e7f613] Sending prefill request to: http://localhost:19535
+2026-05-03 16:29:26,906 INFO: [32eb8b52-90a2-475c-9f9e-24075d4d2d92] All 1 encoder requests completed successfully
+2026-05-03 16:29:26,906 INFO: [32eb8b52-90a2-475c-9f9e-24075d4d2d92] Processing through prefill: http://localhost:19535
+2026-05-03 16:29:26,906 INFO: [32eb8b52-90a2-475c-9f9e-24075d4d2d92] Sending prefill request to: http://localhost:19535
+2026-05-03 16:29:26,911 INFO: [0c041e80-20c7-429a-9fb1-00f349286600] All 1 encoder requests completed successfully
+2026-05-03 16:29:26,911 INFO: [0c041e80-20c7-429a-9fb1-00f349286600] Processing through prefill: http://localhost:19535
+2026-05-03 16:29:26,911 INFO: [0c041e80-20c7-429a-9fb1-00f349286600] Sending prefill request to: http://localhost:19535
+2026-05-03 16:29:26,976 INFO: [a9a61ba8-c747-42f9-bd82-3f9b25182f9c] All 1 encoder requests completed successfully
+2026-05-03 16:29:26,976 INFO: [a9a61ba8-c747-42f9-bd82-3f9b25182f9c] Processing through prefill: http://localhost:19535
+2026-05-03 16:29:26,976 INFO: [a9a61ba8-c747-42f9-bd82-3f9b25182f9c] Sending prefill request to: http://localhost:19535
+2026-05-03 16:29:28,524 INFO: [07bdd98a-9ba6-46a9-acab-75c5d1e7f613] Prefill request completed successfully
+2026-05-03 16:29:28,524 INFO: [07bdd98a-9ba6-46a9-acab-75c5d1e7f613] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:29:30,097 INFO: [32eb8b52-90a2-475c-9f9e-24075d4d2d92] Prefill request completed successfully
+2026-05-03 16:29:30,097 INFO: [32eb8b52-90a2-475c-9f9e-24075d4d2d92] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:29:31,712 INFO: [0c041e80-20c7-429a-9fb1-00f349286600] Prefill request completed successfully
+2026-05-03 16:29:31,712 INFO: [0c041e80-20c7-429a-9fb1-00f349286600] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:29:33,122 INFO: [a9a61ba8-c747-42f9-bd82-3f9b25182f9c] Prefill request completed successfully
+2026-05-03 16:29:33,122 INFO: [a9a61ba8-c747-42f9-bd82-3f9b25182f9c] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:29:59,005 INFO: <<< [32eb8b52-90a2-475c-9f9e-24075d4d2d92] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:38732 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38734 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:29:59,006 INFO: <<< [07bdd98a-9ba6-46a9-acab-75c5d1e7f613] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:38726 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48412 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:29:59,006 INFO: <<< [0c041e80-20c7-429a-9fb1-00f349286600] POST /v1/chat/completions completed with status 200
+2026-05-03 16:29:59,006 INFO: <<< [a9a61ba8-c747-42f9-bd82-3f9b25182f9c] POST /v1/chat/completions completed with status 200
+2026-05-03 16:29:59,013 INFO: >>> [d516d45d-962d-4253-892b-0b840306080e] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:29:59,019 INFO: [d516d45d-962d-4253-892b-0b840306080e] Processing multimodal items...
+2026-05-03 16:29:59,020 INFO: [d516d45d-962d-4253-892b-0b840306080e] got 1 multimodal items...
+2026-05-03 16:29:59,024 INFO: >>> [93fde6b4-b4a4-4ac6-932c-423e726c0fdc] POST /v1/chat/completions from 127.0.0.1
+2026-05-03 16:29:59,035 INFO: [93fde6b4-b4a4-4ac6-932c-423e726c0fdc] Processing multimodal items...
+2026-05-03 16:29:59,035 INFO: [93fde6b4-b4a4-4ac6-932c-423e726c0fdc] got 1 multimodal items...
+2026-05-03 16:29:59,279 INFO: [d516d45d-962d-4253-892b-0b840306080e] All 1 encoder requests completed successfully
+2026-05-03 16:29:59,279 INFO: [d516d45d-962d-4253-892b-0b840306080e] Processing through prefill: http://localhost:19535
+2026-05-03 16:29:59,279 INFO: [d516d45d-962d-4253-892b-0b840306080e] Sending prefill request to: http://localhost:19535
+2026-05-03 16:29:59,350 INFO: [93fde6b4-b4a4-4ac6-932c-423e726c0fdc] All 1 encoder requests completed successfully
+2026-05-03 16:29:59,350 INFO: [93fde6b4-b4a4-4ac6-932c-423e726c0fdc] Processing through prefill: http://localhost:19535
+2026-05-03 16:29:59,350 INFO: [93fde6b4-b4a4-4ac6-932c-423e726c0fdc] Sending prefill request to: http://localhost:19535
+2026-05-03 16:30:01,060 INFO: [d516d45d-962d-4253-892b-0b840306080e] Prefill request completed successfully
+2026-05-03 16:30:01,060 INFO: [d516d45d-962d-4253-892b-0b840306080e] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:30:02,590 INFO: [93fde6b4-b4a4-4ac6-932c-423e726c0fdc] Prefill request completed successfully
+2026-05-03 16:30:02,590 INFO: [93fde6b4-b4a4-4ac6-932c-423e726c0fdc] Forwarding to decode: http://128.55.83.54:19536
+2026-05-03 16:30:18,915 INFO: <<< [d516d45d-962d-4253-892b-0b840306080e] POST /v1/chat/completions completed with status 200
+INFO:     127.0.0.1:38732 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38734 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-05-03 16:30:18,916 INFO: <<< [93fde6b4-b4a4-4ac6-932c-423e726c0fdc] POST /v1/chat/completions completed with status 200

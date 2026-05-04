@@ -1,0 +1,173 @@
+14:53:36.800 INFO     Starting AIPerf System (cli_runner.py:75)
+14:53:37.436 INFO     ✓ Tokenizer Qwen/Qwen2.5-VL-32B-Instruct detected (tokenizer_display.py:203)
+14:53:37.437 INFO     1 tokenizer validated • 0.6s (tokenizer_display.py:212)
+14:53:37.640 INFO     GPU telemetry disabled via --no-gpu-telemetry (system_controller.py:213)
+14:53:37.653 INFO     Registered Worker Manager (id: 'worker_manager') (system_controller.py:340)
+14:53:37.692 INFO     Record metrics export enabled: artifacts/p4/baseline/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency16_20260503_135740/profile_export.jsonl (record_export_results_processor.py:53)
+14:53:37.707 INFO     Server Metrics: Discovered 1 endpoints: ['http://localhost:8000/metrics'] (manager.py:70)
+14:53:37.714 INFO     Registered Dataset Manager (id: 'dataset_manager') (system_controller.py:340)
+14:53:37.751 INFO     Registered Server Metrics Manager (id: 'server_metrics_manager') (system_controller.py:340)
+14:53:37.759 INFO     Registered Record Processor (id: 'record_processor_ad09498b') (system_controller.py:340)
+14:53:37.760 INFO     Registered Record Processor (id: 'record_processor_f9de993e') (system_controller.py:340)
+14:53:37.761 INFO     Registered Record Processor (id: 'record_processor_c1aed1ab') (system_controller.py:340)
+14:53:37.762 INFO     Registered Record Processor (id: 'record_processor_9abe5020') (system_controller.py:340)
+14:53:37.776 INFO     Registered Timing Manager (id: 'timing_manager') (system_controller.py:340)
+14:53:37.801 INFO     Registered Worker (id: 'worker_8fb79999') (system_controller.py:340)
+14:53:37.803 INFO     Registered Worker (id: 'worker_abf66649') (system_controller.py:340)
+14:53:37.805 INFO     Registered Records Manager (id: 'records_manager') (system_controller.py:340)
+14:53:37.807 INFO     Registered Worker (id: 'worker_9cd19748') (system_controller.py:340)
+14:53:37.810 INFO     Registered Worker (id: 'worker_0ef88902') (system_controller.py:340)
+14:53:37.819 INFO     Registered Worker (id: 'worker_3a405936') (system_controller.py:340)
+14:53:37.821 INFO     Registered Worker (id: 'worker_61421228') (system_controller.py:340)
+14:53:37.830 INFO     Registered Worker (id: 'worker_bc1b73da') (system_controller.py:340)
+14:53:37.833 INFO     Registered Worker (id: 'worker_8cb01ec9') (system_controller.py:340)
+14:53:37.836 INFO     Registered Worker (id: 'worker_7c13f15a') (system_controller.py:340)
+14:53:37.837 INFO     Registered Worker (id: 'worker_9fc98ce3') (system_controller.py:340)
+14:53:37.840 INFO     Registered Worker (id: 'worker_046e2c38') (system_controller.py:340)
+14:53:37.844 INFO     Registered Worker (id: 'worker_343b2971') (system_controller.py:340)
+14:53:37.845 INFO     Registered Worker (id: 'worker_e0d4f4d1') (system_controller.py:340)
+14:53:37.866 INFO     Registered Worker (id: 'worker_2f6c4f6a') (system_controller.py:340)
+14:53:37.870 INFO     Registered Worker (id: 'worker_82799f59') (system_controller.py:340)
+14:53:37.946 INFO     Registered Worker (id: 'worker_edc0a14d') (system_controller.py:340)
+14:53:38.143 INFO     AIPerf System is CONFIGURING (system_controller.py:228)
+14:53:38.144 INFO     Configuring all services to start profiling (system_controller.py:241)
+14:53:38.147 INFO     Configuring tokenizer(s) for dataset manager (dataset_manager.py:105)
+14:53:38.147 INFO     Tokenization is disabled for this endpoint, skipping tokenizer configuration (inference_result_parser.py:66)
+14:53:38.147 INFO     Tokenization is disabled for this endpoint, skipping tokenizer configuration (inference_result_parser.py:66)
+14:53:38.147 INFO     Tokenization is disabled for this endpoint, skipping tokenizer configuration (inference_result_parser.py:66)
+14:53:38.147 INFO     Waiting for dataset to be configured before configuring timing (manager.py:96)
+14:53:38.147 INFO     Tokenization is disabled for this endpoint, skipping tokenizer configuration (inference_result_parser.py:66)
+14:53:38.160 INFO     Server Metrics: Capturing baseline metrics... (manager.py:152)
+14:53:38.179 INFO     Skipping unsupported summary metric: http_request_size_bytes (data_collector.py:201)
+14:53:38.179 INFO     Skipping unsupported summary metric: http_response_size_bytes (data_collector.py:201)
+14:53:38.182 INFO     Server metrics enabled - 1/1 endpoint(s) reachable. (system_controller.py:455)
+14:53:43.935 INFO     Tokenizer(s) configured in 5.79 seconds (dataset_manager.py:109)
+14:53:43.936 INFO     Configuring dataset for dataset_manager (dataset_manager.py:111)
+14:53:44.384 INFO     Using default sampling strategy for synthetic dataset: shuffle (synthetic.py:26)
+14:53:51.598 INFO     Memory-mapped backing store initialized (streaming to /tmp/aiperf_mmap_5167b4c8-fd8c-47bb-b38a-c09370b4e72c/dataset.dat) (memory_map_utils.py:87)
+14:53:51.661 INFO     Data file finalized: 100 conversations, 35.63 MB (memory_map_utils.py:144)
+14:53:51.662 INFO     Index file created: /tmp/aiperf_mmap_5167b4c8-fd8c-47bb-b38a-c09370b4e72c/index.dat (memory_map_utils.py:157)
+14:53:51.663 INFO     Backing store finalized: client_type=DatasetClientStoreType.MEMORY_MAP data_file_path=PosixPath('/tmp/aiperf_mmap_5167b4c8-fd8c-47bb-b38a-c09370b4e72c/dataset.dat') index_file_path=PosixPath('/tmp/aiperf_mmap_5167b4c8-fd8c-47bb-b38a-c09370b4e72c/index.dat') conversation_count=100 total_size_bytes=37356714 (dataset_manager.py:319)
+14:53:51.664 INFO     sampling strategy: shuffle, unique conversations: 100, unique turn count: 100 (dataset_manager.py:325)
+14:53:51.670 INFO     Generating inputs.json file at /global/u2/k/krajeshk/PRISM/artifacts/p4/baseline/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency16_20260503_135740/inputs.json (dataset_manager.py:211)
+14:53:51.676 INFO     Initialized 2 phase(s): ['Warmup', 'Profiling'] (phase_orchestrator.py:154)
+14:53:51.806 INFO     inputs.json file generated in 0.14 seconds (dataset_manager.py:229)
+14:53:52.044 INFO     Dataset client initialized and freed 100 conversations from memory (dataset_manager.py:139)
+14:53:52.045 INFO     Dataset configured in 8.11 seconds (dataset_manager.py:118)
+14:53:52.046 INFO     All services configured in 13.90 seconds (system_controller.py:253)
+14:53:52.047 INFO     AIPerf System is CONFIGURED (system_controller.py:230)
+14:53:52.048 INFO     Server Metrics: Started 1 collector(s) successfully (manager.py:216)
+14:53:52.050 INFO     All services started profiling successfully (system_controller.py:275)
+14:53:52.051 INFO     AIPerf System is PROFILING (system_controller.py:232)
+14:53:52.051 INFO     Creating interval generator: pattern=concurrency_burst, rate=None, smoothness=None (request_rate.py:111)
+14:53:52.051 NOTICE   Phase warmup started | target: 4 requests (runner.py:236)
+14:53:52.053 INFO     Credit phase start: warmup (records_manager.py:369)
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+14:55:53.233 NOTICE   Phase warmup sending complete | sent=4, completed=3, in_flight=1 | sessions: sent=4, completed=3 (runner.py:466)
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+14:56:32.205 NOTICE   Phase warmup complete | completed=4, cancelled=0, errors=0 | sessions: completed=4, cancelled=0 | elapsed=160.15s (runner.py:543)
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+14:56:32.206 INFO     Creating interval generator: pattern=concurrency_burst, rate=None, smoothness=None (request_rate.py:111)
+14:56:32.207 NOTICE   Phase profiling started | target: 50 requests (runner.py:236)
+14:56:32.208 INFO     Credit phase start: profiling (records_manager.py:369)
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+/pscratch/sd/k/krajeshk/PRISM_env/venvs/vllm-env/lib/python3.12/site-packages/pydantic/main.py:475: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='transport', input_value='http', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+14:56:39.424 NOTICE   Phase profiling sending complete | sent=50, completed=36, in_flight=14 | sessions: sent=50, completed=36 (runner.py:466)
+14:56:39.425 INFO     Sent 50 requests. Waiting for all to complete... (records_manager.py:377)
+14:56:39.429 NOTICE   Phase profiling complete | completed=50, cancelled=0, errors=0 | sessions: completed=50, cancelled=0 | elapsed=7.22s (runner.py:543)
+14:56:39.430 NOTICE   All credits completed (phase_orchestrator.py:169)
+14:56:39.430 INFO     Received CREDIT_PHASE_COMPLETE message, Phase complete: PhaseRecordsStats(phase=CreditPhase.PROFILING, start_ns=1777845392207272327, sent_end_ns=1777845399423979831, requests_end_ns=1777845399429710458, total_expected_requests=50, expected_duration_sec=None, expected_num_sessions=None, expected_grace_period_sec=None, final_requests_sent=None, final_requests_completed=50, final_requests_cancelled=0, final_request_errors=0, final_sent_sessions=None, final_completed_sessions=None, final_cancelled_sessions=None, timeout_triggered=False, grace_period_timeout_triggered=False, was_cancelled=False, records_end_ns=None, success_records=0, error_records=48) (records_manager.py:393)
+14:56:39.431 INFO     Received credits complete from 'timing_manager' (system_controller.py:375)
+14:56:39.431 NOTICE   All requests have completed, please wait for the results to be processed (currently 48 of 50 records processed)... (records_manager.py:396)
+14:56:39.433 INFO     All credits complete, please wait for the results to be processed... (records_manager.py:411)
+14:56:39.434 INFO     Processed 0 valid requests and 50 errors (50 total). (records_manager.py:244)
+14:56:39.434 INFO     Received all records, processing now... (records_manager.py:248)
+14:56:39.435 INFO     Waiting 2.0s for server metrics flush period... (records_manager.py:298)
+14:56:39.445 INFO     Server Metrics: Profiling complete, capturing final metrics... (manager.py:246)
+14:56:41.431 INFO     Processing records results... (records_manager.py:558)
+14:56:41.436 INFO     Waiting for server metrics results... (system_controller.py:673)
+14:56:41.455 INFO     _finalize_and_process_results completed (records_manager.py:305)
+14:56:41.458 INFO     All results received, initiating shutdown (system_controller.py:668)
+14:56:42.065 INFO     Exporting all records (exporter_manager.py:60)
+14:56:42.157 INFO     Exporting console data (exporter_manager.py:116)
+
+
+                                                          NVIDIA AIPerf | Error Summary                                                          
+┏━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓
+┃ Code ┃                  Type ┃ Message                                                                                                ┃ Count ┃
+┡━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
+│  500 │ Internal Server Error │ {"error":{"message":"EngineCore encountered an issue. See stack trace (above) for the root             │    50 │
+│      │                       │ cause.","type":"InternalServerError","param":null,"code":500}}                                         │       │
+└──────┴───────────────────────┴────────────────────────────────────────────────────────────────────────────────────────────────────────┴───────┘
+
+
+            NVIDIA AIPerf | LLM Metrics             
+┏━━━━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┳━━━━━┓
+┃ Metric ┃ avg ┃ min ┃ max ┃ p99 ┃ p90 ┃ p50 ┃ std ┃
+┡━━━━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━╇━━━━━┩
+└────────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┘
+
+CLI Command: aiperf profile --model 'Qwen/Qwen2.5-VL-32B-Instruct' --url 'http://localhost:8000' --endpoint-type 'chat' --image-width-mean 512 
+--image-height-mean 512 --concurrency 16 --request-count 50 --warmup-request-count 4 --warmup-concurrency 1 --use-server-token-count 
+--prompt-output-tokens-mean 64 --prompt-output-tokens-stddev 0 --output-artifact-dir 
+'artifacts/p4/baseline/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency16_20260503_135740' --extra-inputs 'ignore_eos:true' 
+--no-gpu-telemetry
+CSV Export: 
+/global/u2/k/krajeshk/PRISM/artifacts/p4/baseline/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency16_20260503_135740/profile_expor
+t_aiperf.csv
+JSON Export: 
+/global/u2/k/krajeshk/PRISM/artifacts/p4/baseline/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency16_20260503_135740/profile_expor
+t_aiperf.json
+Server Metrics CSV Export: 
+/global/u2/k/krajeshk/PRISM/artifacts/p4/baseline/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency16_20260503_135740/server_metric
+s_export.csv
+Server Metrics JSON Export: 
+/global/u2/k/krajeshk/PRISM/artifacts/p4/baseline/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency16_20260503_135740/server_metric
+s_export.json
+Log File: 
+/global/u2/k/krajeshk/PRISM/artifacts/p4/baseline/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency16_20260503_135740/logs/aiperf.l
+og
+

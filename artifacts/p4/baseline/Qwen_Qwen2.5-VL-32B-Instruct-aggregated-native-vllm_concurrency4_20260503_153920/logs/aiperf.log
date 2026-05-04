@@ -1,0 +1,89 @@
+2026-05-03 15:42:12.580 - aiperf.cli_runner - INFO - Starting AIPerf System
+2026-05-03 15:42:13.319 - aiperf.cli_runner - INFO - ✓ Tokenizer Qwen/Qwen2.5-VL-32B-Instruct detected
+2026-05-03 15:42:13.320 - aiperf.cli_runner - INFO - 1 tokenizer validated • 0.7s
+2026-05-03 15:42:13.514 - system_controller - INFO - GPU telemetry disabled via --no-gpu-telemetry
+2026-05-03 15:42:13.528 - system_controller - INFO - Registered Worker Manager (id: 'worker_manager')
+2026-05-03 15:42:13.570 - server_metrics_manager - INFO - Server Metrics: Discovered 1 endpoints: ['http://localhost:8000/metrics']
+2026-05-03 15:42:13.573 - RecordExportResultsProcessor_457b432a - INFO - Record metrics export enabled: artifacts/p4/baseline/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency4_20260503_153920/profile_export.jsonl
+2026-05-03 15:42:13.581 - system_controller - INFO - Registered Dataset Manager (id: 'dataset_manager')
+2026-05-03 15:42:13.625 - system_controller - INFO - Registered Timing Manager (id: 'timing_manager')
+2026-05-03 15:42:13.628 - system_controller - INFO - Registered Server Metrics Manager (id: 'server_metrics_manager')
+2026-05-03 15:42:13.639 - system_controller - INFO - Registered Record Processor (id: 'record_processor_503b46e9')
+2026-05-03 15:42:13.676 - system_controller - INFO - Registered Records Manager (id: 'records_manager')
+2026-05-03 15:42:13.685 - system_controller - INFO - Registered Worker (id: 'worker_1a347d8f')
+2026-05-03 15:42:13.690 - system_controller - INFO - Registered Worker (id: 'worker_77752077')
+2026-05-03 15:42:13.693 - system_controller - INFO - Registered Worker (id: 'worker_490cab22')
+2026-05-03 15:42:13.702 - system_controller - INFO - Registered Worker (id: 'worker_8fd3f39e')
+2026-05-03 15:42:14.019 - system_controller - INFO - AIPerf System is CONFIGURING
+2026-05-03 15:42:14.019 - system_controller - INFO - Configuring all services to start profiling
+2026-05-03 15:42:14.021 - dataset_manager - INFO - Configuring tokenizer(s) for dataset manager
+2026-05-03 15:42:14.021 - timing_manager - INFO - Waiting for dataset to be configured before configuring timing
+2026-05-03 15:42:14.021 - InferenceResultParser_5d067bad - INFO - Tokenization is disabled for this endpoint, skipping tokenizer configuration
+2026-05-03 15:42:14.031 - server_metrics_manager - INFO - Server Metrics: Capturing baseline metrics...
+2026-05-03 15:42:14.054 - http://localhost:8000/metrics - INFO - Skipping unsupported summary metric: http_request_size_bytes
+2026-05-03 15:42:14.054 - http://localhost:8000/metrics - INFO - Skipping unsupported summary metric: http_response_size_bytes
+2026-05-03 15:42:14.057 - system_controller - INFO - Server metrics enabled - 1/1 endpoint(s) reachable.
+2026-05-03 15:42:20.275 - dataset_manager - INFO - Tokenizer(s) configured in 6.25 seconds
+2026-05-03 15:42:20.278 - dataset_manager - INFO - Configuring dataset for dataset_manager
+2026-05-03 15:42:20.734 - SyntheticDatasetComposer - INFO - Using default sampling strategy for synthetic dataset: shuffle
+2026-05-03 15:42:27.821 - MemoryMapDatasetBackingStore_ff5984cc - INFO - Memory-mapped backing store initialized (streaming to /tmp/aiperf_mmap_cedb4e4a-f5f5-47c9-9dd3-519ed28ab825/dataset.dat)
+2026-05-03 15:42:27.882 - MemoryMapDatasetBackingStore_ff5984cc - INFO - Data file finalized: 100 conversations, 35.54 MB
+2026-05-03 15:42:27.883 - MemoryMapDatasetBackingStore_ff5984cc - INFO - Index file created: /tmp/aiperf_mmap_cedb4e4a-f5f5-47c9-9dd3-519ed28ab825/index.dat
+2026-05-03 15:42:27.884 - dataset_manager - INFO - Backing store finalized: client_type=DatasetClientStoreType.MEMORY_MAP data_file_path=PosixPath('/tmp/aiperf_mmap_cedb4e4a-f5f5-47c9-9dd3-519ed28ab825/dataset.dat') index_file_path=PosixPath('/tmp/aiperf_mmap_cedb4e4a-f5f5-47c9-9dd3-519ed28ab825/index.dat') conversation_count=100 total_size_bytes=37270710
+2026-05-03 15:42:27.885 - dataset_manager - INFO - sampling strategy: shuffle, unique conversations: 100, unique turn count: 100
+2026-05-03 15:42:27.892 - dataset_manager - INFO - Generating inputs.json file at /global/u2/k/krajeshk/PRISM/artifacts/p4/baseline/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency4_20260503_153920/inputs.json
+2026-05-03 15:42:27.896 - PhaseOrchestrator_a3f3654e - INFO - Initialized 2 phase(s): ['Warmup', 'Profiling']
+2026-05-03 15:42:28.026 - dataset_manager - INFO - inputs.json file generated in 0.13 seconds
+2026-05-03 15:42:28.269 - dataset_manager - INFO - Dataset client initialized and freed 100 conversations from memory
+2026-05-03 15:42:28.270 - dataset_manager - INFO - Dataset configured in 7.99 seconds
+2026-05-03 15:42:28.271 - system_controller - INFO - All services configured in 14.25 seconds
+2026-05-03 15:42:28.272 - system_controller - INFO - AIPerf System is CONFIGURED
+2026-05-03 15:42:28.273 - server_metrics_manager - INFO - Server Metrics: Started 1 collector(s) successfully
+2026-05-03 15:42:28.274 - system_controller - INFO - All services started profiling successfully
+2026-05-03 15:42:28.274 - system_controller - INFO - AIPerf System is PROFILING
+2026-05-03 15:42:28.275 - RateTiming - INFO - Creating interval generator: pattern=concurrency_burst, rate=None, smoothness=None
+2026-05-03 15:42:28.276 - PhaseRunner - NOTICE - Phase warmup started | target: 4 requests
+2026-05-03 15:42:28.277 - records_manager - INFO - Credit phase start: warmup
+2026-05-03 15:45:00.048 - PhaseRunner - NOTICE - Phase warmup sending complete | sent=4, completed=3, in_flight=1 | sessions: sent=4, completed=3
+2026-05-03 15:45:40.474 - PhaseRunner - NOTICE - Phase warmup complete | completed=4, cancelled=0, errors=0 | sessions: completed=4, cancelled=0 | elapsed=192.20s
+2026-05-03 15:45:40.475 - RateTiming - INFO - Creating interval generator: pattern=concurrency_burst, rate=None, smoothness=None
+2026-05-03 15:45:40.476 - PhaseRunner - NOTICE - Phase profiling started | target: 50 requests
+2026-05-03 15:45:40.477 - records_manager - INFO - Credit phase start: profiling
+2026-05-03 15:48:29.857 - EventLoopMonitor - WARNING - Event loop for worker_77752077 is taking too long to run. Overhead: 24.49ms
+2026-05-03 15:48:29.857 - EventLoopMonitor - WARNING - Event loop for worker_8fd3f39e is taking too long to run. Overhead: 24.50ms
+2026-05-03 15:48:29.858 - worker_77752077 - WARNING - Event loop is blocked for 24.49ms
+2026-05-03 15:48:29.858 - worker_8fd3f39e - WARNING - Event loop is blocked for 24.50ms
+2026-05-03 15:48:31.887 - EventLoopMonitor - WARNING - Event loop for worker_8fd3f39e is taking too long to run. Overhead: 12.32ms
+2026-05-03 15:48:31.887 - EventLoopMonitor - WARNING - Event loop for worker_77752077 is taking too long to run. Overhead: 12.36ms
+2026-05-03 15:48:31.887 - EventLoopMonitor - WARNING - Event loop for worker_1a347d8f is taking too long to run. Overhead: 11.04ms
+2026-05-03 15:48:31.887 - EventLoopMonitor - WARNING - Event loop for worker_490cab22 is taking too long to run. Overhead: 11.07ms
+2026-05-03 15:48:31.888 - worker_8fd3f39e - WARNING - Event loop is blocked for 12.32ms
+2026-05-03 15:48:31.888 - worker_1a347d8f - WARNING - Event loop is blocked for 11.04ms
+2026-05-03 15:48:31.888 - worker_77752077 - WARNING - Event loop is blocked for 12.36ms
+2026-05-03 15:48:31.888 - worker_490cab22 - WARNING - Event loop is blocked for 11.07ms
+2026-05-03 15:48:35.937 - EventLoopMonitor - WARNING - Event loop for worker_77752077 is taking too long to run. Overhead: 15.05ms
+2026-05-03 15:48:35.937 - EventLoopMonitor - WARNING - Event loop for worker_490cab22 is taking too long to run. Overhead: 15.05ms
+2026-05-03 15:48:35.937 - EventLoopMonitor - WARNING - Event loop for worker_8fd3f39e is taking too long to run. Overhead: 15.06ms
+2026-05-03 15:48:35.937 - EventLoopMonitor - WARNING - Event loop for worker_1a347d8f is taking too long to run. Overhead: 15.07ms
+2026-05-03 15:48:35.938 - worker_77752077 - WARNING - Event loop is blocked for 15.05ms
+2026-05-03 15:48:35.938 - worker_490cab22 - WARNING - Event loop is blocked for 15.05ms
+2026-05-03 15:48:35.938 - worker_8fd3f39e - WARNING - Event loop is blocked for 15.06ms
+2026-05-03 15:48:35.938 - worker_1a347d8f - WARNING - Event loop is blocked for 15.07ms
+2026-05-03 15:56:43.321 - PhaseRunner - NOTICE - Phase profiling sending complete | sent=50, completed=46, in_flight=4 | sessions: sent=50, completed=46
+2026-05-03 15:56:43.323 - records_manager - INFO - Sent 50 requests. Waiting for all to complete...
+2026-05-03 15:57:34.422 - PhaseRunner - NOTICE - Phase profiling complete | completed=50, cancelled=0, errors=0 | sessions: completed=50, cancelled=0 | elapsed=713.95s
+2026-05-03 15:57:34.424 - PhaseOrchestrator_a3f3654e - NOTICE - All credits completed
+2026-05-03 15:57:34.424 - records_manager - INFO - Received CREDIT_PHASE_COMPLETE message, Phase complete: PhaseRecordsStats(phase=CreditPhase.PROFILING, start_ns=1777848340476307392, sent_end_ns=1777849003320984463, requests_end_ns=1777849054422684490, total_expected_requests=50, expected_duration_sec=None, expected_num_sessions=None, expected_grace_period_sec=None, final_requests_sent=None, final_requests_completed=50, final_requests_cancelled=0, final_request_errors=0, final_sent_sessions=None, final_completed_sessions=None, final_cancelled_sessions=None, timeout_triggered=False, grace_period_timeout_triggered=False, was_cancelled=False, records_end_ns=None, success_records=49, error_records=0)
+2026-05-03 15:57:34.425 - system_controller - INFO - Received credits complete from 'timing_manager'
+2026-05-03 15:57:34.425 - records_manager - NOTICE - All requests have completed, please wait for the results to be processed (currently 49 of 50 records processed)...
+2026-05-03 15:57:34.426 - records_manager - INFO - Processed 50 valid requests and 0 errors (50 total).
+2026-05-03 15:57:34.427 - records_manager - INFO - Received all records, processing now...
+2026-05-03 15:57:34.427 - records_manager - INFO - All credits complete, please wait for the results to be processed...
+2026-05-03 15:57:34.429 - records_manager - INFO - Waiting 2.0s for server metrics flush period...
+2026-05-03 15:57:34.429 - server_metrics_manager - INFO - Server Metrics: Profiling complete, capturing final metrics...
+2026-05-03 15:57:36.425 - records_manager - INFO - Processing records results...
+2026-05-03 15:57:36.456 - system_controller - INFO - Waiting for server metrics results...
+2026-05-03 15:57:36.488 - records_manager - INFO - _finalize_and_process_results completed
+2026-05-03 15:57:36.490 - system_controller - INFO - All results received, initiating shutdown
+2026-05-03 15:57:37.093 - ExporterManager - INFO - Exporting all records
+2026-05-03 15:57:37.739 - ExporterManager - INFO - Exporting console data

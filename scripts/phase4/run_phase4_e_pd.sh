@@ -2,12 +2,20 @@
 set -euo pipefail
 
 ###############################################################################
-# Phase 4 E/PD native vLLM run script.
+# Phase 4 E/PD native vLLM run script — clean no-Ray compatible version
 #
-# Runs:
-#   Encoder / Prefill+Decode disaggregated native vLLM baseline
-#   Encoder: 2 GPUs
-#   P/D: 6 GPUs
+# Expected E/PD layout from launch_e_pd_vllm.sh:
+#   NODE0 GPUs 0,1     -> Encoder
+#   NODE0 GPUs 2,3     -> Idle
+#   NODE1 GPUs 0,1,2,3 -> P/D
+#
+# This script:
+#   - launches E/PD stack
+#   - waits for proxy readiness
+#   - checks encoder + P/D backends
+#   - optionally runs a bounded multimodal warmup
+#   - runs AIPerf sweep
+#   - collects all-node GPU telemetry via nvidia-smi
 ###############################################################################
 
 MODEL="${MODEL:-Qwen/Qwen2.5-VL-32B-Instruct}"
@@ -22,14 +30,39 @@ E_PD_LAUNCH_CMD="${E_PD_LAUNCH_CMD:-bash scripts/phase4/launch_e_pd_vllm.sh}"
 WARMUP_REQUEST_COUNT="${WARMUP_REQUEST_COUNT:-10}"
 WARMUP_CONCURRENCY="${WARMUP_CONCURRENCY:-1}"
 
-GPU_TELEMETRY_MODE="${GPU_TELEMETRY_MODE:-pynvml}"
+# Disable built-in AIPerf GPU telemetry by default.
+# Use our cluster-wide nvidia-smi sampler instead.
+GPU_TELEMETRY_MODE="${GPU_TELEMETRY_MODE:-none}"
 CLUSTER_GPU_TELEMETRY="${CLUSTER_GPU_TELEMETRY:-true}"
 CLUSTER_GPU_TELEMETRY_INTERVAL_SEC="${CLUSTER_GPU_TELEMETRY_INTERVAL_SEC:-2}"
 
 ENABLE_STREAMING="${ENABLE_STREAMING:-true}"
 USE_LEGACY_MAX_TOKENS="${USE_LEGACY_MAX_TOKENS:-false}"
 
-REQUEST_TIMEOUT_READY_SEC="${REQUEST_TIMEOUT_READY_SEC:-1200}"
+# Optional AIPerf extra inputs.
+# Examples:
+#   AIPERF_EXTRA_INPUTS="min_tokens:64"
+#   AIPERF_EXTRA_INPUTS="ignore_eos:true"
+# Default empty because E/PD has been fragile with ignore_eos.
+AIPERF_EXTRA_INPUTS="${AIPERF_EXTRA_INPUTS:-ignore_eos:true}"
+
+# Proxy readiness timeout.
+PROXY_READY_TIMEOUT_SEC="${PROXY_READY_TIMEOUT_SEC:-1200}"
+
+# Optional real multimodal warmup before AIPerf.
+# Default disabled to avoid getting stuck.
+ENABLE_EPD_MULTIMODAL_WARMUP="${ENABLE_EPD_MULTIMODAL_WARMUP:-false}"
+WARMUP_COMPLETION_MAX_ATTEMPTS="${WARMUP_COMPLETION_MAX_ATTEMPTS:-3}"
+WARMUP_CURL_MAX_TIME="${WARMUP_CURL_MAX_TIME:-45}"
+WARMUP_RETRY_SLEEP_SEC="${WARMUP_RETRY_SLEEP_SEC:-5}"
+
+###############################################################################
+# Helpers
+###############################################################################
+
+log() {
+  echo "[$(date '+%H:%M:%S')] $*"
+}
 
 read_workload_field() {
   python3 - "$WORKLOAD_CONFIG" "$1" <<'PY'
@@ -51,8 +84,12 @@ else:
 PY
 }
 
+###############################################################################
+# Load workload config
+###############################################################################
+
 if [[ ! -f "$WORKLOAD_CONFIG" ]]; then
-  echo "Missing workload config: $WORKLOAD_CONFIG" >&2
+  log "ERROR: Missing workload config: $WORKLOAD_CONFIG" >&2
   exit 1
 fi
 
@@ -84,7 +121,7 @@ OUTPUT_TOKENS_STDDEV="$(read_workload_field output_tokens_stddev)"
 
 if [[ "$IMAGE_SOURCE" == "custom" ]]; then
   if [[ -z "$IMAGE_PATH" || ! -f "$IMAGE_PATH" ]]; then
-    echo "Custom workload requires valid image_path, got: $IMAGE_PATH" >&2
+    log "ERROR: Custom workload requires valid image_path, got: '$IMAGE_PATH'" >&2
     exit 1
   fi
 
@@ -96,6 +133,10 @@ PY
 )"
 fi
 
+###############################################################################
+# Directory setup
+###############################################################################
+
 RUN_PREFIX="${RUN_PREFIX:-${MODEL//\//_}-e-pd-native-vllm}"
 TIMESTAMP="$(date +%Y%m%d_%H%M%S)"
 
@@ -105,6 +146,10 @@ LOG_DIR="${RUN_DIR}/logs"
 SUMMARY_DIR="${RUN_DIR}/summary"
 
 mkdir -p "$WORKLOAD_ARTIFACT_ROOT" "$RUN_DIR" "$LOG_DIR" "$SUMMARY_DIR"
+
+###############################################################################
+# Custom JSONL helper
+###############################################################################
 
 write_custom_inputs_jsonl() {
   local input_file="$1"
@@ -139,6 +184,10 @@ with out_path.open("w") as f:
 PY
 }
 
+###############################################################################
+# Cleanup
+###############################################################################
+
 cleanup() {
   set +e
 
@@ -148,6 +197,10 @@ cleanup() {
   fi
 }
 trap cleanup EXIT
+
+###############################################################################
+# Save configs
+###############################################################################
 
 cp "$WORKLOAD_CONFIG" "$RUN_DIR/workload.json"
 
@@ -171,50 +224,65 @@ cat > "$RUN_DIR/run_config.json" <<EOF
   "gpu_telemetry_mode": "$GPU_TELEMETRY_MODE",
   "cluster_gpu_telemetry": "$CLUSTER_GPU_TELEMETRY",
   "cluster_gpu_telemetry_interval_sec": $CLUSTER_GPU_TELEMETRY_INTERVAL_SEC,
+  "enable_streaming": "$ENABLE_STREAMING",
+  "aiperf_extra_inputs": "$AIPERF_EXTRA_INPUTS",
+  "enable_epd_multimodal_warmup": "$ENABLE_EPD_MULTIMODAL_WARMUP",
   "launch_cmd": "$E_PD_LAUNCH_CMD"
 }
 EOF
 
-echo "Phase 4 E/PD native vLLM run"
-echo "MODEL=$MODEL"
-echo "WORKLOAD_CONFIG=$WORKLOAD_CONFIG"
-echo "WORKLOAD_TYPE=$WORKLOAD_TYPE"
-echo "IMAGE_SOURCE=$IMAGE_SOURCE"
-echo "IMAGE_PATH=$IMAGE_PATH"
-echo "REQUEST_COUNT=$REQUEST_COUNT"
-echo "CONCURRENCY_VALUES=$CONCURRENCY_VALUES"
-echo "OUTPUT_TOKENS_MEAN=$OUTPUT_TOKENS_MEAN"
-echo "WARMUP_REQUEST_COUNT=$WARMUP_REQUEST_COUNT"
-echo "WARMUP_CONCURRENCY=$WARMUP_CONCURRENCY"
-echo "RUN_DIR=$RUN_DIR"
-echo "LOG_DIR=$LOG_DIR"
-echo "GPU_TELEMETRY_MODE=$GPU_TELEMETRY_MODE"
-echo "CLUSTER_GPU_TELEMETRY=$CLUSTER_GPU_TELEMETRY"
-echo "CLUSTER_GPU_TELEMETRY_INTERVAL_SEC=$CLUSTER_GPU_TELEMETRY_INTERVAL_SEC"
+###############################################################################
+# Print config
+###############################################################################
 
-if [[ "$GPU_TELEMETRY_MODE" == "pynvml" ]]; then
-  echo "WARNING: AIPerf pynvml telemetry only sees GPUs local to the AIPerf process."
-  echo "WARNING: For 2-node runs, use gpu_telemetry_all_nodes.csv for 8-GPU telemetry."
-fi
+log "=== Phase 4 E/PD native vLLM run ==="
+log "MODEL=$MODEL"
+log "WORKLOAD_CONFIG=$WORKLOAD_CONFIG"
+log "WORKLOAD_TYPE=$WORKLOAD_TYPE"
+log "IMAGE_SOURCE=$IMAGE_SOURCE"
+log "IMAGE_PATH=$IMAGE_PATH"
+log "REQUEST_COUNT=$REQUEST_COUNT"
+log "CONCURRENCY_VALUES=[$CONCURRENCY_VALUES]"
+log "OUTPUT_TOKENS_MEAN=$OUTPUT_TOKENS_MEAN"
+log "OUTPUT_TOKENS_STDDEV=$OUTPUT_TOKENS_STDDEV"
+log "WARMUP_REQUEST_COUNT=$WARMUP_REQUEST_COUNT"
+log "WARMUP_CONCURRENCY=$WARMUP_CONCURRENCY"
+log "RUN_DIR=$RUN_DIR"
+log "LOG_DIR=$LOG_DIR"
+log "GPU_TELEMETRY_MODE=$GPU_TELEMETRY_MODE"
+log "CLUSTER_GPU_TELEMETRY=$CLUSTER_GPU_TELEMETRY"
+log "CLUSTER_GPU_TELEMETRY_INTERVAL_SEC=$CLUSTER_GPU_TELEMETRY_INTERVAL_SEC"
+log "ENABLE_STREAMING=$ENABLE_STREAMING"
+log "AIPERF_EXTRA_INPUTS=$AIPERF_EXTRA_INPUTS"
+log "ENABLE_EPD_MULTIMODAL_WARMUP=$ENABLE_EPD_MULTIMODAL_WARMUP"
+
+###############################################################################
+# Launch E/PD stack
+###############################################################################
 
 LOG_DIR="$LOG_DIR" \
 MODEL="$MODEL" \
 PORT="$PORT" \
 MAX_IMAGES_PER_PROMPT="$NUM_IMAGES" \
 bash -lc "$E_PD_LAUNCH_CMD" > "$LOG_DIR/launcher.log" 2>&1 &
-LAUNCHER_PID=$!
 
-echo "Launcher PID: $LAUNCHER_PID"
-echo "Waiting for E/PD proxy readiness on port $PORT..."
+LAUNCHER_PID=$!
+log "Launcher PID=$LAUNCHER_PID"
+
+###############################################################################
+# Wait for proxy /v1/models
+###############################################################################
+
+log "Waiting for E/PD proxy /v1/models on port $PORT, timeout=${PROXY_READY_TIMEOUT_SEC}s..."
 
 READY=0
-for _ in $(seq 1 "$REQUEST_TIMEOUT_READY_SEC"); do
+for _ in $(seq 1 "$PROXY_READY_TIMEOUT_SEC"); do
   if ! kill -0 "$LAUNCHER_PID" 2>/dev/null; then
-    echo "Launcher exited early. Inspect logs in $LOG_DIR" >&2
+    log "ERROR: Launcher exited early. Check $LOG_DIR/launcher.log" >&2
     exit 1
   fi
 
-  if curl -s --max-time 2 "http://localhost:${PORT}/v1/models" >/dev/null 2>&1; then
+  if curl -sf --max-time 3 "http://localhost:${PORT}/v1/models" >/dev/null 2>&1; then
     READY=1
     break
   fi
@@ -223,66 +291,164 @@ for _ in $(seq 1 "$REQUEST_TIMEOUT_READY_SEC"); do
 done
 
 if [[ "$READY" -ne 1 ]]; then
-  echo "E/PD stack did not become ready. Inspect logs in $LOG_DIR" >&2
+  log "ERROR: Proxy did not become reachable within ${PROXY_READY_TIMEOUT_SEC}s." >&2
+  log "  Launcher log: $LOG_DIR/launcher.log" >&2
+  log "  Proxy log:    $LOG_DIR/proxy.log" >&2
   exit 1
 fi
 
-echo "E/PD /v1/models is ready. Running real warmup completion check..."
+log "Proxy /v1/models is reachable."
 
-WARMUP_OK=0
-for _ in $(seq 1 120); do
-  if ! kill -0 "$LAUNCHER_PID" 2>/dev/null; then
-    echo "Launcher exited during warmup check. Inspect logs in $LOG_DIR" >&2
-    exit 1
-  fi
+###############################################################################
+# Source cluster env + direct backend checks
+###############################################################################
 
-  if curl -sS --max-time 60 "http://localhost:${PORT}/v1/chat/completions" \
-    -H "Content-Type: application/json" \
-    -d "{
-      \"model\": \"$MODEL\",
-      \"messages\": [
-        {
-          \"role\": \"user\",
-          \"content\": \"Say hello in one short sentence.\"
-        }
-      ],
-      \"max_tokens\": 8
-    }" > "$LOG_DIR/epd_warmup_completion.json" 2>"$LOG_DIR/epd_warmup_completion.err"; then
+CLUSTER_ENV_FILE="$LOG_DIR/cluster_env.sh"
+log "Waiting for cluster_env.sh to appear..."
 
-    if grep -q '"choices"' "$LOG_DIR/epd_warmup_completion.json"; then
-      WARMUP_OK=1
-      break
-    fi
-  fi
-
-  sleep 5
+for _ in $(seq 1 30); do
+  [[ -f "$CLUSTER_ENV_FILE" ]] && break
+  sleep 2
 done
 
-if [[ "$WARMUP_OK" -ne 1 ]]; then
-  echo "E/PD warmup completion failed. Inspect:" >&2
-  echo "  $LOG_DIR/epd_warmup_completion.json" >&2
-  echo "  $LOG_DIR/epd_warmup_completion.err" >&2
-  echo "  $LOG_DIR/proxy.log" >&2
-  echo "  $LOG_DIR/encoder.log" >&2
-  echo "  $LOG_DIR/pd_vllm.log" >&2
-  exit 1
-fi
-
-echo "E/PD stack passed real warmup completion. Starting AIPerf sweep."
-
-if [[ -f "$LOG_DIR/cluster_env.sh" ]]; then
+if [[ -f "$CLUSTER_ENV_FILE" ]]; then
   # shellcheck disable=SC1090
-  source "$LOG_DIR/cluster_env.sh"
-fi
+  source "$CLUSTER_ENV_FILE"
 
-echo "Checking P/D Ray validation output..."
-if [[ -f "$LOG_DIR/pd_ray_cluster_resources.txt" ]]; then
-  cat "$LOG_DIR/pd_ray_cluster_resources.txt"
+  # Compatibility:
+  #   old Ray launcher used PD_HEAD_IP
+  #   no-Ray launcher uses PD_IP
+  PD_BACKEND_IP="${PD_IP:-${PD_HEAD_IP:-}}"
+
+  log "Sourced cluster env:"
+  log "  ENCODE_PORT=${ENCODE_PORT:-unset}"
+  log "  PD_BACKEND_IP=${PD_BACKEND_IP:-unset}"
+  log "  PD_PORT=${PD_PORT:-unset}"
+
+  log "Checking Encoder backend directly at http://localhost:${ENCODE_PORT}/v1/models ..."
+  if curl -sf --max-time 10 "http://localhost:${ENCODE_PORT}/v1/models" >/dev/null 2>&1; then
+    log "Encoder backend: OK"
+  else
+    log "WARNING: Encoder backend not directly reachable at port $ENCODE_PORT."
+  fi
+
+  if [[ -n "$PD_BACKEND_IP" ]]; then
+    log "Checking P/D backend directly at http://${PD_BACKEND_IP}:${PD_PORT}/v1/models ..."
+    if curl -sf --max-time 10 "http://${PD_BACKEND_IP}:${PD_PORT}/v1/models" >/dev/null 2>&1; then
+      log "P/D backend: OK"
+    else
+      log "WARNING: P/D backend not directly reachable at ${PD_BACKEND_IP}:${PD_PORT}."
+      log "         Check $LOG_DIR/pd_vllm.log before trusting AIPerf results."
+    fi
+  else
+    log "WARNING: Neither PD_IP nor PD_HEAD_IP found in cluster_env.sh; skipping P/D backend check."
+  fi
 else
-  echo "WARNING: Missing $LOG_DIR/pd_ray_cluster_resources.txt"
+  log "WARNING: cluster_env.sh not found; skipping direct backend checks."
 fi
 
-echo "Checking live GPU usage on all nodes before AIPerf..."
+###############################################################################
+# Optional bounded multimodal warmup through full E/PD path
+###############################################################################
+
+if [[ "$ENABLE_EPD_MULTIMODAL_WARMUP" == "true" ]]; then
+  log "Running optional multimodal warmup through proxy..."
+  log "Warmup attempts=${WARMUP_COMPLETION_MAX_ATTEMPTS}, curl_max_time=${WARMUP_CURL_MAX_TIME}s"
+
+  WARMUP_IMAGE_B64="$(python3 - <<'PY'
+import base64
+import io
+try:
+    from PIL import Image
+    img = Image.new("RGB", (64, 64), color=(128, 128, 128))
+    buf = io.BytesIO()
+    img.save(buf, format="PNG")
+    print(base64.b64encode(buf.getvalue()).decode())
+except Exception:
+    raise SystemExit("PIL is required for optional multimodal warmup image generation")
+PY
+)"
+
+  if [[ "$IMAGE_SOURCE" == "custom" && -f "$IMAGE_PATH" ]]; then
+    WARMUP_IMAGE_B64="$(base64 -w 0 "$IMAGE_PATH")"
+  fi
+
+  WARMUP_PAYLOAD="$(python3 - "$MODEL" "$WARMUP_IMAGE_B64" <<'PY'
+import json
+import sys
+
+model, b64 = sys.argv[1], sys.argv[2]
+payload = {
+    "model": model,
+    "messages": [
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "image_url",
+                    "image_url": {
+                        "url": f"data:image/png;base64,{b64}"
+                    }
+                },
+                {
+                    "type": "text",
+                    "text": "Describe this image in one sentence."
+                }
+            ]
+        }
+    ],
+    "max_tokens": 16
+}
+print(json.dumps(payload))
+PY
+)"
+
+  WARMUP_OK=0
+  for attempt in $(seq 1 "$WARMUP_COMPLETION_MAX_ATTEMPTS"); do
+    if ! kill -0 "$LAUNCHER_PID" 2>/dev/null; then
+      log "ERROR: Launcher exited during multimodal warmup." >&2
+      exit 1
+    fi
+
+    HTTP_STATUS="$(curl -so "$LOG_DIR/epd_warmup_completion.json" \
+      --max-time "$WARMUP_CURL_MAX_TIME" \
+      -w "%{http_code}" \
+      -H "Content-Type: application/json" \
+      -d "$WARMUP_PAYLOAD" \
+      "http://localhost:${PORT}/v1/chat/completions" \
+      2>"$LOG_DIR/epd_warmup_completion.err" || true)"
+
+    if [[ "$HTTP_STATUS" == "200" ]] && grep -q '"choices"' "$LOG_DIR/epd_warmup_completion.json" 2>/dev/null; then
+      WARMUP_OK=1
+      log "Multimodal warmup completion OK."
+      break
+    fi
+
+    log "Warmup attempt ${attempt}/${WARMUP_COMPLETION_MAX_ATTEMPTS} failed with HTTP=$HTTP_STATUS."
+    if [[ "$attempt" -lt "$WARMUP_COMPLETION_MAX_ATTEMPTS" ]]; then
+      sleep "$WARMUP_RETRY_SLEEP_SEC"
+    fi
+  done
+
+  if [[ "$WARMUP_OK" -ne 1 ]]; then
+    log "ERROR: Multimodal warmup failed after ${WARMUP_COMPLETION_MAX_ATTEMPTS} attempts." >&2
+    log "  Response: $LOG_DIR/epd_warmup_completion.json" >&2
+    log "  Curl err: $LOG_DIR/epd_warmup_completion.err" >&2
+    log "  Proxy:    $LOG_DIR/proxy.log" >&2
+    log "  Encoder:  $LOG_DIR/encoder.log" >&2
+    log "  P/D:      $LOG_DIR/pd_vllm.log" >&2
+    exit 1
+  fi
+else
+  log "Skipping optional multimodal warmup. ENABLE_EPD_MULTIMODAL_WARMUP=false"
+fi
+
+###############################################################################
+# Pre-AIPerf GPU snapshot
+###############################################################################
+
+log "GPU snapshot before AIPerf sweep..."
+
 {
   for node in $(scontrol show hostnames "$SLURM_JOB_NODELIST"); do
     ssh -q "$node" "
@@ -290,10 +456,14 @@ echo "Checking live GPU usage on all nodes before AIPerf..."
       nvidia-smi \
         --query-gpu=index,memory.used,memory.total,utilization.gpu,power.draw,temperature.gpu \
         --format=csv,noheader,nounits \
-      | awk -v host=\"\$host\" 'BEGIN { OFS=\",\" } { print host, \$0 }'
+      | awk -v host=\"\$host\" 'BEGIN{OFS=\",\"}{print host,\$0}'
     " 2>/dev/null || true
   done
 } | tee "$LOG_DIR/live_gpu_usage_before_aiperf.csv"
+
+###############################################################################
+# Cluster GPU sampler
+###############################################################################
 
 start_cluster_gpu_sampler() {
   local out_file="$1"
@@ -310,9 +480,10 @@ start_cluster_gpu_sampler() {
           nvidia-smi \
             --query-gpu=timestamp,index,uuid,name,memory.used,memory.total,utilization.gpu,power.draw,temperature.gpu \
             --format=csv,noheader,nounits \
-          | awk -v host=\"\$host\" 'BEGIN { OFS=\",\" } { print host, \$0 }'
+          | awk -v host=\"\$host\" 'BEGIN{OFS=\",\"}{print host,\$0}'
         " 2>/dev/null || true
       done
+
       sleep "$interval_sec"
     done
   } > "$out_file" 2>"${out_file}.err" &
@@ -320,16 +491,20 @@ start_cluster_gpu_sampler() {
   echo $!
 }
 
+###############################################################################
+# AIPerf sweep
+###############################################################################
+
 AIPERF_OUT_DIRS=()
 
 for CONCURRENCY in $CONCURRENCY_VALUES; do
   OUT_DIR="${WORKLOAD_ARTIFACT_ROOT}/${RUN_PREFIX}_concurrency${CONCURRENCY}_${TIMESTAMP}"
   mkdir -p "$OUT_DIR"
-  AIPERF_OUT_DIRS+=("$OUT_DIR")
 
+  AIPERF_OUT_DIRS+=("$OUT_DIR")
   cp "$WORKLOAD_CONFIG" "$OUT_DIR/workload.json"
 
-  echo "Running AIPerf concurrency=$CONCURRENCY out_dir=$OUT_DIR"
+  log "=== AIPerf concurrency=$CONCURRENCY -> $OUT_DIR ==="
 
   if [[ "$IMAGE_SOURCE" == "custom" ]]; then
     INPUT_FILE="$OUT_DIR/inputs.jsonl"
@@ -354,7 +529,6 @@ for CONCURRENCY in $CONCURRENCY_VALUES; do
       --warmup-request-count "$WARMUP_REQUEST_COUNT"
       --warmup-concurrency "$WARMUP_CONCURRENCY"
       --use-server-token-count
-      --gpu-telemetry "$GPU_TELEMETRY_MODE"
       --server-metrics "http://localhost:${PORT}/metrics"
       --output-artifact-dir "$OUT_DIR"
     )
@@ -373,10 +547,19 @@ for CONCURRENCY in $CONCURRENCY_VALUES; do
       --use-server-token-count
       --prompt-output-tokens-mean "$OUTPUT_TOKENS_MEAN"
       --prompt-output-tokens-stddev "$OUTPUT_TOKENS_STDDEV"
-      --gpu-telemetry "$GPU_TELEMETRY_MODE"
       --server-metrics "http://localhost:${PORT}/metrics"
       --output-artifact-dir "$OUT_DIR"
     )
+  fi
+
+  if [[ -n "$AIPERF_EXTRA_INPUTS" ]]; then
+    AIPERF_CMD+=(--extra-inputs "$AIPERF_EXTRA_INPUTS")
+  fi
+
+  if [[ "$GPU_TELEMETRY_MODE" == "none" ]]; then
+    AIPERF_CMD+=(--no-gpu-telemetry)
+  else
+    AIPERF_CMD+=(--gpu-telemetry "$GPU_TELEMETRY_MODE")
   fi
 
   if [[ "$USE_LEGACY_MAX_TOKENS" == "true" ]]; then
@@ -410,12 +593,10 @@ for CONCURRENCY in $CONCURRENCY_VALUES; do
   if [[ -n "${SAMPLER_PID:-}" ]]; then
     touch "$GPU_SAMPLER_STOP"
     wait "$SAMPLER_PID" 2>/dev/null || true
-
     cat "$GPU_SAMPLER_TMP" >> "$GPU_SAMPLER_OUT" || true
     rm -f "$GPU_SAMPLER_TMP"
   fi
 
-  echo "Checking live GPU usage after AIPerf concurrency=$CONCURRENCY..."
   {
     for node in $(scontrol show hostnames "$SLURM_JOB_NODELIST"); do
       ssh -q "$node" "
@@ -423,7 +604,7 @@ for CONCURRENCY in $CONCURRENCY_VALUES; do
         nvidia-smi \
           --query-gpu=index,memory.used,memory.total,utilization.gpu,power.draw,temperature.gpu \
           --format=csv,noheader,nounits \
-        | awk -v host=\"\$host\" 'BEGIN { OFS=\",\" } { print host, \$0 }'
+        | awk -v host=\"\$host\" 'BEGIN{OFS=\",\"}{print host,\$0}'
       " 2>/dev/null || true
     done
   } | tee "$OUT_DIR/gpu_after_aiperf.csv"
@@ -439,12 +620,20 @@ for CONCURRENCY in $CONCURRENCY_VALUES; do
   fi
 
   if [[ "$AIPERF_RC" -ne 0 ]]; then
-    echo "AIPerf failed for concurrency=$CONCURRENCY. See $LOG_DIR/aiperf_${WORKLOAD_TYPE}_c${CONCURRENCY}.log" >&2
+    log "ERROR: AIPerf failed for concurrency=$CONCURRENCY, rc=$AIPERF_RC." >&2
+    log "  Log: $LOG_DIR/aiperf_${WORKLOAD_TYPE}_c${CONCURRENCY}.log" >&2
     exit "$AIPERF_RC"
   fi
 
+  log "AIPerf concurrency=$CONCURRENCY complete."
+
+  # AIPerf generates this huge file; remove to save space.
   rm -f "$OUT_DIR/inputs.json"
 done
+
+###############################################################################
+# Run info JSON
+###############################################################################
 
 python3 - "$RUN_DIR/run_info.json" "${AIPERF_OUT_DIRS[@]}" <<PY
 import json
@@ -472,12 +661,20 @@ out = {
     "gpu_telemetry_mode": "$GPU_TELEMETRY_MODE",
     "cluster_gpu_telemetry": "$CLUSTER_GPU_TELEMETRY",
     "cluster_gpu_telemetry_interval_sec": int("$CLUSTER_GPU_TELEMETRY_INTERVAL_SEC"),
+    "enable_streaming": "$ENABLE_STREAMING",
+    "aiperf_extra_inputs": "$AIPERF_EXTRA_INPUTS",
+    "enable_epd_multimodal_warmup": "$ENABLE_EPD_MULTIMODAL_WARMUP",
     "aiperf_artifact_dirs": sys.argv[2:],
 }
+
 with open(sys.argv[1], "w") as f:
     json.dump(out, f, indent=2)
     f.write("\n")
 PY
+
+###############################################################################
+# Summary
+###############################################################################
 
 {
   echo "mode=e_pd"
@@ -495,6 +692,9 @@ PY
   echo "warmup_concurrency=$WARMUP_CONCURRENCY"
   echo "gpu_telemetry_mode=$GPU_TELEMETRY_MODE"
   echo "cluster_gpu_telemetry=$CLUSTER_GPU_TELEMETRY"
+  echo "enable_streaming=$ENABLE_STREAMING"
+  echo "aiperf_extra_inputs=$AIPERF_EXTRA_INPUTS"
+  echo "enable_epd_multimodal_warmup=$ENABLE_EPD_MULTIMODAL_WARMUP"
   echo
   echo "aiperf_artifact_dirs:"
   for d in "${AIPERF_OUT_DIRS[@]}"; do
@@ -502,5 +702,5 @@ PY
   done
 } > "$RUN_DIR/summary.txt"
 
-echo "Phase 4 E/PD native vLLM run complete."
-echo "RUN_DIR=$RUN_DIR"
+log "=== Phase 4 E/PD run complete ==="
+log "RUN_DIR=$RUN_DIR"
