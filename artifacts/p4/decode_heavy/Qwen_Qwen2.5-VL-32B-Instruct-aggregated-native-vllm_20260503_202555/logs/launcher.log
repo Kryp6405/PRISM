@@ -1,0 +1,91 @@
+Launching native vLLM aggregated baseline
+MODEL=Qwen/Qwen2.5-VL-32B-Instruct
+PORT=8000
+TP_SIZE=4
+PP_SIZE=2
+MAX_MODEL_LEN=16384
+GPU_MEMORY_UTILIZATION=0.92
+GPUS_PER_NODE=4
+CPUS_PER_RAY_NODE=5
+EXPECTED_NODES=2
+EXPECTED_GPUS_TOTAL=8
+HEAD_NODE=nid008349
+WORKER_NODE=nid008352
+HEAD_IP=128.55.82.158
+RAY_ADDRESS=128.55.82.158:6379
+LOG_DIR=artifacts/p4/decode_heavy/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_20260503_202555/logs
+Allocated Slurm nodes:
+  nid008349
+  nid008352
+Wrote cluster env to artifacts/p4/decode_heavy/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_20260503_202555/logs/cluster_env.sh
+Stopping any existing Ray processes...
+Stopping Ray on allocated nodes...
+Starting Ray head on nid008349
+Starting Ray worker on nid008352
+Checking Ray status...
+======== Autoscaler status: 2026-05-03 20:26:38.881713 ========
+Node status
+---------------------------------------------------------------
+Active:
+ 1 node_afb64f31ea335c1d6e4f7b7a25571d5e6f0c6648f585bda88a85a15a
+ 1 node_e16973d1116154c029663f83107cee3d1e00a33af015a7aa113c6ea5
+Pending:
+ (no pending nodes)
+Recent failures:
+ (no failures)
+
+Resources
+---------------------------------------------------------------
+Total Usage:
+ 0.0/10.0 CPU
+ 0.0/8.0 GPU
+ 0B/325.64GiB memory
+ 0B/139.56GiB object_store_memory
+
+Total Constraints:
+ (no request_resources() constraints)
+Total Demands:
+ (no resource demands)
+Checking Ray cluster resources...
+2026-05-03 20:26:43,245	INFO worker.py:1747 -- Connecting to existing Ray cluster at address: 128.55.82.158:6379...
+2026-05-03 20:26:43,257	INFO worker.py:1927 -- Connected to Ray cluster.
+=== Ray alive nodes ===
+{
+  "NodeManagerAddress": "128.55.82.159",
+  "Alive": true,
+  "Resources": {
+    "memory": 175556763648.0,
+    "CPU": 5.0,
+    "node:128.55.82.159": 1.0,
+    "GPU": 4.0,
+    "accelerator_type:A100": 1.0,
+    "object_store_memory": 75238612992.0
+  }
+}
+{
+  "NodeManagerAddress": "128.55.82.158",
+  "Alive": true,
+  "Resources": {
+    "node:__internal_head__": 1.0,
+    "memory": 174095383348.0,
+    "CPU": 5.0,
+    "node:128.55.82.158": 1.0,
+    "GPU": 4.0,
+    "accelerator_type:A100": 1.0,
+    "object_store_memory": 74612307148.0
+  }
+}
+=== Ray cluster resources ===
+{
+  "object_store_memory": 149850920140.0,
+  "memory": 349652146996.0,
+  "CPU": 10.0,
+  "accelerator_type:A100": 2.0,
+  "GPU": 8.0,
+  "node:128.55.82.159": 1.0,
+  "node:__internal_head__": 1.0,
+  "node:128.55.82.158": 1.0
+}
+OK: Ray sees 2 alive nodes and 8 GPUs.
+Starting vLLM serve on Ray cluster...
+Stopping Ray on allocated nodes...
