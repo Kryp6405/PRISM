@@ -1,10 +1,10 @@
 workload,stage,run_dir,request_latency_ms_avg,request_latency_ms_p90,request_latency_ms_p99,request_throughput_rps,output_token_throughput_tps,image_throughput_ips,input_tokens_avg,output_tokens_avg,request_count
 baseline,AGG,artifacts/p4/baseline/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency4_20260503_153920,55078.49,56015.63,63372.48,0.07,4.48,0.02,895.0,64.0,50.0
 baseline,E/PD,artifacts/p4/baseline/Qwen_Qwen2.5-VL-32B-Instruct-e-pd-native-vllm_concurrency4_20260503_152445,3763.8,3812.63,4007.23,1.03,65.73,0.27,895.0,64.0,50.0
-baseline,E/P/D,artifacts/p4/baseline/Qwen_Qwen2.5-VL-32B-Instruct-e-p-d-native-vllm_concurrency4_20260503_160201,7069.94,7244.67,9448.27,0.55,35.19,0.14,895.0,64.0,50.0
+baseline,E/P/D,artifacts/p4/baseline/Qwen_Qwen2.5-VL-32B-Instruct-e-p-d-native-vllm_concurrency4_20260503_232453,5282.06,5505.51,5514.54,0.74,47.14,0.19,44751.0,64.0,50.0
 encoder_heavy,AGG,artifacts/p4/encoder_heavy/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency4_20260503_155937,127136.38,129786.05,130837.75,0.03,3.88,0.01,5900.0,128.0,50.0
 encoder_heavy,E/PD,artifacts/p4/encoder_heavy/Qwen_Qwen2.5-VL-32B-Instruct-e-pd-native-vllm_concurrency4_20260503_153601,12166.36,12688.06,13101.64,0.32,40.85,0.08,5900.0,128.0,50.0
-encoder_heavy,E/P/D,artifacts/p4/encoder_heavy/Qwen_Qwen2.5-VL-32B-Instruct-e-p-d-native-vllm_concurrency4_20260503_161616,31422.37,32888.5,33001.03,0.12,15.89,0.03,5900.0,128.0,50.0
+encoder_heavy,E/P/D,artifacts/p4/encoder_heavy/Qwen_Qwen2.5-VL-32B-Instruct-e-p-d-native-vllm_concurrency4_20260503_233312,33857.91,28011.54,140016.5,0.11,13.61,0.04,5900.0,128.0,50.0
 decode_heavy,AGG,artifacts/p4/decode_heavy/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency4_20260503_202555,862256.38,867458.75,867515.12,0.0,3.97,0.0,895.0,1024.0,10.0
 decode_heavy,E/PD,artifacts/p4/decode_heavy/Qwen_Qwen2.5-VL-32B-Instruct-e-pd-native-vllm_concurrency4_20260503_154343,45718.14,45760.02,45934.34,0.08,86.22,0.02,895.0,1024.0,50.0
-decode_heavy,E/P/D,artifacts/p4/decode_heavy/Qwen_Qwen2.5-VL-32B-Instruct-e-p-d-native-vllm_concurrency4_20260503_165822,53595.67,54524.6,55584.6,0.07,73.6,0.02,895.0,1024.0,50.0
+decode_heavy,E/P/D,artifacts/p4/decode_heavy/Qwen_Qwen2.5-VL-32B-Instruct-e-p-d-native-vllm_concurrency4_20260503_233521,31086.62,31783.8,31784.61,0.11,110.92,0.03,895.0,1024.0,10.0

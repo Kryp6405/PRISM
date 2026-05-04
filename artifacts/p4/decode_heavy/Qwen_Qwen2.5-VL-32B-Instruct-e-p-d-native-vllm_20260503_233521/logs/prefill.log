@@ -1,0 +1,212 @@
+(APIServer pid=581717) INFO 05-03 23:37:10 [utils.py:302] 
+(APIServer pid=581717) INFO 05-03 23:37:10 [utils.py:302]        █     █     █▄   ▄█
+(APIServer pid=581717) INFO 05-03 23:37:10 [utils.py:302]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.17.1.dev0+gb31e9326a.d20260406
+(APIServer pid=581717) INFO 05-03 23:37:10 [utils.py:302]   █▄█▀ █     █     █     █  model   Qwen/Qwen2.5-VL-32B-Instruct
+(APIServer pid=581717) INFO 05-03 23:37:10 [utils.py:302]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=581717) INFO 05-03 23:37:10 [utils.py:302] 
+(APIServer pid=581717) INFO 05-03 23:37:10 [utils.py:238] non-default args: {'model_tag': 'Qwen/Qwen2.5-VL-32B-Instruct', 'host': '0.0.0.0', 'port': 19535, 'enable_request_id_headers': True, 'model': 'Qwen/Qwen2.5-VL-32B-Instruct', 'max_model_len': 16384, 'enforce_eager': True, 'pipeline_parallel_size': 2, 'enable_prefix_caching': False, 'limit_mm_per_prompt': {'image': 1, 'video': 0}, 'max_num_seqs': 128, 'kv_transfer_config': KVTransferConfig(kv_connector='NixlConnector', engine_id='21c26801-cf10-419f-ba2d-a9ac5f1067c3', kv_buffer_device='cuda', kv_buffer_size=1000000000.0, kv_role='kv_producer', kv_rank=None, kv_parallel_size=1, kv_ip='127.0.0.1', kv_port=14579, kv_connector_extra_config={}, kv_connector_module_path=None, enable_permute_local_kv=False, kv_load_failure_policy='fail'), 'ec_transfer_config': ECTransferConfig(ec_connector='ECExampleConnector', engine_id='66b41e08-a117-4740-8873-76dac64d7b83', ec_buffer_device='cuda', ec_buffer_size=1000000000.0, ec_role='ec_consumer', ec_rank=None, ec_parallel_size=1, ec_ip='127.0.0.1', ec_port=14579, ec_connector_extra_config={'shared_storage_path': '/pscratch/sd/k/krajeshk/prism_ec_cache_epd'}, ec_connector_module_path=None)}
+(APIServer pid=581717) INFO 05-03 23:37:11 [model.py:531] Resolved architecture: Qwen2_5_VLForConditionalGeneration
+(APIServer pid=581717) INFO 05-03 23:37:11 [model.py:1554] Using max model len 16384
+(APIServer pid=581717) INFO 05-03 23:37:12 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=2048.
+(APIServer pid=581717) INFO 05-03 23:37:12 [vllm.py:747] Asynchronous scheduling is enabled.
+(APIServer pid=581717) WARNING 05-03 23:37:12 [vllm.py:781] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(APIServer pid=581717) WARNING 05-03 23:37:12 [vllm.py:792] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(APIServer pid=581717) INFO 05-03 23:37:12 [vllm.py:957] Cudagraph is disabled under eager mode
+(APIServer pid=581717) WARNING 05-03 23:37:12 [vllm.py:1187] Turning off hybrid kv cache manager because `--kv-transfer-config` is set. This will reduce the performance of vLLM on LLMs with sliding window attention or Mamba attention. If you are a developer of kv connector, please consider supporting hybrid kv cache manager for your connector by making sure your connector is a subclass of `SupportsHMA` defined in kv_connector/v1/base.py and use --no-disable-hybrid-kv-cache-manager to start vLLM.
+(APIServer pid=581717) The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+(EngineCore_DP0 pid=582100) INFO 05-03 23:37:29 [core.py:101] Initializing a V1 LLM engine (v0.17.1.dev0+gb31e9326a.d20260406) with config: model='Qwen/Qwen2.5-VL-32B-Instruct', speculative_config=None, tokenizer='Qwen/Qwen2.5-VL-32B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=16384, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=2, data_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=Qwen/Qwen2.5-VL-32B-Instruct, enable_prefix_caching=False, enable_chunked_prefill=True, pooler_config=None, compilation_config={'level': None, 'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['all'], 'splitting_ops': [], 'compile_mm_encoder': False, 'compile_sizes': [], 'compile_ranges_split_points': [2048], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 0, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}
+(EngineCore_DP0 pid=582100) WARNING 05-03 23:37:29 [multiproc_executor.py:945] Reducing Torch parallelism from 64 threads to 1 to avoid unnecessary CPU contention. Set OMP_NUM_THREADS in the external environment to tune this value as needed.
+(EngineCore_DP0 pid=582100) INFO 05-03 23:37:29 [multiproc_executor.py:134] DP group leader: node_rank=0, node_rank_within_dp=0, master_addr=127.0.0.1, mq_connect_ip=128.55.82.207 (local), world_size=2, local_world_size=2
+(Worker pid=582338) INFO 05-03 23:37:41 [parallel_state.py:1393] world_size=2 rank=1 local_rank=1 distributed_init_method=tcp://127.0.0.1:54273 backend=nccl
+(Worker pid=582337) INFO 05-03 23:37:41 [parallel_state.py:1393] world_size=2 rank=0 local_rank=0 distributed_init_method=tcp://127.0.0.1:54273 backend=nccl
+(Worker pid=582338) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.
+(Worker pid=582338) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.nvrtc module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.nvrtc module instead.
+(Worker pid=582337) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.
+(Worker pid=582337) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.nvrtc module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.nvrtc module instead.
+(Worker pid=582337) INFO 05-03 23:37:43 [pynccl.py:111] vLLM is using nccl==2.28.9
+(Worker pid=582338) INFO 05-03 23:37:43 [parallel_state.py:1715] rank 1 in world size 2 is assigned as DP rank 0, PP rank 1, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A
+(Worker pid=582337) INFO 05-03 23:37:43 [parallel_state.py:1715] rank 0 in world size 2 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A
+(Worker pid=582337) INFO 05-03 23:37:43 [factory.py:45] Creating connector with name: ECExampleConnector and engine_id: 66b41e08-a117-4740-8873-76dac64d7b83
+(Worker pid=582338) INFO 05-03 23:37:43 [factory.py:45] Creating connector with name: ECExampleConnector and engine_id: 66b41e08-a117-4740-8873-76dac64d7b83
+(Worker pid=582338) The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+(Worker pid=582337) The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+(Worker pid=582338) INFO 05-03 23:37:49 [base.py:106] Offloader set to NoopOffloader
+(Worker pid=582337) INFO 05-03 23:37:49 [base.py:106] Offloader set to NoopOffloader
+(Worker pid=582337) (Worker_PP0 pid=582337) INFO 05-03 23:37:49 [gpu_model_runner.py:4255] Starting to load model Qwen/Qwen2.5-VL-32B-Instruct...
+(Worker pid=582337) (Worker_PP0 pid=582337) INFO 05-03 23:37:50 [cuda.py:453] Using backend AttentionBackendEnum.FLASH_ATTN for vit attention
+(Worker pid=582337) (Worker_PP0 pid=582337) INFO 05-03 23:37:50 [mm_encoder_attention.py:215] Using AttentionBackendEnum.FLASH_ATTN for MMEncoderAttention.
+(Worker pid=582338) (Worker_PP1 pid=582338) INFO 05-03 23:37:50 [cuda.py:453] Using backend AttentionBackendEnum.FLASH_ATTN for vit attention
+(Worker pid=582338) (Worker_PP1 pid=582338) INFO 05-03 23:37:50 [mm_encoder_attention.py:215] Using AttentionBackendEnum.FLASH_ATTN for MMEncoderAttention.
+(Worker pid=582337) (Worker_PP0 pid=582337) INFO 05-03 23:37:50 [vllm.py:747] Asynchronous scheduling is enabled.
+(Worker pid=582337) (Worker_PP0 pid=582337) WARNING 05-03 23:37:50 [vllm.py:781] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(Worker pid=582337) (Worker_PP0 pid=582337) WARNING 05-03 23:37:50 [vllm.py:792] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(Worker pid=582337) (Worker_PP0 pid=582337) INFO 05-03 23:37:50 [vllm.py:957] Cudagraph is disabled under eager mode
+(Worker pid=582337) (Worker_PP0 pid=582337) INFO 05-03 23:37:50 [cuda.py:405] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].
+(Worker pid=582337) (Worker_PP0 pid=582337) INFO 05-03 23:37:50 [flash_attn.py:587] Using FlashAttention version 2
+(Worker pid=582338) (Worker_PP1 pid=582338) INFO 05-03 23:37:50 [vllm.py:747] Asynchronous scheduling is enabled.
+(Worker pid=582338) (Worker_PP1 pid=582338) WARNING 05-03 23:37:50 [vllm.py:781] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(Worker pid=582338) (Worker_PP1 pid=582338) WARNING 05-03 23:37:50 [vllm.py:792] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(Worker pid=582338) (Worker_PP1 pid=582338) INFO 05-03 23:37:50 [vllm.py:957] Cudagraph is disabled under eager mode
+(Worker pid=582337) (Worker_PP0 pid=582337) Loading safetensors checkpoint shards:   0% Completed | 0/18 [00:00<?, ?it/s]
+(Worker pid=582337) (Worker_PP0 pid=582337) Loading safetensors checkpoint shards:   6% Completed | 1/18 [00:01<00:28,  1.68s/it]
+(Worker pid=582337) (Worker_PP0 pid=582337) Loading safetensors checkpoint shards:  11% Completed | 2/18 [00:03<00:31,  1.96s/it]
+(Worker pid=582337) (Worker_PP0 pid=582337) Loading safetensors checkpoint shards:  17% Completed | 3/18 [00:06<00:31,  2.07s/it]
+(Worker pid=582337) (Worker_PP0 pid=582337) Loading safetensors checkpoint shards:  22% Completed | 4/18 [00:08<00:29,  2.12s/it]
+(Worker pid=582337) (Worker_PP0 pid=582337) Loading safetensors checkpoint shards:  28% Completed | 5/18 [00:10<00:28,  2.15s/it]
+(Worker pid=582337) (Worker_PP0 pid=582337) Loading safetensors checkpoint shards:  33% Completed | 6/18 [00:12<00:26,  2.17s/it]
+(Worker pid=582337) (Worker_PP0 pid=582337) Loading safetensors checkpoint shards:  39% Completed | 7/18 [00:14<00:24,  2.18s/it]
+(Worker pid=582337) (Worker_PP0 pid=582337) Loading safetensors checkpoint shards:  44% Completed | 8/18 [00:17<00:21,  2.19s/it]
+(Worker pid=582337) (Worker_PP0 pid=582337) Loading safetensors checkpoint shards:  50% Completed | 9/18 [00:19<00:19,  2.19s/it]
+(Worker pid=582337) (Worker_PP0 pid=582337) Loading safetensors checkpoint shards:  56% Completed | 10/18 [00:20<00:14,  1.81s/it]
+(Worker pid=582337) (Worker_PP0 pid=582337) Loading safetensors checkpoint shards: 100% Completed | 18/18 [00:20<00:00,  1.13s/it]
+(Worker pid=582337) (Worker_PP0 pid=582337) 
+(Worker pid=582337) (Worker_PP0 pid=582337) INFO 05-03 23:38:11 [default_loader.py:293] Loading weights took 20.28 seconds
+(Worker pid=582337) (Worker_PP0 pid=582337) INFO 05-03 23:38:11 [gpu_model_runner.py:4338] Model loading took 31.92 GiB memory and 21.172428 seconds
+(Worker pid=582337) (Worker_PP0 pid=582337) INFO 05-03 23:38:12 [gpu_model_runner.py:5254] Encoder cache will be initialized with a budget of 16384 tokens, and profiled with 1 image items of the maximum feature size.
+(Worker pid=582338) (Worker_PP1 pid=582338) INFO 05-03 23:38:12 [gpu_model_runner.py:5254] Encoder cache will be initialized with a budget of 16384 tokens, and profiled with 1 image items of the maximum feature size.
+(Worker pid=582337) (Worker_PP0 pid=582337) INFO 05-03 23:38:15 [gpu_worker.py:424] Available KV cache memory: 37.48 GiB
+(EngineCore_DP0 pid=582100) INFO 05-03 23:38:15 [kv_cache_utils.py:1314] GPU KV cache size: 306,992 tokens
+(EngineCore_DP0 pid=582100) INFO 05-03 23:38:15 [kv_cache_utils.py:1319] Maximum concurrency for 16,384 tokens per request: 18.74x
+(Worker pid=582338) (Worker_PP1 pid=582338) INFO 05-03 23:38:15 [nixl_connector.py:101] Setting UCX_RCACHE_MAX_UNRELEASED to '1024' to avoid a rare memory leak in UCX when using NIXL.
+(Worker pid=582337) (Worker_PP0 pid=582337) INFO 05-03 23:38:15 [nixl_connector.py:101] Setting UCX_RCACHE_MAX_UNRELEASED to '1024' to avoid a rare memory leak in UCX when using NIXL.
+(Worker pid=582338) (Worker_PP1 pid=582338) INFO 05-03 23:38:15 [nixl_connector.py:114] NIXL is available
+(Worker pid=582337) (Worker_PP0 pid=582337) INFO 05-03 23:38:15 [nixl_connector.py:114] NIXL is available
+(Worker pid=582338) (Worker_PP1 pid=582338) INFO 05-03 23:38:15 [factory.py:64] Creating v1 connector with name: NixlConnector and engine_id: 21c26801-cf10-419f-ba2d-a9ac5f1067c3
+(Worker pid=582338) (Worker_PP1 pid=582338) WARNING 05-03 23:38:15 [base.py:166] Initializing KVConnectorBase_V1. This API is experimental and subject to change in the future as we iterate the design.
+(Worker pid=582338) (Worker_PP1 pid=582338) INFO 05-03 23:38:15 [nixl_connector.py:864] Initializing NIXL wrapper
+(Worker pid=582338) (Worker_PP1 pid=582338) INFO 05-03 23:38:15 [nixl_connector.py:865] Initializing NIXL worker 21c26801-cf10-419f-ba2d-a9ac5f1067c3
+(Worker pid=582337) (Worker_PP0 pid=582337) INFO 05-03 23:38:15 [factory.py:64] Creating v1 connector with name: NixlConnector and engine_id: 21c26801-cf10-419f-ba2d-a9ac5f1067c3
+(Worker pid=582337) (Worker_PP0 pid=582337) WARNING 05-03 23:38:15 [base.py:166] Initializing KVConnectorBase_V1. This API is experimental and subject to change in the future as we iterate the design.
+(Worker pid=582337) (Worker_PP0 pid=582337) INFO 05-03 23:38:15 [nixl_connector.py:864] Initializing NIXL wrapper
+(Worker pid=582337) (Worker_PP0 pid=582337) INFO 05-03 23:38:15 [nixl_connector.py:865] Initializing NIXL worker 21c26801-cf10-419f-ba2d-a9ac5f1067c3
+(Worker pid=582338) (Worker_PP1 pid=582338) 2026-05-03 23:38:15 NIXL INFO    _api.py:363 Backend UCX was instantiated
+(Worker pid=582338) (Worker_PP1 pid=582338) 2026-05-03 23:38:15 NIXL INFO    _api.py:253 Initialized NIXL agent: 7ef2a007-a8f7-45ad-bd21-83908d069318
+(Worker pid=582338) (Worker_PP1 pid=582338) INFO 05-03 23:38:15 [nixl_connector.py:363] NixlConnector setting KV cache layout to HND for better xfer performance.
+(Worker pid=582338) (Worker_PP1 pid=582338) INFO 05-03 23:38:15 [nixl_connector.py:1341] Registering KV_Caches. use_mla: False, kv_buffer_device: cuda, use_host_buffer: False
+(Worker pid=582337) (Worker_PP0 pid=582337) 2026-05-03 23:38:15 NIXL INFO    _api.py:363 Backend UCX was instantiated
+(Worker pid=582337) (Worker_PP0 pid=582337) 2026-05-03 23:38:15 NIXL INFO    _api.py:253 Initialized NIXL agent: d5ea0f65-615a-4926-835f-32afd977ab04
+(Worker pid=582337) (Worker_PP0 pid=582337) INFO 05-03 23:38:15 [nixl_connector.py:363] NixlConnector setting KV cache layout to HND for better xfer performance.
+(Worker pid=582337) (Worker_PP0 pid=582337) INFO 05-03 23:38:15 [nixl_connector.py:1341] Registering KV_Caches. use_mla: False, kv_buffer_device: cuda, use_host_buffer: False
+(EngineCore_DP0 pid=582100) INFO 05-03 23:38:16 [core.py:282] init engine (profile, create kv cache, warmup model) took 4.39 seconds
+(EngineCore_DP0 pid=582100) INFO 05-03 23:38:17 [nixl_connector.py:101] Setting UCX_RCACHE_MAX_UNRELEASED to '1024' to avoid a rare memory leak in UCX when using NIXL.
+(EngineCore_DP0 pid=582100) INFO 05-03 23:38:17 [nixl_connector.py:114] NIXL is available
+(EngineCore_DP0 pid=582100) INFO 05-03 23:38:17 [factory.py:64] Creating v1 connector with name: NixlConnector and engine_id: 21c26801-cf10-419f-ba2d-a9ac5f1067c3
+(EngineCore_DP0 pid=582100) WARNING 05-03 23:38:17 [base.py:166] Initializing KVConnectorBase_V1. This API is experimental and subject to change in the future as we iterate the design.
+(EngineCore_DP0 pid=582100) INFO 05-03 23:38:17 [nixl_connector.py:538] Initializing NIXL Scheduler 21c26801-cf10-419f-ba2d-a9ac5f1067c3
+(EngineCore_DP0 pid=582100) INFO 05-03 23:38:17 [factory.py:45] Creating connector with name: ECExampleConnector and engine_id: 66b41e08-a117-4740-8873-76dac64d7b83
+(EngineCore_DP0 pid=582100) The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+(EngineCore_DP0 pid=582100) INFO 05-03 23:38:23 [vllm.py:747] Asynchronous scheduling is enabled.
+(EngineCore_DP0 pid=582100) WARNING 05-03 23:38:23 [vllm.py:781] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(EngineCore_DP0 pid=582100) WARNING 05-03 23:38:23 [vllm.py:792] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(EngineCore_DP0 pid=582100) INFO 05-03 23:38:23 [vllm.py:957] Cudagraph is disabled under eager mode
+(APIServer pid=581717) INFO 05-03 23:38:23 [nixl_connector.py:101] Setting UCX_RCACHE_MAX_UNRELEASED to '1024' to avoid a rare memory leak in UCX when using NIXL.
+(APIServer pid=581717) INFO 05-03 23:38:24 [nixl_connector.py:114] NIXL is available
+(APIServer pid=581717) INFO 05-03 23:38:24 [api_server.py:495] Supported tasks: ['generate']
+(APIServer pid=581717) WARNING 05-03 23:38:24 [model.py:1355] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'repetition_penalty': 1.05, 'temperature': 1e-06}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`.
+(APIServer pid=581717) INFO 05-03 23:38:24 [serving.py:185] Warming up chat template processing...
+(APIServer pid=581717) INFO 05-03 23:38:27 [hf.py:318] Detected the chat template content format to be 'openai'. You can set `--chat-template-content-format` to override this.
+(APIServer pid=581717) INFO 05-03 23:38:27 [serving.py:210] Chat template warmup completed in 2970.4ms
+(APIServer pid=581717) INFO 05-03 23:38:27 [api_server.py:500] Starting vLLM API server 0 on http://0.0.0.0:19535
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:38] Available routes are:
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /openapi.json, Methods: GET, HEAD
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /docs, Methods: GET, HEAD
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /docs/oauth2-redirect, Methods: GET, HEAD
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /redoc, Methods: GET, HEAD
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /tokenize, Methods: POST
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /detokenize, Methods: POST
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /load, Methods: GET
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /version, Methods: GET
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /health, Methods: GET
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /metrics, Methods: GET
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /v1/models, Methods: GET
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /ping, Methods: GET
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /ping, Methods: POST
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /invocations, Methods: POST
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /v1/chat/completions, Methods: POST
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /v1/chat/completions/render, Methods: POST
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /v1/responses, Methods: POST
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /v1/responses/{response_id}, Methods: GET
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /v1/responses/{response_id}/cancel, Methods: POST
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /v1/completions, Methods: POST
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /v1/completions/render, Methods: POST
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /v1/messages, Methods: POST
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /v1/messages/count_tokens, Methods: POST
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /inference/v1/generate, Methods: POST
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /scale_elastic_ep, Methods: POST
+(APIServer pid=581717) INFO 05-03 23:38:27 [launcher.py:47] Route: /is_scaling_elastic_ep, Methods: POST
+(APIServer pid=581717) INFO:     Started server process [581717]
+(APIServer pid=581717) INFO:     Waiting for application startup.
+(APIServer pid=581717) INFO:     Application startup complete.
+(APIServer pid=581717) INFO:     127.0.0.1:48278 - "GET /v1/models HTTP/1.1" 200 OK
+(APIServer pid=581717) INFO:     127.0.0.1:41720 - "GET /v1/models HTTP/1.1" 200 OK
+(APIServer pid=581717) WARNING 05-03 23:40:33 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(Worker pid=582337) (Worker_PP0 pid=582337) /pscratch/sd/k/krajeshk/PRISM_env/vllm/vllm/distributed/parallel_state.py:659: UserWarning: The given buffer is not writable, and PyTorch does not support non-writable tensors. This means you can write to the underlying (supposedly non-writable) buffer using the tensor. You may want to copy the buffer to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:1586.)
+(Worker pid=582337) (Worker_PP0 pid=582337)   object_tensor = torch.frombuffer(pickle.dumps(obj), dtype=torch.uint8)
+NCCL version 2.28.9+cuda12.9
+[rank0]:[W503 23:40:34.380226992 ProcessGroupNCCL.cpp:4094] Warning: An unbatched P2P op (send/recv) was called on this ProcessGroup with size 2.  In lazy initialization mode, this will result in a new 2-rank NCCL communicator to be created. (function operator())
+[rank1]:[W503 23:40:34.380454963 ProcessGroupNCCL.cpp:4094] Warning: An unbatched P2P op (send/recv) was called on this ProcessGroup with size 2.  In lazy initialization mode, this will result in a new 2-rank NCCL communicator to be created. (function operator())
+(APIServer pid=581717) INFO:     127.0.0.1:59464 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=581717) INFO 05-03 23:40:38 [loggers.py:259] Engine 000: Avg prompt throughput: 89.5 tokens/s, Avg generation throughput: 0.1 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.3%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+(APIServer pid=581717) INFO 05-03 23:40:48 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.3%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+(APIServer pid=581717) WARNING 05-03 23:41:07 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(Worker pid=582338) (Worker_PP1 pid=582338) ERROR 05-03 23:41:08 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-773c5e48-b8de-4c2f-a6e7-9da1e5e809c0-9070f934 were retrieved by a decode worker. They may have expired.
+(Worker pid=582338) (Worker_PP1 pid=582338) ERROR 05-03 23:41:08 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-773c5e48-b8de-4c2f-a6e7-9da1e5e809c0-9070f934 were retrieved by a decode worker. They may have expired.
+(APIServer pid=581717) INFO:     127.0.0.1:50408 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=581717) INFO 05-03 23:41:08 [loggers.py:259] Engine 000: Avg prompt throughput: 89.5 tokens/s, Avg generation throughput: 0.1 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.6%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+(APIServer pid=581717) INFO 05-03 23:41:18 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.6%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+(APIServer pid=581717) WARNING 05-03 23:41:35 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(Worker pid=582338) (Worker_PP1 pid=582338) ERROR 05-03 23:41:35 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-44bf64b5-42d0-4473-9a70-dbd279ce0fec-8f2d436e were retrieved by a decode worker. They may have expired.
+(Worker pid=582338) (Worker_PP1 pid=582338) ERROR 05-03 23:41:35 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-44bf64b5-42d0-4473-9a70-dbd279ce0fec-8f2d436e were retrieved by a decode worker. They may have expired.
+(APIServer pid=581717) INFO:     127.0.0.1:35040 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=581717) INFO 05-03 23:41:38 [loggers.py:259] Engine 000: Avg prompt throughput: 89.5 tokens/s, Avg generation throughput: 0.1 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.9%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%, MM cache hit rate: 33.3%
+(APIServer pid=581717) INFO 05-03 23:41:48 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.9%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%, MM cache hit rate: 33.3%
+(APIServer pid=581717) WARNING 05-03 23:42:02 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(Worker pid=582338) (Worker_PP1 pid=582338) ERROR 05-03 23:42:02 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-f09258d8-0d3b-43b1-abfc-d21e097ff42e-abd8b810 were retrieved by a decode worker. They may have expired.
+(Worker pid=582338) (Worker_PP1 pid=582338) ERROR 05-03 23:42:02 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-f09258d8-0d3b-43b1-abfc-d21e097ff42e-abd8b810 were retrieved by a decode worker. They may have expired.
+(APIServer pid=581717) INFO:     127.0.0.1:47460 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=581717) INFO 05-03 23:42:08 [loggers.py:259] Engine 000: Avg prompt throughput: 89.5 tokens/s, Avg generation throughput: 0.1 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.2%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%, MM cache hit rate: 25.0%
+(APIServer pid=581717) INFO 05-03 23:42:18 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.2%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%, MM cache hit rate: 25.0%
+(APIServer pid=581717) WARNING 05-03 23:42:30 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=581717) WARNING 05-03 23:42:30 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=581717) WARNING 05-03 23:42:30 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=581717) WARNING 05-03 23:42:30 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(Worker pid=582338) (Worker_PP1 pid=582338) ERROR 05-03 23:42:30 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-0c4471d6-5050-4a59-a9cf-e44dfd2c73a1-beb65e30 were retrieved by a decode worker. They may have expired.
+(Worker pid=582338) (Worker_PP1 pid=582338) ERROR 05-03 23:42:30 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-0c4471d6-5050-4a59-a9cf-e44dfd2c73a1-beb65e30 were retrieved by a decode worker. They may have expired.
+(APIServer pid=581717) INFO:     127.0.0.1:59638 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=581717) INFO:     127.0.0.1:59644 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=581717) INFO:     127.0.0.1:59646 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=581717) INFO:     127.0.0.1:59654 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=581717) INFO 05-03 23:42:38 [loggers.py:259] Engine 000: Avg prompt throughput: 358.0 tokens/s, Avg generation throughput: 0.4 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.3%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%, MM cache hit rate: 50.0%
+(APIServer pid=581717) INFO 05-03 23:42:48 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.3%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%, MM cache hit rate: 50.0%
+(APIServer pid=581717) WARNING 05-03 23:43:01 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(Worker pid=582338) (Worker_PP1 pid=582338) ERROR 05-03 23:43:02 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-e571aadb-d38e-4ffb-b68b-cea3b7f6b374-9c4b301b were retrieved by a decode worker. They may have expired.
+(Worker pid=582338) (Worker_PP1 pid=582338) ERROR 05-03 23:43:02 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-c7c3a6f4-e620-49f9-b1b3-198afe349e5e-8ac5fa7f were retrieved by a decode worker. They may have expired.
+(Worker pid=582338) (Worker_PP1 pid=582338) ERROR 05-03 23:43:02 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-8347cd96-d716-4673-88f5-80c558a113ad-9f96ede6 were retrieved by a decode worker. They may have expired.
+(Worker pid=582338) (Worker_PP1 pid=582338) ERROR 05-03 23:43:02 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-21580dad-7d8a-403f-a2a9-0abc79f358fd-aeb39f23 were retrieved by a decode worker. They may have expired.
+(Worker pid=582338) (Worker_PP1 pid=582338) ERROR 05-03 23:43:02 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-e571aadb-d38e-4ffb-b68b-cea3b7f6b374-9c4b301b were retrieved by a decode worker. They may have expired.
+(Worker pid=582338) (Worker_PP1 pid=582338) ERROR 05-03 23:43:02 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-c7c3a6f4-e620-49f9-b1b3-198afe349e5e-8ac5fa7f were retrieved by a decode worker. They may have expired.
+(Worker pid=582338) (Worker_PP1 pid=582338) ERROR 05-03 23:43:02 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-8347cd96-d716-4673-88f5-80c558a113ad-9f96ede6 were retrieved by a decode worker. They may have expired.
+(Worker pid=582338) (Worker_PP1 pid=582338) ERROR 05-03 23:43:02 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-21580dad-7d8a-403f-a2a9-0abc79f358fd-aeb39f23 were retrieved by a decode worker. They may have expired.
+(APIServer pid=581717) WARNING 05-03 23:43:02 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=581717) WARNING 05-03 23:43:02 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=581717) WARNING 05-03 23:43:02 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=581717) INFO:     127.0.0.1:37894 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=581717) INFO:     127.0.0.1:37904 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=581717) INFO:     127.0.0.1:37912 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=581717) INFO:     127.0.0.1:37914 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=581717) INFO 05-03 23:43:08 [loggers.py:259] Engine 000: Avg prompt throughput: 358.0 tokens/s, Avg generation throughput: 0.4 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 3.5%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%, MM cache hit rate: 66.7%
+(APIServer pid=581717) INFO 05-03 23:43:18 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 3.5%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%, MM cache hit rate: 66.7%
+(APIServer pid=581717) WARNING 05-03 23:43:33 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=581717) WARNING 05-03 23:43:33 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(Worker pid=582338) (Worker_PP1 pid=582338) ERROR 05-03 23:43:33 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-bb343e48-8337-4e95-83a4-d465d85596a6-8d843c9e were retrieved by a decode worker. They may have expired.
+(Worker pid=582338) (Worker_PP1 pid=582338) ERROR 05-03 23:43:33 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-d1cfc392-e814-426b-868b-57ad3d60ee88-bc387312 were retrieved by a decode worker. They may have expired.
+(Worker pid=582338) (Worker_PP1 pid=582338) ERROR 05-03 23:43:33 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-98cd85a5-0e41-40d6-9d5f-bdd3d6141afb-abbd987d were retrieved by a decode worker. They may have expired.
+(Worker pid=582338) (Worker_PP1 pid=582338) ERROR 05-03 23:43:33 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-55c1b103-8f53-48a2-b3f5-112f6918ef23-8496b004 were retrieved by a decode worker. They may have expired.
+(Worker pid=582338) (Worker_PP1 pid=582338) ERROR 05-03 23:43:33 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-bb343e48-8337-4e95-83a4-d465d85596a6-8d843c9e were retrieved by a decode worker. They may have expired.
+(Worker pid=582338) (Worker_PP1 pid=582338) ERROR 05-03 23:43:33 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-d1cfc392-e814-426b-868b-57ad3d60ee88-bc387312 were retrieved by a decode worker. They may have expired.
+(Worker pid=582338) (Worker_PP1 pid=582338) ERROR 05-03 23:43:33 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-98cd85a5-0e41-40d6-9d5f-bdd3d6141afb-abbd987d were retrieved by a decode worker. They may have expired.
+(Worker pid=582338) (Worker_PP1 pid=582338) ERROR 05-03 23:43:33 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-55c1b103-8f53-48a2-b3f5-112f6918ef23-8496b004 were retrieved by a decode worker. They may have expired.
+(APIServer pid=581717) INFO:     127.0.0.1:43512 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=581717) INFO:     127.0.0.1:43516 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=581717) INFO 05-03 23:43:38 [loggers.py:259] Engine 000: Avg prompt throughput: 179.0 tokens/s, Avg generation throughput: 0.2 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 4.1%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%, MM cache hit rate: 71.4%
+(APIServer pid=581717) INFO 05-03 23:43:48 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 4.1%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%, MM cache hit rate: 71.4%

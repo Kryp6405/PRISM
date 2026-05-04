@@ -1,0 +1,369 @@
+(APIServer pid=573373) INFO 05-03 23:26:41 [utils.py:302] 
+(APIServer pid=573373) INFO 05-03 23:26:41 [utils.py:302]        █     █     █▄   ▄█
+(APIServer pid=573373) INFO 05-03 23:26:41 [utils.py:302]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.17.1.dev0+gb31e9326a.d20260406
+(APIServer pid=573373) INFO 05-03 23:26:41 [utils.py:302]   █▄█▀ █     █     █     █  model   Qwen/Qwen2.5-VL-32B-Instruct
+(APIServer pid=573373) INFO 05-03 23:26:41 [utils.py:302]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=573373) INFO 05-03 23:26:41 [utils.py:302] 
+(APIServer pid=573373) INFO 05-03 23:26:41 [utils.py:238] non-default args: {'model_tag': 'Qwen/Qwen2.5-VL-32B-Instruct', 'host': '0.0.0.0', 'port': 19535, 'enable_request_id_headers': True, 'model': 'Qwen/Qwen2.5-VL-32B-Instruct', 'max_model_len': 16384, 'enforce_eager': True, 'pipeline_parallel_size': 2, 'enable_prefix_caching': False, 'limit_mm_per_prompt': {'image': 1, 'video': 0}, 'max_num_seqs': 128, 'kv_transfer_config': KVTransferConfig(kv_connector='NixlConnector', engine_id='98846cad-3e12-4768-a00e-840240cdb32f', kv_buffer_device='cuda', kv_buffer_size=1000000000.0, kv_role='kv_producer', kv_rank=None, kv_parallel_size=1, kv_ip='127.0.0.1', kv_port=14579, kv_connector_extra_config={}, kv_connector_module_path=None, enable_permute_local_kv=False, kv_load_failure_policy='fail'), 'ec_transfer_config': ECTransferConfig(ec_connector='ECExampleConnector', engine_id='e2faf0c7-e532-46c6-9619-fb1623a37598', ec_buffer_device='cuda', ec_buffer_size=1000000000.0, ec_role='ec_consumer', ec_rank=None, ec_parallel_size=1, ec_ip='127.0.0.1', ec_port=14579, ec_connector_extra_config={'shared_storage_path': '/pscratch/sd/k/krajeshk/prism_ec_cache_epd'}, ec_connector_module_path=None)}
+(APIServer pid=573373) INFO 05-03 23:26:42 [model.py:531] Resolved architecture: Qwen2_5_VLForConditionalGeneration
+(APIServer pid=573373) INFO 05-03 23:26:42 [model.py:1554] Using max model len 16384
+(APIServer pid=573373) INFO 05-03 23:26:42 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=2048.
+(APIServer pid=573373) INFO 05-03 23:26:42 [vllm.py:747] Asynchronous scheduling is enabled.
+(APIServer pid=573373) WARNING 05-03 23:26:42 [vllm.py:781] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(APIServer pid=573373) WARNING 05-03 23:26:42 [vllm.py:792] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(APIServer pid=573373) INFO 05-03 23:26:42 [vllm.py:957] Cudagraph is disabled under eager mode
+(APIServer pid=573373) WARNING 05-03 23:26:42 [vllm.py:1187] Turning off hybrid kv cache manager because `--kv-transfer-config` is set. This will reduce the performance of vLLM on LLMs with sliding window attention or Mamba attention. If you are a developer of kv connector, please consider supporting hybrid kv cache manager for your connector by making sure your connector is a subclass of `SupportsHMA` defined in kv_connector/v1/base.py and use --no-disable-hybrid-kv-cache-manager to start vLLM.
+(APIServer pid=573373) The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+(EngineCore_DP0 pid=573732) INFO 05-03 23:26:59 [core.py:101] Initializing a V1 LLM engine (v0.17.1.dev0+gb31e9326a.d20260406) with config: model='Qwen/Qwen2.5-VL-32B-Instruct', speculative_config=None, tokenizer='Qwen/Qwen2.5-VL-32B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=16384, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=2, data_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=Qwen/Qwen2.5-VL-32B-Instruct, enable_prefix_caching=False, enable_chunked_prefill=True, pooler_config=None, compilation_config={'level': None, 'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['all'], 'splitting_ops': [], 'compile_mm_encoder': False, 'compile_sizes': [], 'compile_ranges_split_points': [2048], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 0, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}
+(EngineCore_DP0 pid=573732) WARNING 05-03 23:26:59 [multiproc_executor.py:945] Reducing Torch parallelism from 64 threads to 1 to avoid unnecessary CPU contention. Set OMP_NUM_THREADS in the external environment to tune this value as needed.
+(EngineCore_DP0 pid=573732) INFO 05-03 23:26:59 [multiproc_executor.py:134] DP group leader: node_rank=0, node_rank_within_dp=0, master_addr=127.0.0.1, mq_connect_ip=128.55.82.207 (local), world_size=2, local_world_size=2
+(Worker pid=573969) INFO 05-03 23:27:12 [parallel_state.py:1393] world_size=2 rank=0 local_rank=0 distributed_init_method=tcp://127.0.0.1:52155 backend=nccl
+(Worker pid=573970) INFO 05-03 23:27:17 [parallel_state.py:1393] world_size=2 rank=1 local_rank=1 distributed_init_method=tcp://127.0.0.1:52155 backend=nccl
+(Worker pid=573970) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.
+(Worker pid=573970) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.nvrtc module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.nvrtc module instead.
+(Worker pid=573969) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.
+(Worker pid=573969) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.nvrtc module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.nvrtc module instead.
+(Worker pid=573969) INFO 05-03 23:27:18 [pynccl.py:111] vLLM is using nccl==2.28.9
+(Worker pid=573969) INFO 05-03 23:27:18 [parallel_state.py:1715] rank 0 in world size 2 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A
+(Worker pid=573969) INFO 05-03 23:27:18 [factory.py:45] Creating connector with name: ECExampleConnector and engine_id: e2faf0c7-e532-46c6-9619-fb1623a37598
+(Worker pid=573970) INFO 05-03 23:27:18 [parallel_state.py:1715] rank 1 in world size 2 is assigned as DP rank 0, PP rank 1, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A
+(Worker pid=573970) INFO 05-03 23:27:18 [factory.py:45] Creating connector with name: ECExampleConnector and engine_id: e2faf0c7-e532-46c6-9619-fb1623a37598
+(Worker pid=573970) The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+(Worker pid=573969) The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+(Worker pid=573970) INFO 05-03 23:27:24 [base.py:106] Offloader set to NoopOffloader
+(Worker pid=573969) INFO 05-03 23:27:24 [base.py:106] Offloader set to NoopOffloader
+(Worker pid=573969) (Worker_PP0 pid=573969) INFO 05-03 23:27:24 [gpu_model_runner.py:4255] Starting to load model Qwen/Qwen2.5-VL-32B-Instruct...
+(Worker pid=573970) (Worker_PP1 pid=573970) INFO 05-03 23:27:24 [cuda.py:453] Using backend AttentionBackendEnum.FLASH_ATTN for vit attention
+(Worker pid=573970) (Worker_PP1 pid=573970) INFO 05-03 23:27:24 [mm_encoder_attention.py:215] Using AttentionBackendEnum.FLASH_ATTN for MMEncoderAttention.
+(Worker pid=573970) (Worker_PP1 pid=573970) INFO 05-03 23:27:24 [vllm.py:747] Asynchronous scheduling is enabled.
+(Worker pid=573970) (Worker_PP1 pid=573970) WARNING 05-03 23:27:24 [vllm.py:781] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(Worker pid=573970) (Worker_PP1 pid=573970) WARNING 05-03 23:27:24 [vllm.py:792] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(Worker pid=573970) (Worker_PP1 pid=573970) INFO 05-03 23:27:24 [vllm.py:957] Cudagraph is disabled under eager mode
+(Worker pid=573969) (Worker_PP0 pid=573969) INFO 05-03 23:27:25 [cuda.py:453] Using backend AttentionBackendEnum.FLASH_ATTN for vit attention
+(Worker pid=573969) (Worker_PP0 pid=573969) INFO 05-03 23:27:25 [mm_encoder_attention.py:215] Using AttentionBackendEnum.FLASH_ATTN for MMEncoderAttention.
+(Worker pid=573969) (Worker_PP0 pid=573969) INFO 05-03 23:27:25 [vllm.py:747] Asynchronous scheduling is enabled.
+(Worker pid=573969) (Worker_PP0 pid=573969) WARNING 05-03 23:27:25 [vllm.py:781] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(Worker pid=573969) (Worker_PP0 pid=573969) WARNING 05-03 23:27:25 [vllm.py:792] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(Worker pid=573969) (Worker_PP0 pid=573969) INFO 05-03 23:27:25 [vllm.py:957] Cudagraph is disabled under eager mode
+(Worker pid=573969) (Worker_PP0 pid=573969) INFO 05-03 23:27:25 [cuda.py:405] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].
+(Worker pid=573969) (Worker_PP0 pid=573969) INFO 05-03 23:27:25 [flash_attn.py:587] Using FlashAttention version 2
+(Worker pid=573969) (Worker_PP0 pid=573969) Loading safetensors checkpoint shards:   0% Completed | 0/18 [00:00<?, ?it/s]
+(Worker pid=573969) (Worker_PP0 pid=573969) Loading safetensors checkpoint shards:   6% Completed | 1/18 [00:01<00:28,  1.65s/it]
+(Worker pid=573969) (Worker_PP0 pid=573969) Loading safetensors checkpoint shards:  11% Completed | 2/18 [00:03<00:31,  1.96s/it]
+(Worker pid=573969) (Worker_PP0 pid=573969) Loading safetensors checkpoint shards:  17% Completed | 3/18 [00:06<00:31,  2.07s/it]
+(Worker pid=573969) (Worker_PP0 pid=573969) Loading safetensors checkpoint shards:  22% Completed | 4/18 [00:08<00:29,  2.12s/it]
+(Worker pid=573969) (Worker_PP0 pid=573969) Loading safetensors checkpoint shards:  28% Completed | 5/18 [00:10<00:27,  2.14s/it]
+(Worker pid=573969) (Worker_PP0 pid=573969) Loading safetensors checkpoint shards:  33% Completed | 6/18 [00:12<00:25,  2.15s/it]
+(Worker pid=573969) (Worker_PP0 pid=573969) Loading safetensors checkpoint shards:  39% Completed | 7/18 [00:14<00:23,  2.16s/it]
+(Worker pid=573969) (Worker_PP0 pid=573969) Loading safetensors checkpoint shards:  44% Completed | 8/18 [00:16<00:21,  2.16s/it]
+(Worker pid=573969) (Worker_PP0 pid=573969) Loading safetensors checkpoint shards:  50% Completed | 9/18 [00:19<00:19,  2.17s/it]
+(Worker pid=573969) (Worker_PP0 pid=573969) Loading safetensors checkpoint shards:  56% Completed | 10/18 [00:20<00:14,  1.79s/it]
+(Worker pid=573969) (Worker_PP0 pid=573969) Loading safetensors checkpoint shards: 100% Completed | 18/18 [00:20<00:00,  1.12s/it]
+(Worker pid=573969) (Worker_PP0 pid=573969) 
+(Worker pid=573969) (Worker_PP0 pid=573969) INFO 05-03 23:27:46 [default_loader.py:293] Loading weights took 20.12 seconds
+(Worker pid=573969) (Worker_PP0 pid=573969) INFO 05-03 23:27:46 [gpu_model_runner.py:4338] Model loading took 31.92 GiB memory and 21.189629 seconds
+(Worker pid=573970) (Worker_PP1 pid=573970) INFO 05-03 23:27:46 [gpu_model_runner.py:5254] Encoder cache will be initialized with a budget of 16384 tokens, and profiled with 1 image items of the maximum feature size.
+(Worker pid=573969) (Worker_PP0 pid=573969) INFO 05-03 23:27:46 [gpu_model_runner.py:5254] Encoder cache will be initialized with a budget of 16384 tokens, and profiled with 1 image items of the maximum feature size.
+(Worker pid=573969) (Worker_PP0 pid=573969) INFO 05-03 23:27:49 [gpu_worker.py:424] Available KV cache memory: 37.48 GiB
+(EngineCore_DP0 pid=573732) INFO 05-03 23:27:49 [kv_cache_utils.py:1314] GPU KV cache size: 306,992 tokens
+(EngineCore_DP0 pid=573732) INFO 05-03 23:27:49 [kv_cache_utils.py:1319] Maximum concurrency for 16,384 tokens per request: 18.74x
+(Worker pid=573969) (Worker_PP0 pid=573969) INFO 05-03 23:27:49 [nixl_connector.py:101] Setting UCX_RCACHE_MAX_UNRELEASED to '1024' to avoid a rare memory leak in UCX when using NIXL.
+(Worker pid=573970) (Worker_PP1 pid=573970) INFO 05-03 23:27:49 [nixl_connector.py:101] Setting UCX_RCACHE_MAX_UNRELEASED to '1024' to avoid a rare memory leak in UCX when using NIXL.
+(Worker pid=573970) (Worker_PP1 pid=573970) INFO 05-03 23:27:49 [nixl_connector.py:114] NIXL is available
+(Worker pid=573970) (Worker_PP1 pid=573970) INFO 05-03 23:27:49 [factory.py:64] Creating v1 connector with name: NixlConnector and engine_id: 98846cad-3e12-4768-a00e-840240cdb32f
+(Worker pid=573970) (Worker_PP1 pid=573970) WARNING 05-03 23:27:49 [base.py:166] Initializing KVConnectorBase_V1. This API is experimental and subject to change in the future as we iterate the design.
+(Worker pid=573970) (Worker_PP1 pid=573970) INFO 05-03 23:27:49 [nixl_connector.py:864] Initializing NIXL wrapper
+(Worker pid=573970) (Worker_PP1 pid=573970) INFO 05-03 23:27:49 [nixl_connector.py:865] Initializing NIXL worker 98846cad-3e12-4768-a00e-840240cdb32f
+(Worker pid=573969) (Worker_PP0 pid=573969) INFO 05-03 23:27:49 [nixl_connector.py:114] NIXL is available
+(Worker pid=573969) (Worker_PP0 pid=573969) INFO 05-03 23:27:49 [factory.py:64] Creating v1 connector with name: NixlConnector and engine_id: 98846cad-3e12-4768-a00e-840240cdb32f
+(Worker pid=573969) (Worker_PP0 pid=573969) WARNING 05-03 23:27:49 [base.py:166] Initializing KVConnectorBase_V1. This API is experimental and subject to change in the future as we iterate the design.
+(Worker pid=573969) (Worker_PP0 pid=573969) INFO 05-03 23:27:49 [nixl_connector.py:864] Initializing NIXL wrapper
+(Worker pid=573969) (Worker_PP0 pid=573969) INFO 05-03 23:27:49 [nixl_connector.py:865] Initializing NIXL worker 98846cad-3e12-4768-a00e-840240cdb32f
+(Worker pid=573970) (Worker_PP1 pid=573970) 2026-05-03 23:27:50 NIXL INFO    _api.py:363 Backend UCX was instantiated
+(Worker pid=573970) (Worker_PP1 pid=573970) 2026-05-03 23:27:50 NIXL INFO    _api.py:253 Initialized NIXL agent: 865d38e5-e84e-4505-8229-53a5a695260c
+(Worker pid=573970) (Worker_PP1 pid=573970) INFO 05-03 23:27:50 [nixl_connector.py:363] NixlConnector setting KV cache layout to HND for better xfer performance.
+(Worker pid=573970) (Worker_PP1 pid=573970) INFO 05-03 23:27:50 [nixl_connector.py:1341] Registering KV_Caches. use_mla: False, kv_buffer_device: cuda, use_host_buffer: False
+(Worker pid=573969) (Worker_PP0 pid=573969) 2026-05-03 23:27:50 NIXL INFO    _api.py:363 Backend UCX was instantiated
+(Worker pid=573969) (Worker_PP0 pid=573969) 2026-05-03 23:27:50 NIXL INFO    _api.py:253 Initialized NIXL agent: 12c916b8-57be-4bda-9fa0-01c24d2762be
+(Worker pid=573969) (Worker_PP0 pid=573969) INFO 05-03 23:27:50 [nixl_connector.py:363] NixlConnector setting KV cache layout to HND for better xfer performance.
+(Worker pid=573969) (Worker_PP0 pid=573969) INFO 05-03 23:27:50 [nixl_connector.py:1341] Registering KV_Caches. use_mla: False, kv_buffer_device: cuda, use_host_buffer: False
+(EngineCore_DP0 pid=573732) INFO 05-03 23:27:51 [core.py:282] init engine (profile, create kv cache, warmup model) took 4.43 seconds
+(EngineCore_DP0 pid=573732) INFO 05-03 23:27:52 [nixl_connector.py:101] Setting UCX_RCACHE_MAX_UNRELEASED to '1024' to avoid a rare memory leak in UCX when using NIXL.
+(EngineCore_DP0 pid=573732) INFO 05-03 23:27:52 [nixl_connector.py:114] NIXL is available
+(EngineCore_DP0 pid=573732) INFO 05-03 23:27:52 [factory.py:64] Creating v1 connector with name: NixlConnector and engine_id: 98846cad-3e12-4768-a00e-840240cdb32f
+(EngineCore_DP0 pid=573732) WARNING 05-03 23:27:52 [base.py:166] Initializing KVConnectorBase_V1. This API is experimental and subject to change in the future as we iterate the design.
+(EngineCore_DP0 pid=573732) INFO 05-03 23:27:52 [nixl_connector.py:538] Initializing NIXL Scheduler 98846cad-3e12-4768-a00e-840240cdb32f
+(EngineCore_DP0 pid=573732) INFO 05-03 23:27:52 [factory.py:45] Creating connector with name: ECExampleConnector and engine_id: e2faf0c7-e532-46c6-9619-fb1623a37598
+(EngineCore_DP0 pid=573732) The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+(APIServer pid=573373) INFO 05-03 23:27:58 [nixl_connector.py:101] Setting UCX_RCACHE_MAX_UNRELEASED to '1024' to avoid a rare memory leak in UCX when using NIXL.
+(EngineCore_DP0 pid=573732) INFO 05-03 23:27:58 [vllm.py:747] Asynchronous scheduling is enabled.
+(EngineCore_DP0 pid=573732) WARNING 05-03 23:27:58 [vllm.py:781] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(EngineCore_DP0 pid=573732) WARNING 05-03 23:27:58 [vllm.py:792] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(EngineCore_DP0 pid=573732) INFO 05-03 23:27:58 [vllm.py:957] Cudagraph is disabled under eager mode
+(APIServer pid=573373) INFO 05-03 23:27:58 [nixl_connector.py:114] NIXL is available
+(APIServer pid=573373) INFO 05-03 23:27:58 [api_server.py:495] Supported tasks: ['generate']
+(APIServer pid=573373) WARNING 05-03 23:27:59 [model.py:1355] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'repetition_penalty': 1.05, 'temperature': 1e-06}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`.
+(APIServer pid=573373) INFO 05-03 23:27:59 [serving.py:185] Warming up chat template processing...
+(APIServer pid=573373) INFO 05-03 23:28:02 [hf.py:318] Detected the chat template content format to be 'openai'. You can set `--chat-template-content-format` to override this.
+(APIServer pid=573373) INFO 05-03 23:28:02 [serving.py:210] Chat template warmup completed in 2892.9ms
+(APIServer pid=573373) INFO 05-03 23:28:02 [api_server.py:500] Starting vLLM API server 0 on http://0.0.0.0:19535
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:38] Available routes are:
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /openapi.json, Methods: GET, HEAD
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /docs, Methods: GET, HEAD
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /docs/oauth2-redirect, Methods: GET, HEAD
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /redoc, Methods: GET, HEAD
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /tokenize, Methods: POST
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /detokenize, Methods: POST
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /load, Methods: GET
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /version, Methods: GET
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /health, Methods: GET
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /metrics, Methods: GET
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /v1/models, Methods: GET
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /ping, Methods: GET
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /ping, Methods: POST
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /invocations, Methods: POST
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /v1/chat/completions, Methods: POST
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /v1/chat/completions/render, Methods: POST
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /v1/responses, Methods: POST
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /v1/responses/{response_id}, Methods: GET
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /v1/responses/{response_id}/cancel, Methods: POST
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /v1/completions, Methods: POST
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /v1/completions/render, Methods: POST
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /v1/messages, Methods: POST
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /v1/messages/count_tokens, Methods: POST
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /inference/v1/generate, Methods: POST
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /scale_elastic_ep, Methods: POST
+(APIServer pid=573373) INFO 05-03 23:28:02 [launcher.py:47] Route: /is_scaling_elastic_ep, Methods: POST
+(APIServer pid=573373) INFO:     Started server process [573373]
+(APIServer pid=573373) INFO:     Waiting for application startup.
+(APIServer pid=573373) INFO:     Application startup complete.
+(APIServer pid=573373) INFO:     127.0.0.1:34404 - "GET /v1/models HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:34880 - "GET /v1/models HTTP/1.1" 200 OK
+(APIServer pid=573373) WARNING 05-03 23:30:01 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(Worker pid=573969) (Worker_PP0 pid=573969) /pscratch/sd/k/krajeshk/PRISM_env/vllm/vllm/distributed/parallel_state.py:659: UserWarning: The given buffer is not writable, and PyTorch does not support non-writable tensors. This means you can write to the underlying (supposedly non-writable) buffer using the tensor. You may want to copy the buffer to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:1586.)
+(Worker pid=573969) (Worker_PP0 pid=573969)   object_tensor = torch.frombuffer(pickle.dumps(obj), dtype=torch.uint8)
+NCCL version 2.28.9+cuda12.9
+[rank0]:[W503 23:30:02.342983960 ProcessGroupNCCL.cpp:4094] Warning: An unbatched P2P op (send/recv) was called on this ProcessGroup with size 2.  In lazy initialization mode, this will result in a new 2-rank NCCL communicator to be created. (function operator())
+[rank1]:[W503 23:30:02.343205428 ProcessGroupNCCL.cpp:4094] Warning: An unbatched P2P op (send/recv) was called on this ProcessGroup with size 2.  In lazy initialization mode, this will result in a new 2-rank NCCL communicator to be created. (function operator())
+(APIServer pid=573373) INFO:     127.0.0.1:50380 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO 05-03 23:30:02 [loggers.py:259] Engine 000: Avg prompt throughput: 89.5 tokens/s, Avg generation throughput: 0.1 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.3%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+(APIServer pid=573373) INFO 05-03 23:30:12 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.3%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+(APIServer pid=573373) WARNING 05-03 23:30:12 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:13 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-db571503-9305-4ec7-b7d1-f5e4dd5e0fe0-800179fc were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:13 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-db571503-9305-4ec7-b7d1-f5e4dd5e0fe0-800179fc were retrieved by a decode worker. They may have expired.
+(APIServer pid=573373) INFO:     127.0.0.1:57504 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) WARNING 05-03 23:30:15 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:15 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-e294c9d9-3927-4cbb-8fe9-5ba6bbe63305-8350a6e9 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:15 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-e294c9d9-3927-4cbb-8fe9-5ba6bbe63305-8350a6e9 were retrieved by a decode worker. They may have expired.
+(APIServer pid=573373) INFO:     127.0.0.1:57504 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) WARNING 05-03 23:30:18 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:18 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-5ff71cf3-af86-4474-9705-1a72be683278-a5c9f19d were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:18 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-5ff71cf3-af86-4474-9705-1a72be683278-a5c9f19d were retrieved by a decode worker. They may have expired.
+(APIServer pid=573373) INFO:     127.0.0.1:57504 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) WARNING 05-03 23:30:21 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:21 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-66d7999b-4e82-4491-9364-4889634b9c57-a1e46f54 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:21 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-66d7999b-4e82-4491-9364-4889634b9c57-a1e46f54 were retrieved by a decode worker. They may have expired.
+(APIServer pid=573373) WARNING 05-03 23:30:21 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:30:21 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:30:21 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) INFO:     127.0.0.1:57504 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:34650 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:34652 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:34662 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO 05-03 23:30:22 [loggers.py:259] Engine 000: Avg prompt throughput: 626.5 tokens/s, Avg generation throughput: 0.7 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.3%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%, MM cache hit rate: 50.0%
+(APIServer pid=573373) WARNING 05-03 23:30:27 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:30:27 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:30:27 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:30:27 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:27 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-6af345fc-b62a-4e66-ae8a-6b0c0ea91cab-867ab7e6 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:27 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-a74220e4-99bd-4448-a338-01aff143544a-9561cdac were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:27 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-1f7f975f-4a81-4413-8e6e-ed59d9a85f98-80b57b94 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:27 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-a45f2bfe-fddf-4d5d-a942-2d065f30d9a4-b9d014d1 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:27 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-6af345fc-b62a-4e66-ae8a-6b0c0ea91cab-867ab7e6 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:27 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-a74220e4-99bd-4448-a338-01aff143544a-9561cdac were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:27 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-1f7f975f-4a81-4413-8e6e-ed59d9a85f98-80b57b94 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:27 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-a45f2bfe-fddf-4d5d-a942-2d065f30d9a4-b9d014d1 were retrieved by a decode worker. They may have expired.
+(APIServer pid=573373) INFO:     127.0.0.1:34650 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:34652 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:34662 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:34664 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) WARNING 05-03 23:30:32 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:30:32 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:30:32 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:30:32 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:32 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-8da9cbdb-15c2-48af-bd93-125090c32109-a6b5883b were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:32 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-53772c73-2876-4b07-9354-b2b47a2c3a35-86ad7118 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:32 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-1616537e-2731-4045-b7ce-e555065a7a5d-957ee4e2 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:32 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-5f7834a7-aa77-4543-b826-2c0605990fa5-9b8285da were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:32 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-8da9cbdb-15c2-48af-bd93-125090c32109-a6b5883b were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:32 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-53772c73-2876-4b07-9354-b2b47a2c3a35-86ad7118 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:32 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-1616537e-2731-4045-b7ce-e555065a7a5d-957ee4e2 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:32 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-5f7834a7-aa77-4543-b826-2c0605990fa5-9b8285da were retrieved by a decode worker. They may have expired.
+(APIServer pid=573373) INFO:     127.0.0.1:34652 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO 05-03 23:30:32 [loggers.py:259] Engine 000: Avg prompt throughput: 447.5 tokens/s, Avg generation throughput: 0.5 tokens/s, Running: 3 reqs, Waiting: 0 reqs, GPU KV cache usage: 4.5%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%, MM cache hit rate: 75.0%
+(APIServer pid=573373) INFO:     127.0.0.1:34662 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:34664 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:51296 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) WARNING 05-03 23:30:37 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:30:37 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:30:37 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:30:37 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:37 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-6539245f-869a-4fc0-a37e-df27d3c4e158-a6ab9f36 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:37 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-4ff2f7b6-362e-4e54-9294-ec8e7fe3bf37-bf4e3402 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:37 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-fa5afcb8-e174-40cc-9504-c870477fe76a-a4797230 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:37 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-9c34d8c9-6866-40a1-b290-00820a9ca420-aa958283 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:37 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-6539245f-869a-4fc0-a37e-df27d3c4e158-a6ab9f36 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:37 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-4ff2f7b6-362e-4e54-9294-ec8e7fe3bf37-bf4e3402 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:37 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-fa5afcb8-e174-40cc-9504-c870477fe76a-a4797230 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:37 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-9c34d8c9-6866-40a1-b290-00820a9ca420-aa958283 were retrieved by a decode worker. They may have expired.
+(APIServer pid=573373) INFO:     127.0.0.1:34652 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:34664 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:34662 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:51296 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO 05-03 23:30:42 [loggers.py:259] Engine 000: Avg prompt throughput: 626.5 tokens/s, Avg generation throughput: 0.7 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 5.8%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%, MM cache hit rate: 80.0%
+(APIServer pid=573373) WARNING 05-03 23:30:43 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:30:43 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:30:43 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:30:43 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:43 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-f5df6b8d-41cb-4eed-8795-1e44b71c3734-bf55f3c5 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:43 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-ab74fb40-a77a-4cad-baa9-6ab70bc166f4-aca20dc5 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:43 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-d933b16e-0073-46fb-a6db-89369c0a601c-aeee4b4e were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:43 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-988cccdb-917d-4e70-8420-47d6e3439986-a08132a7 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:43 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-f5df6b8d-41cb-4eed-8795-1e44b71c3734-bf55f3c5 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:43 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-ab74fb40-a77a-4cad-baa9-6ab70bc166f4-aca20dc5 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:43 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-d933b16e-0073-46fb-a6db-89369c0a601c-aeee4b4e were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:43 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-988cccdb-917d-4e70-8420-47d6e3439986-a08132a7 were retrieved by a decode worker. They may have expired.
+(APIServer pid=573373) INFO:     127.0.0.1:34664 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:34662 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:51296 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:40434 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) WARNING 05-03 23:30:48 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:48 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-e0627d8d-6a89-4a39-844e-488b85f72fdc-9dd17a44 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:48 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-033c6a01-98d4-4f12-ae85-8858353a9d9d-9a84314f were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:48 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-710615a5-d9a0-456a-93db-cd3e78d073b5-a249f240 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:48 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-28c6850e-3bca-45e1-ac68-dbc911a1cb96-973bbd39 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:48 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-e0627d8d-6a89-4a39-844e-488b85f72fdc-9dd17a44 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:48 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-033c6a01-98d4-4f12-ae85-8858353a9d9d-9a84314f were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:48 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-710615a5-d9a0-456a-93db-cd3e78d073b5-a249f240 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:48 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-28c6850e-3bca-45e1-ac68-dbc911a1cb96-973bbd39 were retrieved by a decode worker. They may have expired.
+(APIServer pid=573373) WARNING 05-03 23:30:48 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:30:48 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:30:48 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) INFO:     127.0.0.1:34664 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:51296 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:34662 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:40434 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO 05-03 23:30:52 [loggers.py:259] Engine 000: Avg prompt throughput: 716.0 tokens/s, Avg generation throughput: 0.8 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 8.2%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%, MM cache hit rate: 85.7%
+(APIServer pid=573373) WARNING 05-03 23:30:53 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:30:53 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:30:53 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:30:53 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:53 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-a23e5d69-4888-48ce-a2d4-de4f54ae951b-b1065f9b were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:53 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-d05596d6-7253-4627-862b-f2953b19b616-9efc8daf were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:53 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-95152d87-55ad-4b57-85c5-033946b76e42-a83b431c were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:53 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-ee3b8b23-1bd3-4d3c-bf55-ddacbc2b4043-b3336844 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:53 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-a23e5d69-4888-48ce-a2d4-de4f54ae951b-b1065f9b were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:53 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-d05596d6-7253-4627-862b-f2953b19b616-9efc8daf were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:53 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-95152d87-55ad-4b57-85c5-033946b76e42-a83b431c were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:53 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-ee3b8b23-1bd3-4d3c-bf55-ddacbc2b4043-b3336844 were retrieved by a decode worker. They may have expired.
+(APIServer pid=573373) INFO:     127.0.0.1:51296 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:34662 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:40434 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:46282 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) WARNING 05-03 23:30:58 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:30:58 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:30:58 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:30:58 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:58 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-f13efc50-83a1-469b-9f54-be98293a323e-b349f0fa were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:58 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-3efe4e37-08a9-4fec-ba01-1763e7ec23ab-8d9f972c were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:58 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-38153b0b-a589-4d88-a3da-ce7c2e12498c-9b6b33b0 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:58 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-7f71d7f0-a1be-492f-aaa7-8a8ce006e6e1-9eeeb9d7 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:58 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-f13efc50-83a1-469b-9f54-be98293a323e-b349f0fa were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:58 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-3efe4e37-08a9-4fec-ba01-1763e7ec23ab-8d9f972c were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:58 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-38153b0b-a589-4d88-a3da-ce7c2e12498c-9b6b33b0 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:30:58 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-7f71d7f0-a1be-492f-aaa7-8a8ce006e6e1-9eeeb9d7 were retrieved by a decode worker. They may have expired.
+(APIServer pid=573373) INFO:     127.0.0.1:51296 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:34662 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:46282 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:40434 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO 05-03 23:31:02 [loggers.py:259] Engine 000: Avg prompt throughput: 716.1 tokens/s, Avg generation throughput: 0.8 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 10.5%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%, MM cache hit rate: 88.9%
+(APIServer pid=573373) WARNING 05-03 23:31:04 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:31:04 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:31:04 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:31:04 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:04 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-43dd844c-a149-4576-b639-b05f8da0dd96-8669480b were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:04 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-3c2d9194-bc4d-4ead-b0b1-4e98cbc51bd2-817789cb were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:04 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-3eb2b46e-e25f-421e-b4cc-d54f12c87e89-8b806676 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:04 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-793c1d93-d465-40b3-89c9-15d3d19e2754-b86b1107 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:04 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-43dd844c-a149-4576-b639-b05f8da0dd96-8669480b were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:04 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-3c2d9194-bc4d-4ead-b0b1-4e98cbc51bd2-817789cb were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:04 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-3eb2b46e-e25f-421e-b4cc-d54f12c87e89-8b806676 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:04 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-793c1d93-d465-40b3-89c9-15d3d19e2754-b86b1107 were retrieved by a decode worker. They may have expired.
+(APIServer pid=573373) INFO:     127.0.0.1:46282 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:34662 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:40434 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:40860 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) WARNING 05-03 23:31:09 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:31:09 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:31:09 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:31:09 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:09 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-676183ee-596e-4e7c-b649-9558dd2c57ec-96d62372 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:09 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-4de76f58-bb18-433c-bb55-a164c308198e-a8263789 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:09 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-c3835ad6-93ec-499a-877f-0499de066ed9-a6415454 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:09 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-2c64534b-7ce7-4990-b41f-28d751e4f3cb-8c67e763 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:09 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-676183ee-596e-4e7c-b649-9558dd2c57ec-96d62372 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:09 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-4de76f58-bb18-433c-bb55-a164c308198e-a8263789 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:09 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-c3835ad6-93ec-499a-877f-0499de066ed9-a6415454 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:09 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-2c64534b-7ce7-4990-b41f-28d751e4f3cb-8c67e763 were retrieved by a decode worker. They may have expired.
+(APIServer pid=573373) INFO:     127.0.0.1:40434 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:34662 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:40860 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:49296 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO 05-03 23:31:12 [loggers.py:259] Engine 000: Avg prompt throughput: 716.0 tokens/s, Avg generation throughput: 0.8 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 12.8%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%, MM cache hit rate: 90.9%
+(APIServer pid=573373) WARNING 05-03 23:31:14 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:31:14 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:31:14 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:31:14 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:14 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-41909edf-5146-452d-aa28-8d2dc2189a7c-9cdb75fb were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:14 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-3d245369-c570-4ea5-8692-6158b1ff30ac-a0036017 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:14 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-cd808a89-a8f7-48fc-aae9-7e16b8762569-85302487 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:14 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-84cfc0eb-18e0-4d71-9c50-e52d8fff551d-93fe0aea were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:14 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-41909edf-5146-452d-aa28-8d2dc2189a7c-9cdb75fb were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:14 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-3d245369-c570-4ea5-8692-6158b1ff30ac-a0036017 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:14 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-cd808a89-a8f7-48fc-aae9-7e16b8762569-85302487 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:14 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-84cfc0eb-18e0-4d71-9c50-e52d8fff551d-93fe0aea were retrieved by a decode worker. They may have expired.
+(APIServer pid=573373) INFO:     127.0.0.1:40434 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:40860 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:34662 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:49296 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) WARNING 05-03 23:31:20 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:31:20 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:31:20 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:31:20 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:20 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-2f3ad2d2-39df-4f80-bab7-b437942e64a1-957dfae9 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:20 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-090a3797-8b25-46a5-85fd-3f35e54b6b13-bafddc77 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:20 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-d3fe223a-74e8-422b-a000-8c3aea2ed85a-930e6316 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:20 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-cfd23537-96b1-4d5d-8638-818aff53abf4-807b4499 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:20 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-2f3ad2d2-39df-4f80-bab7-b437942e64a1-957dfae9 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:20 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-090a3797-8b25-46a5-85fd-3f35e54b6b13-bafddc77 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:20 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-d3fe223a-74e8-422b-a000-8c3aea2ed85a-930e6316 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:20 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-cfd23537-96b1-4d5d-8638-818aff53abf4-807b4499 were retrieved by a decode worker. They may have expired.
+(APIServer pid=573373) INFO:     127.0.0.1:40860 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:34662 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:49296 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:34750 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO 05-03 23:31:22 [loggers.py:259] Engine 000: Avg prompt throughput: 716.0 tokens/s, Avg generation throughput: 0.8 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 15.2%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%, MM cache hit rate: 92.3%
+(APIServer pid=573373) WARNING 05-03 23:31:25 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(APIServer pid=573373) WARNING 05-03 23:31:25 [sampling_params.py:368] temperature 1e-06 is less than 0.01, which may cause numerical errors nan or inf in tensors. We have maxed it out to 0.01.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:25 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-4a708f5e-a037-43c0-82cf-93fffd555b03-99e1606d were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:25 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-dc828e83-f3bf-42d1-b798-923057d9ec7d-a769f80f were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:25 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-077215a4-3eb0-4f2d-818d-35396346b170-8cc7caf4 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:25 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-fa96242a-bd47-4a7d-af14-cc9c79f02a77-a64216c9 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:25 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-4a708f5e-a037-43c0-82cf-93fffd555b03-99e1606d were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:25 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-dc828e83-f3bf-42d1-b798-923057d9ec7d-a769f80f were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:25 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-077215a4-3eb0-4f2d-818d-35396346b170-8cc7caf4 were retrieved by a decode worker. They may have expired.
+(Worker pid=573970) (Worker_PP1 pid=573970) ERROR 05-03 23:31:25 [nixl_connector.py:2022] Potentially invalid KV blocks for unrecognized request chatcmpl-fa96242a-bd47-4a7d-af14-cc9c79f02a77-a64216c9 were retrieved by a decode worker. They may have expired.
+(APIServer pid=573373) INFO:     127.0.0.1:49296 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO:     127.0.0.1:34662 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=573373) INFO 05-03 23:31:32 [loggers.py:259] Engine 000: Avg prompt throughput: 179.0 tokens/s, Avg generation throughput: 0.2 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 15.8%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%, MM cache hit rate: 92.6%
+(APIServer pid=573373) INFO 05-03 23:31:42 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 15.8%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%, MM cache hit rate: 92.6%

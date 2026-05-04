@@ -1,0 +1,10 @@
+Allocated Slurm nodes:
+  nid008448
+  nid008449
+
+Layout:
+  nid008448  GPUs 0,1  -> Encoder  (TP=2)
+  nid008448  GPUs 2,3  -> Prefill  (TP=1 PP=2)
+  nid008449  GPUs 0,1,2,3    -> Decode   (TP=2 PP=2)
+
+No Ray. Each role is a single-node vLLM service. NixlConnector for KV transfer.
