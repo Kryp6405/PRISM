@@ -1,37 +1,20 @@
 #!/usr/bin/env python3
 """
-Plot Phase 4 stage-comparison bar charts.
+Phase 4 stage-comparison plots.
 
-Expected comparison:
-  workloads:
-    - baseline
-    - encoder_heavy
-    - decode_heavy
+Creates workload-local plots:
 
-  stages:
-    - AGG
-    - E/PD
-    - E/P/D
+  artifacts/p4/baseline/plots/
+  artifacts/p4/encoder_heavy/plots/
+  artifacts/p4/decode_heavy/plots/
 
-Each plot:
-  x-axis = stage type
-  y-axis = metric
+Main latency plot:
+  x-axis groups: AGG, E/PD, E/P/D
+  grouped bars: avg latency, p90 latency, p99 latency
 
-This script scans AIPerf artifact directories and extracts metrics from:
-  - profile_export_aiperf.json
-  - profile_export_aiperf.csv
-  - profile_export.jsonl fallback
-
-Usage:
-  python scripts/phase4/plot_stage_comparison.py \
-    --artifact-root artifacts/p4 \
-    --out-dir artifacts/p4/plots/stage_comparison
-
-Optional:
-  python scripts/phase4/plot_stage_comparison.py \
-    --artifact-root artifacts/p4 \
-    --out-dir artifacts/p4/plots/stage_comparison \
-    --show-table
+Other plots:
+  x-axis: AGG, E/PD, E/P/D
+  y-axis: metric value
 """
 
 from __future__ import annotations
@@ -69,7 +52,6 @@ STAGE_PATTERNS = {
 
 WORKLOAD_ORDER = ["baseline", "encoder_heavy", "decode_heavy"]
 
-# Add aliases here if your folder names differ.
 WORKLOAD_ALIASES = {
     "baseline": [
         "baseline",
@@ -91,60 +73,6 @@ WORKLOAD_ALIASES = {
     ],
 }
 
-# Standardized metric names we care about.
-METRIC_NAME_MAP = {
-    "request_latency_ms_avg": [
-        "Request Latency (ms)",
-        "request_latency_ms",
-        "request_latency",
-        "request_latency_avg",
-    ],
-    "request_latency_ms_p50": [
-        "Request Latency (ms) p50",
-        "request_latency_p50",
-        "request_latency_ms_p50",
-    ],
-    "request_latency_ms_p90": [
-        "Request Latency (ms) p90",
-        "request_latency_p90",
-        "request_latency_ms_p90",
-    ],
-    "request_latency_ms_p99": [
-        "Request Latency (ms) p99",
-        "request_latency_p99",
-        "request_latency_ms_p99",
-    ],
-    "request_throughput_rps": [
-        "Request Throughput (requests/sec)",
-        "request_throughput",
-        "request_throughput_rps",
-    ],
-    "output_token_throughput_tps": [
-        "Output Token Throughput (tokens/sec)",
-        "output_token_throughput",
-        "output_token_throughput_tps",
-    ],
-    "image_throughput_ips": [
-        "Image Throughput (images/sec)",
-        "image_throughput",
-        "image_throughput_ips",
-    ],
-    "input_tokens_avg": [
-        "Input Sequence Length (tokens)",
-        "input_sequence_length",
-        "input_tokens",
-    ],
-    "output_tokens_avg": [
-        "Output Sequence Length (tokens)",
-        "output_sequence_length",
-        "output_tokens",
-    ],
-    "request_count": [
-        "Request Count (requests)",
-        "request_count",
-    ],
-}
-
 METRIC_LABELS = {
     "request_latency_ms_avg": "Avg Request Latency (ms)",
     "request_latency_ms_p50": "P50 Request Latency (ms)",
@@ -158,11 +86,19 @@ METRIC_LABELS = {
     "request_count": "Request Count",
 }
 
-DEFAULT_METRICS = [
+LATENCY_METRICS = [
     "request_latency_ms_avg",
-    "request_latency_ms_p50",
     "request_latency_ms_p90",
     "request_latency_ms_p99",
+]
+
+LATENCY_LEGEND_LABELS = {
+    "request_latency_ms_avg": "Avg",
+    "request_latency_ms_p90": "P90",
+    "request_latency_ms_p99": "P99",
+}
+
+SINGLE_METRICS = [
     "request_throughput_rps",
     "output_token_throughput_tps",
     "image_throughput_ips",
@@ -174,11 +110,11 @@ DEFAULT_METRICS = [
 def safe_float(value: Any) -> float | None:
     if value is None:
         return None
-
     if isinstance(value, (int, float)):
-        if math.isnan(float(value)):
+        value = float(value)
+        if math.isnan(value):
             return None
-        return float(value)
+        return value
 
     text = str(value).strip()
     if not text or text.upper() in {"N/A", "NA", "NONE", "NULL", "NAN"}:
@@ -191,14 +127,26 @@ def safe_float(value: Any) -> float | None:
         return None
 
 
-def normalize_key(s: str) -> str:
-    return re.sub(r"[^a-z0-9]+", "_", s.lower()).strip("_")
+def format_metric_value(v: float) -> str:
+    if abs(v) >= 100:
+        return f"{v:,.1f}"
+    if abs(v) >= 10:
+        return f"{v:,.2f}"
+    return f"{v:,.3f}"
+
+
+def pretty_workload_name(workload: str) -> str:
+    return {
+        "baseline": "Baseline: 512×512 input, 64 output tokens",
+        "encoder_heavy": "Encoder-heavy: 2048×2048 input, 128 output tokens",
+        "decode_heavy": "Decode-heavy: 512×512 input, 1024 output tokens",
+    }.get(workload, workload)
 
 
 def infer_stage(path: Path) -> str | None:
     text = str(path).lower()
 
-    # Check more specific pattern first.
+    # Important: check E/P/D before E/PD so e-p-d does not partially match e-pd.
     for stage in ["E/P/D", "E/PD", "AGG"]:
         for pattern in STAGE_PATTERNS[stage]:
             if pattern.lower() in text:
@@ -222,17 +170,68 @@ def infer_workload(path: Path) -> str | None:
 
 def extract_concurrency(path: Path) -> int | None:
     match = re.search(r"concurrency(\d+)", str(path))
-    if match:
-        return int(match.group(1))
-    return None
+    return int(match.group(1)) if match else None
 
 
-def load_json(path: Path) -> Any | None:
+def parse_csv_metrics(path: Path) -> dict[str, float]:
+    metrics: dict[str, float] = {}
+
     try:
-        with path.open() as f:
-            return json.load(f)
+        with path.open(newline="") as f:
+            rows = list(csv.DictReader(f))
     except Exception:
-        return None
+        return metrics
+
+    if not rows:
+        return metrics
+
+    fieldnames = set(rows[0].keys())
+    metric_field = None
+    for candidate in ["Metric", "metric", "name", "Metric Name"]:
+        if candidate in fieldnames:
+            metric_field = candidate
+            break
+
+    if not metric_field:
+        return metrics
+
+    for row in rows:
+        metric_name = str(row.get(metric_field, "")).strip()
+
+        avg = safe_float(row.get("avg") or row.get("Avg") or row.get("mean") or row.get("Mean"))
+        p50 = safe_float(row.get("p50") or row.get("P50"))
+        p90 = safe_float(row.get("p90") or row.get("P90"))
+        p99 = safe_float(row.get("p99") or row.get("P99"))
+
+        if "Request Latency" in metric_name:
+            if avg is not None:
+                metrics["request_latency_ms_avg"] = avg
+            if p50 is not None:
+                metrics["request_latency_ms_p50"] = p50
+            if p90 is not None:
+                metrics["request_latency_ms_p90"] = p90
+            if p99 is not None:
+                metrics["request_latency_ms_p99"] = p99
+
+        elif "Request Throughput" in metric_name and avg is not None:
+            metrics["request_throughput_rps"] = avg
+
+        elif "Output Token Throughput" in metric_name and avg is not None:
+            metrics["output_token_throughput_tps"] = avg
+
+        elif "Image Throughput" in metric_name and avg is not None:
+            metrics["image_throughput_ips"] = avg
+
+        elif "Input Sequence Length" in metric_name and avg is not None:
+            metrics["input_tokens_avg"] = avg
+
+        elif "Output Sequence Length" in metric_name and avg is not None:
+            metrics["output_tokens_avg"] = avg
+
+        elif "Request Count" in metric_name and avg is not None:
+            metrics["request_count"] = avg
+
+    return metrics
 
 
 def flatten_json(obj: Any, prefix: str = "") -> dict[str, Any]:
@@ -252,217 +251,63 @@ def flatten_json(obj: Any, prefix: str = "") -> dict[str, Any]:
     return out
 
 
-def find_metric_in_flat(flat: dict[str, Any], metric_key: str) -> float | None:
-    aliases = METRIC_NAME_MAP[metric_key]
-    normalized_aliases = {normalize_key(a) for a in aliases}
-
-    # First exact-ish normalized key match.
-    for k, v in flat.items():
-        nk = normalize_key(k)
-        if nk in normalized_aliases:
-            val = safe_float(v)
-            if val is not None:
-                return val
-
-    # Then fuzzy suffix/contains match.
-    for k, v in flat.items():
-        nk = normalize_key(k)
-        for alias in normalized_aliases:
-            if nk.endswith(alias) or alias in nk:
-                val = safe_float(v)
-                if val is not None:
-                    return val
-
-    return None
+def normalize_key(s: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "_", s.lower()).strip("_")
 
 
-def parse_profile_export_json(path: Path) -> dict[str, float]:
-    data = load_json(path)
-    if data is None:
+def parse_json_metrics(path: Path) -> dict[str, float]:
+    try:
+        with path.open() as f:
+            data = json.load(f)
+    except Exception:
         return {}
 
     flat = flatten_json(data)
     metrics: dict[str, float] = {}
 
-    for metric_key in METRIC_NAME_MAP:
-        val = find_metric_in_flat(flat, metric_key)
-        if val is not None:
-            metrics[metric_key] = val
+    aliases = {
+        "request_latency_ms_avg": ["request_latency_ms_avg", "request_latency_avg", "request_latency_ms", "Request Latency (ms)"],
+        "request_latency_ms_p50": ["request_latency_ms_p50", "request_latency_p50"],
+        "request_latency_ms_p90": ["request_latency_ms_p90", "request_latency_p90"],
+        "request_latency_ms_p99": ["request_latency_ms_p99", "request_latency_p99"],
+        "request_throughput_rps": ["request_throughput_rps", "request_throughput", "Request Throughput (requests/sec)"],
+        "output_token_throughput_tps": ["output_token_throughput_tps", "output_token_throughput", "Output Token Throughput (tokens/sec)"],
+        "image_throughput_ips": ["image_throughput_ips", "image_throughput", "Image Throughput (images/sec)"],
+        "input_tokens_avg": ["input_tokens_avg", "input_sequence_length", "Input Sequence Length (tokens)"],
+        "output_tokens_avg": ["output_tokens_avg", "output_sequence_length", "Output Sequence Length (tokens)"],
+    }
 
-    return metrics
+    normalized_flat = {normalize_key(k): v for k, v in flat.items()}
 
+    for metric_key, names in aliases.items():
+        normalized_names = [normalize_key(n) for n in names]
 
-def parse_profile_export_csv(path: Path) -> dict[str, float]:
-    metrics: dict[str, float] = {}
-
-    try:
-        with path.open(newline="") as f:
-            rows = list(csv.DictReader(f))
-    except Exception:
-        return metrics
-
-    if not rows:
-        return metrics
-
-    # AIPerf CSV can be either metric rows or one summary row.
-    # Case 1: rows like Metric,avg,min,max,p99,p90,p50,std
-    fieldnames = rows[0].keys()
-
-    metric_field = None
-    for candidate in ["Metric", "metric", "name", "Metric Name"]:
-        if candidate in fieldnames:
-            metric_field = candidate
-            break
-
-    if metric_field:
-        for row in rows:
-            metric_name = str(row.get(metric_field, "")).strip()
-            avg = safe_float(row.get("avg") or row.get("Avg") or row.get("mean") or row.get("Mean"))
-            p50 = safe_float(row.get("p50") or row.get("P50"))
-            p90 = safe_float(row.get("p90") or row.get("P90"))
-            p99 = safe_float(row.get("p99") or row.get("P99"))
-
-            if "Request Latency" in metric_name:
-                if avg is not None:
-                    metrics["request_latency_ms_avg"] = avg
-                if p50 is not None:
-                    metrics["request_latency_ms_p50"] = p50
-                if p90 is not None:
-                    metrics["request_latency_ms_p90"] = p90
-                if p99 is not None:
-                    metrics["request_latency_ms_p99"] = p99
-            elif "Request Throughput" in metric_name and avg is not None:
-                metrics["request_throughput_rps"] = avg
-            elif "Output Token Throughput" in metric_name and avg is not None:
-                metrics["output_token_throughput_tps"] = avg
-            elif "Image Throughput" in metric_name and avg is not None:
-                metrics["image_throughput_ips"] = avg
-            elif "Input Sequence Length" in metric_name and avg is not None:
-                metrics["input_tokens_avg"] = avg
-            elif "Output Sequence Length" in metric_name and avg is not None:
-                metrics["output_tokens_avg"] = avg
-            elif "Request Count" in metric_name and avg is not None:
-                metrics["request_count"] = avg
-
-        return metrics
-
-    # Case 2: one wide summary row.
-    flat: dict[str, Any] = {}
-    for row in rows:
-        for k, v in row.items():
-            flat[k] = v
-
-    for metric_key in METRIC_NAME_MAP:
-        val = find_metric_in_flat(flat, metric_key)
-        if val is not None:
-            metrics[metric_key] = val
-
-    return metrics
-
-
-def parse_profile_export_jsonl(path: Path) -> dict[str, float]:
-    """
-    Fallback parser from per-record JSONL.
-    Only computes simple latency if obvious fields exist.
-    """
-    latencies_ms: list[float] = []
-    output_tokens: list[float] = []
-    input_tokens: list[float] = []
-
-    try:
-        lines = path.read_text().splitlines()
-    except Exception:
-        return {}
-
-    for line in lines:
-        if not line.strip():
-            continue
-
-        try:
-            obj = json.loads(line)
-        except Exception:
-            continue
-
-        flat = flatten_json(obj)
-
-        latency = None
-        for key in flat:
-            nk = normalize_key(key)
-            if "latency" in nk and ("ms" in nk or "duration" in nk):
-                latency = safe_float(flat[key])
-                if latency is not None:
-                    break
-
-        if latency is not None:
-            latencies_ms.append(latency)
-
-        for key in flat:
-            nk = normalize_key(key)
-            if "output" in nk and "token" in nk:
-                val = safe_float(flat[key])
+        for nk, value in normalized_flat.items():
+            if any(n == nk or nk.endswith(n) or n in nk for n in normalized_names):
+                val = safe_float(value)
                 if val is not None:
-                    output_tokens.append(val)
+                    metrics[metric_key] = val
                     break
-
-        for key in flat:
-            nk = normalize_key(key)
-            if "input" in nk and "token" in nk:
-                val = safe_float(flat[key])
-                if val is not None:
-                    input_tokens.append(val)
-                    break
-
-    metrics: dict[str, float] = {}
-
-    if latencies_ms:
-        latencies_ms_sorted = sorted(latencies_ms)
-        metrics["request_latency_ms_avg"] = sum(latencies_ms) / len(latencies_ms)
-        metrics["request_latency_ms_p50"] = percentile(latencies_ms_sorted, 50)
-        metrics["request_latency_ms_p90"] = percentile(latencies_ms_sorted, 90)
-        metrics["request_latency_ms_p99"] = percentile(latencies_ms_sorted, 99)
-
-    if output_tokens:
-        metrics["output_tokens_avg"] = sum(output_tokens) / len(output_tokens)
-
-    if input_tokens:
-        metrics["input_tokens_avg"] = sum(input_tokens) / len(input_tokens)
 
     return metrics
-
-
-def percentile(sorted_values: list[float], p: float) -> float:
-    if not sorted_values:
-        return float("nan")
-
-    k = (len(sorted_values) - 1) * (p / 100.0)
-    f = math.floor(k)
-    c = math.ceil(k)
-
-    if f == c:
-        return sorted_values[int(k)]
-
-    return sorted_values[f] * (c - k) + sorted_values[c] * (k - f)
 
 
 def parse_artifact_dir(run_dir: Path) -> dict[str, float]:
     candidates = [
-        run_dir / "profile_export_aiperf.json",
-        run_dir / "profile_export.json",
         run_dir / "profile_export_aiperf.csv",
         run_dir / "profile_export.csv",
-        run_dir / "profile_export.jsonl",
+        run_dir / "profile_export_aiperf.json",
+        run_dir / "profile_export.json",
     ]
 
     for candidate in candidates:
         if not candidate.exists():
             continue
 
-        if candidate.suffix == ".json":
-            metrics = parse_profile_export_json(candidate)
-        elif candidate.suffix == ".csv":
-            metrics = parse_profile_export_csv(candidate)
-        elif candidate.suffix == ".jsonl":
-            metrics = parse_profile_export_jsonl(candidate)
+        if candidate.suffix == ".csv":
+            metrics = parse_csv_metrics(candidate)
+        elif candidate.suffix == ".json":
+            metrics = parse_json_metrics(candidate)
         else:
             metrics = {}
 
@@ -473,20 +318,18 @@ def parse_artifact_dir(run_dir: Path) -> dict[str, float]:
 
 
 def discover_runs(artifact_root: Path) -> list[dict[str, Any]]:
-    runs: list[dict[str, Any]] = []
-
-    # AIPerf output dirs usually contain profile_export_aiperf.json/csv.
     candidate_dirs: set[Path] = set()
 
     for pattern in [
-        "**/profile_export_aiperf.json",
         "**/profile_export_aiperf.csv",
-        "**/profile_export.json",
         "**/profile_export.csv",
-        "**/profile_export.jsonl",
+        "**/profile_export_aiperf.json",
+        "**/profile_export.json",
     ]:
         for file in artifact_root.glob(pattern):
             candidate_dirs.add(file.parent)
+
+    runs: list[dict[str, Any]] = []
 
     for run_dir in sorted(candidate_dirs):
         stage = infer_stage(run_dir)
@@ -496,7 +339,7 @@ def discover_runs(artifact_root: Path) -> list[dict[str, Any]]:
         if stage is None or workload is None:
             continue
 
-        # Since you fixed concurrency=4, ignore other concurrency dirs unless needed.
+        # User fixed workload to concurrency=4.
         if concurrency is not None and concurrency != 4:
             continue
 
@@ -518,9 +361,6 @@ def discover_runs(artifact_root: Path) -> list[dict[str, Any]]:
 
 
 def choose_latest_runs(runs: list[dict[str, Any]]) -> dict[tuple[str, str], dict[str, Any]]:
-    """
-    Keep latest run per (workload, stage), based on path mtime.
-    """
     chosen: dict[tuple[str, str], dict[str, Any]] = {}
 
     for run in runs:
@@ -531,61 +371,121 @@ def choose_latest_runs(runs: list[dict[str, Any]]) -> dict[tuple[str, str], dict
             chosen[key] = run
             continue
 
-        old_mtime = old["run_dir"].stat().st_mtime
-        new_mtime = run["run_dir"].stat().st_mtime
-
-        if new_mtime > old_mtime:
+        if run["run_dir"].stat().st_mtime > old["run_dir"].stat().st_mtime:
             chosen[key] = run
 
     return chosen
 
 
-def plot_metric(
+def workload_plot_dir(artifact_root: Path, workload: str) -> Path:
+    out_dir = artifact_root / workload / "plots"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    return out_dir
+
+
+def plot_latency_grouped(
     chosen: dict[tuple[str, str], dict[str, Any]],
+    artifact_root: Path,
+    workload: str,
+) -> None:
+    out_dir = workload_plot_dir(artifact_root, workload)
+
+    x = list(range(len(STAGE_ORDER)))
+    width = 0.24
+    offsets = [-width, 0, width]
+
+    plt.figure(figsize=(9, 5.5))
+
+    has_any = False
+
+    for metric_key, offset in zip(LATENCY_METRICS, offsets):
+        values = []
+        for stage in STAGE_ORDER:
+            run = chosen.get((workload, stage))
+            val = None if run is None else run["metrics"].get(metric_key)
+            values.append(val)
+
+        if any(v is not None for v in values):
+            has_any = True
+
+        y = [0.0 if v is None else float(v) for v in values]
+        bars = plt.bar(
+            [i + offset for i in x],
+            y,
+            width=width,
+            label=LATENCY_LEGEND_LABELS[metric_key],
+        )
+
+        for bar, val in zip(bars, values):
+            if val is None:
+                continue
+            plt.text(
+                bar.get_x() + bar.get_width() / 2,
+                bar.get_height(),
+                format_metric_value(float(val)),
+                ha="center",
+                va="bottom",
+                fontsize=8,
+                rotation=0,
+            )
+
+    if not has_any:
+        plt.close()
+        return
+
+    plt.xticks(x, STAGE_ORDER)
+    plt.xlabel("Stage Type")
+    plt.ylabel("Request Latency (ms)")
+    plt.title(f"{pretty_workload_name(workload)} — Request Latency")
+    plt.legend(title="Latency")
+    plt.grid(axis="y", alpha=0.3)
+    plt.tight_layout()
+
+    plt.savefig(out_dir / "latency_grouped_avg_p90_p99.png", dpi=200)
+    plt.close()
+
+
+def plot_single_metric(
+    chosen: dict[tuple[str, str], dict[str, Any]],
+    artifact_root: Path,
     workload: str,
     metric_key: str,
-    out_dir: Path,
 ) -> None:
-    stages = STAGE_ORDER
-    values: list[float | None] = []
+    out_dir = workload_plot_dir(artifact_root, workload)
 
-    for stage in stages:
+    values = []
+    for stage in STAGE_ORDER:
         run = chosen.get((workload, stage))
-        if run is None:
-            values.append(None)
-        else:
-            values.append(run["metrics"].get(metric_key))
+        val = None if run is None else run["metrics"].get(metric_key)
+        values.append(val)
 
     if all(v is None for v in values):
         return
 
-    x = list(range(len(stages)))
+    x = list(range(len(STAGE_ORDER)))
     y = [0.0 if v is None else float(v) for v in values]
 
     plt.figure(figsize=(8, 5))
     bars = plt.bar(x, y)
 
-    plt.xticks(x, stages)
-    plt.ylabel(METRIC_LABELS.get(metric_key, metric_key))
+    plt.xticks(x, STAGE_ORDER)
     plt.xlabel("Stage Type")
+    plt.ylabel(METRIC_LABELS.get(metric_key, metric_key))
     plt.title(f"{pretty_workload_name(workload)} — {METRIC_LABELS.get(metric_key, metric_key)}")
     plt.grid(axis="y", alpha=0.3)
 
     max_y = max(y) if y else 0.0
-
     for bar, val in zip(bars, values):
-        height = bar.get_height()
-
         if val is None:
             label = "missing"
-            height_for_text = max_y * 0.03 if max_y > 0 else 0.01
+            text_y = max_y * 0.03 if max_y > 0 else 0.01
         else:
-            label = format_metric_value(val)
-            height_for_text = height
+            label = format_metric_value(float(val))
+            text_y = bar.get_height()
 
         plt.text(
             bar.get_x() + bar.get_width() / 2,
-            height_for_text,
+            text_y,
             label,
             ha="center",
             va="bottom",
@@ -594,101 +494,54 @@ def plot_metric(
 
     plt.tight_layout()
 
-    filename = f"{workload}_{metric_key}.png"
+    filename = f"{metric_key}.png"
     plt.savefig(out_dir / filename, dpi=200)
     plt.close()
 
 
-def plot_summary_grid(
-    chosen: dict[tuple[str, str], dict[str, Any]],
-    workload: str,
-    metric_keys: list[str],
-    out_dir: Path,
-) -> None:
-    available = []
-    for metric_key in metric_keys:
-        if any(
-            chosen.get((workload, stage), {}).get("metrics", {}).get(metric_key) is not None
-            for stage in STAGE_ORDER
-        ):
-            available.append(metric_key)
-
-    if not available:
-        return
-
-    n = len(available)
-    cols = 2
-    rows = math.ceil(n / cols)
-
-    fig, axes = plt.subplots(rows, cols, figsize=(12, 4 * rows))
-    axes_list = axes.flatten() if hasattr(axes, "flatten") else [axes]
-
-    for ax, metric_key in zip(axes_list, available):
-        values = []
-        for stage in STAGE_ORDER:
-            run = chosen.get((workload, stage))
-            val = None if run is None else run["metrics"].get(metric_key)
-            values.append(val)
-
-        y = [0.0 if v is None else float(v) for v in values]
-        x = list(range(len(STAGE_ORDER)))
-
-        bars = ax.bar(x, y)
-        ax.set_xticks(x)
-        ax.set_xticklabels(STAGE_ORDER)
-        ax.set_ylabel(METRIC_LABELS.get(metric_key, metric_key))
-        ax.set_title(METRIC_LABELS.get(metric_key, metric_key))
-        ax.grid(axis="y", alpha=0.3)
-
-        max_y = max(y) if y else 0.0
-        for bar, val in zip(bars, values):
-            height = bar.get_height()
-            label = "missing" if val is None else format_metric_value(val)
-            text_y = height if val is not None else (max_y * 0.03 if max_y > 0 else 0.01)
-            ax.text(
-                bar.get_x() + bar.get_width() / 2,
-                text_y,
-                label,
-                ha="center",
-                va="bottom",
-                fontsize=8,
-            )
-
-    for ax in axes_list[len(available):]:
-        ax.axis("off")
-
-    fig.suptitle(f"{pretty_workload_name(workload)} — Stage Comparison", fontsize=16)
-    fig.tight_layout(rect=[0, 0, 1, 0.96])
-
-    plt.savefig(out_dir / f"{workload}_summary_grid.png", dpi=200)
-    plt.close()
-
-
-def pretty_workload_name(workload: str) -> str:
-    return {
-        "baseline": "Baseline: 512×512 input, 64 output tokens",
-        "encoder_heavy": "Encoder-heavy: 2048×2048 input, 128 output tokens",
-        "decode_heavy": "Decode-heavy: 512×512 input, 1024 output tokens",
-    }.get(workload, workload)
-
-
-def format_metric_value(v: float) -> str:
-    if abs(v) >= 100:
-        return f"{v:,.1f}"
-    if abs(v) >= 10:
-        return f"{v:,.2f}"
-    return f"{v:,.3f}"
-
-
 def write_summary_csv(
     chosen: dict[tuple[str, str], dict[str, Any]],
-    metric_keys: list[str],
-    out_path: Path,
+    artifact_root: Path,
+    workload: str,
 ) -> None:
-    fields = ["workload", "stage", "run_dir"] + metric_keys
+    out_dir = workload_plot_dir(artifact_root, workload)
+    metric_keys = LATENCY_METRICS + SINGLE_METRICS
 
-    with out_path.open("w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fields)
+    with (out_dir / "stage_comparison_summary.csv").open("w", newline="") as f:
+        writer = csv.DictWriter(
+            f,
+            fieldnames=["workload", "stage", "run_dir"] + metric_keys,
+        )
+        writer.writeheader()
+
+        for stage in STAGE_ORDER:
+            run = chosen.get((workload, stage))
+            row: dict[str, Any] = {
+                "workload": workload,
+                "stage": stage,
+                "run_dir": "" if run is None else str(run["run_dir"]),
+            }
+
+            for metric in metric_keys:
+                row[metric] = "" if run is None else run["metrics"].get(metric, "")
+
+            writer.writerow(row)
+
+
+def write_global_summary_csv(
+    chosen: dict[tuple[str, str], dict[str, Any]],
+    artifact_root: Path,
+) -> None:
+    out_dir = artifact_root / "plots"
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    metric_keys = LATENCY_METRICS + SINGLE_METRICS
+
+    with (out_dir / "stage_comparison_summary_all_workloads.csv").open("w", newline="") as f:
+        writer = csv.DictWriter(
+            f,
+            fieldnames=["workload", "stage", "run_dir"] + metric_keys,
+        )
         writer.writeheader()
 
         for workload in WORKLOAD_ORDER:
@@ -700,16 +553,13 @@ def write_summary_csv(
                     "run_dir": "" if run is None else str(run["run_dir"]),
                 }
 
-                for metric_key in metric_keys:
-                    if run is None:
-                        row[metric_key] = ""
-                    else:
-                        row[metric_key] = run["metrics"].get(metric_key, "")
+                for metric in metric_keys:
+                    row[metric] = "" if run is None else run["metrics"].get(metric, "")
 
                 writer.writerow(row)
 
 
-def print_table(chosen: dict[tuple[str, str], dict[str, Any]], metric_keys: list[str]) -> None:
+def print_table(chosen: dict[tuple[str, str], dict[str, Any]]) -> None:
     for workload in WORKLOAD_ORDER:
         print()
         print(f"=== {pretty_workload_name(workload)} ===")
@@ -723,67 +573,38 @@ def print_table(chosen: dict[tuple[str, str], dict[str, Any]], metric_keys: list
                 continue
 
             print(f"  run_dir: {run['run_dir']}")
-            for metric_key in metric_keys:
-                val = run["metrics"].get(metric_key)
+            for metric in LATENCY_METRICS + SINGLE_METRICS:
+                val = run["metrics"].get(metric)
                 if val is not None:
-                    print(f"  {metric_key}: {format_metric_value(float(val))}")
+                    print(f"  {metric}: {format_metric_value(float(val))}")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--artifact-root", type=Path, default=Path("artifacts/p4"))
-    parser.add_argument("--out-dir", type=Path, default=Path("artifacts/p4/plots/stage_comparison"))
-    parser.add_argument(
-        "--metrics",
-        nargs="*",
-        default=DEFAULT_METRICS,
-        help="Metric keys to plot.",
-    )
     parser.add_argument("--show-table", action="store_true")
-    parser.add_argument(
-        "--all-runs-csv",
-        type=Path,
-        default=None,
-        help="Optional path to dump discovered run-level metrics.",
-    )
     args = parser.parse_args()
-
-    args.out_dir.mkdir(parents=True, exist_ok=True)
 
     runs = discover_runs(args.artifact_root)
     chosen = choose_latest_runs(runs)
 
     if args.show_table:
-        print_table(chosen, args.metrics)
-
-    write_summary_csv(chosen, args.metrics, args.out_dir / "stage_comparison_summary.csv")
+        print_table(chosen)
 
     for workload in WORKLOAD_ORDER:
-        for metric_key in args.metrics:
-            plot_metric(chosen, workload, metric_key, args.out_dir)
+        plot_latency_grouped(chosen, args.artifact_root, workload)
 
-        plot_summary_grid(chosen, workload, args.metrics, args.out_dir)
+        for metric in SINGLE_METRICS:
+            plot_single_metric(chosen, args.artifact_root, workload, metric)
 
-    if args.all_runs_csv is not None:
-        args.all_runs_csv.parent.mkdir(parents=True, exist_ok=True)
-        with args.all_runs_csv.open("w", newline="") as f:
-            fields = ["workload", "stage", "concurrency", "run_dir"] + args.metrics
-            writer = csv.DictWriter(f, fieldnames=fields)
-            writer.writeheader()
+        write_summary_csv(chosen, args.artifact_root, workload)
 
-            for run in runs:
-                row: dict[str, Any] = {
-                    "workload": run["workload"],
-                    "stage": run["stage"],
-                    "concurrency": run["concurrency"],
-                    "run_dir": str(run["run_dir"]),
-                }
-                for metric_key in args.metrics:
-                    row[metric_key] = run["metrics"].get(metric_key, "")
-                writer.writerow(row)
+    write_global_summary_csv(chosen, args.artifact_root)
 
-    print(f"Wrote plots to: {args.out_dir}")
-    print(f"Wrote summary CSV to: {args.out_dir / 'stage_comparison_summary.csv'}")
+    print("Wrote workload-local plots:")
+    for workload in WORKLOAD_ORDER:
+        print(f"  {args.artifact_root / workload / 'plots'}")
+    print(f"Wrote global summary: {args.artifact_root / 'plots' / 'stage_comparison_summary_all_workloads.csv'}")
 
 
 if __name__ == "__main__":

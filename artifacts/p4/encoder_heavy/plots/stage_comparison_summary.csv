@@ -1,0 +1,4 @@
+workload,stage,run_dir,request_latency_ms_avg,request_latency_ms_p90,request_latency_ms_p99,request_throughput_rps,output_token_throughput_tps,image_throughput_ips,input_tokens_avg,output_tokens_avg
+encoder_heavy,AGG,artifacts/p4/encoder_heavy/Qwen_Qwen2.5-VL-32B-Instruct-aggregated-native-vllm_concurrency4_20260503_155937,127136.38,129786.05,130837.75,0.03,3.88,0.01,295000.0,6400.0
+encoder_heavy,E/PD,artifacts/p4/encoder_heavy/Qwen_Qwen2.5-VL-32B-Instruct-e-pd-native-vllm_concurrency4_20260503_153601,12166.36,12688.06,13101.64,0.32,40.85,0.08,295000.0,6400.0
+encoder_heavy,E/P/D,artifacts/p4/encoder_heavy/Qwen_Qwen2.5-VL-32B-Instruct-e-p-d-native-vllm_concurrency4_20260503_161616,31422.37,32888.5,33001.03,0.12,15.89,0.03,295000.0,6400.0
