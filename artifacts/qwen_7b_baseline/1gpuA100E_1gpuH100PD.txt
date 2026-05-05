@@ -1,0 +1,40 @@
+((prism-env) ) c317-009.ls6(1138)$ aiperf profile \
+>   --model "$MODEL" \
+>   --url http://localhost:$PORT \
+>   --endpoint-type chat \
+>   --image-width-mean 512 \
+>   --image-height-mean 512 \
+>   --concurrency 4 \
+>   --request-count 50 \
+>   --warmup-request-count 10 \
+>   --use-server-token-count \
+>   --prompt-output-tokens-mean 64 \
+>   --prompt-output-tokens-stddev 0 \
+>   --extra-inputs ignore_eos:true \
+>   --output-artifact-dir "$OUT_DIR"
+
+
+                                     NVIDIA AIPerf | LLM Metrics                                      
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━┓
+┃                               Metric ┃    avg ┃    min ┃    max ┃    p99 ┃    p90 ┃    p50 ┃   std ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━┩
+│                 Request Latency (ms) │ 872.30 │ 794.71 │ 914.96 │ 913.20 │ 905.46 │ 867.23 │ 25.60 │
+│      Output Sequence Length (tokens) │  64.00 │  64.00 │  64.00 │  64.00 │  64.00 │  64.00 │  0.00 │
+│       Input Sequence Length (tokens) │ 895.02 │ 895.00 │ 896.00 │ 895.51 │ 895.00 │ 895.00 │  0.14 │
+│ Output Token Throughput (tokens/sec) │ 281.80 │    N/A │    N/A │    N/A │    N/A │    N/A │   N/A │
+│        Image Throughput (images/sec) │   1.15 │   1.09 │   1.26 │   1.25 │   1.18 │   1.15 │  0.03 │
+│             Image Latency (ms/image) │ 872.30 │ 794.71 │ 914.96 │ 913.20 │ 905.46 │ 867.23 │ 25.60 │
+│    Request Throughput (requests/sec) │   4.40 │    N/A │    N/A │    N/A │    N/A │    N/A │   N/A │
+│             Request Count (requests) │  50.00 │    N/A │    N/A │    N/A │    N/A │    N/A │   N/A │
+└──────────────────────────────────────┴────────┴────────┴────────┴────────┴────────┴────────┴───────┘
+
+CLI Command: aiperf profile --model 'Qwen/Qwen2-VL-7B-Instruct' --url 'http://localhost:8000' --endpoint-type 'chat' 
+--image-width-mean 512 --image-height-mean 512 --concurrency 4 --request-count 50 --warmup-request-count 10 --use-server-token-count
+--prompt-output-tokens-mean 64 --prompt-output-tokens-stddev 0 --extra-inputs 'ignore_eos:true' --output-artifact-dir 
+'/scratch/10698/akarshsri/PRISM/artifacts/qwen2vl_7b_epd_hetero_a100e_h100pd_baseline_img512_c4_out64'
+Benchmark Duration: 11.36 sec
+CSV Export: 
+/scratch/10698/akarshsri/PRISM/artifacts/qwen2vl_7b_epd_hetero_a100e_h100pd_baseline_img512_c4_out64/profile_export_aiperf.csv
+JSON Export: 
+/scratch/10698/akarshsri/PRISM/artifacts/qwen2vl_7b_epd_hetero_a100e_h100pd_baseline_img512_c4_out64/profile_export_aiperf.json
+Log File: /scratch/10698/akarshsri/PRISM/artifacts/qwen2vl_7b_epd_hetero_a100e_h100pd_baseline_img512_c4_out64/logs/aiperf.log

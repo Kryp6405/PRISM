@@ -1,0 +1,91 @@
+workload,input,output_tokens,mapping_group,mapping,metric,stat,value,unit
+Baseline,512x512,64,Homogeneous A100,"AGG (1xA100)",Image Throughput,avg,0.740,img/s
+Baseline,512x512,64,Homogeneous A100,"E/PD (E=A100, PD=A100)",Image Throughput,avg,0.720,img/s
+Baseline,512x512,64,Homogeneous A100,"E/P/D (E=A100, P=A100, D=A100)",Image Throughput,avg,0.680,img/s
+Baseline,512x512,64,H100-based / Heterogeneous,"AGG (1xH100)",Image Throughput,avg,1.190,img/s
+Baseline,512x512,64,H100-based / Heterogeneous,"E/PD (E=A100, PD=H100)",Image Throughput,avg,1.150,img/s
+Baseline,512x512,64,H100-based / Heterogeneous,"E/P/D (E=A100, P=A100, D=H100)",Image Throughput,avg,1.060,img/s
+Encoder-heavy,2048x2048,64,Homogeneous A100,"AGG (1xA100)",Image Throughput,avg,0.350,img/s
+Encoder-heavy,2048x2048,64,Homogeneous A100,"E/PD (E=A100, PD=A100)",Image Throughput,avg,0.330,img/s
+Encoder-heavy,2048x2048,64,Homogeneous A100,"E/P/D (E=A100, P=A100, D=A100)",Image Throughput,avg,0.370,img/s
+Encoder-heavy,2048x2048,64,H100-based / Heterogeneous,"AGG (1xH100)",Image Throughput,avg,0.600,img/s
+Encoder-heavy,2048x2048,64,H100-based / Heterogeneous,"E/PD (E=A100, PD=H100)",Image Throughput,avg,0.540,img/s
+Encoder-heavy,2048x2048,64,H100-based / Heterogeneous,"E/P/D (E=A100, P=A100, D=H100)",Image Throughput,avg,0.530,img/s
+Decode-heavy,1024x1024,1024,Homogeneous A100,"AGG (1xA100)",Image Throughput,avg,0.060,img/s
+Decode-heavy,1024x1024,1024,Homogeneous A100,"E/PD (E=A100, PD=A100)",Image Throughput,avg,0.050,img/s
+Decode-heavy,1024x1024,1024,Homogeneous A100,"E/P/D (E=A100, P=A100, D=A100)",Image Throughput,avg,0.060,img/s
+Decode-heavy,1024x1024,1024,H100-based / Heterogeneous,"AGG (1xH100)",Image Throughput,avg,0.090,img/s
+Decode-heavy,1024x1024,1024,H100-based / Heterogeneous,"E/PD (E=A100, PD=H100)",Image Throughput,avg,0.090,img/s
+Decode-heavy,1024x1024,1024,H100-based / Heterogeneous,"E/P/D (E=A100, P=A100, D=H100)",Image Throughput,avg,0.080,img/s
+Baseline,512x512,64,Homogeneous A100,"AGG (1xA100)",Output Token Throughput,avg,183.7,tok/s
+Baseline,512x512,64,Homogeneous A100,"E/PD (E=A100, PD=A100)",Output Token Throughput,avg,178.2,tok/s
+Baseline,512x512,64,Homogeneous A100,"E/P/D (E=A100, P=A100, D=A100)",Output Token Throughput,avg,167.6,tok/s
+Baseline,512x512,64,H100-based / Heterogeneous,"AGG (1xH100)",Output Token Throughput,avg,292.6,tok/s
+Baseline,512x512,64,H100-based / Heterogeneous,"E/PD (E=A100, PD=H100)",Output Token Throughput,avg,281.8,tok/s
+Baseline,512x512,64,H100-based / Heterogeneous,"E/P/D (E=A100, P=A100, D=H100)",Output Token Throughput,avg,261.6,tok/s
+Encoder-heavy,2048x2048,64,Homogeneous A100,"AGG (1xA100)",Output Token Throughput,avg,86.2,tok/s
+Encoder-heavy,2048x2048,64,Homogeneous A100,"E/PD (E=A100, PD=A100)",Output Token Throughput,avg,80.1,tok/s
+Encoder-heavy,2048x2048,64,Homogeneous A100,"E/P/D (E=A100, P=A100, D=A100)",Output Token Throughput,avg,87.9,tok/s
+Encoder-heavy,2048x2048,64,H100-based / Heterogeneous,"AGG (1xH100)",Output Token Throughput,avg,148.5,tok/s
+Encoder-heavy,2048x2048,64,H100-based / Heterogeneous,"E/PD (E=A100, PD=H100)",Output Token Throughput,avg,130.6,tok/s
+Encoder-heavy,2048x2048,64,H100-based / Heterogeneous,"E/P/D (E=A100, P=A100, D=H100)",Output Token Throughput,avg,127.2,tok/s
+Decode-heavy,1024x1024,1024,Homogeneous A100,"AGG (1xA100)",Output Token Throughput,avg,226.3,tok/s
+Decode-heavy,1024x1024,1024,Homogeneous A100,"E/PD (E=A100, PD=A100)",Output Token Throughput,avg,216.7,tok/s
+Decode-heavy,1024x1024,1024,Homogeneous A100,"E/P/D (E=A100, P=A100, D=A100)",Output Token Throughput,avg,219.3,tok/s
+Decode-heavy,1024x1024,1024,H100-based / Heterogeneous,"AGG (1xH100)",Output Token Throughput,avg,335.7,tok/s
+Decode-heavy,1024x1024,1024,H100-based / Heterogeneous,"E/PD (E=A100, PD=H100)",Output Token Throughput,avg,335.1,tok/s
+Decode-heavy,1024x1024,1024,H100-based / Heterogeneous,"E/P/D (E=A100, P=A100, D=H100)",Output Token Throughput,avg,325.8,tok/s
+Baseline,512x512,64,Homogeneous A100,"AGG (1xA100)",Request Latency,avg,1344.3,ms
+Baseline,512x512,64,Homogeneous A100,"AGG (1xA100)",Request Latency,p90,1361.4,ms
+Baseline,512x512,64,Homogeneous A100,"AGG (1xA100)",Request Latency,p99,1381.6,ms
+Baseline,512x512,64,Homogeneous A100,"E/PD (E=A100, PD=A100)",Request Latency,avg,1386.0,ms
+Baseline,512x512,64,Homogeneous A100,"E/PD (E=A100, PD=A100)",Request Latency,p90,1442.9,ms
+Baseline,512x512,64,Homogeneous A100,"E/PD (E=A100, PD=A100)",Request Latency,p99,1470.0,ms
+Baseline,512x512,64,Homogeneous A100,"E/P/D (E=A100, P=A100, D=A100)",Request Latency,avg,1473.1,ms
+Baseline,512x512,64,Homogeneous A100,"E/P/D (E=A100, P=A100, D=A100)",Request Latency,p90,1567.2,ms
+Baseline,512x512,64,Homogeneous A100,"E/P/D (E=A100, P=A100, D=A100)",Request Latency,p99,1630.3,ms
+Baseline,512x512,64,H100-based / Heterogeneous,"AGG (1xH100)",Request Latency,avg,842.4,ms
+Baseline,512x512,64,H100-based / Heterogeneous,"AGG (1xH100)",Request Latency,p90,853.8,ms
+Baseline,512x512,64,H100-based / Heterogeneous,"AGG (1xH100)",Request Latency,p99,866.8,ms
+Baseline,512x512,64,H100-based / Heterogeneous,"E/PD (E=A100, PD=H100)",Request Latency,avg,872.3,ms
+Baseline,512x512,64,H100-based / Heterogeneous,"E/PD (E=A100, PD=H100)",Request Latency,p90,905.5,ms
+Baseline,512x512,64,H100-based / Heterogeneous,"E/PD (E=A100, PD=H100)",Request Latency,p99,913.2,ms
+Baseline,512x512,64,H100-based / Heterogeneous,"E/P/D (E=A100, P=A100, D=H100)",Request Latency,avg,942.9,ms
+Baseline,512x512,64,H100-based / Heterogeneous,"E/P/D (E=A100, P=A100, D=H100)",Request Latency,p90,972.6,ms
+Baseline,512x512,64,H100-based / Heterogeneous,"E/P/D (E=A100, P=A100, D=H100)",Request Latency,p99,1172.9,ms
+Encoder-heavy,2048x2048,64,Homogeneous A100,"AGG (1xA100)",Request Latency,avg,2883.1,ms
+Encoder-heavy,2048x2048,64,Homogeneous A100,"AGG (1xA100)",Request Latency,p90,2982.6,ms
+Encoder-heavy,2048x2048,64,Homogeneous A100,"AGG (1xA100)",Request Latency,p99,3089.1,ms
+Encoder-heavy,2048x2048,64,Homogeneous A100,"E/PD (E=A100, PD=A100)",Request Latency,avg,3083.6,ms
+Encoder-heavy,2048x2048,64,Homogeneous A100,"E/PD (E=A100, PD=A100)",Request Latency,p90,3227.3,ms
+Encoder-heavy,2048x2048,64,Homogeneous A100,"E/PD (E=A100, PD=A100)",Request Latency,p99,4622.9,ms
+Encoder-heavy,2048x2048,64,Homogeneous A100,"E/P/D (E=A100, P=A100, D=A100)",Request Latency,avg,2827.0,ms
+Encoder-heavy,2048x2048,64,Homogeneous A100,"E/P/D (E=A100, P=A100, D=A100)",Request Latency,p90,4214.1,ms
+Encoder-heavy,2048x2048,64,Homogeneous A100,"E/P/D (E=A100, P=A100, D=A100)",Request Latency,p99,4446.2,ms
+Encoder-heavy,2048x2048,64,H100-based / Heterogeneous,"AGG (1xH100)",Request Latency,avg,1669.6,ms
+Encoder-heavy,2048x2048,64,H100-based / Heterogeneous,"AGG (1xH100)",Request Latency,p90,1749.6,ms
+Encoder-heavy,2048x2048,64,H100-based / Heterogeneous,"AGG (1xH100)",Request Latency,p99,1764.7,ms
+Encoder-heavy,2048x2048,64,H100-based / Heterogeneous,"E/PD (E=A100, PD=H100)",Request Latency,avg,1877.4,ms
+Encoder-heavy,2048x2048,64,H100-based / Heterogeneous,"E/PD (E=A100, PD=H100)",Request Latency,p90,2045.4,ms
+Encoder-heavy,2048x2048,64,H100-based / Heterogeneous,"E/PD (E=A100, PD=H100)",Request Latency,p99,2275.6,ms
+Encoder-heavy,2048x2048,64,H100-based / Heterogeneous,"E/P/D (E=A100, P=A100, D=H100)",Request Latency,avg,1949.6,ms
+Encoder-heavy,2048x2048,64,H100-based / Heterogeneous,"E/P/D (E=A100, P=A100, D=H100)",Request Latency,p90,1989.4,ms
+Encoder-heavy,2048x2048,64,H100-based / Heterogeneous,"E/P/D (E=A100, P=A100, D=H100)",Request Latency,p99,4027.7,ms
+Decode-heavy,1024x1024,1024,Homogeneous A100,"AGG (1xA100)",Request Latency,avg,17425.6,ms
+Decode-heavy,1024x1024,1024,Homogeneous A100,"AGG (1xA100)",Request Latency,p90,17475.5,ms
+Decode-heavy,1024x1024,1024,Homogeneous A100,"AGG (1xA100)",Request Latency,p99,17485.9,ms
+Decode-heavy,1024x1024,1024,Homogeneous A100,"E/PD (E=A100, PD=A100)",Request Latency,avg,18195.0,ms
+Decode-heavy,1024x1024,1024,Homogeneous A100,"E/PD (E=A100, PD=A100)",Request Latency,p90,18349.5,ms
+Decode-heavy,1024x1024,1024,Homogeneous A100,"E/PD (E=A100, PD=A100)",Request Latency,p99,18370.7,ms
+Decode-heavy,1024x1024,1024,Homogeneous A100,"E/P/D (E=A100, P=A100, D=A100)",Request Latency,avg,17984.4,ms
+Decode-heavy,1024x1024,1024,Homogeneous A100,"E/P/D (E=A100, P=A100, D=A100)",Request Latency,p90,18061.9,ms
+Decode-heavy,1024x1024,1024,Homogeneous A100,"E/P/D (E=A100, P=A100, D=A100)",Request Latency,p99,18172.3,ms
+Decode-heavy,1024x1024,1024,H100-based / Heterogeneous,"AGG (1xH100)",Request Latency,avg,11711.7,ms
+Decode-heavy,1024x1024,1024,H100-based / Heterogeneous,"AGG (1xH100)",Request Latency,p90,11752.3,ms
+Decode-heavy,1024x1024,1024,H100-based / Heterogeneous,"AGG (1xH100)",Request Latency,p99,11769.7,ms
+Decode-heavy,1024x1024,1024,H100-based / Heterogeneous,"E/PD (E=A100, PD=H100)",Request Latency,avg,11748.0,ms
+Decode-heavy,1024x1024,1024,H100-based / Heterogeneous,"E/PD (E=A100, PD=H100)",Request Latency,p90,11765.3,ms
+Decode-heavy,1024x1024,1024,H100-based / Heterogeneous,"E/PD (E=A100, PD=H100)",Request Latency,p99,11855.8,ms
+Decode-heavy,1024x1024,1024,H100-based / Heterogeneous,"E/P/D (E=A100, P=A100, D=H100)",Request Latency,avg,12090.0,ms
+Decode-heavy,1024x1024,1024,H100-based / Heterogeneous,"E/P/D (E=A100, P=A100, D=H100)",Request Latency,p90,12131.8,ms
+Decode-heavy,1024x1024,1024,H100-based / Heterogeneous,"E/P/D (E=A100, P=A100, D=H100)",Request Latency,p99,12357.2,ms

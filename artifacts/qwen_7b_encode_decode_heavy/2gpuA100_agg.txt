@@ -1,0 +1,107 @@
+((prism-env) ) c317-009.ls6(1112)$ aiperf profile \
+>   --model "$MODEL" \
+>   --url http://localhost:$PORT \
+>   --endpoint-type chat \
+>   --image-width-mean 2048 \
+>   --image-height-mean 2048 \
+>   --concurrency 4 \
+>   --request-count 50 \
+>   --warmup-request-count 10 \
+>   --use-server-token-count \
+>   --prompt-output-tokens-mean 1024 \
+>   --prompt-output-tokens-stddev 0 \
+>   --gpu-telemetry "pynvml" \
+>   --extra-inputs ignore_eos:true \
+>   --output-artifact-dir "$OUT_DIR"
+
+
+                                               NVIDIA AIPerf | LLM Metrics                                               
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━┓
+┃                               Metric ┃       avg ┃       min ┃       max ┃       p99 ┃       p90 ┃       p50 ┃    std ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━┩
+│                 Request Latency (ms) │ 22,269.37 │ 21,260.91 │ 22,649.29 │ 22,608.77 │ 22,468.76 │ 22,280.42 │ 236.02 │
+│      Output Sequence Length (tokens) │  1,024.00 │  1,024.00 │  1,024.00 │  1,024.00 │  1,024.00 │  1,024.00 │   0.00 │
+│       Input Sequence Length (tokens) │  5,900.00 │  5,900.00 │  5,900.00 │  5,900.00 │  5,900.00 │  5,900.00 │   0.00 │
+│ Output Token Throughput (tokens/sec) │    177.12 │       N/A │       N/A │       N/A │       N/A │       N/A │    N/A │
+│        Image Throughput (images/sec) │      0.04 │      0.04 │      0.05 │      0.05 │      0.05 │      0.04 │   0.00 │
+│             Image Latency (ms/image) │ 22,269.37 │ 21,260.91 │ 22,649.29 │ 22,608.77 │ 22,468.76 │ 22,280.42 │ 236.02 │
+│    Request Throughput (requests/sec) │      0.17 │       N/A │       N/A │       N/A │       N/A │       N/A │    N/A │
+│             Request Count (requests) │     50.00 │       N/A │       N/A │       N/A │       N/A │       N/A │    N/A │
+└──────────────────────────────────────┴───────────┴───────────┴───────────┴───────────┴───────────┴───────────┴────────┘
+
+
+                         NVIDIA AIPerf | GPU Telemetry Summary                          
+                              1/1 DCGM endpoints reachable                              
+                                     • localhost ✔                                      
+                                                                                        
+                       localhost | GPU 0 | NVIDIA A100-PCIE-40GB                        
+┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━┓
+┃                  Metric ┃    avg ┃   min ┃    max ┃    p99 ┃    p90 ┃    p50 ┃   std ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━┩
+│     GPU Power Usage (W) │ 150.31 │ 65.84 │ 254.94 │ 249.03 │ 149.14 │ 144.71 │ 24.37 │
+│ Energy Consumption (MJ) │   0.04 │   N/A │    N/A │    N/A │    N/A │    N/A │   N/A │
+│     GPU Utilization (%) │  62.35 │ 49.00 │ 100.00 │ 100.00 │  60.00 │  60.00 │ 10.09 │
+│    GPU Memory Used (GB) │  36.95 │ 36.95 │  36.95 │  36.95 │  36.95 │  36.95 │  0.00 │
+│    GPU Temperature (°C) │  47.85 │ 39.00 │  55.00 │  54.00 │  50.00 │  48.00 │  2.52 │
+│  Memory Utilization (%) │  30.89 │ 10.00 │  35.00 │  32.00 │  32.00 │  32.00 │  3.70 │
+│      SM Utilization (%) │  61.26 │ 55.00 │  64.00 │  64.00 │  63.00 │  63.00 │  2.21 │
+│ Decoder Utilization (%) │   0.00 │  0.00 │   0.00 │   0.00 │   0.00 │   0.00 │  0.00 │
+│ Encoder Utilization (%) │   0.00 │  0.00 │   0.00 │   0.00 │   0.00 │   0.00 │  0.00 │
+│    JPEG Utilization (%) │   0.00 │  0.00 │   0.00 │   0.00 │   0.00 │   0.00 │  0.00 │
+│    Power Violation (us) │   0.00 │   N/A │    N/A │    N/A │    N/A │    N/A │   N/A │
+└─────────────────────────┴────────┴───────┴────────┴────────┴────────┴────────┴───────┘
+
+                       localhost | GPU 1 | NVIDIA A100-PCIE-40GB                        
+┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━┓
+┃                  Metric ┃    avg ┃   min ┃    max ┃    p99 ┃    p90 ┃    p50 ┃   std ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━┩
+│     GPU Power Usage (W) │ 144.94 │ 59.10 │ 253.01 │ 246.03 │ 142.13 │ 138.60 │ 25.41 │
+│ Energy Consumption (MJ) │   0.04 │   N/A │    N/A │    N/A │    N/A │    N/A │   N/A │
+│     GPU Utilization (%) │  99.85 │ 81.00 │ 100.00 │ 100.00 │ 100.00 │ 100.00 │  1.59 │
+│    GPU Memory Used (GB) │  36.95 │ 36.95 │  36.95 │  36.95 │  36.95 │  36.95 │  0.00 │
+│    GPU Temperature (°C) │  46.45 │ 38.00 │  53.00 │  52.00 │  48.00 │  47.00 │  2.36 │
+│  Memory Utilization (%) │  30.83 │ 13.00 │  35.00 │  32.00 │  32.00 │  32.00 │  3.83 │
+│      SM Utilization (%) │  98.31 │ 97.00 │  99.00 │  99.00 │  99.00 │  98.00 │  0.56 │
+│ Decoder Utilization (%) │   0.00 │  0.00 │   0.00 │   0.00 │   0.00 │   0.00 │  0.00 │
+│ Encoder Utilization (%) │   0.00 │  0.00 │   0.00 │   0.00 │   0.00 │   0.00 │  0.00 │
+│    JPEG Utilization (%) │   0.00 │  0.00 │   0.00 │   0.00 │   0.00 │   0.00 │  0.00 │
+│    Power Violation (us) │   0.00 │   N/A │    N/A │    N/A │    N/A │    N/A │   N/A │
+└─────────────────────────┴────────┴───────┴────────┴────────┴────────┴────────┴───────┘
+
+                    localhost | GPU 2 | NVIDIA A100-PCIE-40GB                     
+┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━┓
+┃                  Metric ┃   avg ┃   min ┃   max ┃   p99 ┃   p90 ┃   p50 ┃  std ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━┩
+│     GPU Power Usage (W) │ 32.61 │ 32.18 │ 32.97 │ 32.90 │ 32.72 │ 32.61 │ 0.11 │
+│ Energy Consumption (MJ) │  0.01 │   N/A │   N/A │   N/A │   N/A │   N/A │  N/A │
+│     GPU Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    GPU Memory Used (GB) │  0.54 │  0.54 │  0.54 │  0.54 │  0.54 │  0.54 │ 0.00 │
+│    GPU Temperature (°C) │ 26.00 │ 26.00 │ 26.00 │ 26.00 │ 26.00 │ 26.00 │ 0.00 │
+│  Memory Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│ Decoder Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│ Encoder Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    JPEG Utilization (%) │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │  0.00 │ 0.00 │
+│    Power Violation (us) │  0.00 │   N/A │   N/A │   N/A │   N/A │   N/A │  N/A │
+└─────────────────────────┴───────┴───────┴───────┴───────┴───────┴───────┴──────┘
+
+CLI Command: aiperf profile --model 'Qwen/Qwen2-VL-7B-Instruct' --url 'http://localhost:8000' --endpoint-type 'chat' 
+--image-width-mean 2048 --image-height-mean 2048 --concurrency 4 --request-count 50 --warmup-request-count 10 
+--use-server-token-count --prompt-output-tokens-mean 1024 --prompt-output-tokens-stddev 0 --gpu-telemetry 'pynvml' 
+--extra-inputs 'ignore_eos:true' --output-artifact-dir 
+'/scratch/10698/akarshsri/PRISM/artifacts/qwen2vl_7b_aggregated_a100_tp2_2gpu_encode_decode_heavy_img2048_c4_out1024'
+Benchmark Duration: 289.06 sec
+CSV Export: 
+/scratch/10698/akarshsri/PRISM/artifacts/qwen2vl_7b_aggregated_a100_tp2_2gpu_encode_decode_heavy_img2048_c4_out1024/profile_expo
+rt_aiperf.csv
+JSON Export: 
+/scratch/10698/akarshsri/PRISM/artifacts/qwen2vl_7b_aggregated_a100_tp2_2gpu_encode_decode_heavy_img2048_c4_out1024/profile_expo
+rt_aiperf.json
+Server Metrics CSV Export: 
+/scratch/10698/akarshsri/PRISM/artifacts/qwen2vl_7b_aggregated_a100_tp2_2gpu_encode_decode_heavy_img2048_c4_out1024/server_metri
+cs_export.csv
+Server Metrics JSON Export: 
+/scratch/10698/akarshsri/PRISM/artifacts/qwen2vl_7b_aggregated_a100_tp2_2gpu_encode_decode_heavy_img2048_c4_out1024/server_metri
+cs_export.json
+Log File: 
+/scratch/10698/akarshsri/PRISM/artifacts/qwen2vl_7b_aggregated_a100_tp2_2gpu_encode_decode_heavy_img2048_c4_out1024/logs/aiperf.
+log
