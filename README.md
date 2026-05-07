@@ -1,4 +1,4 @@
-# PRISM: Profiling Multimodal Disaggregation for VLM Serving
+# PRISM: Profiling Resource Inference & Scaling for  Multimodality
 
 **Project:** Scaling Large Language Model Inference  
 **Maintainers:** Akarsh Srivastava & Krisnajit Rajeshkhanna
