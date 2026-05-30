@@ -3,6 +3,8 @@
 **Project:** Scaling Large Language Model Inference  
 **Maintainers:** Akarsh Srivastava & Krisnajit Rajeshkhanna
 
+[![Paper](https://img.shields.io/badge/Paper-PDF-red)](https://tinyurl.com/prism-paper)
+
 PRISM is a systems project studying how **multimodal inference pipelines behave under different serving architectures**, with a focus on **Vision-Language Models (VLMs)** and **stage disaggregation**.
 
 The project studies when it is better to serve a VLM as one monolithic/aggregated deployment versus splitting the request path into separate stages:
